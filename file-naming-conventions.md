@@ -3,7 +3,7 @@ This document outlines standard naming conventions for project files and directo
 
 ## Directory Structure
 - Use kebab-case (hyphenated lowercase) for directory names
-  - Example: `code-reviews`, `project-guides`, `private`
+  - Example: `project-guides`, `private`
 
 - Maintain a logical hierarchy with clear parent-child relationships
   - Example: `project-documents/code-reviews/`

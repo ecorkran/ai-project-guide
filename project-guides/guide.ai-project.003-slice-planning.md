@@ -136,9 +136,9 @@ This helps catch "Slice A needs X but Slice B needs Y" conflicts early.
 
 **Foundation Work:**
 1. Next.js project setup with TypeScript, Tailwind
-2. Database schema and Prisma setup
-3. Authentication system (NextAuth)
-4. Core UI components (ShadCN, design system)
+2. Database schema
+3. Authentication system (Auth0)
+4. Core UI components (Tailind, Radix, design system)
 
 **Feature Slices:**
 1. **User Dashboard** - Login, basic profile, navigation

@@ -40,11 +40,19 @@ The remainder of this guide provides detailed processes for both modes, with par
 Note: The `private/` path may map to `project-artifacts/` in monorepo development. If unclear, confirm with Project Manager.
 
 ### For Directory Crawl Reviews
-Use a single review document per review session with sequential index:
+
+**Batching Strategy:**
+Use a single review document per review session with sequential index. **Group related files together in one review session** (same `nnn`) to keep the review organized and maintain context.
+
 - Format: `nnn-review.{project}.md` where nnn is 900-939
-- All task files from this session use the same `nnn`
+- **All task files from this session use the same `nnn`** - this keeps the review batch together
 - Track all files reviewed (with and without issues)
 - Update status after each file for pause/resume capability
+
+**Benefits of batching:**
+- Maintains review context across related files
+- Easy to see all work from one review session
+- Sequential numbering prevents file sprawl
 
 **Example:** Review session 900
 - Review: `900-review.dashboard-components.md`

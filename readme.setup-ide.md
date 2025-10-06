@@ -90,8 +90,9 @@ If you prefer manual setup or need to troubleshoot the automated process:
 - **general.md** - General coding rules and project structure guidelines
 - **react.md** - React and Next.js component rules and best practices
 - **typescript.md** - TypeScript syntax rules and typing standards
+- **python.md** - Python development rules and best practices
+- **sql.md** - SQL and PostgreSQL development rules (including pgvector, TimescaleDB)
 - **testing.md** - Testing guidelines and development tools
-- **database.md** - Database management with Prisma
 - **review.md** - Comprehensive code review guidelines
 
 ### Agent Configurations (`project-guides/agents/`)
