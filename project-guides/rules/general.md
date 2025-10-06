@@ -12,8 +12,8 @@ alwaysApply: true
 ## Project Structure
 - Always refer to `guide.ai-project.000-process` and follow links as appropriate.
 - For UI/UX tasks, always refer to `guide.ui-development.ai`.
-- General Project guidance is in `/project-documents/project-guides/`.
-- Relevant 3rd party tool information is in `project-document/tool-guides`.
+- General Project guidance is in `project-documents/ai-project-guide/project-guides/`.
+- Relevant 3rd party tool information is in `project-documents/ai-project-guide/tool-guides/`.
 
 ### Project-Specific File Locations
 - **Regular Development** (template instances): Use `project-documents/private/` for all project-specific files.
