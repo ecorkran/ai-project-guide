@@ -38,6 +38,7 @@ alwaysApply: true
 - Avoid hard-coded constants - declare a constant.
 - Avoid hard-coded and duplicated values -- factor them into common object(s).
 - Provide meaningful but concise comments in _relevant_ places.
+- **Never use silent fallback values** - If a parameter/property fails to load, fail explicitly with an error or use an obviously-placeholder value (e.g., "ERROR: Failed to load", "MISSING_CONFIG"). Silent fallbacks that look like real data (e.g., `text || "some default text"`) make debugging nearly impossible. Use assertions, throw exceptions, or log errors instead.
 
 ## File and Shell Commands
 - When performing file or shell commands, always confirm your current location first.
