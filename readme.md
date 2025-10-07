@@ -3,24 +3,49 @@ docType: repository-overview
 ---
 # AI Project Guides & Methodology
 
-> Structured project guides and parameterized prompts that dramatically expand what AI tools can help you build. Helps turn complex issues into manageable, AI-assisted workflows.  Setup scripts provided for Windsurf and Cursor.
-
-I created this project after encountering difficulties using AI-assisted development tools like Windsurf and Cursor to create the apps I wanted.  While extremely helpful, the AI still failed at many even moderately complex tasks, and the effect increased with the codebase size.  
-
-The tools have advanced since then, adding better rule support, tasks lists, and more.  The AI Project Guide has advanced as well, and together they keep proving themselves useful.  It is my hope that they can be useful to others as well.
+> Structured project guides and parameterized prompts that dramatically expand what AI tools can help you build. Helps turn complex issues into manageable, AI-assisted workflows.  Setup scripts provided for Claude Code, Windsurf and Cursor.  Highly recommended to use with context-builder, available here (free):
+[text](https://github.com/ecorkran/context-builder)
 
 The repository contains a comprehensive methodology for AI-assisted development, including:
-- **Six-phase project process** with clear roles and workflows
-- **Parameterized prompts** that work with any AI tool
+- **8-phase slice-based process** with clear roles and workflows
+- **Living document pattern** for collaborative human-AI design
 - **Tool-specific guides** for frameworks, libraries, and APIs
 - **Code rules and patterns** for consistent, maintainable code
 
 
-
 ## 🚀 Quick Start
 
-### For Python, Go, Rust, or Any Project
+### For manta-templates Projects
+The easiest way to get going, currently supporting React, Electron, and Next.js. Available here: [manta-templates](https://github.com/manta-digital/manta-templates)
 
+For a complete template with easy setup scripts and pre-configured project structure, this is the recommended starting point. See demo at https://templates.manta.digital.
+
+Scripts are set up for you, just run:
+```bash
+pnpm setup-guides    # Initial setup
+pnpm update-guides   # Update guides later
+```
+
+### For other npm/pnpm Projects
+Add these scripts to your `package.json`:
+
+```json
+"scripts": {
+  "setup-guides": "mkdir -p project-documents/private/{architecture,slices,tasks,features,reviews,analysis} && git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide && echo '# Keep private/ in version control' > project-documents/private/.gitkeep || echo 'Submodule already exists—run npm run update-guides to update.'",
+  "update-guides": "git submodule update --remote --merge project-documents/ai-project-guide && cd project-documents/ai-project-guide && git checkout main && git pull origin main && cd ../..",
+  "setup-cursor": "project-documents/ai-project-guide/scripts/setup-ide cursor",
+  "setup-windsurf": "project-documents/ai-project-guide/scripts/setup-ide windsurf",
+  "setup-claude": "project-documents/ai-project-guide/scripts/setup-ide claude"
+}
+```
+
+Then run:
+```bash
+pnpm setup-guides    # Initial setup
+pnpm update-guides   # Update guides later
+```
+
+### For Python, Go, Rust, or Any Project
 One command setup using our bootstrap script:
 
 ```bash
@@ -39,27 +64,11 @@ This will:
 
 **Update guides later:**
 ```bash
-git submodule update --remote project-documents/ai-project-guide
-```
-
-### For npm/pnpm Projects
-
-Add these scripts to your `package.json`:
-
-```json
-"scripts": {
-  "setup-guides": "mkdir -p project-documents/private/{architecture,slices,tasks,features,reviews,analysis} && git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide && echo '# Keep private/ in version control' > project-documents/private/.gitkeep || echo 'Submodule already exists—run npm run update-guides to update.'",
-  "update-guides": "git submodule update --remote project-documents/ai-project-guide",
-  "setup-cursor": "project-documents/ai-project-guide/scripts/setup-ide cursor",
-  "setup-windsurf": "project-documents/ai-project-guide/scripts/setup-ide windsurf",
-  "setup-claude": "project-documents/ai-project-guide/scripts/setup-ide claude"
-}
-```
-
-Then run:
-```bash
-pnpm setup-guides    # Initial setup
-pnpm update-guides   # Update guides later
+git submodule update --remote --merge project-documents/ai-project-guide
+cd project-documents/ai-project-guide
+git checkout main
+git pull origin main
+cd ../..
 ```
 
 ### IDE Setup (Cursor/Windsurf/Claude)
@@ -80,89 +89,105 @@ pnpm setup-claude     # For Claude Code agent
 
 This copies all project rules to your IDE's configuration directory, handles file renaming (`.md` to `.mdc` for Cursor), generates `CLAUDE.md` for Claude Code, and validates frontmatter requirements.
 
-**📍 Important:** The script creates `.cursor/` and `.windsurf/` directories in your project root (not inside `project-documents/`). For Claude, it creates `CLAUDE.md` in your project root.
-
-### Start with Full Template Instead
-
-For a complete template with easy setup scripts, use the full template from [manta-templates](https://github.com/manta-digital/manta-templates).  It makes the guides setup extremely easy.  Just Next.js for now, but more flexible options should be coming very soon.  See demo at https://templates.manta.digital.
+**📍 Important:** The script creates `.cursor/` and `.windsurf/` directories in your project root (not inside `project-documents/`). For Claude, it creates `CLAUDE.md` in your project root (currently has a known issue where it may create in `project-documents/ai-project-guide/` - will be fixed soon).
 
 
 
 ## 🛠️ How to Use
 
+### 💡 Recommended: Use with Context Builder
+**The easiest and most effective way to use AI Project Guide is with [Context Builder](https://github.com/ecorkran/context-builder)** (soon to become Context Forge). It automatically manages guide context, handles file organization, and streamlines the entire workflow. Within a few weeks, Context Forge will include a "pick a prompt" feature making it the complete solution for 99% of users.
+
+For manual usage or to understand the underlying process, continue reading below.
+
 ### 🆕 New Projects
-The project guide is well-suited to new projects and can assist you with all phases of development.  
+The project guide uses an 8-phase slice-based methodology. For simple projects, you can skip directly to task creation (Phases 1-2, then 5-8). For complex projects with multiple features, follow the full slice-based approach.  
 
 
-#### 📝 Describe your Project
-Start by describing your project, ideally in a markdown file. Include goals, design ideas, target environments, and technical details if available.  
+#### 📝 Phase 1: Concept Document
+Create a concept document that you and the AI will collaborate on:
 
-* Place your file in `project-documents/private/`.
-* Name it `concept.{project}.description.md`. You can use a different filename if you like—just provide it to the AI with your kickoff prompt.
+1. **Create the file**: `project-documents/private/project-guides/001-concept.{project}.md`
+2. **Add this structure**:
+   ```markdown
+   # Overview
+   [One-sentence description of what this project is]
 
+   ## User-Provided Concept
+   [Your project description: goals, design ideas, target environments, technical details]
+   ```
+3. **Fill in your concept**: Describe your project in the User-Provided Concept section—can be simple or detailed
+4. **Let AI enhance it**: The AI will preserve your concept and add structured sections (Project Concept, Design, Technical Approach, etc.)
 
-#### 🚦 Initial Prompts – Phases 1 and 2
-After you describe your project and provide basic Input Parameters, paste the **Project Kickoff** prompt into your chat. If third-party tools are in use (they almost always are), additionally paste the **3rd Party Tools** prompt.
-
-This will generate `001-concept.{project}.md` in `private/project-guides/`, customized to your project. Once you’re happy with it, run the **Project Phase** prompt and specify **Phase 2** to produce `002-spec.{project}.md` in the same folder.
-
-At this point you’re ready to create tasks.
-
-
-#### 🔨 Creating & Expanding Tasks – Phases 3 and 4
-The `guide.ai-project.000-process` file instructs the AI on how to perform all project phases, including creating and expanding tasks. Use the **Project Phase** prompt again for **Phase 3**.  The guide will write the `nnnn-tasks.{project}.md` file in `private/project-guides/`.
-
-In general, letting the AI subdivide tasks as needed results in tasks that can be more easily implemented by the AI, with less need to be constantly in the middle.  
-
-Just run the "Task Expansion" prompt.  Make sure to provide a `{ section: section-name }` so the AI knows what tasks to focus on.  Tasks will be expanded as needed and written to `tasks/nnn-tasks.{section}.md`, with nn starting at 01.  
+This single living document approach keeps everything together instead of fragmenting across multiple files.
 
 
-#### 💻 Implementing Tasks – Phase 5
-Once tasks are written to `tasks/nnn-tasks.{section}.md`, you’re ready to implement them. You can pass the entire task file to an AI, but for complex cases it’s better to tackle **subsections** one at a time.  Just update `{ subsection: subsection-name }` as needed.
-
-Then run the **Task Implementation** prompt. You can have it process all tasks in a file or just a subsection.  For non-trivial cases, subsection generally provides higher quality results.
+#### 📋 Phase 2: Specification
+Same pattern—create `002-spec.{project}.md` with User-Provided Concept section. AI enhances it with detailed requirements, technical stack, architecture, and feature breakdown.
 
 
-#### 🔁 Continuous Integration – Phase 6
-Less structured, but it maps well onto the same process used for **Feature Development & Continuous Integration** (next section).
+#### 🗺️ Phase 3: Slice Planning (Complex Projects Only)
+For projects with multiple features, AI helps break the work into vertical slices—complete workflows that can be built independently. Simple projects skip to Phase 5.
 
 
-#### 🧪 Known Limitations – Phase X
-If you’re thinking “where is testing?!” you’re not alone. Unit-test integration is high on the to-do list and will be added ASAP.
-
-Additionally, the guide system is weakest in UI.  Still helpful, but needs better prompt following, and ideally support for Figma MCP.  Also on the short list.
+#### 🔧 Phase 4: Slice Design (Complex Projects Only)
+Create detailed low-level design for each slice. Saved as `nnn-slice.{slice-name}.md` in `private/slices/`.
 
 
-## ⚡ Additional Tasks
-### Feature Development and Continuous Integration
-It is almost always the case that projects need additional items not completely reflected in the initial task breakdown.  These may be additional features, expanded requirements, or unforeseen complexities in the initial implementation.  Several prompts are provided to simplify this process.
+#### 📝 Phase 5: Task Breakdown
+AI converts your concept/spec/slices into actionable tasks:
+- Creates `nnn-tasks.{project}.md` or `nnn-tasks.{slice}.md` in `private/tasks/`
+- Each task has clear scope, instructions, and success criteria
 
 
-#### 🔄 Context Refresh or Model Change
-When starting a new conversation in an existing project (recommended to keep context size from growing uncontrollably), use the "Model Change or Context Refresh" prompt to improve anchoring to the project guide process.  Also useful to add into long conversation to minimize forgotten information.
-
-When starting a new chat for the project, remember to again provide the input parameters { project: etc }.
+#### ✨ Phase 6: Task Enhancement
+AI examines tasks and expands/subdivides them to improve implementability. Tasks become more detailed and easier for AI to execute reliably.
 
 
-#### ✨ Feature Development
-For major new features, or addressing architectural issues, use the Features prompts.  Features large enough to require this should be described in a short feature document, i.e. `project-documents/private/feature.{project}.{feature-name}.md`
-##### Feature Design
-Use the "Feature Design" prompt with your file and you will receive a `features/nnn-feature.{feature}.md` file containing your feature's combined spec + low-level design as output.
-##### Feature Tasks
-Now use the "Feature Tasks" prompt and it will add a new section of Phase 3 tasks to `nnnn-tasks.{project}.md`.  These tasks will be consistent with the existing sections.
-##### Feature Expansion and Implementation
-Your feature tasks are now no different from the other tasks in the project.  Use the same prompts described above for Task Expansion and Implementation.
+#### 💻 Phase 7: Implementation
+Work with AI to implement tasks:
+- Provide context: `{ project: your-project, taskFile: nnn-tasks.section }`
+- Tackle subsections for complex work: `{ subsection: subsection-name }`
+- AI implements code, runs tests, checks off completed items
 
 
-#### 🎯 Ad-Hoc Items
-For addressing new features or issues not large enough to warrant their own spec, you can create task sections ad-hoc.  Just create a new section in `nnnn-tasks.{project}.md` and describe your tasks.  You don't necessarily need the level of detail used by the AI in creating its Phase 3 tasks, but the more specific you are, the better the results will be.
-
-Now you can run the same Task Expansion and Task Implementation prompts on your new task section, with no special process required.
+#### 🔁 Phase 8: Integration & Iteration
+Integrate completed work, verify everything works together, and plan next steps. For ongoing development, return to Phase 1 for new features.
 
 
-### Notes
-#### Prompts
-Parameter-aware stored prompts are available in `prompt.ai-project.system`.  These provide instruction to create the big points of your project, and to allow you to insert new features using the same structured methods and guides.
+## ⚡ Ongoing Development
+
+### 🔄 Starting New Sessions
+When starting a new conversation in an existing project (recommended to avoid context bloat), provide context parameters to help the AI re-orient: `{ project: your-project, taskFile: current-task-file }`.
+
+### ✨ Feature Development
+For major new features or architectural work, use the same living document pattern:
+
+1. **Create feature document**: `project-documents/private/features/nnn-feature.{feature}.md`
+2. **Add structure**:
+   ```markdown
+   # Overview
+   [One-sentence feature description]
+
+   ## User-Provided Concept
+   [Your feature goals, requirements, design ideas]
+   ```
+3. **Let AI enhance**: AI adds technical design, specifications, integration points
+4. **Generate tasks**: AI creates task sections that integrate with your existing tasks
+5. **Implement**: Follow the same Phase 4-5 process
+
+### 🎯 Ad-Hoc Work
+For smaller items not requiring full feature specs:
+
+1. Add a new section directly to your task file
+2. Describe what needs to be done
+3. Let AI expand and implement using the standard process
+
+The same structured approach works whether you're building from scratch or adding to existing work.
+
+
+### 📋 Working with the AI
+
 #### Input Parameters
 When working with AI Project Guide, provide input in a format like this, and your parameters should be used throughout the project.  When you update to work on a new section or subsection, just provide that input.  Just provide what is in use, you do not need every field.
 

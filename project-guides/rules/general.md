@@ -25,7 +25,8 @@ alwaysApply: true
 - Use checklist format for all task files.  Each item and subitem should have a `[ ]` "checkbox".
 - After completing a task or subtask, make sure it is checked off in the appropriate file(s).  Use the task-check subagent if available.
 - Keep 'success summaries' concise and minimal -- they burn a lot of output tokens.
-* never include usernames, passwords, API keys, or similar sensitive information in any source code or comments.  At the very least it must be loaded from environment variables, and the .env used must be included in .gitignore.  If you find any code in violation of this, you must raise an issue with Project Manager.
+- **Preserve User-Provided Concept sections** - When editing project documents (concept, spec, feature, architecture, slice designs), NEVER modify or remove sections titled "## User-Provided Concept". These contain the human's original vision and must be preserved exactly as written. You may add new sections or edit AI-generated sections, but user concept sections are sacred.
+- never include usernames, passwords, API keys, or similar sensitive information in any source code or comments.  At the very least it must be loaded from environment variables, and the .env used must be included in .gitignore.  If you find any code in violation of this, you must raise an issue with Project Manager.
 
 ## MCP (Model Context Protocol)
 - Always use context7 (if available) to locate current relevant documentation for specific technologies or tools in use.

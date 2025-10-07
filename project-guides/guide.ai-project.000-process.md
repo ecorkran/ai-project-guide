@@ -186,8 +186,55 @@ The following structure should be present in every project.  Assume files are in
 * private/tasks/: all task breakdown files (nnn-tasks.{slice-name}.md or legacy files).
 ```
 
-> Each folder has its own `README.md` or `introduction.md` with deeper context.  
+> Each folder has its own `README.md` or `introduction.md` with deeper context.
 > Attachments live in `project-documents/z-attachments/`.
+
+---
+
+### Living Document Pattern
+
+When creating concept, spec, feature, or architecture documents, use the **living document pattern** where human and AI collaborate on a single evolving file rather than creating fragmented documents:
+
+#### Document Structure
+```markdown
+---
+# YAML frontmatter as appropriate
+---
+
+# Overview
+[One-sentence description of what this document is]
+
+## User-Provided Concept
+[Human's initial concept, goals, requirements, design ideas]
+[This section is SACRED - AI must preserve it during all edits]
+
+## {AI-Enhanced Sections}
+[AI adds structured content: Design, Specification, Technical Details, etc.]
+```
+
+#### How It Works
+1. **Human creates file**: Add file with numbered prefix (e.g., `001-concept.{project}.md`, `042-feature.{feature-name}.md`)
+2. **Human provides concept**: Fill in User-Provided Concept section (can be simple or detailed)
+3. **AI enhances**: AI reads user concept and adds structured technical sections
+4. **Iterative refinement**: Both human and AI continue to evolve the document
+5. **Concept preserved**: AI never overwrites or removes User-Provided Concept section
+
+#### Benefits
+- **Single source of truth**: No fragmentation across multiple files
+- **User intent preserved**: Human's original vision always accessible
+- **Collaborative evolution**: Document grows with the project
+- **Clear ownership**: User Concept vs AI Technical sections are distinct
+
+#### Applies To
+- Concept documents (`001-concept.{project}.md`)
+- Specifications (`002-spec.{project}.md`)
+- Feature designs (`nnn-feature.{feature}.md`)
+- Architecture documents (`nnn-arch.{component}.md`)
+- Slice designs (`nnn-slice.{slice}.md`)
+
+This replaces the older pattern where human creates one file and AI creates a separate elaboration file.
+
+---
 
 ###### Project Guide Files
 ```markdown
