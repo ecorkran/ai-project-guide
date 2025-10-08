@@ -38,10 +38,7 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
   - Primary working range for project execution
   - Example: `private/slices/100-slice.{name}.md`
 
-- **800-899**: Feature documents (100 slots)
-  - Features linked to slices via index number: `{sliceindex}-feature.{feature}.md`
-  - Example: `120-feature.remember-me.md` (extends slice 120)
-  - Example: `200-feature.widgets.md` (extends slice 200)
+- **800-899**: Reserved (100 slots)
 
 - **900-939**: Code review tasks (40 slots)
   - Code review task files
@@ -65,8 +62,8 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
 - **010-049**: Extended process documentation
 - **050-089**: Architecture documents
 - **090-099**: Specialized guides (code review, legacy migration, etc.)
-- **100-799**: Regular sequential content (slices, tasks, user work)
-- **800-899**: Feature files (linked to slices via naming)
+- **100-799**: Regular sequential content (slices, tasks, features, user work)
+- **800-899**: Reserved
 - **900-939**: Code review files
 - **940-949**: Codebase analysis files
 - **950-999**: Maintenance files
