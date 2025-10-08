@@ -398,5 +398,66 @@ project-artifacts/
 
 
 
+## 🔄 Upgrading Existing Projects to v0.9.2+
+
+If you're upgrading from an older version (v0.9.1 or earlier), you need a one-time update to use the new update system. After this, future updates work automatically.
+
+### Upgrading npm/pnpm Projects
+
+```bash
+# 1. Update the ai-project-guide submodule
+git submodule update --remote --merge
+cd project-documents/ai-project-guide
+git checkout main
+git pull origin main
+cd ../..
+
+# 2. Edit package.json - change this line:
+#    FROM: "update-guides": "bash scripts/update-guides.sh"
+#    TO:   "update-guides": "bash project-documents/ai-project-guide/scripts/template-stubs/update-guides.sh"
+# Open package.json in your editor and make this one-line change
+
+# 3. Test the update
+pnpm update-guides
+
+# 4. Commit the changes
+git add .
+git commit -m "Update ai-project-guide to v0.9.2"
+git push
+```
+
+**After this one-time update**, `pnpm update-guides` will always use the latest script from the submodule. No manual updates ever again.
+
+### Upgrading Python/Other Projects
+
+```bash
+# 1. Update the ai-project-guide submodule
+git submodule update --remote --merge
+cd project-documents/ai-project-guide
+git checkout main
+git pull origin main
+cd ../..
+
+# 2. Create update-guides wrapper script
+mkdir -p scripts
+cat > scripts/update-guides << 'EOF'
+#!/bin/bash
+exec project-documents/ai-project-guide/scripts/template-stubs/update-guides.sh "$@"
+EOF
+chmod +x scripts/update-guides
+
+# 3. Test the update
+bash scripts/update-guides
+
+# 4. Commit the changes
+git add .
+git commit -m "Update ai-project-guide to v0.9.2"
+git push
+```
+
+**After this one-time update**, `bash scripts/update-guides` will always use the latest script from the submodule. No manual updates ever again.
+
+---
+
 ## 🤝 Contributing
 First, if you are using the AI Project Guide and found it useful enough to contribute or even report and issue, thank you. I'll try to respond to review PRs, and respond to issues & comments.
