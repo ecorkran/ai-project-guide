@@ -19,24 +19,25 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Find the actual project root by looking for project-documents directory
 find_project_root() {
     local current_dir="$(pwd)"
-    
-    # If we're in the ai-project-guide source repo
-    if [[ "$SCRIPT_DIR" == */ai-project-guide/scripts ]]; then
-        echo "$(dirname "$SCRIPT_DIR")"
-        return
-    fi
-    
+
     # Look for project-documents directory going up the directory tree
     local search_dir="$current_dir"
     while [[ "$search_dir" != "/" ]]; do
         if [[ -d "$search_dir/project-documents" ]]; then
+            # Found project-documents, this is the project root
             echo "$search_dir"
             return
         fi
         search_dir="$(dirname "$search_dir")"
     done
-    
-    # If no project-documents found, assume current directory is project root
+
+    # If we're in the ai-project-guide standalone repo (no project-documents parent)
+    if [[ "$SCRIPT_DIR" == */ai-project-guide/scripts ]]; then
+        echo "$(dirname "$SCRIPT_DIR")"
+        return
+    fi
+
+    # Fallback: assume current directory is project root
     echo "$current_dir"
 }
 

@@ -94,12 +94,65 @@ echo "# Keep private/ in version control" > project-documents/private/.gitkeep
 print_success "Created project-documents/private/ subdirectories"
 echo ""
 
+# Check for external guides
+if [ -n "$ORG_PRIVATE_GUIDES_URL" ]; then
+    print_info "Importing external guides from: $ORG_PRIVATE_GUIDES_URL" "$BLUE"
+
+    # Clone to temp directory
+    if git clone "$ORG_PRIVATE_GUIDES_URL" /tmp/external-guides-$$ 2>/dev/null; then
+        # Copy contents into private/ (overlay)
+        cp -r /tmp/external-guides-$$/* project-documents/private/ 2>/dev/null || true
+
+        # Clean up
+        rm -rf /tmp/external-guides-$$
+
+        print_success "External guides imported into project-documents/private/"
+        echo ""
+    else
+        print_warning "Failed to clone external guides (skipping)"
+        print_info "Check that ORG_PRIVATE_GUIDES_URL is accessible" "$BLUE"
+        echo ""
+    fi
+fi
+
 # Add git submodule
 print_info "Adding ai-project-guide as git submodule..." "$BLUE"
 
 if git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide 2>/dev/null; then
     print_success "Submodule added successfully!"
     echo ""
+
+    # Setup update script based on project type
+    if [ -f "package.json" ]; then
+        print_info "Detected package.json - adding update-guides script..." "$BLUE"
+
+        # Check if node is available for JSON manipulation
+        if command -v node &> /dev/null; then
+            node -e "
+                const fs = require('fs');
+                const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+                pkg.scripts = pkg.scripts || {};
+                pkg.scripts['update-guides'] = 'bash project-documents/ai-project-guide/scripts/template-stubs/update-guides.sh';
+                fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+            "
+            print_success "Added 'update-guides' to package.json scripts"
+        else
+            print_warning "Node.js not found - please manually add to package.json:"
+            echo '  "update-guides": "bash project-documents/ai-project-guide/scripts/template-stubs/update-guides.sh"'
+        fi
+        echo ""
+    else
+        print_info "Creating update-guides wrapper script..." "$BLUE"
+        mkdir -p scripts
+        cat > scripts/update-guides << 'EOF'
+#!/bin/bash
+# Update guides wrapper - calls the template stub from ai-project-guide
+exec project-documents/ai-project-guide/scripts/template-stubs/update-guides.sh "$@"
+EOF
+        chmod +x scripts/update-guides
+        print_success "Created scripts/update-guides wrapper"
+        echo ""
+    fi
 
     print_success "🎉 Setup complete!" "$GREEN"
     echo ""
@@ -110,7 +163,11 @@ if git submodule add https://github.com/ecorkran/ai-project-guide.git project-do
     echo "       git commit -m 'Add ai-project-guide'"
     echo ""
     echo "  2. To update guides later:"
-    echo "       git submodule update --remote project-documents/ai-project-guide"
+    if [ -f "package.json" ]; then
+        echo "       pnpm update-guides  (or npm run update-guides)"
+    else
+        echo "       bash scripts/update-guides"
+    fi
     echo ""
     echo "  3. Start using the framework:"
     echo "       • Review: project-documents/ai-project-guide/readme.md"

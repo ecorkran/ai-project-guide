@@ -221,11 +221,18 @@ The AI project guide system operates on three layers, designed to work together 
 - **Behavior**: Updated frequently, safe to overwrite
 - **Usage**: Everyone gets these automatically
 
-### **2. Organization Private Guides** (Advanced Feature)
-- **Source**: Configurable via `PRIVATE_GUIDES_URL` environment variable
-- **Content**: Company procedures, specialized knowledge, internal standards
-- **Behavior**: Fail silently if not configured, overlay on public guides
-- **Usage**: Advanced teams with private knowledge repositories
+### **2. External Guides** (Optional)
+- **Source**: Configurable via `ORG_PRIVATE_GUIDES_URL` environment variable
+- **Content**: Organization procedures, reusable templates, private dev guides
+- **Behavior**: Imported into `private/` during setup, updated via `update-guides`
+- **Usage**: Keep private guides for public repos, share org knowledge, maintain templates
+- **Setup**: Set env var before running bootstrap or in your shell profile:
+  ```bash
+  export ORG_PRIVATE_GUIDES_URL=git@github.com:your-org/your-guides.git
+  # or
+  export ORG_PRIVATE_GUIDES_URL=https://github.com/your-org/your-guides.git
+  ```
+- **Update**: Run `pnpm update-guides` (or `git submodule update...` + update script) to pull latest external guides
 
 ### **3. Project Private Guides** (Your Work)
 - **Location**: `project-documents/private/`
@@ -233,15 +240,17 @@ The AI project guide system operates on three layers, designed to work together 
 - **Behavior**: Never overwritten, always preserved
 - **Usage**: Your valuable project work that should be committed to git
 
-### **Update Strategy**
-- **Public guides**: Safe to update (overwrite)
-- **Organization guides**: Overlay carefully (project wins in conflicts)
-- **Project guides**: Never touched, always preserved
+### **How It Works**
+1. **Bootstrap**: Creates `private/` structure, imports external guides if `ORG_PRIVATE_GUIDES_URL` is set
+2. **Development**: You add your project work to `private/`
+3. **Update**: `pnpm update-guides` updates both ai-project-guide submodule AND external guides
+4. **Coexistence**: External guide files and your files live together in `private/` - no conflicts as long as you don't use the same filenames
 
-### **Collision Resolution**
-- **Public vs Private**: Public wins (safe to update)
-- **Organization vs Project Private**: Project wins (preserve user work)
-- **Same file in both**: Project version preserved
+### **Use Cases for External Guides**
+- **Private dev guides for public repos**: Keep your internal notes separate from the public repo
+- **Organization knowledge**: Share company coding standards across multiple projects
+- **Template baselines**: Distribute starter slices/tasks across your team
+- **Domain expertise**: Maintain reusable domain-specific guides (finance, healthcare, etc.)
 
 
 
