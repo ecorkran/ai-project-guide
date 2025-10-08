@@ -13,6 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [0.9.2] - 2025-10-08
+
+### Added
+- **External guides support**: Import guides from another repository via `ORG_PRIVATE_GUIDES_URL`
+- **Bootstrap auto-setup**: Automatically creates update scripts for npm/pnpm and Python projects
+
+### Fixed
+- **setup-ide**: CLAUDE.md now created in project root instead of submodule directory
+- **update-guides**: Script always runs from submodule (no manual copying needed)
+
+### Changed
+- **One-time upgrade required**: Existing projects need package.json update (see readme)
+
 ## [0.9.0] - 2025-10-06
 
 ### Changed
