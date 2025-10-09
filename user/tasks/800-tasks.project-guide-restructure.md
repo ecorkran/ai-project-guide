@@ -109,7 +109,7 @@ project-documents/
 - [x] Document step-by-step migration:
   1. Backup `project-documents/user/`
   2. Remove subtree: `git rm -r project-documents`
-  3. Restore private: `git checkout HEAD~1 -- project-documents/private`
+  3. Restore user: `git checkout HEAD~1 -- project-documents/user`
   4. Add submodule: `git submodule add ... project-documents/ai-project-guide`
   5. Commit changes
 - [x] Add backup restoration fallback

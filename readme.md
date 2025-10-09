@@ -301,16 +301,16 @@ If you previously used git subtree, migrate to submodule:
 
 ```bash
 # 1. Backup your work
-cp -r project-documents/private ~/backup-private
+cp -r project-documents/user ~/backup-user
 
 # 2. Remove old subtree
 git rm -r project-documents
 git commit -m 'Remove subtree for migration to submodule'
 
 # 3. Restore your work
-git checkout HEAD~1 -- project-documents/private
+git checkout HEAD~1 -- project-documents/user
 # Or restore from backup if needed:
-# cp -r ~/backup-private project-documents/private
+# cp -r ~/backup-user project-documents/user
 
 # 4. Add as submodule
 git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide
@@ -337,7 +337,7 @@ If you're working with an existing project that uses the old `our-project/` stru
 Migrate to `project-documents/user/`:
 
 **Quick Migration Steps:**
-1. **Rename the directory**: `mv project-documents/our-project project-documents/private`
+1. **Rename the directory**: `mv project-documents/our-project project-documents/user`
 2. **Create new subdirectories** (if they don't exist):
    ```bash
    mkdir -p project-documents/user/tasks

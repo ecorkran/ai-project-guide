@@ -56,7 +56,7 @@ This should work seamlessly for:
 ### Migration Path
 
 **For existing projects using git subtree:**
-1. Remove subtree content making sure to not accidentally lose existing project-documents/private
+1. Remove subtree content making sure to not accidentally lose existing project-documents/user
 2. Add as submodule at `project-documents/ai-project-guide/`
 3. Move user files to `project-documents/user/` (if not already there)
 

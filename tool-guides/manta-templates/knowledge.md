@@ -731,7 +731,7 @@ export const gridPatterns = {
 #### Migration Steps
 ```bash
 # 1. Update directory structure
-mv project-documents/our-project project-documents/private
+mv project-documents/our-project project-documents/user
 
 # 2. Update Tailwind configuration
 # Remove tailwind.config.js, add @theme {} to globals.css

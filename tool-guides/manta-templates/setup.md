@@ -144,7 +144,7 @@ Create `.env` file with your private guides repository:
 
 ```bash
 # .env
-PRIVATE_GUIDES_URL=git@github.com:your-org/private-guides.git
+EXTERNAL_PROJECT_DOC_URL=git@github.com:your-org/external-guides.git
 ```
 
 Then run:
