@@ -34,10 +34,10 @@ The remainder of this guide provides detailed processes for both modes, with par
 ## Infrastructure Guidelines
 
 **File Locations:**
-- Review documents: `private/reviews/nnn-review.{name}.md` (range 900-939)
-- Task files: `private/tasks/nnn-tasks.code-review.{filename}.md` (same nnn as review)
+- Review documents: `user/reviews/nnn-review.{name}.md` (range 900-939)
+- Task files: `user/tasks/nnn-tasks.code-review.{filename}.md` (same nnn as review)
 
-Note: The `private/` path may map to `project-artifacts/` in monorepo development. If unclear, confirm with Project Manager.
+Note: The `user/` path may map to `project-artifacts/` in monorepo development. If unclear, confirm with Project Manager.
 
 ### For Directory Crawl Reviews
 
@@ -154,10 +154,10 @@ When reviewing code, systematically answer these core questions.
 ### Step 1: Create Review Document
 
 #### For Single-File Reviews
-Create a review document named `nnn-review.{filename}.md` in `private/reviews/`, where `nnn` is in the 900-939 range.
+Create a review document named `nnn-review.{filename}.md` in `user/reviews/`, where `nnn` is in the 900-939 range.
 
 #### For Directory Crawl Reviews
-Create a review document following the naming convention `nnn-review.{project}.md` in the `private/reviews/` directory, where `nnn` is in the 900-939 range. Use the same `nnn` for all task files in this review session.
+Create a review document following the naming convention `nnn-review.{project}.md` in the `user/reviews/` directory, where `nnn` is in the 900-939 range. Use the same `nnn` for all task files in this review session.
 
 All reviewed files should be present in either Files with Issues, or Files with No Issues sections. No file should be unaccounted for. Update this after reviewing each file. Additionally, keep track of how many files have been reviewed, and what the last filed review was, so this can be restarted at any time. Make sure to update the status (started, in-progress, complete). We need to be able to pause and resume this task without losing work or missing items.
 
@@ -187,7 +187,7 @@ Analyze the file systematically using the code review questionnaire. Group findi
 5. **Testing**: Missing or inadequate test coverage
 
 ### Step 3: Create Tasks from Review Findings
-Transform review findings into actionable tasks in `private/tasks/`:
+Transform review findings into actionable tasks in `user/tasks/`:
 - Use format: `nnn-tasks.code-review.{filename}.md`
 - Use the **same nnn** as the review document for all files in the review session
 - Create one task file per reviewed file that has issues

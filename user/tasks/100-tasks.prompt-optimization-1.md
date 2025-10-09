@@ -1,7 +1,7 @@
 ---
 slice: prompt-optimization-1
 project: ai-project-guide
-lld: private/slices/100-slice.prompt-optimization-1.md
+lld: user/slices/100-slice.prompt-optimization-1.md
 dependencies: []
 projectState: COMPLETE - All tasks finished, migration successful
 lastUpdated: 2025-09-30
@@ -43,10 +43,10 @@ This task file implements the migration from a 2-digit (nn) to 3-digit (nnn) fil
 **Steps:**
 - [x] List all guide files in project-guides/ directory
 - [x] List all markdown files in project-guides/ (for reference updates)
-- [x] List all files in private/project-guides/ (if exists)
-- [x] List all files in private/slices/ (if exists)
-- [x] List all files in private/tasks/ (if exists)
-- [x] Create inventory document at `private/maintenance/inventory.index-migration.md`
+- [x] List all files in user/project-guides/ (if exists)
+- [x] List all files in user/slices/ (if exists)
+- [x] List all files in user/tasks/ (if exists)
+- [x] Create inventory document at `user/maintenance/inventory.index-migration.md`
 
 **Success Criteria:**
 - Complete inventory exists with counts for each category
@@ -314,7 +314,7 @@ This task file implements the migration from a 2-digit (nn) to 3-digit (nnn) fil
 - [x] Read `project-guides/guide.ai-project.006-task-expansion.md`
 - [x] Update YAML frontmatter `dependsOn` array
 - [x] Update all guide references
-- [x] Update example YAML: `lld: private/slices/01-slice.*` → `lld: private/slices/nnn-slice.*`
+- [x] Update example YAML: `lld: user/slices/01-slice.*` → `lld: user/slices/nnn-slice.*`
 - [x] Update task file pattern examples
 - [x] Search for remaining 2-digit patterns
 
@@ -478,11 +478,11 @@ This task file implements the migration from a 2-digit (nn) to 3-digit (nnn) fil
 
 ### Phase 7: Update Private Project Files (If They Exist)
 
-#### Task 7.1: Update private/project-guides/ Files
+#### Task 7.1: Update user/project-guides/ Files
 **Objective:** Update any project-specific guide files.
 
 **Steps:**
-- [x] Check if `private/project-guides/` directory exists
+- [x] Check if `user/project-guides/` directory exists
 - [x] If exists, list all .md files
 - [x] For each file:
   - [x] Read file
@@ -500,11 +500,11 @@ This task file implements the migration from a 2-digit (nn) to 3-digit (nnn) fil
 
 ---
 
-#### Task 7.2: Update private/slices/ Files
+#### Task 7.2: Update user/slices/ Files
 **Objective:** Update slice design files with new references.
 
 **Steps:**
-- [x] Check if `private/slices/` directory exists
+- [x] Check if `user/slices/` directory exists
 - [x] If exists, list all .md files
 - [x] For each file:
   - [x] Read file
@@ -522,11 +522,11 @@ This task file implements the migration from a 2-digit (nn) to 3-digit (nnn) fil
 
 ---
 
-#### Task 7.3: Update private/tasks/ Files
+#### Task 7.3: Update user/tasks/ Files
 **Objective:** Update task files with new references.
 
 **Steps:**
-- [x] Check if `private/tasks/` directory exists
+- [x] Check if `user/tasks/` directory exists
 - [x] If exists, list all .md files
 - [x] For each file:
   - [x] Read file
@@ -640,7 +640,7 @@ This task file implements the migration from a 2-digit (nn) to 3-digit (nnn) fil
 **Objective:** Update this slice file itself to follow new conventions.
 
 **Steps:**
-- [x] Read current file: `private/slices/100-slice.prompt-optimization-1.md`
+- [x] Read current file: `user/slices/100-slice.prompt-optimization-1.md`
 - [x] Verify YAML frontmatter correct
 - [x] Update any internal references to guides or files
 - [x] Ensure consistency with implemented changes
@@ -657,7 +657,7 @@ This task file implements the migration from a 2-digit (nn) to 3-digit (nnn) fil
 **Objective:** Update this task file to follow new conventions.
 
 **Steps:**
-- [x] Read current file: `private/tasks/100-tasks.prompt-optimization-1.md`
+- [x] Read current file: `user/tasks/100-tasks.prompt-optimization-1.md`
 - [x] Verify YAML frontmatter correct
 - [x] Ensure lld reference uses correct slice path
 - [x] Update any guide references in tasks
@@ -674,7 +674,7 @@ This task file implements the migration from a 2-digit (nn) to 3-digit (nnn) fil
 **Objective:** Document migration completion and results.
 
 **Steps:**
-- [x] Create report at `private/maintenance/report.index-migration.YYYYMMDD.md`
+- [x] Create report at `user/maintenance/report.index-migration.YYYYMMDD.md`
 - [x] Document files changed (count and list)
 - [x] Document patterns updated (with counts)
 - [x] List any exceptions or special cases

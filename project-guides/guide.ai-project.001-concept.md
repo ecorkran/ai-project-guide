@@ -38,4 +38,4 @@ In general, favor simplicity and avoid over-engineering.  Remember the cliche ab
 The goal here is to create a high-level concept document tailored to the current project.
 
 ##### Output Location
-Save the completed concept document as `001-concept.{project}.md` in the `private/project-guides/` directory, where `{project}` is your project name.
+Save the completed concept document as `001-concept.{project}.md` in the `user/project-guides/` directory, where `{project}` is your project name.

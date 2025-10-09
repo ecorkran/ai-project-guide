@@ -12,17 +12,17 @@ git pull origin main
 cd ../..
 
 # Update external guides if configured
-if [ -n "$ORG_PRIVATE_GUIDES_URL" ]; then
-    echo "Updating external guides from: $ORG_PRIVATE_GUIDES_URL"
+if [ -n "$EXTERNAL_PROJECT_DOC_URL" ]; then
+    echo "Updating external guides from: $EXTERNAL_PROJECT_DOC_URL"
 
     TEMP_DIR="/tmp/external-guides-update-$$"
-    if git clone "$ORG_PRIVATE_GUIDES_URL" "$TEMP_DIR" 2>/dev/null; then
-        cp -r "$TEMP_DIR"/* project-documents/private/ 2>/dev/null || true
+    if git clone "$EXTERNAL_PROJECT_DOC_URL" "$TEMP_DIR" 2>/dev/null; then
+        cp -r "$TEMP_DIR"/* project-documents/user/ 2>/dev/null || true
         rm -rf "$TEMP_DIR"
         echo "✓ External guides updated"
     else
         echo "⚠ Warning: Failed to update external guides"
     fi
 else
-    echo "ℹ No external guides configured (ORG_PRIVATE_GUIDES_URL not set)"
+    echo "ℹ No external guides configured (EXTERNAL_PROJECT_DOC_URL not set)"
 fi

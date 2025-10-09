@@ -31,7 +31,7 @@ Add these scripts to your `package.json`:
 
 ```json
 "scripts": {
-  "setup-guides": "mkdir -p project-documents/private/{architecture,slices,tasks,features,reviews,analysis} && git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide && echo '# Keep private/ in version control' > project-documents/private/.gitkeep || echo 'Submodule already exists—run npm run update-guides to update.'",
+  "setup-guides": "mkdir -p project-documents/user/{architecture,slices,tasks,features,reviews,analysis} && git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide && echo '# Keep user/ in version control' > project-documents/user/.gitkeep || echo 'Submodule already exists—run npm run update-guides to update.'",
   "update-guides": "git submodule update --remote --merge project-documents/ai-project-guide && cd project-documents/ai-project-guide && git checkout main && git pull origin main && cd ../..",
   "setup-cursor": "project-documents/ai-project-guide/scripts/setup-ide cursor",
   "setup-windsurf": "project-documents/ai-project-guide/scripts/setup-ide windsurf",
@@ -58,7 +58,7 @@ curl -fsSL https://raw.githubusercontent.com/ecorkran/ai-project-guide/main/scri
 
 This will:
 - Auto-initialize git repo if needed
-- Create `project-documents/private/` structure for your work
+- Create `project-documents/user/` structure for your work
 - Add ai-project-guide as a git submodule at `project-documents/ai-project-guide/`
 - Provide clear next steps
 
@@ -107,7 +107,7 @@ The project guide uses an 8-phase slice-based methodology. For simple projects, 
 #### 📝 Phase 1: Concept Document
 Create a concept document that you and the AI will collaborate on:
 
-1. **Create the file**: `project-documents/private/project-guides/001-concept.{project}.md`
+1. **Create the file**: `project-documents/user/project-guides/001-concept.{project}.md`
 2. **Add this structure**:
    ```markdown
    # Overview
@@ -131,12 +131,12 @@ For projects with multiple features, AI helps break the work into vertical slice
 
 
 #### 🔧 Phase 4: Slice Design (Complex Projects Only)
-Create detailed low-level design for each slice. Saved as `nnn-slice.{slice-name}.md` in `private/slices/`.
+Create detailed low-level design for each slice. Saved as `nnn-slice.{slice-name}.md` in `user/slices/`.
 
 
 #### 📝 Phase 5: Task Breakdown
 AI converts your concept/spec/slices into actionable tasks:
-- Creates `nnn-tasks.{project}.md` or `nnn-tasks.{slice}.md` in `private/tasks/`
+- Creates `nnn-tasks.{project}.md` or `nnn-tasks.{slice}.md` in `user/tasks/`
 - Each task has clear scope, instructions, and success criteria
 
 
@@ -163,7 +163,7 @@ When starting a new conversation in an existing project (recommended to avoid co
 ### ✨ Feature Development
 For major new features or architectural work, use the same living document pattern:
 
-1. **Create feature document**: `project-documents/private/features/nnn-feature.{feature}.md`
+1. **Create feature document**: `project-documents/user/features/nnn-feature.{feature}.md`
 2. **Add structure**:
    ```markdown
    # Overview
@@ -222,29 +222,29 @@ The AI project guide system operates on three layers, designed to work together 
 - **Usage**: Everyone gets these automatically
 
 ### **2. External Guides** (Optional)
-- **Source**: Configurable via `ORG_PRIVATE_GUIDES_URL` environment variable
+- **Source**: Configurable via `EXTERNAL_PROJECT_DOC_URL` environment variable
 - **Content**: Organization procedures, reusable templates, private dev guides
-- **Behavior**: Imported into `private/` during setup, updated via `update-guides`
+- **Behavior**: Imported into `user/` during setup, updated via `update-guides`
 - **Usage**: Keep private guides for public repos, share org knowledge, maintain templates
 - **Setup**: Set env var before running bootstrap or in your shell profile:
   ```bash
-  export ORG_PRIVATE_GUIDES_URL=git@github.com:your-org/your-guides.git
+  export EXTERNAL_PROJECT_DOC_URL=git@github.com:your-org/your-guides.git
   # or
-  export ORG_PRIVATE_GUIDES_URL=https://github.com/your-org/your-guides.git
+  export EXTERNAL_PROJECT_DOC_URL=https://github.com/your-org/your-guides.git
   ```
 - **Update**: Run `pnpm update-guides` (or `git submodule update...` + update script) to pull latest external guides
 
 ### **3. Project Private Guides** (Your Work)
-- **Location**: `project-documents/private/`
+- **Location**: `project-documents/user/`
 - **Content**: Project-specific concept docs, specs, tasks, code reviews
 - **Behavior**: Never overwritten, always preserved
 - **Usage**: Your valuable project work that should be committed to git
 
 ### **How It Works**
-1. **Bootstrap**: Creates `private/` structure, imports external guides if `ORG_PRIVATE_GUIDES_URL` is set
-2. **Development**: You add your project work to `private/`
+1. **Bootstrap**: Creates `user/` structure, imports external guides if `EXTERNAL_PROJECT_DOC_URL` is set
+2. **Development**: You add your project work to `user/`
 3. **Update**: `pnpm update-guides` updates both ai-project-guide submodule AND external guides
-4. **Coexistence**: External guide files and your files live together in `private/` - no conflicts as long as you don't use the same filenames
+4. **Coexistence**: External guide files and your files live together in `user/` - no conflicts as long as you don't use the same filenames
 
 ### **Use Cases for External Guides**
 - **Private dev guides for public repos**: Keep your internal notes separate from the public repo
@@ -283,13 +283,13 @@ If you prefer manual setup or need more control:
 
 ```bash
 # Create directory structure
-mkdir -p project-documents/private/{architecture,slices,tasks,features,reviews,analysis}
+mkdir -p project-documents/user/{architecture,slices,tasks,features,reviews,analysis}
 
 # Add submodule
 git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide
 
 # Create .gitkeep to track empty directories
-echo '# Keep private/ in version control' > project-documents/private/.gitkeep
+echo '# Keep user/ in version control' > project-documents/user/.gitkeep
 
 # Commit
 git add .
@@ -334,24 +334,24 @@ git commit -m 'Migrate to git submodule structure'
 If you're working with an existing project that uses the old `our-project/` structure, choose the appropriate migration path:
 
 #### For Regular Development (Template Instances)
-Migrate to `project-documents/private/`:
+Migrate to `project-documents/user/`:
 
 **Quick Migration Steps:**
 1. **Rename the directory**: `mv project-documents/our-project project-documents/private`
 2. **Create new subdirectories** (if they don't exist):
    ```bash
-   mkdir -p project-documents/private/tasks
+   mkdir -p project-documents/user/tasks
    ```
-3. **Move project documents** to the `private/project-guides/` directory:
+3. **Move project documents** to the `user/project-guides/` directory:
    ```bash
    # Create project-guides directory if it doesn't exist
-   mkdir -p project-documents/private/project-guides
+   mkdir -p project-documents/user/project-guides
    
-   # Move concept, spec, and notes files to private/project-guides/
-   mv project-documents/private/concept/* project-documents/private/project-guides/ 2>/dev/null || true
-   mv project-documents/private/spec/* project-documents/private/project-guides/ 2>/dev/null || true
+   # Move concept, spec, and notes files to user/project-guides/
+   mv project-documents/user/concept/* project-documents/user/project-guides/ 2>/dev/null || true
+   mv project-documents/user/spec/* project-documents/user/project-guides/ 2>/dev/null || true
    ```
-4. **Update any references** in your project-specific files from `our-project/` to `private/`
+4. **Update any references** in your project-specific files from `our-project/` to `user/`
 
 #### For Monorepo Template Development
 Migrate to `project-artifacts/`:
@@ -367,9 +367,9 @@ Migrate to `project-artifacts/`:
 
 ### New Structure After Migration
 
-#### Regular Development (`private/`):
+#### Regular Development (`user/`):
 ```
-private/
+user/
 ├── code-reviews/        # review docs & follow-up actions
 ├── maintenance/         # maintenance tasks & outcomes 
 ├── features/            # feature definitions & specifications
@@ -394,7 +394,7 @@ project-artifacts/
     └── screenshots/     # mock-ups, design references
 ```
 
-> **Note**: The guides in this repository have been updated to clarify the distinction between `private/` (regular development) and `project-artifacts/` (monorepo template development). References to `{template}/examples/our-project/` are deprecated.
+> **Note**: The guides in this repository have been updated to clarify the distinction between `user/` (regular development) and `project-artifacts/` (monorepo template development). References to `{template}/examples/our-project/` are deprecated.
 
 
 

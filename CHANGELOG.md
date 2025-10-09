@@ -13,10 +13,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [0.10.0] - 2025-10-08
+
+### BREAKING CHANGES
+- **Directory rename**: `project-documents/private/` → `project-documents/user/` for clarity
+  - "private" was confusing (implied secrecy, but directory should be committed)
+  - "user" clearly indicates "your project work"
+  - See [MIGRATION.md](MIGRATION.md) for migration steps
+- **Environment variable rename**: `ORG_PRIVATE_GUIDES_URL` → `EXTERNAL_PROJECT_DOC_URL`
+  - More accurate naming (not just for organizations)
+  - Update your environment variables and CI/CD configs
+
+### Added
+- **Migration script**: `scripts/migrate-private-to-user.sh` - automated migration for user projects
+- **Migration guide**: `MIGRATION.md` - comprehensive migration documentation
+
+### Changed
+- All documentation updated to reference `user/` instead of `private/`
+- Bootstrap script now creates `project-documents/user/` structure
+- All guides and prompts updated for new naming
+
 ## [0.9.2] - 2025-10-08
 
 ### Added
-- **External guides support**: Import guides from another repository via `ORG_PRIVATE_GUIDES_URL`
+- **External guides support**: Import guides from another repository via `EXTERNAL_PROJECT_DOC_URL`
 - **Bootstrap auto-setup**: Automatically creates update scripts for npm/pnpm and Python projects
 
 ### Fixed
@@ -34,7 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - User work stays in `project-documents/private/` (parent repo)
   - Simplified updates: `git submodule update --remote`
   - Works for npm and non-npm projects (Python, Go, Rust, etc.)
-- **Directory structure**: Finalized `private/` subdirectories
+- **Directory structure**: Finalized `user/` subdirectories
   - Added: `project-guides/` for project-specific customizations
   - Renamed: `code-reviews/` → `reviews/`
   - Removed: `maintenance/` directory (use `950-tasks.maintenance.md` instead)
@@ -75,7 +95,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **HLD standardization**: Moved to `architecture/050-arch.hld-{project}.md` with consistent naming
 - **Directory structure**: Consolidated `maintenance/` into tasks, renamed `code-reviews/` to `reviews/`, ordered by workflow
 - **Simplified naming**: Removed redundant slice names from features - index number creates the link (DRY principle)
-- **Path consistency**: Standardized to `private/{subdir}/...` pattern for all project-specific files
+- **Path consistency**: Standardized to `user/{subdir}/...` pattern for all project-specific files
 
 ### Fixed
 - Updated analysis, maintenance, and feature prompts for consistency with new structure
@@ -103,7 +123,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Context summary sections to enable AI restart capability
   - Slice-specific file organization with `nn-slice.{slice-name}.md` naming convention
 - **Improved file organization**:
-  - `private/slices/` directory for slice-specific low-level designs
+  - `user/slices/` directory for slice-specific low-level designs
   - Sequential indexing for all slice and task files (01, 02, 03, etc.)
   - Clear separation between foundation work, feature slices, and integration work
 
@@ -156,7 +176,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - **Directory structure clarification**: Resolved ambiguity between directory concepts:
-  - `project-documents/private/` for regular development (template instances)
+  - `project-documents/user/` for regular development (template instances)
   - `project-artifacts/` for monorepo template development
   - Deprecated `{template}/examples/our-project/` with migration path
 - **Feature file naming convention**: Updated from `{feature}-feature.md` to `nn-feature.{feature}.md` format
@@ -203,7 +223,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `guide.code-review-crawler.md` → `prompt.code-review-crawler.md`
 - **Internal references**: Updated all cross-references between guides to use new naming convention
 - **Template prompts**: Updated all prompt templates to reference new guide names
-- **Rules consistency**: Updated `rules/general.md` to use `private/` instead of `our-project/`
+- **Rules consistency**: Updated `rules/general.md` to use `user/` instead of `our-project/`
 
 ### Removed
 - **`project-guides/coderules.md`**: Completely removed deprecated file, replaced by `project-guides/rules/general.md`
@@ -219,26 +239,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **New modular rules system**: Replaced monolithic `coderules.md` with organized `project-guides/rules/` directory
 - **Agent configurations**: Added `project-guides/agents/` directory for IDE-specific agent configurations
 - **IDE integration guide**: Added instructions for copying rules and agents to `.cursor/` and `.windsurf/` directories
-- **Migration documentation**: Added comprehensive migration guide from `our-project/` to `private/` structure
+- **Migration documentation**: Added comprehensive migration guide from `our-project/` to `user/` structure
 
 ### Changed
-- **Directory structure**: Migrated from `our-project/` to `private/` throughout all guides
-- **File organization**: Established flat structure under `private/` with dedicated folders for tasks, code-reviews, maintenance, ui
+- **Directory structure**: Migrated from `our-project/` to `user/` throughout all guides
+- **File organization**: Established flat structure under `user/` with dedicated folders for tasks, code-reviews, maintenance, ui
 - **Task file naming**: Updated to consistent hyphen-separated naming (`{section}-tasks.md`)
-- **Code review paths**: Updated all review guides to use `private/code-reviews/`
-- **Template prompts**: Updated all prompt templates to reference new `private/` structure
+- **Code review paths**: Updated all review guides to use `user/code-reviews/`
+- **Template prompts**: Updated all prompt templates to reference new `user/` structure
 
 ### Deprecated
 - **`project-guides/coderules.md`**: Marked as deprecated, replaced by modular `rules/` system
-- **`our-project/` directory**: Replaced by `private/` directory (with migration path provided)
+- **`our-project/` directory**: Replaced by `user/` directory (with migration path provided)
 
 ### Fixed
-- **Directory structure**: Clarified distinction between `private/` (regular development) and deprecated `our-project/` structure
-- **File naming consistency**: Updated examples in `file-naming-conventions.md` to use `private/`
+- **Directory structure**: Clarified distinction between `user/` (regular development) and deprecated `our-project/` structure
+- **File naming consistency**: Updated examples in `file-naming-conventions.md` to use `user/`
 - **Link references**: Fixed broken links in `project-guides/readme.md`
 
 ### Technical Details
-- Updated 13 files to use new `private/` structure
+- Updated 13 files to use new `user/` structure
 - Added migration instructions for existing projects
 - Maintained backward compatibility for legacy `coderules.md`
 - Established clear separation between shared methodology and project-specific work

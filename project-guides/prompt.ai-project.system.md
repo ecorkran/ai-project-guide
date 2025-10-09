@@ -38,7 +38,7 @@ Refer to the `guide.ai-project.000-process`, and function as a Senior AI.  Imple
 ```markdown
 We're starting work on a new project {project}.  We will use our curated AI Project Creation methods in `guide.ai-project.000-process` (can also be referred to as Project Guide or Process Guide) to assist us in designing and performing the work.  Your role as described in the Project Guide is Technical Fellow.
 
-The initial concept description will be provided by the project manager, ideally as a starter document in `private/project-guides/001-concept.{project}.md`.  Our goal is to refine this initial user-provided concept into the Refined Concept, which should be placed as instructed into the existing document.  The placeholder document should provide any needed details needed for this procedure.
+The initial concept description will be provided by the project manager, ideally as a starter document in `user/project-guides/001-concept.{project}.md`.  Our goal is to refine this initial user-provided concept into the Refined Concept, which should be placed as instructed into the existing document.  The placeholder document should provide any needed details needed for this procedure.
 
 We will use the refined concept as a basis for creating the spec, which will later be refined into designs, slices, features, and tasks.  Use the Project Guide together with the user-provided concept to create the refined concept tailored to our project.
 
@@ -49,7 +49,7 @@ When creating the refined concept, *ask questions* if any information is missing
 ```markdown
 We're working in our guide.ai-project.000-process, Phase 2: Spec Creation. Use `guide.ai-project.002-spec` with the approved concept document to create the project specification.
 
-Your role is Technical Fellow as described in the Process Guide. Work with the Project Manager to create `private/project-guides/002-spec.{project}.md`.
+Your role is Technical Fellow as described in the Process Guide. Work with the Project Manager to create `user/project-guides/002-spec.{project}.md`.
 
 Required inputs:
 - Approved concept document (001-concept.{project}.md)
@@ -93,11 +93,11 @@ Use the following inputs:
 1. The project high-level design (architecture/050-arch.hld-{project}.md) if applicable.
 2. One of the following (only one will be applicable):
 	1. Slice description provided with this request.
-	2. The project slice plan at `private/project-guides/003-slices.{project}.md`.
+	2. The project slice plan at `user/project-guides/003-slices.{project}.md`.
 
 Note: if you are using the slice plan, it must contain information on this slice.
 
-Create the slice design document at `private/slices/{slice}.md`.  Your role is Technical Fellow.
+Create the slice design document at `user/slices/{slice}.md`.  Your role is Technical Fellow.
 
 Include:
 - YAML frontmatter as described below.
@@ -137,10 +137,10 @@ Stop and request clarification if you need more information to complete the slic
 We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown. Convert the design for {slice | feature} in project {project} into granular, actionable tasks.  Note that this request can be used for *slice* or *feature*, but only one will be applicable to a particular request.
 
 Your role is Senior AI. Use exactly one of the following as input:
-1. The slice design document `private/slices/{slice}.md`.
-2. The feature design document `private/features/{feature}.md`.
+1. The slice design document `user/slices/{slice}.md`.
+2. The feature design document `user/features/{feature}.md`.
 
-Create task file at `private/tasks/{sliceindex}-tasks.{slicename}.md`.  
+Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md`.  
 
 Include:
 1. YAML front matter including slice name, project, LLD reference, dependencies, and current project state
@@ -172,10 +172,10 @@ This is a project planning task, not a coding task.  Code segments should be min
 We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown. Convert the design for {slice | feature} in project {project} into granular, actionable tasks.  Note that this request can be used for *slice* or *feature*, but only one will be applicable to a particular request.
 
 Your role is Senior AI. Use exactly one of the following as input:
-1. The slice design document `private/slices/{slice}.md`.
-2. The feature design document `private/features/{feature}.md`.
+1. The slice design document `user/slices/{slice}.md`.
+2. The feature design document `user/features/{feature}.md`.
 
-Create task file at `private/tasks/{sliceindex}-tasks.{slicename}.md`.  
+Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md`.  
 
 Include:
 1. YAML front matter including slice name, project, LLD reference, dependencies, and current project state
@@ -215,7 +215,7 @@ After creation of task list, you must review the entire list against the slice d
 ```markdown
 We're working in our guide.ai-project.000-process, Phase 6: Task Enhancement and Expansion. Enhance the tasks for slice {slice} in project {project} to improve the chances that our "junior" AI workers can complete assigned tasks on their own.  Only enhance tasks that can truly benefit from it.  Many tasks may already be described with sufficient detail.
 
-Use `guide.ai-project.006-task-expansion` as your detailed guide for this phase. Work on the task file `private/tasks/{sliceindex}-tasks.{slicename}.md`.
+Use `guide.ai-project.006-task-expansion` as your detailed guide for this phase. Work on the task file `user/tasks/{sliceindex}-tasks.{slicename}.md`.
 
 Your role is Senior AI. For each task:
 - If it would benefit from expansion or subdivision, enhance it.
@@ -236,11 +236,11 @@ Note: This is a project planning task, not a coding task.
 ```markdown
 We are working on {slice | feature} in project {project}, phase 7 of `ai-project-guide/project-guides/guide.ai-project.000-process`. 
 
-Your job is to complete the tasks in the `private/tasks/{sliceindex}-tasks.{slicename}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the relevant provided rules (`rules/`, `CLAUDE.md`, etc).  Your role is "Senior AI". 
+Your job is to complete the tasks in the `user/tasks/{sliceindex}-tasks.{slicename}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the relevant provided rules (`rules/`, `CLAUDE.md`, etc).  Your role is "Senior AI". 
 
 Use exactly one of the following (only one match should exist):
-- The slice design at `private/slices/{slice}.md`.
-- The feature design at `private/features/{feature}.md`.
+- The slice design at `user/slices/{slice}.md`.
+- The feature design at `user/features/{feature}.md`.
 
 Always git commit at least once per task but ideally after every section of items containing a 'Success:' criteria.  For example, if a file contains Task 1.2, Task 1.2.1, commit after each task.  If 1.2.1 contains multiple checklists each with its own 'Success:' criteria, commit after any section containing Success.  STOP and confer with Project Manager after each task, unless directed otherwise 
 
@@ -276,13 +276,13 @@ We are using the slice-based methodology from `ai-project-guide/project-guides/g
 - if [slice] is provided it can be decomposed into [sliceindex]-slice.[slicename].md
 
 Refer to the Resource Structure in `ai-project-guide/project-guides/guide.ai-project.000-process` for locations of resources. Key project documents:
-- Project Documents: `project-documents/private/`. 
-- Slice design: private/slices/{slice}.md
-- Tasks file: private/tasks/{sliceindex}-tasks.{slicename}.md
+- Project Documents: `project-documents/user/`. 
+- Slice design: user/slices/{slice}.md
+- Tasks file: user/tasks/{sliceindex}-tasks.{slicename}.md
 
 Concentrate on the most granular level available (e.g. tasks if present), and use the higher-level files as reference only if needed. 
-- Project HLD: private/architecture/050-arch.hld-{project}.md
-*Note: legacy HLD location is: private/project-guide/050-hld.{project}.md*
+- Project HLD: user/architecture/050-arch.hld-{project}.md
+*Note: legacy HLD location is: user/project-guide/050-hld.{project}.md*
 
 If you were previously assigned a role, continue in that role. If not, assume role of Senior AI as defined in the Process Guide.  
 
@@ -304,16 +304,16 @@ We are using the slice-based methodology from `ai-project-guide/project-guides/g
 - if [slice] is provided it can be decomposed into [sliceindex]-slice.[slicename].md
 
 Refer to the Resource Structure in `ai-project-guide/project-guides/guide.ai-project.000-process` for locations of resources. Key project documents and locations:
-- Project Documents: `project-artifacts/{project-type}/{project}` where project type == 'template' (only value in use 20251003), for example: `project-artifacts/template/react/`.  This is interpreted as the value of private/ wherever that is encountered.  For example if a prompt references: private/tasks/100-tasks.some-tasks, this would be interpreted as: project-artifacts/template/react/.  Alternately, it can be flattened on level to: project-artifacts/template-react/.  
+- Project Documents: `project-artifacts/{project-type}/{project}` where project type == 'template' (only value in use 20251003), for example: `project-artifacts/template/react/`.  This is interpreted as the value of user/ wherever that is encountered.  For example if a prompt references: user/tasks/100-tasks.some-tasks, this would be interpreted as: project-artifacts/template/react/.  Alternately, it can be flattened on level to: project-artifacts/template-react/.  
 
-- Slice design: private/slices/{slice}.md maps to: project-artifacts/{project-type}-{project}/slices/{slice}.md
-- Tasks file: private/tasks/{sliceindex}-tasks.{slicename}.md --> synonym: {taskfile}, maps to: project-artifacts/{project-type}-{project}/tasks/{taskfile}.md
+- Slice design: user/slices/{slice}.md maps to: project-artifacts/{project-type}-{project}/slices/{slice}.md
+- Tasks file: user/tasks/{sliceindex}-tasks.{slicename}.md --> synonym: {taskfile}, maps to: project-artifacts/{project-type}-{project}/tasks/{taskfile}.md
 
 Refer to the Resource Structure in `ai-project-guide/project-guides/guide.ai-project.000-process` for locations of resources. Concentrate on the most granular level available (e.g. tasks if present), and use the higher-level files as reference only if needed.  Key project documents:
-- High-level design: private/architecture/050-arch.hld-{project}.md
-- Current slice design: private/slices/{slice}.md
-- Tasks file: private/tasks/{sliceindex}-tasks.{slicename}.md
-*Note: legacy HLD location is: private/project-guide/050-hld.{project}.md*
+- High-level design: user/architecture/050-arch.hld-{project}.md
+- Current slice design: user/slices/{slice}.md
+- Tasks file: user/tasks/{sliceindex}-tasks.{slicename}.md
+*Note: legacy HLD location is: user/project-guide/050-hld.{project}.md*
 
 If you were previously assigned a role, continue in that role. If not, assume role of Senior AI as defined in the Process Guide.  
 
@@ -379,7 +379,7 @@ If you need more information about the feature requirements, stop and request fr
 ```markdown
 Create tasks for {feature|bugfix|maintenance-work} in project {project}. This is for smaller work items that need task breakdown but don't require full slice design.
 
-Your role is Senior AI. Analyze the work item and create a task file at `private/tasks/nnn-tasks.{item-name}.md` with:
+Your role is Senior AI. Analyze the work item and create a task file at `user/tasks/nnn-tasks.{item-name}.md` with:
 
 1. YAML front matter:
 ---
@@ -495,9 +495,9 @@ We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown
 
 If the tasks are already sufficiently granular and in checklist format, you do not need to modify them. Note that each success criteria needs a checkbox.
 
-Your role is Senior AI. Use the specified analysis document `private/analysis/nnn-analysis.{project-name}{.subproject?}.md` as input. Note that subproject is optional (hence the ?). Avoid adding extra `.` characters to filename if subproject is not present.
+Your role is Senior AI. Use the specified analysis document `user/analysis/nnn-analysis.{project-name}{.subproject?}.md` as input. Note that subproject is optional (hence the ?). Avoid adding extra `.` characters to filename if subproject is not present.
 
-Create task file at `private/tasks/nnn-analysis{.subproject?}-{date}.md` with:
+Create task file at `user/tasks/nnn-analysis{.subproject?}-{date}.md` with:
 1. YAML front matter including slice or subproject name, project, YYYYMMDD date, main analysis file reference, dependencies, and current project state
 2. Context summary section
 3. Granular tasks following Phase 5 guidelines
@@ -518,11 +518,11 @@ We need to create a Low-Level Design (LLD) for {feature/component} identified du
 Your role is Technical Fellow as described in the Process Guide. This LLD will bridge the gap between high-level understanding and implementable tasks.
 
 Context:
-- Analysis document: `private/analysis/nnn-analysis.{project-name}{.subproject or analysis topic?}` (or specify location)
-- Related task file: `private/tasks/nnn-analysis{.subproject?}-{date}.md` (if exists)
+- Analysis document: `user/analysis/nnn-analysis.{project-name}{.subproject or analysis topic?}` (or specify location)
+- Related task file: `user/tasks/nnn-analysis{.subproject?}-{date}.md` (if exists)
 - Current issue: {brief description of what analysis revealed}
 
-Create LLD document at: `private/features/nnn-lld.{feature-name}.md`
+Create LLD document at: `user/features/nnn-lld.{feature-name}.md`
 
 Required YAML front matter:
 ```yaml
@@ -564,7 +564,7 @@ Note: This creates implementation-ready technical designs, not high-level planni
 ```markdown
 We are working on the analysis file {analysis} in project {project}, phase 7 of `ai-project-guide/project-guides/guide.ai-project.000-process`. 
 
-Your role is "Senior AI". Your job is to complete the tasks in the `private/tasks/nnn-analysis-{topic}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the rules in the rules/ directory.
+Your role is "Senior AI". Your job is to complete the tasks in the `user/tasks/nnn-analysis-{topic}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the rules in the rules/ directory.
 
 The analysis overview is available at {analysis} for additional context.
 
@@ -595,7 +595,7 @@ This is reconnaissance work - not goal-oriented development.
 Analyze the following existing codebase and document your findings. We want this to not only assist ourselves in updating and maintaining the codebase, but also to assist humans who may be working on the project.
 
 ###### Expected Output
-* Document your findings in `private/analysis/nnn-analysis.{topic}.md` where:
+* Document your findings in `user/analysis/nnn-analysis.{topic}.md` where:
   - nnn starts at 940 (analysis range)
   - {topic} describes the analysis focus (e.g., "initial-codebase", "dependency-audit", "architecture-review")
 * Write in markdown format, following our rules for markdown output.  

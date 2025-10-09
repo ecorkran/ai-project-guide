@@ -41,5 +41,5 @@ We will use this as a guide for creating a project spec.  We generally will not 
 - Supporting materials like diagrams, mockups, or interactive prototypes.
 
 ##### Output Location
-Save the completed specification document as `002-spec.{project}.md` in the `private/project-guides/` directory, where `{project}` is your project name.
+Save the completed specification document as `002-spec.{project}.md` in the `user/project-guides/` directory, where `{project}` is your project name.
 

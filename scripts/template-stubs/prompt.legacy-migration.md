@@ -9,13 +9,13 @@ Your task is to update all references in the project's private documentation fil
 ## Files to Update
 
 Search and update references in ALL files under:
-- `project-documents/private/slices/`
-- `project-documents/private/tasks/`
-- `project-documents/private/features/`
-- `project-documents/private/architecture/`
-- `project-documents/private/reviews/`
-- `project-documents/private/analysis/`
-- `project-documents/private/project-guides/` (if it exists)
+- `project-documents/user/slices/`
+- `project-documents/user/tasks/`
+- `project-documents/user/features/`
+- `project-documents/user/architecture/`
+- `project-documents/user/reviews/`
+- `project-documents/user/analysis/`
+- `project-documents/user/project-guides/` (if it exists)
 
 ## Path Transformations
 
@@ -63,8 +63,8 @@ snippets/npm-scripts.ai-support.json
 ## What NOT to Change
 
 **Do NOT modify:**
-- References to `private/` directories (these stay as-is)
-- References like `project-documents/private/slices/` (correct, no change needed)
+- References to `user/` directories (these stay as-is)
+- References like `project-documents/user/slices/` (correct, no change needed)
 - File paths within the same directory (e.g., references between task files)
 - External URLs or absolute paths outside the project
 - Code examples or quoted text unless they're actual path references
@@ -74,7 +74,7 @@ snippets/npm-scripts.ai-support.json
 ### Step 1: Search for references
 
 ```bash
-grep -r "project-guides\|tool-guides\|framework-guides\|snippets\|domain-guides" project-documents/private/
+grep -r "project-guides\|tool-guides\|framework-guides\|snippets\|domain-guides" project-documents/user/
 ```
 
 ### Step 2: For each file with matches
@@ -135,8 +135,8 @@ Consult ../ai-project-guide/tool-guides/react/ for component patterns.
 
 **Keep as-is:**
 ```markdown
-Task file location: private/tasks/100-tasks.auth.md  ✅ (correct, no change)
-See private/slices/100-slice.user-auth.md           ✅ (correct, no change)
+Task file location: user/tasks/100-tasks.auth.md  ✅ (correct, no change)
+See user/slices/100-slice.user-auth.md           ✅ (correct, no change)
 ```
 
 ## Output Requirements
@@ -160,7 +160,7 @@ After completing the updates:
 If you encounter any of these situations, stop and ask the user:
 
 1. References to paths that don't match the patterns above
-2. Files outside of `project-documents/private/` that might need updating
+2. Files outside of `project-documents/user/` that might need updating
 3. Ambiguous references that could be either paths or just text
 4. Custom directory structures not covered in this prompt
 
@@ -170,8 +170,8 @@ If you encounter any of these situations, stop and ask the user:
 
 Give this prompt to an AI assistant working on your project:
 
-**"Please follow the instructions in `scripts/template-stubs/prompt.legacy-migration.md` to update all path references in my project-documents/private/ files to the new submodule structure."**
+**"Please follow the instructions in `scripts/template-stubs/prompt.legacy-migration.md` to update all path references in my project-documents/user/ files to the new submodule structure."**
 
 ---
 
-**Ready to proceed? Start by searching for all references to the old paths in `project-documents/private/` and report what you find.**
+**Ready to proceed? Start by searching for all references to the old paths in `project-documents/user/` and report what you find.**

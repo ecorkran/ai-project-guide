@@ -40,15 +40,15 @@ Files that may contain cross-references:
 - project-guides/rules/testing.md
 - project-guides/rules/typescript.md
 
-## Files in private/project-guides/ (0 files)
+## Files in user/project-guides/ (0 files)
 Directory does not exist
 
-## Files in private/slices/ (2 files)
-- private/slices/100-slice.prompt-optimization-1.md
-- private/slices/900-slice.maintenance.md
+## Files in user/slices/ (2 files)
+- user/slices/100-slice.prompt-optimization-1.md
+- user/slices/900-slice.maintenance.md
 
-## Files in private/tasks/ (1 file)
-- private/tasks/100-tasks.prompt-optimization-1.md
+## Files in user/tasks/ (1 file)
+- user/tasks/100-tasks.prompt-optimization-1.md
 
 ## Additional Files to Check
 Root level files:
@@ -94,7 +94,7 @@ etc.
 
 ### Pattern: YAML frontmatter `lld:`
 Found in task examples:
-- `lld: private/slices/01-slice.user-authentication.md`
+- `lld: user/slices/01-slice.user-authentication.md`
 
 ## Summary
 - Total guide files to rename: 8

@@ -46,11 +46,11 @@ Our job is to examine the slice task breakdown and expand or enhance the tasks w
 
 For any additional context, how and where we fit into the project or the overall plan, consult the additional documentation provided with the input. While we are mostly not writing code, the rules/ directory will provide guidelines for writing any minimal required code as well as potential usefulness in structuring the tasks.
 
-Phases 1-5 are completed and approved. We are going to work on Phase 6, Task enhancement and expansion for the current slice. We will work with the slice task file created in Phase 5: `private/tasks/nnn-tasks.{slice-name}.md`.
+Phases 1-5 are completed and approved. We are going to work on Phase 6, Task enhancement and expansion for the current slice. We will work with the slice task file created in Phase 5: `user/tasks/nnn-tasks.{slice-name}.md`.
 
 ###### Procedure
 * Identify and review all required inputs and confirm any questions, omissions, or inconsistencies.
-* Work with the existing slice task file `private/tasks/nnn-tasks.{slice-name}.md`.
+* Work with the existing slice task file `user/tasks/nnn-tasks.{slice-name}.md`.
 * For each task in the slice, examine it. Can a relatively junior developer complete it as described? If we could improve the odds of that by making the task more granular, adding detail, potentially splitting into subtasks, let's do it.
 * Preserve the YAML front matter and context summary - these are crucial for context management.
 * Make sure we cover all the tasks.
@@ -64,7 +64,7 @@ Note: do use the markdown multiline codeblocks as we described. I couldn't embed
 ---
 slice: user-authentication
 project: trading-app
-lld: private/slices/01-slice.user-authentication.md
+lld: user/slices/01-slice.user-authentication.md
 dependencies: [foundation-setup]
 projectState: foundation complete, database schema defined
 lastUpdated: 2025-01-15
@@ -91,7 +91,7 @@ This is provided as an example of expansion. Use this in addition to the additio
 ---
 slice: user-authentication
 project: trading-app
-lld: private/slices/01-slice.user-authentication.md
+lld: user/slices/01-slice.user-authentication.md
 dependencies: [foundation-setup]
 projectState: foundation complete, database schema defined
 lastUpdated: 2025-01-16

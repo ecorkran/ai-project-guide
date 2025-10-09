@@ -36,7 +36,7 @@ This should work seamlessly for:
 │   │   ├── framework-guides/
 │   │   ├── snippets/
 │   │   └── ... (all framework content)
-│   └── private/                        # User's project-specific work
+│   └── user/                        # User's project-specific work
 │       ├── architecture/
 │       ├── slices/
 │       ├── tasks/
@@ -50,7 +50,7 @@ This should work seamlessly for:
 1. **Clean Separation**: Framework guides are isolated in submodule, user work stays in parent repo
 2. **Easy Updates**: `git submodule update --remote` for guide updates
 3. **No Conflicts**: User files never conflict with guide updates
-4. **Backward Compatible**: Existing path references to `private/` work unchanged
+4. **Backward Compatible**: Existing path references to `user/` work unchanged
 5. **Universal**: Works for any language/toolchain
 
 ### Migration Path
@@ -58,7 +58,7 @@ This should work seamlessly for:
 **For existing projects using git subtree:**
 1. Remove subtree content making sure to not accidentally lose existing project-documents/private
 2. Add as submodule at `project-documents/ai-project-guide/`
-3. Move user files to `project-documents/private/` (if not already there)
+3. Move user files to `project-documents/user/` (if not already there)
 
 **For new projects:**
 - Simple setup: `git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide`
@@ -69,20 +69,20 @@ This should work seamlessly for:
 
 **Current scripts that need updating:**
 - `setup-guides`: Create new directory structure
-- `update-guides`: Pull submodule updates (simplify - no more private/ preservation)
+- `update-guides`: Pull submodule updates (simplify - no more user/ preservation)
 - `sync-guides`: May become simpler or obsolete
 
 **New `setup-guides` behavior:**
 ```bash
 # Create directory structure
-mkdir -p project-documents/private/{architecture,slices,tasks,features,reviews,analysis}
+mkdir -p project-documents/user/{architecture,slices,tasks,features,reviews,analysis}
 
 # Add submodule
 cd project-documents
 git submodule add https://github.com/ecorkran/ai-project-guide.git
 
 # Create .gitignore if needed
-echo "# Keep private/ in version control" > private/.gitkeep
+echo "# Keep user/ in version control" > user/.gitkeep
 ```
 
 **New `update-guides` behavior:**
@@ -91,17 +91,17 @@ echo "# Keep private/ in version control" > private/.gitkeep
 git submodule update --remote project-documents/ai-project-guide
 
 # No longer needs to:
-# - Copy out private/
+# - Copy out user/
 # - Delete old files
-# - Copy private/ back
+# - Copy user/ back
 ```
 
 ### 2. Path References
 
 **Current references (stay the same for user files):**
-- `private/slices/...` ✓
-- `private/tasks/...` ✓
-- `private/architecture/...` ✓
+- `user/slices/...` ✓
+- `user/tasks/...` ✓
+- `user/architecture/...` ✓
 
 **Guide references (need updating):**
 - Change: `project-guides/...` → `project-documents/ai-project-guide/project-guides/...`

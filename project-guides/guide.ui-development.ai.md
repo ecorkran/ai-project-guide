@@ -12,7 +12,7 @@ dependsOn:
 ---
 This document provides specialized knowledge and techniques useful in completion of UI/UX tasks.
 ##### Mockups and Wireframes
-All tasks involving new views, forms, or pages, as well as any task requiring sophisticated layout should include a mockup or reference image.  Mockup may be wireframe or rendered UI elements.  Mockups should be present in the directory `private/ui` and `private/ui/screenshots` in the `{project-root}/project-documents/private/` folder.
+All tasks involving new views, forms, or pages, as well as any task requiring sophisticated layout should include a mockup or reference image.  Mockup may be wireframe or rendered UI elements.  Mockups should be present in the directory `user/ui` and `user/ui/screenshots` in the `{project-root}/project-documents/user/` folder.
 
 *Example UI Mockup*
 ![[Pasted image 20250425124903.png]]

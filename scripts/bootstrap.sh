@@ -86,31 +86,31 @@ fi
 
 # Create directory structure
 print_info "Creating directory structure..." "$BLUE"
-mkdir -p project-documents/private/{analysis,architecture,features,project-guides,reviews,slices,tasks}
+mkdir -p project-documents/user/{analysis,architecture,features,project-guides,reviews,slices,tasks}
 
 # Create .gitkeep
-echo "# Keep private/ in version control" > project-documents/private/.gitkeep
+echo "# Keep user/ in version control" > project-documents/user/.gitkeep
 
-print_success "Created project-documents/private/ subdirectories"
+print_success "Created project-documents/user/ subdirectories"
 echo ""
 
 # Check for external guides
-if [ -n "$ORG_PRIVATE_GUIDES_URL" ]; then
-    print_info "Importing external guides from: $ORG_PRIVATE_GUIDES_URL" "$BLUE"
+if [ -n "$EXTERNAL_PROJECT_DOC_URL" ]; then
+    print_info "Importing external guides from: $EXTERNAL_PROJECT_DOC_URL" "$BLUE"
 
     # Clone to temp directory
-    if git clone "$ORG_PRIVATE_GUIDES_URL" /tmp/external-guides-$$ 2>/dev/null; then
-        # Copy contents into private/ (overlay)
-        cp -r /tmp/external-guides-$$/* project-documents/private/ 2>/dev/null || true
+    if git clone "$EXTERNAL_PROJECT_DOC_URL" /tmp/external-guides-$$ 2>/dev/null; then
+        # Copy contents into user/ (overlay)
+        cp -r /tmp/external-guides-$$/* project-documents/user/ 2>/dev/null || true
 
         # Clean up
         rm -rf /tmp/external-guides-$$
 
-        print_success "External guides imported into project-documents/private/"
+        print_success "External guides imported into project-documents/user/"
         echo ""
     else
         print_warning "Failed to clone external guides (skipping)"
-        print_info "Check that ORG_PRIVATE_GUIDES_URL is accessible" "$BLUE"
+        print_info "Check that EXTERNAL_PROJECT_DOC_URL is accessible" "$BLUE"
         echo ""
     fi
 fi
@@ -172,7 +172,7 @@ EOF
     echo "  3. Start using the framework:"
     echo "       • Review: project-documents/ai-project-guide/readme.md"
     echo "       • Process: project-documents/ai-project-guide/project-guides/guide.ai-project.000-process.md"
-    echo "       • Your work goes in: project-documents/private/"
+    echo "       • Your work goes in: project-documents/user/"
     echo ""
 else
     print_error "Failed to add submodule. This might happen if:"

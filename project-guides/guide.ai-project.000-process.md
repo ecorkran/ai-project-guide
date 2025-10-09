@@ -79,7 +79,7 @@ For an app example:
    - Include specific technical decisions, data flows, and component interactions
    - Identify any cross-slice dependencies or conflicts
    - Create mockups or detailed specifications for UI components
-   - Save as `private/slices/nnn-slice.{slice-name}.md.
+   - Save as `user/slices/nnn-slice.{slice-name}.md.
    - Outcome: _Detailed design document for implementing this slice.
 
 5. **Phase 5: Slice Task Breakdown**
@@ -87,13 +87,13 @@ For an app example:
    - For each {tool} in use described in the design, ensure that you consult knowledge in `ai-project-guide/tool-guides/{tool}/`.  If not present search web if possible and alert Project Manager.
    - Only include tasks that can reasonably be completed by an AI. Do not include open-ended human-centric tasks such as SEO optimization.
    - If insufficient information is available to fully convert an item into tasks, _stop_ and request clarifying information before continuing.
-   - Save as `private/tasks/nnn-tasks.{slice-name}.md` using existing task file naming conventions
+   - Save as `user/tasks/nnn-tasks.{slice-name}.md` using existing task file naming conventions
    - Include YAML front matter and context header:
      ```yaml
      ---
      slice: {slice-name}
      project: {project-name}
-     lld: private/slices/nnn-slice.{slice-name}.md
+     lld: user/slices/nnn-slice.{slice-name}.md
      dependencies: [list-of-prerequisite-slices]
      projectState: brief description of current state
      lastUpdated: YYYY-MM-DD
@@ -171,19 +171,19 @@ The following structure should be present in every project.  Assume files are in
     │   ├── domain-guides/     # cross-cutting subject matter (hydrology …)
     │   ├── snippets/          # copyable code/config examples
     │   └── scripts/           # setup and utility scripts
-    └── private/               # Your project-specific work (parent repo)
+    └── user/               # Your project-specific work (parent repo)
 ```
 
 ###### private subfolders
 ```markdown
-* private/: information customized to our current project.
-* private/analysis/: analysis documents and research findings.
-* private/architecture/: high-level design documents (HLD).
-* private/features/: feature designs and specifications.
-* private/project-guides/: project-specific guide customizations.
-* private/reviews/: code review findings, task lists, and resolutions.
-* private/slices/: slice-specific low-level designs (nnn-slice.{slice-name}.md).
-* private/tasks/: all task breakdown files (nnn-tasks.{slice-name}.md or legacy files).
+* user/: information customized to our current project.
+* user/analysis/: analysis documents and research findings.
+* user/architecture/: high-level design documents (HLD).
+* user/features/: feature designs and specifications.
+* user/project-guides/: project-specific guide customizations.
+* user/reviews/: code review findings, task lists, and resolutions.
+* user/slices/: slice-specific low-level designs (nnn-slice.{slice-name}.md).
+* user/tasks/: all task breakdown files (nnn-tasks.{slice-name}.md or legacy files).
 ```
 
 > Each folder has its own `README.md` or `introduction.md` with deeper context.

@@ -15,7 +15,7 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
 ### Range Allocation
 - **000-009**: Core AI-project process guides
   - Example: `guide.ai-project.000-process.md`, `guide.ai-project.001-concept.md`
-  - Matching project files: `private/project-guides/001-concept.{project}.md`
+  - Matching project files: `user/project-guides/001-concept.{project}.md`
 
 - **010-049**: Reserved for future process extensions
   - Available for new methodology guides
@@ -25,7 +25,7 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
   - High-level designs (HLD)
   - System architecture documents
   - Technology selection and rationale
-  - Example: `private/architecture/050-arch.hld-{project}.md`
+  - Example: `user/architecture/050-arch.hld-{project}.md`
 
 - **090-099**: Specialized utility guides
   - Example: `guide.ai-project.090-code-review.md`
@@ -36,7 +36,7 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
   - Task files
   - User-created or user-initiated work
   - Primary working range for project execution
-  - Example: `private/slices/100-slice.{name}.md`
+  - Example: `user/slices/100-slice.{name}.md`
 
 - **800-899**: Reserved (100 slots)
 
@@ -44,7 +44,7 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
   - Code review task files
   - Review analysis documents
   - Code review follow-up work
-  - Example: `private/reviews/review.{component}.{date}.md`
+  - Example: `user/reviews/review.{component}.{date}.md`
 
 - **940-949**: Codebase analysis tasks (10 slots)
   - Analysis performed when applying methodology to existing projects
@@ -97,7 +97,7 @@ Common document type prefixes:
 - `spec` - Technical specifications
 - `notes` - Meeting notes or research findings
 - `template` - Prompt or other templates, organized with project-guides.
-- `maintenance` - maintenance tasks or actions, in `private/maintenance`.
+- `maintenance` - maintenance tasks or actions, in `user/maintenance`.
 
 ### Date Format
 

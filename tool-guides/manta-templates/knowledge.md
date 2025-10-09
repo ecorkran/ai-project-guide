@@ -724,7 +724,7 @@ export const gridPatterns = {
 ### From v0.6.x to v0.7.x
 
 #### Breaking Changes
-- `our-project/` directory moved to `private/`
+- `our-project/` directory moved to `user/`
 - Tailwind config moved to CSS-based configuration
 - Some card prop names standardized
 

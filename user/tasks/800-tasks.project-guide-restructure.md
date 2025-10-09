@@ -2,7 +2,7 @@
 item: project-guide-restructure
 project: ai-project-guide
 type: feature
-lld: private/features/800-feature.project-guide-restructure.md
+lld: user/features/800-feature.project-guide-restructure.md
 dependencies: []
 projectState: Active development - restructuring layout from git subtree to git submodule
 status: in-progress
@@ -23,25 +23,25 @@ Converting ai-project-guide from git subtree integration to git submodule struct
 ```
 project-documents/
 ├── ai-project-guide/    # Submodule (framework)
-└── private/             # User work (parent repo)
+└── user/             # User work (parent repo)
 ```
 
 ## Task 1: Update npm Scripts
 
 ### 1.1 Update setup-guides Script
 - [x] Modify `snippets/npm-scripts.ai-support.json.md` with new submodule-based scripts
-- [x] Create `project-documents/private/` subdirectories: architecture, slices, tasks, features, reviews, analysis
+- [x] Create `project-documents/user/` subdirectories: architecture, slices, tasks, features, reviews, analysis
 - [x] Add git submodule at `project-documents/ai-project-guide`
-- [x] Create `.gitkeep` in `project-documents/private/` to ensure directory is tracked
+- [x] Create `.gitkeep` in `project-documents/user/` to ensure directory is tracked
 - [x] Test script creates correct structure in fresh project (tested with Python bootstrap)
 - **Success:** ✅ Updated snippet shows proper setup-guides script for user projects
 
 ### 1.2 Simplify update-guides Script
 - [x] Renamed `guides` script to `update-guides` in snippet
 - [x] Updated to simple: `git submodule update --remote project-documents/ai-project-guide`
-- [x] No need to preserve private/ (it's in parent repo, not submodule)
+- [x] No need to preserve user/ (it's in parent repo, not submodule)
 - [x] Test update works without touching user files (tested locally)
-- **Success:** ✅ Script updates guides without affecting `project-documents/private/`
+- **Success:** ✅ Script updates guides without affecting `project-documents/user/`
 
 ### 1.3 Review sync-guides Script
 - [x] Evaluated sync-guides - not present in current snippet
@@ -71,25 +71,25 @@ project-documents/
 - [x] Update `CLAUDE.md` - update any guide path references
 - [x] Update `readme.setup-ide.md` - update manual setup paths with path convention note
 - [x] Update `prompt.ai-project.system.md` - all guide references updated, verified Context Init prompts correct
-- [x] Update `file-naming-conventions.md` - already correct, uses private/ paths
-- [x] Update `directory-structure.md` - updated to show ai-project-guide/ and private/ as siblings, removed research-crumbs
+- [x] Update `file-naming-conventions.md` - already correct, uses user/ paths
+- [x] Update `directory-structure.md` - updated to show ai-project-guide/ and user/ as siblings, removed research-crumbs
 - **Success:** ✅ All core documentation references correct submodule paths
 
 ### 2.3 Update Guide References in project-guides/
 - [x] Update `guide.ai-project.000-process.md` - updated structure diagram and all guide paths
 - [x] Update `guide.ai-project.001-concept.md` - updated output path, fixed filename to 001-
 - [x] Update `guide.ai-project.002-spec.md` - updated tool-guides path, fixed filename to 002-
-- [x] Update `guide.ai-project.003-slice-planning.md` - already correct, uses private/ paths
+- [x] Update `guide.ai-project.003-slice-planning.md` - already correct, uses user/ paths
 - [x] Update `guide.ai-project.004-slice-design.md` - updated tool-guides and framework-guides paths
 - [x] Update `guide.ai-project.006-task-expansion.md` - already correct, no guide references
 - [x] Update `guide.ai-project.090-code-review.md` - already correct, no guide references
-- [x] Update `guide.ai-project.091-legacy-task-migration.md` - already correct, uses private/ paths
+- [x] Update `guide.ai-project.091-legacy-task-migration.md` - already correct, uses user/ paths
 - **Success:** ✅ All process guides reference correct paths
 
 ### 2.4 Update Monorepo-Specific References
 - [x] Review monorepo context initialization prompt
 - [x] Update guide references to `ai-project-guide/project-guides/guide.ai-project.000-process`
-- [x] Verify `project-artifacts/` pattern remains unchanged (confirmed - private/ maps correctly)
+- [x] Verify `project-artifacts/` pattern remains unchanged (confirmed - user/ maps correctly)
 - [ ] Test monorepo development workflow still works (requires monorepo testing)
 - **Success:** ✅ Monorepo Context Init prompt updated, project-artifacts mapping preserved
 
@@ -107,7 +107,7 @@ project-documents/
 ### 3.2 Create Migration Guide Section
 - [x] Write "Migrating from git subtree" section in Advanced Usage
 - [x] Document step-by-step migration:
-  1. Backup `project-documents/private/`
+  1. Backup `project-documents/user/`
   2. Remove subtree: `git rm -r project-documents`
   3. Restore private: `git checkout HEAD~1 -- project-documents/private`
   4. Add submodule: `git submodule add ... project-documents/ai-project-guide`
@@ -148,8 +148,8 @@ project-documents/
 
 ### 4.3 Update Scripts for New Directory Structure
 - [x] Update script paths to use `project-documents/ai-project-guide/` structure (already done in Task 1)
-- [x] Update `private/` subdirectory creation (analysis, architecture, features, project-guides, reviews, slices, tasks)
-- [x] Verify scripts create `.gitkeep` in private/ directory (confirmed)
+- [x] Update `user/` subdirectory creation (analysis, architecture, features, project-guides, reviews, slices, tasks)
+- [x] Verify scripts create `.gitkeep` in user/ directory (confirmed)
 - [x] Update any hardcoded paths or assumptions about structure (all paths updated)
 - [x] Ensure scripts handle both fresh install and already-installed cases (idempotent checks in place)
 - **Success:** ✅ Scripts work correctly with new submodule structure
@@ -187,7 +187,7 @@ project-documents/
 - [ ] Create test React/Next.js project
 - [ ] Run `pnpm setup-guides`
 - [ ] Verify directory structure created correctly
-- [ ] Test creating slice in `private/slices/`
+- [ ] Test creating slice in `user/slices/`
 - [ ] Test guide updates with `pnpm update-guides`
 - [ ] Verify guides update without affecting private files
 - **Success:** Full workflow works in npm project
@@ -195,7 +195,7 @@ project-documents/
 ### 5.2 Test Non-npm Project Setup
 - [ ] Create test Python project
 - [ ] Manually set up structure per readme instructions
-- [ ] Test creating project documents in `private/`
+- [ ] Test creating project documents in `user/`
 - [ ] Test guide updates with `git submodule update --remote`
 - [ ] Verify all prompts work correctly
 - **Success:** Full workflow works in Python project

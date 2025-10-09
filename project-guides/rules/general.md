@@ -16,8 +16,8 @@ alwaysApply: true
 - Relevant 3rd party tool information is in `project-documents/ai-project-guide/tool-guides/`.
 
 ### Project-Specific File Locations
-- **Regular Development** (template instances): Use `project-documents/private/` for all project-specific files.
-- **Monorepo Template Development** (monorepo active): Use `project-artifacts/` for project-specific files (use directly, e.g. `project-artifacts/` not `project-artifacts/private/`).
+- **Regular Development** (template instances): Use `project-documents/user/` for all project-specific files.
+- **Monorepo Template Development** (monorepo active): Use `project-artifacts/` for project-specific files (use directly, e.g. `project-artifacts/` not `project-artifacts/user/`).
 - **DEPRECATED**: `{template}/examples/our-project/` is no longer used - migrate to `project-artifacts/` for monorepo work.
 
 ## General Guidelines (IMPORTANT)
@@ -48,4 +48,4 @@ alwaysApply: true
 - After all changes are made, ALWAYS build the project.
 - If available, git add and commit *from project root* at least once per task (not per child subitem)
 
-- Log warnings to `/project-documents/private/tasks/950-tasks.maintenance.md`. Write in raw markdown format, with each warning as a list item, using a checkbox in place of standard bullet point. Note that this path is affected by `monorepo active` mode.
+- Log warnings to `/project-documents/user/tasks/950-tasks.maintenance.md`. Write in raw markdown format, with each warning as a list item, using a checkbox in place of standard bullet point. Note that this path is affected by `monorepo active` mode.

@@ -17,9 +17,9 @@ Transform the existing legacy task breakdown into the new slice-based structure 
 Please confirm you have access to:
 - `guide.ai-project.000-process` (updated with slice-based methodology)
 - `guide.ai-project.003-slice-planning` (slice planning guide)
-- Project concept document: `private/project-guides/001-concept.{project}.md`
-- Project spec document: `private/project-guides/002-spec.{project}.md`
-- Legacy task breakdown: `private/tasks/nnnn-tasks.{project}.md` (or similar)
+- Project concept document: `user/project-guides/001-concept.{project}.md`
+- Project spec document: `user/project-guides/002-spec.{project}.md`
+- Legacy task breakdown: `user/tasks/nnnn-tasks.{project}.md` (or similar)
 - Current project state information from Project Manager
 
 If any of these are missing, stop and request them before proceeding.
@@ -36,7 +36,7 @@ Review the existing task breakdown and understand:
 
 ### Step 2: Create High-Level Design
 Based on the existing spec and task breakdown, create:
-- `private/architecture/050-arch.hld-{project}.md` - High-level design document
+- `user/architecture/050-arch.hld-{project}.md` - High-level design document
 - Include architectural decisions already implied by the legacy tasks
 - Document the current system structure
 
@@ -58,31 +58,31 @@ Analyze the legacy task sections and convert them into proper slices:
 - Identify tasks that are cross-cutting or optimization-focused
 
 ### Step 4: Create Slice Plan
-Create `private/project-guides/003-slices.{project}.md` following the format in the slice planning guide:
+Create `user/project-guides/003-slices.{project}.md` following the format in the slice planning guide:
 - List foundation work (marking completed items)
 - Define feature slices with dependencies
 - Plan implementation order accounting for current progress
 
 ### Step 5: Create Slice Designs
-For each identified slice, create `private/slices/nnn-slice.{slice-name}.md`:
+For each identified slice, create `user/slices/nnn-slice.{slice-name}.md`:
 - Extract relevant information from legacy tasks
 - Add detailed technical decisions
 - Define slice boundaries and interfaces
 - Reference any existing implementation
 
 ### Step 6: Convert Tasks to Slice Format
-For each slice, create `private/tasks/nnn-tasks.{slice-name}.md`:
+For each slice, create `user/tasks/nnn-tasks.{slice-name}.md`:
 - Extract relevant tasks from legacy breakdown
 - Add YAML front matter with context:
   ```yaml
   ---
   slice: {slice-name}
   project: {project}
-  lld: private/slices/nnn-slice.{slice-name}.md
+  lld: user/slices/nnn-slice.{slice-name}.md
   dependencies: [list-of-prerequisite-slices]
   projectState: migrated from legacy format, [current state]
   lastUpdated: YYYY-MM-DD
-  migratedFrom: private/tasks/nnnn-tasks.{project}.md
+  migratedFrom: user/tasks/nnnn-tasks.{project}.md
   ---
   ```
 - Add context summary explaining migration and current state

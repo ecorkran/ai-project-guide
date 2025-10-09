@@ -22,8 +22,8 @@ This guide provides instructions for Phase 3: High-Level Design & Slice Planning
 * Any existing architecture documentation
 
 **Output:**
-* High-level design document: `private/architecture/050-arch.hld-{project}.md`
-* Slice planning document: `private/project-guides/003-slices.{project}.md`
+* High-level design document: `user/architecture/050-arch.hld-{project}.md`
+* Slice planning document: `user/project-guides/003-slices.{project}.md`
 
 #### Core Principles
 
@@ -57,7 +57,7 @@ All project work falls into these categories:
 #### Slice Planning Process
 
 ##### Step 1: Create High-Level Design
-Document the overall system architecture in `private/architecture/050-arch.hld-{project}.md`:
+Document the overall system architecture in `user/architecture/050-arch.hld-{project}.md`:
 
 ```markdown
 # High-Level Design: {Project}
@@ -187,7 +187,7 @@ This helps catch "Slice A needs X but Slice B needs Y" conflicts early.
 
 Create two documents:
 
-**High-Level Design** (`private/architecture/050-arch.hld-{project}.md`):
+**High-Level Design** (`user/architecture/050-arch.hld-{project}.md`):
 - System architecture overview
 - Technology decisions
 - Component interactions

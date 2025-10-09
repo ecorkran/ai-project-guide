@@ -74,7 +74,7 @@ For each source file:
 ### Output Structure
 ```
 project-documents/
-└── private/
+└── user/
     └── reviews/
         ├── review-docs/
         │   ├── review.component.tsx.0101.md
@@ -217,7 +217,7 @@ priority: P0|P1|P2|P3
 ### Quick Start
 1. Ensure `.cursor/rules/review.md` is up to date
 2. Run: `npm run code-review` or `pnpm code-review`
-3. Review generated documents in `project-documents/private/code-reviews/`
+3. Review generated documents in `project-documents/user/code-reviews/`
 4. Prioritize and implement tasks from generated task lists
 
 ### Customization

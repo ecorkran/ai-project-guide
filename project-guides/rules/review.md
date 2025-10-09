@@ -19,12 +19,12 @@ These rules provide **quick reference for lightweight, ad-hoc code reviews** dur
 ### File Naming
 
 **Review documents:**
-- Location: `private/reviews/`
+- Location: `user/reviews/`
 - Pattern: `nnn-review.{name}.md`
 - Range: nnn is 900-939
 
 **Task files:**
-- Location: `private/tasks/`
+- Location: `user/tasks/`
 - Pattern: `nnn-tasks.code-review.{filename}.md`
 - Use the **same nnn value** for all files in one review session to group them together
 
@@ -53,9 +53,9 @@ When reviewing code, systematically check:
 
 ### Quick Process
 
-1. **Create review doc** in `private/reviews/nnn-review.{name}.md`
+1. **Create review doc** in `user/reviews/nnn-review.{name}.md`
 2. **Apply checklist** systematically to each file
-3. **Create task files** in `private/tasks/nnn-tasks.code-review.{filename}.md` for issues found
+3. **Create task files** in `user/tasks/nnn-tasks.code-review.{filename}.md` for issues found
 4. **Prioritize** findings: P0 (critical) → P1 (quality) → P2 (best practices) → P3 (enhancements)
 
 ### YAML Frontmatter

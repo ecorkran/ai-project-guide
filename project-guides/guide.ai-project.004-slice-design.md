@@ -18,14 +18,14 @@ This guide provides instructions for Phase 4: Slice Design (Low-Level Design). T
 **Inputs:**
 * `guide.ai-project.000-process` (main process guide)
 * `guide.ai-project.004-slice-design` (this document)
-* Project specification (Phase 2 output): `private/project-guides/002-spec.{project}.md`
-* High-level design (Phase 3 output): `private/architecture/050-arch.hld-{project}.md`
-* Slice plan (Phase 3 output): `private/project-guides/003-slices.{project}.md`
+* Project specification (Phase 2 output): `user/project-guides/002-spec.{project}.md`
+* High-level design (Phase 3 output): `user/architecture/050-arch.hld-{project}.md`
+* Slice plan (Phase 3 output): `user/project-guides/003-slices.{project}.md`
 * Relevant tool guides from `ai-project-guide/tool-guides/{tool}/`
 * Framework guides from `ai-project-guide/framework-guides/{framework}/`
 
 **Output:**
-* Slice design document: `private/slices/nnn-slice.{slice-name}.md`
+* Slice design document: `user/slices/nnn-slice.{slice-name}.md`
 
 #### Core Principles
 

@@ -23,13 +23,13 @@ There are numerous prompts referencing {nn}, nn, or `nn-[type].[name].  We want 
 #### File Naming
 ##### Guides
 * guide.ai-project.nn.{guidename}.md: ideally we update these to nnn but don't change numeric value.  For example guide.ai-project.000-process.md, guide.ai-project.001-concept.md.  We still reference concept as "Phase 1" when used in this context.  When discussing the file or technical details we can use 001.
-* Files that we create should have matching indices, ex: `private/project-guides/001-concept.{projectname}.md`
+* Files that we create should have matching indices, ex: `user/project-guides/001-concept.{projectname}.md`
 * change guide.ai-project.090-code-review to
 
 ##### File Naming Conventions
 * We will need to update the relevant file-naming-conventions.md file here.
 ```
-00x:   ai-project guides, project-specific guides in private/project-guides/
+00x:   ai-project guides, project-specific guides in user/project-guides/
 090:   code review guide
 091:   legacy task migration
 0xx:   remaining 0xx indices system-reserved.
@@ -111,7 +111,7 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
 ### Range Allocation
 - **000-009**: Core AI-project process guides
   - Example: `guide.ai-project.000-process.md`, `guide.ai-project.001-concept.md`
-  - Matching project files: `private/project-guides/001-concept.{project}.md`
+  - Matching project files: `user/project-guides/001-concept.{project}.md`
 
 - **010-049**: Reserved for future process extensions
   - Available for new methodology guides
@@ -121,7 +121,7 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
   - High-level designs (HLD)
   - System architecture documents
   - Technology selection and rationale
-  - Example: `private/project-guides/050-hld.{project}.md`
+  - Example: `user/project-guides/050-hld.{project}.md`
 
 - **090-099**: Specialized utility guides
   - Example: `guide.ai-project.090-code-review.md`
@@ -132,7 +132,7 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
   - Task files
   - User-created or user-initiated work
   - Primary working range for project execution
-  - Example: `private/slices/100-slice.{name}.md`
+  - Example: `user/slices/100-slice.{name}.md`
 
 - **800-899**: Feature documents
   - Standalone feature specifications
@@ -176,7 +176,7 @@ Update "Sequential Numbering Convention" to reference 3-digit system:
 Replace all instances of `nn` with `nnn` in file naming patterns. Specific updates:
 
 1. **Line 41:** `001-concept.{project}.md` (currently correct, verify consistency)
-2. **Line 52:** `private/project-guides/002-spec.{project}.md` (update from 02)
+2. **Line 52:** `user/project-guides/002-spec.{project}.md` (update from 02)
 3. **Line 79:** `03-hld.{project}.md` → `050-hld.{project}.md` (architecture range)
 4. **Line 81:** `03-slices.{project}.md` → `003-slices.{project}.md`
 5. **Line 100:** `nn-slice.{slice}.md` → `nnn-slice.{slice}.md`
@@ -200,9 +200,9 @@ Search and update references in:
 - readme.md in project-guides/ (table entries and links)
 - CLAUDE.md (project instructions, if references exist)
 - Any template files in snippets/
-- All files in private/project-guides/ (spec, HLD, slice plans)
-- All files in private/slices/ (YAML frontmatter, cross-references)
-- All files in private/tasks/ (YAML frontmatter, cross-references)
+- All files in user/project-guides/ (spec, HLD, slice plans)
+- All files in user/slices/ (YAML frontmatter, cross-references)
+- All files in user/tasks/ (YAML frontmatter, cross-references)
 
 **Reference Patterns to Update:**
 
@@ -223,7 +223,7 @@ Search and update references in:
 
 *YAML frontmatter:*
 - `dependsOn: [guide.ai-project.nn-*]` → `dependsOn: [guide.ai-project.nnn-*]`
-- `lld: private/slices/nn-slice.*` → `lld: private/slices/nnn-slice.*`
+- `lld: user/slices/nn-slice.*` → `lld: user/slices/nnn-slice.*`
 
 #### 6. Documentation Context Updates
 
@@ -236,7 +236,7 @@ Important distinction to maintain:
 Example clarifying language:
 ```markdown
 We are in Phase 1 (Concept Creation) as defined in the Process Guide.
-The concept document is located at `private/project-guides/001-concept.{project}.md`.
+The concept document is located at `user/project-guides/001-concept.{project}.md`.
 Phase 1 uses guide file 001-concept and creates the 001-concept project document.
 ```
 
@@ -287,7 +287,7 @@ Phase 1 uses guide file 001-concept and creates the 001-concept project document
    - Sequential numbering rules updated
    - Examples updated to 3-digit system
 
-4. **Project Documents** (`private/project-guides/*.md`, `private/slices/*.md`, `private/tasks/*.md`)
+4. **Project Documents** (`user/project-guides/*.md`, `user/slices/*.md`, `user/tasks/*.md`)
    - References to guide files updated
    - Naming patterns for new files follow nnn system
 
@@ -297,7 +297,7 @@ guide.ai-project.000-process.md (master process definition)
     ↓ referenced by
 prompt.ai-project.system.md (prompt templates)
     ↓ used to create
-private/project-guides/nnn-*.md (project-specific documents)
+user/project-guides/nnn-*.md (project-specific documents)
     ↓ follow naming from
 file-naming-conventions.md (naming rules)
 ```
@@ -404,7 +404,7 @@ file-naming-conventions.md (naming rules)
    - No obsolete 2-digit guide files remain
 
 5. **Consistency Achieved**
-   - Project-specific files in private/ follow nnn pattern
+   - Project-specific files in user/ follow nnn pattern
    - New slices and tasks numbered in appropriate ranges (100-799)
    - Architecture files in 050-089 range
    - Maintenance files in 900 range

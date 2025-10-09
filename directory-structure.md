@@ -15,7 +15,7 @@ project-documents/
 │   │   └── hydrology/ …
 │   ├── snippets/            # copyable code/config examples
 │   └── scripts/             # setup and utility scripts
-└── private/                 # Your project-specific work (parent repo)
+└── user/                 # Your project-specific work (parent repo)
     ├── architecture/        # high-level designs & system architecture
     ├── code-reviews/        # review docs & follow-up actions
     ├── features/            # feature definitions & specifications
@@ -33,13 +33,13 @@ project-documents/
 > **Directory Structure by Use Case:**
 >
 > **1. Regular Development** (standard project development - most users):
-> - Your project work goes in `project-documents/private/`
+> - Your project work goes in `project-documents/user/`
 > - Framework guides are in `project-documents/ai-project-guide/` (git submodule)
 > - This is the standard structure shown above
 >
 > **2. Monorepo Template Development** (advanced - working on templates themselves):
-> - References to `private/` map to `project-artifacts/{template-name}/` instead
-> - Example: `private/tasks/` becomes `project-artifacts/react-template/tasks/`
+> - References to `user/` map to `project-artifacts/{template-name}/` instead
+> - Example: `user/tasks/` becomes `project-artifacts/react-template/tasks/`
 > - This prevents contaminating templates with development artifacts
 > - Framework guides location (`project-documents/ai-project-guide/`) remains the same
 

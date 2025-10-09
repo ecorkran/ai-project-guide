@@ -136,7 +136,7 @@ pnpm setup-guides
 
 This creates:
 - `project-documents/` with comprehensive AI development guides
-- `project-documents/private/` for project-specific customizations
+- `project-documents/user/` for project-specific customizations
 - Enables version control for project-documents
 
 ### Private Organization Guides
@@ -158,7 +158,7 @@ pnpm setup-guides:private
 # Update to latest public guides
 pnpm update-guides
 
-# This preserves your private/ directory content
+# This preserves your user/ directory content
 ```
 
 ---
