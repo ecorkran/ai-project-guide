@@ -4,9 +4,9 @@ project: ai-project-guide
 type: feature
 lld: user/features/800-feature.project-guide-restructure.md
 dependencies: []
-projectState: Active development - restructuring layout from git subtree to git submodule
-status: in-progress
-lastUpdated: 2025-10-05
+projectState: Complete - v0.9.0 submodule migration, v0.10.0 private→user rename
+status: completed
+lastUpdated: 2025-10-08
 ---
 
 # Tasks: Restructured ai-project-guide Layout
@@ -268,6 +268,49 @@ project-documents/
 - [ ] Update any external documentation
 - [ ] Monitor for migration issues
 - **Success:** Users informed and supported through migration
+
+## Task 8: v0.10.0 Terminology Rename (Added 2025-10-08)
+
+### 8.1 Rename private/ to user/
+- [x] Created automated rename script for ai-project-guide repo
+- [x] Created migration script for user projects (scripts/migrate-private-to-user.sh)
+- [x] Updated all 30+ documentation files
+- [x] Renamed directory: private/ → user/
+- [x] Updated env var: ORG_PRIVATE_GUIDES_URL → EXTERNAL_PROJECT_DOC_URL
+- [x] Created MIGRATION.md with comprehensive migration guide
+- [x] Updated CHANGELOG.md for v0.10.0
+- [x] Fixed all remaining references (readme, tool-guides, etc.)
+- [x] Tagged and released v0.10.0
+- **Success:** ✅ Complete rename, clear user-facing terminology
+
+## Completion Summary (2025-10-08)
+
+### Released Versions
+- **v0.9.0**: Git submodule migration (closed issue #2)
+- **v0.9.2**: External guides support, bootstrap improvements
+- **v0.10.0**: private/ → user/ rename (breaking change)
+
+### Testing Status
+- ✅ Non-npm project setup tested and working (PM verified)
+- ✅ Running successfully in 4 projects (PM verified)
+- ✅ No prompt issues encountered in production use
+- ⏭️ Formal test suite (Task 5) deferred - real-world validation confirms functionality
+
+### Design Decisions
+- ✅ Rejected 3-level hierarchy (too complex, prompt overhead)
+- ✅ Kept 2-level: ai-project-guide/ + user/ (external collapses into user/)
+- ✅ Migration tools created for smooth user transitions
+- ✅ Clear, consistent naming reduces user confusion
+
+### Issues Closed
+- #2: Git subtree → submodule migration ✅
+- #5: External guides feature (implemented with 2-level design) ✅
+
+### Remaining Open Issues (Enhancements)
+- #6: Selective rule filtering in setup-ide
+- #4: Task section index assignment
+- #3: Codify maintenance procedures
+- #1: Single source of truth for code review guides
 
 ## Notes
 
