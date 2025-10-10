@@ -31,7 +31,7 @@ Add these scripts to your `package.json`:
 
 ```json
 "scripts": {
-  "setup-guides": "mkdir -p project-documents/user/{architecture,slices,tasks,features,reviews,analysis} && git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide && echo '# Keep user/ in version control' > project-documents/user/.gitkeep || echo 'Submodule already exists—run npm run update-guides to update.'",
+  "setup-guides": "mkdir -p project-documents/user/{analysis,architecture,features,project-guides,reviews,slices,tasks} && git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide && echo '# Keep user/ in version control' > project-documents/user/.gitkeep || echo 'Submodule already exists—run npm run update-guides to update.'",
   "update-guides": "git submodule update --remote --merge project-documents/ai-project-guide && cd project-documents/ai-project-guide && git checkout main && git pull origin main && cd ../..",
   "setup-cursor": "project-documents/ai-project-guide/scripts/setup-ide cursor",
   "setup-windsurf": "project-documents/ai-project-guide/scripts/setup-ide windsurf",
@@ -283,7 +283,7 @@ If you prefer manual setup or need more control:
 
 ```bash
 # Create directory structure
-mkdir -p project-documents/user/{architecture,slices,tasks,features,reviews,analysis}
+mkdir -p project-documents/user/{analysis,architecture,features,project-guides,reviews,slices,tasks}
 
 # Add submodule
 git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide

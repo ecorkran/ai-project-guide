@@ -16,19 +16,17 @@ project-documents/
 │   ├── snippets/            # copyable code/config examples
 │   └── scripts/             # setup and utility scripts
 └── user/                 # Your project-specific work (parent repo)
-    ├── architecture/        # high-level designs & system architecture
-    ├── code-reviews/        # review docs & follow-up actions
+    ├── analysis/            # codebase analysis & investigation (940-949)
+    ├── architecture/        # high-level designs & system architecture (050-089)
     ├── features/            # feature definitions & specifications
-    ├── maintenance/         # maintenance tasks & outcomes
-    ├── analysis/            # codebase analysis results
-    ├── project-guides/      # project-specific guide customizations
+    ├── project-guides/      # project-specific guide customizations (001-009)
     │   ├── 001-concept.{project}.md # project concept documents
     │   ├── 002-spec.{project}.md    # project specifications
     │   └── 003-slices.{project}.md  # slice planning
-    ├── slices/              # slice design documents
-    ├── tasks/               # task breakdowns & phase documents
-    └── ui/                  # UI tasks & resources
-        └── screenshots/     # mock-ups, design references
+    ├── reviews/             # code review docs & follow-up actions (900-939)
+    ├── slices/              # slice design documents (100-799)
+    └── tasks/               # task breakdowns & all work items
+        └── 950-tasks.maintenance.md # maintenance & tech debt tracking
 ```
 > **Directory Structure by Use Case:**
 >

@@ -202,6 +202,59 @@ When a file considerably overruns the size limit (>33% over):
 - Maintains clear organization within the index system
 - Each continuation file still links to parent via index number
 
+## Architectural Index Semantic Map
+
+The index structure provides a machine-readable project architecture. This enables automated project analysis, cross-project pattern detection, and meta-agent coordination.
+
+### Semantic Ranges and Directory Mapping
+
+**000-009: Foundation** → `user/project-guides/`
+- Project genesis documents (concept, spec, slice plan)
+- Defines project vision and scope
+- Example: `001-concept.trading.md`, `002-spec.trading.md`
+
+**050-089: System Architecture** → `user/architecture/`
+- High-level designs, system diagrams, technology decisions
+- Architectural patterns and infrastructure
+- Example: `050-arch.hld-trading.md`
+
+**100-799: Active Development** → `user/slices/`, `user/features/`, `user/tasks/`
+- Current features and slices being implemented
+- Organized by work item, not sprints or arbitrary time periods
+- Each project has a current focus item; items receive time based on priority
+- Example: `100-slice.auth.md`, `120-tasks.auth.md`
+
+**800-899: Reserved** (100 slots)
+- Available for future semantic categorization
+- Not currently in use
+
+**900-939: Quality Assurance** → `user/reviews/`
+- Code reviews, audits, quality gates
+- Example: `900-review.auth-module.md`
+
+**940-949: Investigation** → `user/analysis/`
+- Codebase analysis, research, problem investigation
+- Example: `940-analysis.async-boundaries.md`
+
+**950-999: Maintenance** → `user/tasks/`
+- Tech debt, bug tracking, operational tasks
+- Centralized in: `950-tasks.maintenance.md`
+
+### Usage for Meta-Project Analysis
+
+This structure enables automated project snapshots:
+```json
+{
+  "project": "trading",
+  "foundation": ["001-concept.trading.md", "002-spec.trading.md"],
+  "architecture": ["050-arch.hld-trading.md"],
+  "activeWork": ["100-slice.timescale-data.md", "200-slice.realtime-ws.md"],
+  "quality": ["900-review.timescale-layer.md"],
+  "investigation": ["940-analysis.async-sync.md"],
+  "maintenance": ["950-tasks.maintenance.md"]
+}
+```
+
 ## Benefits
 This naming convention provides:
 - Clear visual hierarchy in filenames
@@ -210,6 +263,7 @@ This naming convention provides:
 - Consistent pattern for all project documentation
 - Logical grouping when viewing directory contents
 - Manageable file sizes through systematic splitting
+- Machine-readable architectural map for meta-agent coordination
 
 ## Legacy Files
 Existing files may follow different conventions. When updating or creating new versions of these files, convert to the new naming convention. Do not rename existing files solely for convention compliance unless part of a coordinated effort.
