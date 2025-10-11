@@ -37,6 +37,9 @@ Then add npm scripts to your template's `package.json`:
 
 ### `update-guides.sh`
 - Updates the ai-project-guide submodule to latest version
+- Fixes detached HEAD state (ensures on main branch)
+- Updates external guides if `EXTERNAL_PROJECT_DOC_URL` is set
+- Auto-commits changes with version tag
 - Run periodically to get guide updates
 
 ## Benefits
