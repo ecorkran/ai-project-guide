@@ -29,13 +29,15 @@ pnpm update-guides
 ```
 
 ### For Python, Go, Rust, or Any Project
+**Prerequisites:** Ensure you're in a git repository (`git init` if needed - no remote required).
+
 **One-command setup:**
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ecorkran/ai-project-guide/main/scripts/bootstrap.sh | bash
 ```
 
-Auto-initializes git repo if needed, creates directory structure, adds submodule.
+Creates directory structure and adds ai-project-guide as submodule.
 
 **Update later:**
 ```bash
