@@ -3,7 +3,7 @@ docType: repository-overview
 ---
 # AI Project Guide
 
-> **A structured methodology and toolset for AI-assisted software development**. Provides guides, prompts, and workflows that enable AI agents to effectively collaborate on complex projects.
+> **A structured methodology and toolset for AI-assisted software development**. Organizes project knowledge and provides workflows for effective human+AI collaboration on complex projects.
 
 **What it does:**
 - Organizes project knowledge into AI-readable formats
@@ -28,25 +28,6 @@ pnpm setup-guides
 pnpm update-guides
 ```
 
-### For other npm/pnpm Projects
-Add these scripts to your `package.json`:
-
-```json
-"scripts": {
-  "setup-guides": "mkdir -p project-documents/user/{analysis,architecture,features,project-guides,reviews,slices,tasks} && git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide && echo '# Keep user/ in version control' > project-documents/user/.gitkeep || echo 'Submodule already exists—run npm run update-guides to update.'",
-  "update-guides": "git submodule update --remote --merge project-documents/ai-project-guide && cd project-documents/ai-project-guide && git checkout main && git pull origin main && cd ../..",
-  "setup-cursor": "project-documents/ai-project-guide/scripts/setup-ide cursor",
-  "setup-windsurf": "project-documents/ai-project-guide/scripts/setup-ide windsurf",
-  "setup-claude": "project-documents/ai-project-guide/scripts/setup-ide claude"
-}
-```
-
-Then run:
-```bash
-pnpm setup-guides    # Initial setup
-pnpm update-guides   # Update guides later
-```
-
 ### For Python, Go, Rust, or Any Project
 **One-command setup:**
 
@@ -58,8 +39,10 @@ Auto-initializes git repo if needed, creates directory structure, adds submodule
 
 **Update later:**
 ```bash
-git submodule update --remote project-documents/ai-project-guide
+./scripts/update-guides
 ```
+
+(Bootstrap creates this script for you)
 
 ### IDE Setup (Cursor/Windsurf/Claude)
 
@@ -88,6 +71,12 @@ This copies all project rules to your IDE's configuration directory, handles fil
 ### 💡 Recommended: Use with Context Forge
 **[Context Forge](https://github.com/ecorkran/context-forge)** (free) automatically manages contexts and provides initialization prompts - making the workflow seamless. Highly recommended.
 
+### The Workflow
+
+**Initial planning** (Phases 1-4): Describe your concept, work with AI to refine it into specs and plans.
+
+**Ongoing development** (Phases 5-7): Create tasks and implement features. This is where you'll spend most of your time - continuously adding slices, breaking them into tasks, and implementing.
+
 ### 🆕 New Projects
 
 #### Phase 1: Concept Document
@@ -99,7 +88,7 @@ This copies all project rules to your IDE's configuration directory, handles fil
 Create `002-spec.{project}.md` - AI adds detailed requirements, tech stack, architecture.
 
 #### Phase 3: Slice Planning
-Break work into implementable slices (complete features that can be built independently).
+Break work into **slices** - complete, independently implementable pieces (e.g., "user auth", "data pipeline", "reporting dashboard").
 
 #### Phase 4: Slice Design
 Detailed design for each slice: `nnn-slice.{slice-name}.md` in `user/slices/`
@@ -113,7 +102,7 @@ AI refines tasks for clarity and implementability.
 #### Phase 7: Implementation
 AI implements code, runs tests, checks off completed items.
 
-**Architecture**: Add when needed - `user/architecture/050-arch.hld-{project}.md`
+**Architecture**: Add when needed - HLD typically at `user/architecture/050-arch.hld-{project}.md`, additional docs use next available index (051, 052, etc.)
 
 **Ongoing**: Continue building slices, features, and tasks as project evolves.
 
