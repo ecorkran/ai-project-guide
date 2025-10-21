@@ -9,6 +9,11 @@ alwaysApply: true
 ## Meta-Guide: Guide to the rules
 - If the first item in a list or sublist is in this file `enabled: false`, ignore that section.
 
+## Guiding Behavior
+* Always resist adding complexity.  Ensure that it is truly necessary and adds significant value.
+* Never use silent fallback values.
+* Never use cheap "hacks" or well-known anti-patterns to a solution.
+
 ## Project Structure
 - Always refer to `guide.ai-project.000-process` and follow links as appropriate.
 - For UI/UX tasks, always refer to `guide.ui-development.ai`.
