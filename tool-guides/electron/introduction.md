@@ -312,9 +312,15 @@ if (!gotTheLock) {
   })
 }
 ```
-
 **Why:** Prevents multiple instances from fighting over callback servers, protocol registrations, etc.
+---
 
+## Module Loading: CJS vs ESM
+	•	Use ESM for main and renderer processes — modern syntax, async loading, cleaner imports.
+	•	Keep preload scripts CJS if contextIsolation: true (default and secure).
+	•	Avoid disabling contextIsolation just to use ESM — security outweighs convenience.
+	•	When preload uses CJS, expose a minimal API via contextBridge.exposeInMainWorld().
+	•	Future-proof: when Electron supports isolated ESM preload officially, revisit this rule.
 ---
 
 ## Security Best Practices
