@@ -162,7 +162,9 @@ Each task must be completable by a junior AI with clear success criteria. If ins
 2. add new file nnn-tasks.[task-section-name]-2.md
 3. ...etc...
 
-This is a project planning task, not a coding task.  Code segments should be minimal and kept to only what is necessary to convey information.
+Notes:
+* This is a project planning task, not a coding task.  Code segments should be MINIMAL and kept to only what is necessary to convey information.
+* Always use mathematical comparison when evaluating file length vs target size. Always compare vs actual number of lines in the file, not number of list items or checkboxes.
 ```
 
 ##### Task Breakdown - Explicit (Phase 5 - Extra)
@@ -197,7 +199,9 @@ Each task must be completable by a junior AI with clear success criteria. If ins
 2. add new file nnn-tasks.[task-section-name]-2.md
 3. ...etc...
 
-This is a project planning task, not a coding task.  Code segments should be minimal and kept to only what is necessary to convey information.
+Notes:
+* This is a project planning task, not a coding task.  Code segments should be MINIMAL and kept to only what is necessary to convey information.
+* Always use mathematical comparison when evaluating file length vs target size. Always compare vs actual number of lines in the file, not number of list items or checkboxes.
 
 ##### Important Additional Information
 Note that our slice design is intricate, detailed, and has been refined extensively in order to address complex and/or subtle issues.  The slice design contains code, and we *need* to use this code in our task planning.
