@@ -15,7 +15,6 @@ alwaysApply: false
 - Reusable logic in `src/lib/utils/shared.ts` or `src/lib/utils/server.ts`.
 - Shared types in `src/lib/types.ts`.
 
-
 ## tRPC Routers
 - **enabled**: as needed
 - Routers in `src/lib/api/routers`, compose in `src/lib/api/root.ts`.

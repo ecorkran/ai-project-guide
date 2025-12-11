@@ -6,72 +6,67 @@ alwaysApply: false
 
 # Python Development Rules
 
-## Version & Type Hints
+## General
+* Target Python 3.12+ for production (stability & ecosystem compatibility).
+* Note: Python 3.14+ is acceptable for isolated services needing specific features (e.g., free-threading), but verify ML library support first.
 
-- Target Python 3.9+ exclusively (no 2.x or 3.7 compatibility)
+## Typing & Validation
 - Use built-in types: `list`, `dict`, `tuple`, not `List`, `Dict`, `Tuple`
 - Use `|` for union types: `str | None` not `Optional[str]` or `Union[str, None]`
+- Use `Self` (from `typing`) for return types of fluent methods/factories (3.11+).
 - Type hint all function signatures and class attributes
-- Use `from __future__ import annotations` when needed for forward references
+- Use `@dataclass` for internal data transfer objects (DTOs) and configuration.
+- Use `Pydantic` for all external boundaries (API inputs/outputs, file parsing, environment variables).
+- Import Policy: Keep `from __future__ import annotations` for 3.12/3.13 projects to resolve forward references cleanly. (Remove only once strictly on 3.14+).
 
 ## Code Style & Structure
-
-- Follow PEP 8 with 88-character line length (Black formatter default)
-- Use descriptive variable names, avoid single letters except in comprehensions
-- Prefer f-strings over `.format()` or `%` formatting
-- Use pathlib.Path for file operations, not os.path
-- Dataclasses or Pydantic for data structures, avoid raw dicts for complex data
-- One class per file for models/services, group related utilities
+- Follow PEP 8 with 88-character line length
+- Formatter: Use `ruff` for both linting and formatting (replaces Black/Isort/Flake8 due to speed).
+- Use descriptive variable names; avoid single letters (except `x`, `i` in short loops/comprehensions).
+- Prefer `f-strings` exclusively; avoid `.format()` or `%`.
+- Use `pathlib` and its `Path` for all file/path operations, not `os.path.join` or similar
+- One class per file for models/services; group related tiny utilities in `utils.py` or specific modules.
 
 ## Functions & Error Handling
-
 - Small, single-purpose functions (max 20 lines preferred)
-- Use early returns to reduce nesting
-- Explicit exception handling, avoid bare `except:`
-- Raise specific exceptions with meaningful messages
-- Use context managers (`with`) for resource management
-- Prefer `ValueError`, `TypeError` over generic `Exception`
+- Use early returns (`guard clauses`) to flatten nesting.
+- Explicit exception handling: catch specific errors (`ValueError`), never bare `except:`.
+- Use `try/except` blocks narrowly around the specific line that might fail.
+- Use context managers (`with`) for resource management (files, locks, connections).
 
 ## Modern Python Patterns
-
-- Use `match/case` for complex conditionals (3.10+)
-- Walrus operator `:=` where it improves readability
+- Use `match/case` for structural pattern matching (parsing dictionaries, complex conditions).
+- Use `walrus operator (:=)` sparingly—only when it significantly reduces duplication.
 - Comprehensions over `map`/`filter` when clear
-- Generator expressions for memory efficiency
-- `itertools` and `functools` for functional patterns
-- Enum for constants, not module-level variables
+- Use generator expressions `(x for x in y)` for large sequences to save memory.
+- Use `itertools` for efficient looping and `functools.partial`/`reduce` where appropriate.
+- Use `Enum` (specifically `StrEnum` in 3.11+) for constants/choices.
 
 ## Testing & Quality
-
 - Write tests alongside implementation
-- Use pytest, not unittest
-- Fixtures for test data and dependencies
-- Parametrize tests for multiple scenarios
-- Mock external dependencies at boundaries
+- Use `pytest` exclusively.
+- Use `conftest.py` for shared fixtures; keep individual test files clean.
+- Parametrize tests (`@pytest.mark.parametrize`) to cover edge cases.
+- Mock external I/O boundaries; test internal logic with real data.
+- Static Analysis: Strict `mypy` or `pyright` (VS Code Pylance “Strict” mode). Zero errors policy.
 - Docstrings for public APIs (Google or NumPy style)
-- Type check with mypy or pyright in strict mode
 
 ## Dependencies & Imports
-
-- Use poetry for complex projects, uv for simple ones
-- Pin direct dependencies, let tools resolve transitive ones
-- Group imports: standard library, third-party, local
-- Absolute imports for project modules
-- Avoid wildcard imports except in `__init__.py`
+* Package Manager: Use `uv` for all projects (replaces Poetry/Pipenv for speed and standard compliance).
+- Pin direct dependencies in `pyproject.toml`.
+- Group imports: Standard Lib -> Third Party -> Local Application.
+- Use absolute imports (`from myapp.services import ...`) over relative (`from ..services import ...`).
+- No wildcard imports (`from module import *`).
 
 ## Async & Performance
-
-- Use `async`/`await` for I/O operations
-- asyncio or trio for concurrency, not threading
-- Profile before optimizing
+- Use `async`/`await` for I/O-bound operations (DB, API calls).
+- Use `asyncio.TaskGroup` (3.11+) for safer concurrent task management.
+- Profile before optimizing (use `py-spy` or `cProfile`).
 - functools.cache for expensive pure functions
-- Prefer built-in functions and comprehensions for speed
+- Use `functools.cache` or `lru_cache` for expensive pure functions.
 
 ## Security & Best Practices
-
-- Never hardcode secrets or credentials
-- Use environment variables or secret management
-- Validate all external input
-- Use parameterized queries for SQL
-- Keep dependencies updated
-- Use `secrets` module for tokens, not `random`
+- Secrets: Never commit secrets. Use `.env` files (loaded via `pydantic-settings`).
+- Input: Validate everything entering the system via Pydantic.
+- SQL: Always use parameterized queries (never f-string SQL).
+- Randomness: Use `secrets` module for security tokens, `random` only for simulations.
