@@ -1,15 +1,12 @@
-```yaml
 ---
 docType: meta-guide
+layer: domain-guide
 subject: creating-tool-guides
-audience:
-  - ai
-  - human
-purpose: Standard template & process for producing platform/tool guides
+audience: [ai, human]
+description: Standard template and process for producing platform/tool guides
 ---
-```
 
-# Guide‑on‑Guides 📚
+# Guide-on-Guides
 
 _A repeatable template for writing concise, AI‑friendly documentation._
 

@@ -1,3 +1,9 @@
+---
+docType: guide
+scope: project-wide
+description: Migration instructions for breaking changes between versions
+---
+
 # Migration Guide
 
 ## v0.10.0 - Breaking Changes: private/ → user/

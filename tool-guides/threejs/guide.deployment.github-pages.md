@@ -1,6 +1,17 @@
-###### Overview: Deploying Modern JS Apps (e.g. Vite + Three.js) to GitHub Pages with Custom Domains
+---
+docType: guide
+layer: tool-guide
+tool: threejs
+subject: deployment-github-pages
+audience: [human, ai]
+description: Deploying Vite + Three.js apps to GitHub Pages with custom domains
+---
 
-**Hub Repository Setup**
+# Deploying to GitHub Pages
+
+Overview: Deploying Modern JS Apps (e.g. Vite + Three.js) to GitHub Pages with Custom Domains.
+
+## Hub Repository Setup
 - Create a repository named `{your-username}.github.io` (this is the "hub" repository).
 - Can be public or private (private requires GitHub Pro).
 - Set your custom domain (e.g., `projects.mydomain.com`) in the hub repository’s Pages settings.

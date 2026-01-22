@@ -1,3 +1,12 @@
+---
+layer: process
+phase: 0
+phaseName: meta
+guideRole: support
+audience: [human, ai]
+description: Guidance for migrating legacy projects to slice-based methodology
+---
+
 # Legacy Project Migration to Slice-Based Methodology
 
 ## Role and Context

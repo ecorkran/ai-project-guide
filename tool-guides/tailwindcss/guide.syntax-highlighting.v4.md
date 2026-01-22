@@ -1,6 +1,17 @@
-## Should You Use Shiki and rehype-shiki for Syntax Highlighting in a Tailwind v4 App?
+---
+docType: guide
+layer: tool-guide
+tool: tailwindcss
+subject: syntax-highlighting
+audience: [human, ai]
+description: Using Shiki and rehype-shiki for syntax highlighting in Tailwind v4 apps
+---
 
-**Shiki** and **rehype-shiki** are excellent choices for syntax highlighting in modern web apps, including those using Tailwind CSS v4. Here’s a breakdown of how they work, their advantages, and alternatives you might consider.
+# Syntax Highlighting in Tailwind CSS v4
+
+Should you use Shiki and rehype-shiki for syntax highlighting in a Tailwind v4 app?
+
+**Shiki** and **rehype-shiki** are excellent choices for syntax highlighting in modern web apps, including those using Tailwind CSS v4. Here's a breakdown of how they work, their advantages, and alternatives you might consider.
 
 ---
 

@@ -1,7 +1,12 @@
-
+---
+docType: intro-guide
+layer: tool-guide
+tool: tailwindcss
+audience: [human, ai]
+description: Tailwind CSS v4 installation and setup guide
 ---
 
-## Tailwind CSS v4 Install & Setup Guide
+# Tailwind CSS v4 Install & Setup Guide
 
 Tailwind CSS v4 introduces a simplified, zero-config installation process. Below are concise, framework-specific setup instructions for the most common modern JavaScript frameworks.
 

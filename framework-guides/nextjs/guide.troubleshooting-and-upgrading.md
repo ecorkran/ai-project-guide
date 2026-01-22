@@ -1,5 +1,14 @@
+---
+docType: guide
+layer: framework-guide
+framework: nextjs
+subject: troubleshooting
+audience: [human, ai]
+description: Troubleshooting common Next.js issues and upgrade problems
+---
 
-## Introduction
+# Next.js Troubleshooting and Upgrading
+
 If encountering errors or difficulties when working with Next.js, consult this guide and the primary references listed in the introduction.
 
 ### Broken Transitions

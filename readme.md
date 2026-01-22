@@ -313,5 +313,11 @@ git push
 
 ---
 
+## 📋 For Claude
+
+Claude: please find code analysis details in [user/analysis/940-analysis.initial-codebase.md](user/analysis/940-analysis.initial-codebase.md).
+
+---
+
 ## 🤝 Contributing
 First, if you are using the AI Project Guide and found it useful enough to contribute or even report and issue, thank you. I'll try to respond to review PRs, and respond to issues & comments.

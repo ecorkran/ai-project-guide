@@ -1,8 +1,19 @@
-Absolutely! Here’s how you can **format your color palettes for the `@theme` block** and how to handle **multiple color themes** (like light/dark mode or custom themes) in Tailwind CSS v4.
+---
+docType: guide
+layer: tool-guide
+tool: tailwindcss
+subject: theming-v4
+audience: [human, ai]
+description: Color palettes and multi-theme setup for Tailwind CSS v4
+---
+
+# Tailwind CSS v4 Theming Guide
+
+How to format your color palettes for the `@theme` block and handle multiple color themes (like light/dark mode or custom themes) in Tailwind CSS v4.
 
 ---
 
-## 1. **Formatted Color Tokens for `@theme`**
+## 1. Formatted Color Tokens for `@theme`
 
 Paste the following inside your `@theme` block in your global CSS file (e.g., `globals.css`):
 

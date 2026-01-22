@@ -1,3 +1,8 @@
+---
+docType: changelog
+scope: project-wide
+---
+
 # Changelog
 
 All notable changes to the AI Project Guide system will be documented in this file.

@@ -1,5 +1,30 @@
+---
+docType: reference
+scope: project-wide
+audience: [human, ai]
+description: Standard naming conventions for project files and directories
+---
+
 # File Naming Conventions
+
 This document outlines standard naming conventions for project files and directories to ensure consistency and clarity across the project.
+
+## YAML Frontmatter Requirement
+
+**All markdown files in this project must include YAML frontmatter.** This enables consistent metadata, automated processing, and better AI comprehension.
+
+Minimum required frontmatter:
+```yaml
+---
+docType: [guide|reference|slice|tasks|analysis|notes|template|intro-guide]
+---
+```
+
+Common optional fields:
+- `layer`: process, project, tool-guide, framework-guide, domain-guide
+- `audience`: [human, ai] or subset
+- `description`: Brief purpose description
+- `dependsOn`: Related documents
 
 ## Directory Structure
 - Use kebab-case (hyphenated lowercase) for directory names
@@ -97,7 +122,7 @@ Common document type prefixes:
 - `spec` - Technical specifications
 - `notes` - Meeting notes or research findings
 - `template` - Prompt or other templates, organized with project-guides.
-- `maintenance` - maintenance tasks or actions, in `user/maintenance`.
+- `maintenance` - maintenance tasks, centralized in `user/tasks/950-tasks.maintenance.md`.
 
 ### Date Format
 

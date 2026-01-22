@@ -1,3 +1,12 @@
+---
+docType: guide
+layer: tool-guide
+tool: radix
+subject: theming
+audience: [human, ai]
+description: Comprehensive guide to Radix Colors for dynamic theming with Tailwind v4
+---
+
 # Radix Color Theming Guide
 
 A comprehensive guide to using Radix Colors for dynamic theming in your Next.js application with Tailwind CSS v4 and ShadCN UI components.

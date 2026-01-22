@@ -1,4 +1,14 @@
-React Three Fiber (R3F) is the standard integration library for Three.js in React applications, enabling declarative 3D scene construction using React components. Below is a technical guide optimized for AI/developer use cases.
+---
+docType: intro-guide
+layer: tool-guide
+tool: react-three-fiber
+audience: [human, ai]
+description: React Three Fiber integration for Three.js in React applications
+---
+
+# React Three Fiber (R3F)
+
+React Three Fiber is the standard integration library for Three.js in React applications, enabling declarative 3D scene construction using React components. Below is a technical guide optimized for AI/developer use cases.
 
 ---
 

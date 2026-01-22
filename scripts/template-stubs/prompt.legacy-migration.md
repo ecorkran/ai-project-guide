@@ -1,3 +1,11 @@
+---
+docType: template
+layer: process
+purpose: migration-prompt-for-user-projects
+audience: [ai]
+description: Prompt template for updating project references after submodule migration
+---
+
 # Prompt: Update Project Documentation References for Submodule Structure
 
 ## Context

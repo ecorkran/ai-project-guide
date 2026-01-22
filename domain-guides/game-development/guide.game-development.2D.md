@@ -1,4 +1,13 @@
-## Top 2D Game Development Platforms in 2025
+---
+docType: guide
+layer: domain-guide
+domain: game-development
+subject: 2D-platforms
+audience: [human, ai]
+description: Overview of top 2D game development platforms
+---
+
+# Top 2D Game Development Platforms in 2025
 
 When choosing a platform for 2D game development in 2025, several engines and frameworks stand out for their active maintenance, robust feature sets, and strong community support. Below is an updated overview of the leading choices, all of which are actively maintained and widely used for 2D game creation.
 

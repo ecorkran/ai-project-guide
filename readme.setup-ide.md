@@ -1,3 +1,10 @@
+---
+docType: guide
+scope: project-wide
+audience: [human]
+description: IDE setup instructions for Cursor, Windsurf, and Claude Code
+---
+
 # IDE Setup Guide
 
 This guide explains how to set up AI project rules in your IDE (Cursor or Windsurf) for enhanced AI assistance.

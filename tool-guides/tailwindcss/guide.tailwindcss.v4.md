@@ -1,6 +1,15 @@
-## Tailwind CSS v4 Guide: Key Changes, Migration, and Setup
+---
+docType: guide
+layer: tool-guide
+tool: tailwindcss
+subject: v4-migration
+audience: [human, ai]
+description: Key changes, migration guide, and setup for Tailwind CSS v4
+---
 
-Tailwind CSS v4 introduces major changes that break compatibility with v3, but also greatly simplify and modernize the framework. Here’s a concise guide to help you get started and avoid the pitfalls that are likely causing your project issues.
+# Tailwind CSS v4 Guide: Key Changes, Migration, and Setup
+
+Tailwind CSS v4 introduces major changes that break compatibility with v3, but also greatly simplify and modernize the framework. Here's a concise guide to help you get started and avoid the pitfalls that are likely causing your project issues.
 
 ---
 

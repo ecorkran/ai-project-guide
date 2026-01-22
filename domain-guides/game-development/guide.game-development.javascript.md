@@ -1,6 +1,15 @@
-Overview of popular Javascript 2D game development libraries and frameworks.
+---
+docType: guide
+layer: domain-guide
+domain: game-development
+subject: javascript-libraries
+audience: [human, ai]
+description: Overview of popular JavaScript 2D game development libraries and frameworks
+---
 
-## JavaScript 2D Game Libraries and Frameworks
+# JavaScript 2D Game Libraries and Frameworks
+
+Overview of popular JavaScript 2D game development libraries and frameworks.
 
 **Phaser**  
 - One of the most popular and mature 2D game frameworks for HTML5 games.  

@@ -1,3 +1,10 @@
+---
+docType: readme
+scope: directory
+audience: [human]
+description: Documentation for template stub scripts
+---
+
 # Template Stub Scripts
 
 These are minimal stub scripts to be included in project templates.

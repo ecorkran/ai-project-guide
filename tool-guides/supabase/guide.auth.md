@@ -1,8 +1,18 @@
-# Overview
-This file provide a guide to designing and implementing authentication using Supabase.
+---
+docType: guide
+layer: tool-guide
+tool: supabase
+subject: authentication
+audience: [human, ai]
+description: Guide to implementing authentication using Supabase in React/Vite apps
+---
 
-> **Scope**: Add Supabase Auth and basic user management to an existing **React 19+** app (Vite-based) with **Tailwind v4**.  
-> **Out of scope**: Next.js specifics (create a separate guide later), server frameworks, and non‑auth Supabase modules beyond small notes.
+# Supabase Authentication Guide
+
+This guide covers designing and implementing authentication using Supabase.
+
+> **Scope**: Add Supabase Auth and basic user management to an existing **React 19+** app (Vite-based) with **Tailwind v4**.
+> **Out of scope**: Next.js specifics (create a separate guide later), server frameworks, and non-auth Supabase modules beyond small notes.
 
 ## User-Provided Concept
 *(Preserved. Populate here if the PM provides one later.)*

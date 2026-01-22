@@ -1,3 +1,12 @@
+---
+docType: reference
+layer: tool-guide
+tool: radix
+subject: colors
+audience: [human, ai]
+description: Quick reference for Radix Colors semantic color system
+---
+
 # Radix Colors Quick Reference
 
 ## Essential Semantic Colors

@@ -1,4 +1,15 @@
-To ensure your Three.js scene is properly lit and visible, follow these key steps and best practices:
+---
+docType: guide
+layer: tool-guide
+tool: threejs
+subject: lighting
+audience: [human, ai]
+description: Best practices for lighting Three.js scenes
+---
+
+# Three.js Lighting Guide
+
+To ensure your Three.js scene is properly lit and visible, follow these key steps and best practices.
 
 ## Combine Multiple Light Types
 

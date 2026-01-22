@@ -1,3 +1,10 @@
+---
+docType: index
+layer: process
+audience: [human, ai]
+description: Quick reference and navigation for AI Project Guide methodology files
+---
+
 # Project Guides Index
 
 Quick reference and navigation for AI Project Guide methodology files.

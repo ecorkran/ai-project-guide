@@ -1,16 +1,13 @@
-```
 ---
-layer: process
-phase: 4
-guideRole: primary
+layer: tool-guide
+tool: shadcn
+docType: setup
 audience:
   - human
   - ai
-description: >
-  Setup, configuration, and process (CI) details for use with ShadCN project.  
+description: Setup, configuration, and process (CI) details for use with ShadCN project.
 dependsOn: [./introduction]
 ---
-```
 
 ## Getting Started
 

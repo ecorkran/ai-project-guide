@@ -1,6 +1,12 @@
+---
+docType: inventory
+project: ai-project-guide
+date: 2025-09-30
+purpose: Track all files affected by nn → nnn index migration
+status: completed
+---
+
 # Index Migration Inventory
-Date: 2025-09-30
-Purpose: Track all files affected by nn → nnn index migration
 
 ## Guide Files to Rename (8 files)
 - project-guides/guide.ai-project.00-process.md → guide.ai-project.000-process.md

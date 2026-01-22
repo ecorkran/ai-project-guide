@@ -1,4 +1,15 @@
-Simplified guide to using markdown in nextJS.  Simple markdown, no unnecessary MDX or React in Markdown noise.
+---
+docType: guide
+layer: framework-guide
+framework: nextjs
+subject: markdown-rendering
+audience: [human, ai]
+description: Simplified guide to using markdown in Next.js without MDX complexity
+---
+
+# Markdown in Next.js
+
+Simplified guide to using markdown in Next.js. Simple markdown, no unnecessary MDX or React in Markdown noise.
 
 ## How It Works
 

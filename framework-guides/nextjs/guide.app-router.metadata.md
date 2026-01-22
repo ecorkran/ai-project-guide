@@ -1,3 +1,12 @@
+---
+docType: guide
+layer: framework-guide
+framework: nextjs
+subject: app-router-metadata
+audience: [human, ai]
+description: Managing metadata in Next.js App Router applications
+---
+
 # Developer Guide: Using Metadata in Next.js Apps with the App Router
 
 This guide provides a concise, technical overview of managing metadata in Next.js applications using the App Router, focusing on best practices and implementation patterns. For official documentation and further details, refer to: https://nextjs.org/docs/app/getting-started/metadata-and-og-images#best-practices

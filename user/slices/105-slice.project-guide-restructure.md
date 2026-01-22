@@ -1,14 +1,17 @@
 ---
-item: project-guide-restructure
+layer: project
+docType: slice
 project: ai-project-guide
-type: feature
+sliceIndex: 105
+sliceName: project-guide-restructure
+status: completed
+completedVersion: 0.9.0
 dependencies: []
-projectState: Active development, currently using git subtree integration
-status: not started
-lastUpdated: 2025-01-04
+description: Migration from git subtree to git submodule architecture
+lastUpdated: 2025-10-06
 ---
 
-# Feature: Restructured ai-project-guide Layout
+# Slice: Restructured ai-project-guide Layout
 
 ## User-Provided Concept
 

@@ -1,4 +1,13 @@
+---
+docType: snippet
+format: json
+purpose: npm-scripts-for-ai-project-guide-setup
+audience: [human, ai]
+---
 
+# AI Project Guide npm Scripts
+
+Add these scripts to your package.json for ai-project-guide integration.
 
 ```json
 "scripts": {
