@@ -32,8 +32,8 @@ lastUpdated: 20251010
 ## Historical Maintenance Records
 
 See also:
-- `inventory.index-migration.md` - Index migration inventory (2025-09-30)
-- `report.index-migration.20250930.md` - Index migration completion report
+- `952-inventory.index-migration.md` - Index migration inventory (20250930)
+- `953-report.index-migration.md` - Index migration completion report
 
 ## Notes
 
