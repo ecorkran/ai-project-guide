@@ -4,7 +4,7 @@ project: ai-project-guide
 type: maintenance
 dependencies: []
 projectState: Ongoing maintenance and tech debt tracking
-lastUpdated: 2025-10-10
+lastUpdated: 20251010
 ---
 
 # Maintenance Tasks

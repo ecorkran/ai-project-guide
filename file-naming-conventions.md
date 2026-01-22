@@ -25,6 +25,22 @@ Common optional fields:
 - `audience`: [human, ai] or subset
 - `description`: Brief purpose description
 - `dependsOn`: Related documents
+- `created`: Date file was created (YYYYMMDD format, immutable)
+- `lastUpdated`: Date of last modification (YYYYMMDD format)
+- `status`: in_progress, completed, deprecated
+
+### Date Format in YAML
+
+All dates in YAML frontmatter must use **YYYYMMDD** format (no dashes):
+```yaml
+created: 20260121
+lastUpdated: 20260121
+```
+
+This format:
+- Matches filename date conventions
+- Sorts correctly as strings
+- Is unambiguous across locales
 
 ## Directory Structure
 - Use kebab-case (hyphenated lowercase) for directory names
@@ -289,6 +305,33 @@ This naming convention provides:
 - Logical grouping when viewing directory contents
 - Manageable file sizes through systematic splitting
 - Machine-readable architectural map for meta-agent coordination
+
+## Project Log Files
+
+### DEVLOG.md
+
+**Location**: Project root (`DEVLOG.md`)
+
+**Purpose**: Internal session log for documenting development work, enabling easy project resumption by humans or AI agents.
+
+**Format**:
+```markdown
+## YYYYMMDD
+- Brief bullet points of work completed
+- Decisions made and rationale
+- Issues encountered or deferred
+- Context for next session
+```
+
+**Distinction from CHANGELOG.md**:
+- `CHANGELOG.md`: External-facing, version-oriented release notes
+- `DEVLOG.md`: Internal-facing, session-oriented work log
+
+**Guidelines**:
+- Entries should be brief and timestamped
+- Focus on "what changed" not "how"
+- Include decisions and their rationale
+- Note any WIP or deferred items
 
 ## Legacy Files
 Existing files may follow different conventions. When updating or creating new versions of these files, convert to the new naming convention. Do not rename existing files solely for convention compliance unless part of a coordinated effort.

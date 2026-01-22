@@ -1,7 +1,7 @@
 ---
 docType: inventory
 project: ai-project-guide
-date: 2025-09-30
+date: 20250930
 purpose: Track all files affected by nn → nnn index migration
 status: completed
 ---
