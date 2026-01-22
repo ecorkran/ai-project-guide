@@ -1,117 +1,17 @@
 ---
-docType: guide
-scope: project-wide
-description: Migration instructions for breaking changes between versions
+docType: reference
+description: Index for migration guides
 ---
 
-# Migration Guide
+# Migration Guides
 
-## v0.10.0 - Breaking Changes: private/ → user/
+Migration guides have moved to `project-guides/migrations/`.
 
-This release renames `project-documents/private/` to `project-documents/user/` for clarity and includes environment variable updates.
+## Available Migrations
 
-### What Changed
+| File | Version | Description |
+|------|---------|-------------|
+| [20260121-migration-guide.md](project-guides/migrations/20260121-migration-guide.md) | 0.11.0 | Consistency standards (YAML, dates, indexing) |
+| [20251008-migration-private-to-user.md](project-guides/migrations/20251008-migration-private-to-user.md) | 0.10.0 | Directory rename private/ → user/ (obsolete) |
 
-1. **Directory Rename**: `project-documents/private/` → `project-documents/user/`
-2. **Environment Variable**: `ORG_PRIVATE_GUIDES_URL` → `EXTERNAL_PROJECT_DOC_URL`
-3. **All Documentation**: Updated to reference `user/` instead of `private/`
-
-### Why This Change?
-
-- **Clearer naming**: "private" implied secrecy, but this directory contains your project work (which should be committed)
-- **Better mental model**: "user" clearly indicates "your work" vs "framework" (ai-project-guide) vs "external" (imported guides)
-- **Reduced confusion**: Eliminates questions about whether files should be committed or kept private
-
-### Migration Steps
-
-#### Automatic Migration (Recommended)
-
-Use the provided migration script:
-
-```bash
-# From your project root
-bash project-documents/ai-project-guide/scripts/migrate-private-to-user.sh
-```
-
-This script will:
-- Rename `project-documents/private/` → `project-documents/user/`
-- Update all internal references in your files
-- Preserve git history
-- Report what was changed
-
-#### Manual Migration
-
-If you prefer manual migration:
-
-```bash
-# 1. Rename the directory
-git mv project-documents/private project-documents/user
-
-# 2. Update references in your files (if any)
-# Search for "private/" in your user/ directory and replace with "user/"
-grep -r "private/" project-documents/user/
-# Then manually update those files
-
-# 3. Commit
-git add -A
-git commit -m "Migrate private/ to user/"
-```
-
-### Environment Variables
-
-If you're using external guides:
-
-**Old**:
-```bash
-export ORG_PRIVATE_GUIDES_URL=git@github.com:yourorg/guides.git
-```
-
-**New**:
-```bash
-export EXTERNAL_PROJECT_DOC_URL=git@github.com:yourorg/guides.git
-```
-
-Update in:
-- Your shell profile (`~/.bashrc`, `~/.zshrc`, etc.)
-- CI/CD environment variables
-- Team documentation
-
-### Verification
-
-After migration, verify:
-
-```bash
-# Check directory exists
-ls project-documents/user/
-
-# Check git history preserved
-git log --follow project-documents/user/tasks/
-
-# Ensure ai-project-guide submodule updated
-git submodule update --remote project-documents/ai-project-guide
-```
-
-### What If I Don't Migrate?
-
-- ❌ New versions of ai-project-guide reference `user/`, not `private/`
-- ❌ Documentation and prompts won't find your files
-- ❌ Scripts will look in wrong directory
-
-**Recommendation**: Migrate as soon as possible.
-
-### Rollback
-
-If you need to rollback temporarily:
-
-```bash
-git mv project-documents/user project-documents/private
-# Then restore to previous ai-project-guide version
-cd project-documents/ai-project-guide
-git checkout <previous-version-tag>
-```
-
-### Support
-
-- **Issues**: [GitHub Issues](https://github.com/ecorkran/ai-project-guide/issues)
-- **Questions**: Check updated documentation in `readme.md`
-- **Script problems**: The migration script is idempotent - safe to run multiple times
+For the latest standards, see [file-naming-conventions.md](file-naming-conventions.md).

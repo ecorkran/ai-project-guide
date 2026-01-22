@@ -34,3 +34,25 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 ### Deferred
 - Update `directory-structure.md` to remove date from title
 - Review open GitHub issues (#1, #3, #4, #6)
+
+---
+
+## 20260121 (continued)
+
+**Session**: Migration guides and file indexing standardization
+
+### Completed
+- Created `project-guides/migrations/` directory for version-specific migration docs
+- Added `20260121-migration-guide.md` - consistency standards (YAML, dates, indexing)
+- Moved `MIGRATION.md` → `project-guides/migrations/20251008-migration-private-to-user.md`
+- Marked v0.10.0 migration as obsolete
+- Root `MIGRATION.md` now serves as index to migrations folder
+- Renamed task files to use proper indexing:
+  - `inventory.index-migration.md` → `952-inventory.index-migration.md`
+  - `report.index-migration.20250930.md` → `953-report.index-migration.md`
+- Updated `950-tasks.maintenance.md` references
+
+### Decisions
+- Framework guide files (project-guides/*.md) do not require date fields - stable methodology docs
+- Migration guides use YYYYMMDD prefix for chronological sorting
+- All files in `user/tasks/` must use nnn- index prefix
