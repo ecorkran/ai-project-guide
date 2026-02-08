@@ -59,7 +59,24 @@ For an app example:
    - Keep the doc concise and focused on coordination between components.
    - Outcome: _A living doc with architectural overview and component integration strategy._
 
-3. **Phase 3: High-Level Design & Slice Planning**
+2.5 **Phase 2.5: Project High-Level Design (HLD)**
+   - Using the spec document as your primary input, create a project-level high-level design.
+   - The HLD serves as the architectural blueprint that informs slice planning.
+   - Create file at `user/architecture/nnn-arch.hld-{project}.md` using the next available index in the Architecture and System Design range as defined in `file-naming-conventions.md`.
+   - Your role is Technical Fellow.
+   - Include:
+     - System architecture overview and major subsystems
+     - Technology stack rationale and key architectural decisions
+     - Data flow between major components
+     - Integration points and system boundaries
+     - Infrastructure and deployment architecture (if applicable)
+   - Avoid:
+     - Detailed implementation specifics (defer to slice designs)
+     - Slice-level breakdown (that's Phase 3)
+     - Code examples or pseudo-code
+   - Outcome: _Architectural blueprint(HLD) that guides slice planning and defines system structure._
+
+3. **Phase 3: Slice Planning**
    - Convert the spec into logical vertical slices of functionality.  Use enough slices to completely define the product.
    - Categorize work into three types:
      - **Foundation work** (must be done first, hard to slice - e.g., project setup, core architecture)

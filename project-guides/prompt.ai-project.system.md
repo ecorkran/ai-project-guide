@@ -70,13 +70,99 @@ Keep the spec concise and focused on coordination between components. If you nee
 Note: This is a design and planning task, not a coding task.
 ```
 
+##### High-Level Design (HLD) Creation (Phase 2.5)
+*Use this to create a project-level high-level design that serves as the architectural blueprint for slice planning.*
+
+```markdown
+We're creating a High-Level Design (HLD) for project {project}. Use the Phase 2.5 guidelines in `guide.ai-project.000-process` with the project concept and specification documents to create the HLD. The HLD serves as the architectural blueprint that will inform slice planning and guide all subsequent slice designs. It establishes the system's structural foundation without diving into slice-level details.
+
+Create file at `user/architecture/nnn-arch.hld-{project}.md` using the next available index in the 050-089 range as defined in `file-naming-conventions.md`.
+
+Your role is Technical Fellow as described in the Process Guide.
+
+**Required Inputs**
+- Approved concept document (`user/project-guides/001-concept.{project}.md`)
+- Project specification (`user/project-guides/002-spec.{project}.md`)
+- Technical stack and architectural constraints from Project Manager
+
+**Document Structure**
+
+**YAML Frontmatter:**
+```
+```yaml
+---
+docType: architecture
+layer: project
+project: {project}
+archIndex: nnn
+component: hld-{project}
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: in_progress
+---
+```
+```markdown
+**Content Sections:**
+1. Overview
+- One-sentence summary of the system's purpose
+- High-level description of what the system does and why it matters
+
+2. System Architecture
+- Major subsystems and their responsibilities
+- How subsystems interact and communicate
+- Architectural patterns used (e.g., layered, microservices, monolith)
+
+3. Technology Stack Rationale
+- Key technology choices and why they were selected
+- How the stack supports the architectural goals
+- Dependencies between technologies
+
+4. Data Flow
+- Major data flows between subsystems
+- Data storage strategy (databases, caching, etc.)
+- External integrations and APIs
+
+5. Integration Points & System Boundaries
+- Clear boundaries between major components
+- How components communicate (APIs, events, etc.)
+- Third-party service integrations
+
+6. Infrastructure & Deployment (if applicable)
+- Deployment architecture
+- Scalability and performance considerations
+- Environment strategy (dev, staging, prod)
+
+**Guidelines**
+- Focus on structure, not implementation: Describe what systems exist and how they relate, not how they work in detail
+- Avoid slice-level thinking: Do not break down into individual features or user workflows (that's Phase 3)
+- Avoid code examples: This is architecture, not design. No pseudo-code or implementation details
+- Be concrete about decisions: Explain why architectural choices were made, not just what they are
+- Consider cross-cutting concerns: Address security, scalability, and deployment without getting into task-level details
+
+**Expected Output**
+- Complete HLD document at user/architecture/nnn-arch.hld-{project}.md
+- Clear enough that slice designers can use it as a reference without ambiguity
+- Detailed enough to prevent conflicting slice designs
+- All required YAML frontmatter included
+
+**Avoid**
+- Vague statements about future optimization or performance
+- Speculative infrastructure requirements
+- Time estimates or complexity judgments
+- Detailed API specifications (defer to slice designs)
+- Individual feature descriptions (that's slice planning)
+
+If you need more information about architectural constraints or technical requirements, stop and request clarification from the Project Manager.
+*Note: This is a design and planning task, not a coding task.*
+```
+
 ##### Slice Planning (Phase 3)
 ```markdown
 We're working in our guide.ai-project.000-process, Phase 3: High-Level Design & Slice Planning.  Use `guide.ai-project.003-slice-planning` with the project concept and specification documents to break {project} into manageable vertical slices.
 
 Your role is Technical Fellow as described in the Process Guide. Work with the Project Manager to:
 
-1. Create the high-level design document (architecture/050-arch.hld-{project}.md)
+
 2. Identify foundation work, feature slices, and integration work
 3. Create the slice plan document (003-slices.{project}.md)
 
