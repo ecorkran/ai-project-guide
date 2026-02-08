@@ -15,7 +15,7 @@ _This file is the canonical contract for where every guide, snippet, and asset l
 
 | File | Purpose |
 |------|---------|
-| `DEVLOG.md` | Lightweight, append-only development activity log. Newest entries first. Format: date headers (`## YYYY-MM-DD`) followed by 1-3 line notes per session. Essential for project continuity after breaks. |
+| `DEVLOG.md` | Lightweight, append-only development activity log. Newest entries first. Format: date headers (`## YYYYMMDD`) followed by 1-3 line notes per session. Essential for project continuity after breaks. |
 | `CLAUDE.md` | AI development guidelines, code standards, project-specific rules. |
 | `README.md` | Public-facing project documentation. |
 
