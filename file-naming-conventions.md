@@ -25,16 +25,16 @@ Common optional fields:
 - `audience`: [human, ai] or subset
 - `description`: Brief purpose description
 - `dependsOn`: Related documents
-- `created`: Date file was created (YYYYMMDD format, immutable)
-- `lastUpdated`: Date of last modification (YYYYMMDD format)
+- `dateCreated`: Date file was created (YYYYMMDD format, immutable)
+- `dateUpdated`: Date of last modification (YYYYMMDD format)
 - `status`: in_progress, completed, deprecated
 
 ### Date Format in YAML
 
 All dates in YAML frontmatter must use **YYYYMMDD** format (no dashes):
 ```yaml
-created: 20260121
-lastUpdated: 20260121
+dateCreated: 20260121
+dateUpdated: 20260121
 ```
 
 This format:

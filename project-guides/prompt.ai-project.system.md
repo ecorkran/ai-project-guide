@@ -208,7 +208,8 @@ github: {url of github issue, if one is related}
 dependencies: [list-if-any]
 projectState: brief current state
 status: not started
-lastUpdated: YYYY-MM-DD
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
 ---
 
 If framework or platform are specified, guide(s) for the framework(s) should be provided in `ai-project-guide/framework-guides/{framework}/introduction.md`. If tools are specified, guide for each tool should be available at `ai-project-guide/tool-guides/{tool}/introduction.md`.
@@ -447,7 +448,8 @@ github: {url of github issue, if one is related}
 dependencies: [list-if-any]
 projectState: brief current state
 status: not started
-lastUpdated: YYYY-MM-DD
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
 ---
 ```
 ``` markdown
@@ -580,7 +582,8 @@ project: {project}
 type: feature|maintenance|bugfix
 dependencies: [list-if-any]
 projectState: brief current state
-lastUpdated: YYYY-MM-DD
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
 ---
 
 2. Context summary explaining the work
@@ -728,7 +731,8 @@ sourceDocument: {path-to-analysis-or-task-file}
 dependencies: [list-any-prerequisites]
 affects: [list-components-or-slices-impacted]
 complexity: low|medium|high
-lastUpdated: YYYY-MM-DD
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
 ---
 
 Guidelines for creating LLD:

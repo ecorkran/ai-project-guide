@@ -113,7 +113,8 @@ For an app example:
      lld: user/slices/nnn-slice.{slice-name}.md
      dependencies: [list-of-prerequisite-slices]
      projectState: brief description of current state
-     lastUpdated: YYYY-MM-DD
+     dateCreated: YYYYMMDD
+     dateUpdated: YYYYMMDD
      ---
      
      ## Context Summary
