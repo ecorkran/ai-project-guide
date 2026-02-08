@@ -2,9 +2,9 @@
 docType: migration
 scope: project-wide
 description: Migration instructions for project consistency standards
-created: 20260121
-lastUpdated: 20260121
 targetVersion: "0.11.0"
+dateCreated: 20260121
+dateUpdated: 20260121
 ---
 
 # Project Consistency Migration Guide

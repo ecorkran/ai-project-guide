@@ -5,6 +5,8 @@ phaseName: meta
 guideRole: support
 audience: [human, ai]
 description: Guidance for migrating legacy projects to slice-based methodology
+dateCreated: 20250101
+dateUpdated: 20260121
 ---
 
 # Legacy Project Migration to Slice-Based Methodology

@@ -4,8 +4,8 @@ scope: project-wide
 description: v0.10.0 migration - private/ to user/ directory rename
 version: "0.10.0"
 status: obsolete
-created: 20251008
-lastUpdated: 20260121
+dateCreated: 20251008
+dateUpdated: 20260121
 ---
 
 # v0.10.0 Migration: private/ → user/

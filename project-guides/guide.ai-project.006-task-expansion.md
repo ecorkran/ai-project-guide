@@ -9,6 +9,8 @@ dependsOn:
   - guide.ai-project.000-process.md
   - guide.ai-project.002-spec.md
   - guide.ai-project.003-slice-planning.md
+dateCreated: 20250101
+dateUpdated: 20260121
 ---
 #### Summary
 This guide provides instructions and methodology for expanding and enhancing slice task breakdowns in order to create manageable lists to give to an (AI) working as a developer. This assignment is Phase 6 in `guide.ai-projects.00-process`, and will not be received (and cannot be started) until confirmation that the Slice Task Breakdown (Phase 5 Output) is available and approved by the Project Manager.

@@ -1,11 +1,11 @@
 ---
 analysisType: initial-codebase
 project: ai-project-guide
-date: 20251114
 analyst: Claude Opus 4.5
 scope: full-codebase-review
 status: completed
-lastUpdated: 20260121
+dateCreated: 20251114
+dateUpdated: 20260121
 ---
 
 # Initial Codebase Analysis - ai-project-guide

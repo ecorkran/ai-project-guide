@@ -3,7 +3,8 @@ docType: reference
 scope: project-wide
 audience: [human, ai]
 description: Canonical contract for where every guide, snippet, and asset lives
-lastUpdated: 20250117
+dateCreated: 20250117
+dateUpdated: 20260121
 ---
 
 # Directory Structure

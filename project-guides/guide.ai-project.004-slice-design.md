@@ -9,6 +9,8 @@ dependsOn:
   - guide.ai-project.000-process.md
   - guide.ai-project.002-spec.md
   - guide.ai-project.003-slice-planning.md
+dateCreated: 20250101
+dateUpdated: 20260121
 ---
 
 #### Summary

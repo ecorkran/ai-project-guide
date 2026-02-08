@@ -8,7 +8,8 @@ status: completed
 completedVersion: 0.9.0
 dependencies: []
 description: Migration from git subtree to git submodule architecture
-lastUpdated: 20251006
+dateCreated: 20250101
+dateUpdated: 20251006
 ---
 
 # Slice: Restructured ai-project-guide Layout
