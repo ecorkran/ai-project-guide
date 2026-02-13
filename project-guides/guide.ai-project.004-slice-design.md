@@ -63,7 +63,8 @@ slice: {slice-name}
 project: {project}
 dependencies: [list-of-prerequisite-slices]
 interfaces: [list-of-slices-that-depend-on-this]
-lastUpdated: YYYY-MM-DD
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
 ---
 
 # Slice Design: {Slice Name}

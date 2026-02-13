@@ -69,7 +69,8 @@ project: trading-app
 lld: user/slices/01-slice.user-authentication.md
 dependencies: [foundation-setup]
 projectState: foundation complete, database schema defined
-lastUpdated: 2025-01-15
+dateCreated: 20250115
+dateUpdated: 20250115
 ---
 
 ## Context Summary
@@ -96,7 +97,8 @@ project: trading-app
 lld: user/slices/01-slice.user-authentication.md
 dependencies: [foundation-setup]
 projectState: foundation complete, database schema defined
-lastUpdated: 2025-01-16
+dateCreated: 20250115
+dateUpdated: 20250116
 ---
 
 ## Context Summary

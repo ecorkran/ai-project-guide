@@ -1,9 +1,10 @@
 ---
 docType: report
 project: ai-project-guide
-date: 20250930
 subject: index-migration-completion
 status: completed
+dateCreated: 20250930
+dateUpdated: 20250930
 ---
 
 # Index Migration Completion Report

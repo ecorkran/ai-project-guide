@@ -52,8 +52,8 @@ date: 2025-09-30
 
 **After:**
 ```yaml
-lastUpdated: 20251008
-date: 20250930
+dateCreated: 20250930
+dateUpdated: 20251008
 ```
 
 **Fields to check:** `created`, `lastUpdated`, `date`
@@ -63,8 +63,8 @@ date: 20250930
 Add these fields where missing:
 
 ```yaml
-created: YYYYMMDD      # When file was first created (immutable)
-lastUpdated: YYYYMMDD  # Most recent modification
+dateCreated: YYYYMMDD      # When file was first created (immutable)
+dateUpdated: YYYYMMDD  # Most recent modification
 ```
 
 If you don't know when a file was created, use git history:
@@ -87,8 +87,8 @@ lld: user/slices/nnn-slice.slice-name.md
 dependencies: []
 projectState: brief current state
 status: [in_progress|completed]
-created: YYYYMMDD
-lastUpdated: YYYYMMDD
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
 ---
 ```
 
@@ -104,8 +104,8 @@ sliceName: slice-name
 status: [in_progress|completed]
 dependencies: []
 description: brief description
-created: YYYYMMDD
-lastUpdated: YYYYMMDD
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
 ---
 ```
 
