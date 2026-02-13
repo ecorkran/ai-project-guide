@@ -72,12 +72,16 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
   - Example: `guide.ai-project.090-code-review.md`
   - Example: `guide.ai-project.091-legacy-task-migration.md`
 
-- **100-799**: Active work items (700 slots)
+- **100-749**: Slices and slice-linked work (650 slots)
   - Slice design documents
-  - Task files
-  - User-created or user-initiated work
+  - Slice-linked feature files and task files
   - Primary working range for project execution
   - Example: `user/slices/100-slice.{name}.md`
+
+- **750-799**: Standalone features (50 slots)
+  - Features not tied to a specific vertical slice
+  - Cross-cutting or independent functionality
+  - Example: `user/features/750-feature.{name}.md`
 
 - **800-899**: Reserved (100 slots)
 
@@ -103,7 +107,8 @@ The project uses 3-digit indices (000-999) with semantic range allocation:
 - **010-049**: Extended process documentation
 - **050-089**: Architecture documents
 - **090-099**: Specialized guides (code review, legacy migration, etc.)
-- **100-799**: Regular sequential content (slices, tasks, features, user work)
+- **100-749**: Slices and slice-linked features/tasks
+- **750-799**: Standalone features
 - **800-899**: Reserved
 - **900-939**: Code review files
 - **940-949**: Codebase analysis files
@@ -154,7 +159,7 @@ nnn-tasks.{section}.md
 ```
 
 Where:
-- `nnn` is a 3-digit sequential index following the range allocation above (typically 100-799 for active work)
+- `nnn` is a 3-digit sequential index following the range allocation above (typically 100-749 for slice work)
 - `{section}` is the section name in lowercase with special characters removed and spaces replaced with hyphens
 
 Examples:
@@ -178,7 +183,7 @@ nnn-slice.{slice-name}.md
 ```
 
 Where:
-- `nnn` is a 3-digit sequential index (typically 100-799 for active work)
+- `nnn` is a 3-digit sequential index (typically 100-749 for slice work)
 - `{slice-name}` is the slice name in lowercase with spaces replaced by hyphens
 
 Examples:
@@ -187,7 +192,9 @@ Examples:
 - `300-slice.portfolio-management.md`
 
 ## Feature Files
-Feature files link to their parent slice via the index number (slice name is omitted to avoid redundancy):
+
+### Slice-Linked Features
+Feature files linked to a parent slice use the slice's index number (slice name is omitted to avoid redundancy):
 
 ```
 {sliceindex}-feature.{feature-name}.md
@@ -202,17 +209,36 @@ Examples:
 - `120-feature.oauth-providers.md` (extends 120-slice.auth.md)
 - `200-feature.widgets.md` (extends 200-slice.dashboard.md)
 
-## Feature Task Files
-Feature-specific task files follow the same pattern as feature files:
+### Standalone Features
+Features not tied to a specific slice use the 750-799 range with their own sequential index:
 
 ```
-{sliceindex}-tasks.{feature-name}.md
+nnn-feature.{feature-name}.md
 ```
+
+Where:
+- `nnn` is a 3-digit sequential index in the 750-799 range
+- `{feature-name}` describes the feature
 
 Examples:
+- `750-feature.dark-mode.md`
+- `751-feature.export-csv.md`
+- `752-feature.notification-system.md`
+
+## Feature Task Files
+Feature-specific task files follow the same index pattern as their parent feature:
+
+```
+{featureindex}-tasks.{feature-name}.md
+```
+
+Examples (slice-linked):
 - `120-tasks.auth.md` (main slice tasks for 120-slice.auth.md)
 - `120-tasks.remember-me.md` (feature-specific tasks for 120-feature.remember-me.md)
-- `200-tasks.widgets.md` (feature-specific tasks for 200-feature.widgets.md)
+
+Examples (standalone):
+- `750-tasks.dark-mode.md` (tasks for 750-feature.dark-mode.md)
+- `751-tasks.export-csv.md` (tasks for 751-feature.export-csv.md)
 
 
 ## File Size Limits and Splitting
@@ -259,11 +285,16 @@ The index structure provides a machine-readable project architecture. This enabl
 - Architectural patterns and infrastructure
 - Example: `050-arch.hld-trading.md`
 
-**100-799: Active Development** → `user/slices/`, `user/features/`, `user/tasks/`
-- Current features and slices being implemented
+**100-749: Slices & Slice-Linked Work** → `user/slices/`, `user/features/`, `user/tasks/`
+- Current slices being implemented, plus their linked features and tasks
 - Organized by work item, not sprints or arbitrary time periods
 - Each project has a current focus item; items receive time based on priority
-- Example: `100-slice.auth.md`, `120-tasks.auth.md`
+- Example: `100-slice.auth.md`, `120-tasks.auth.md`, `120-feature.remember-me.md`
+
+**750-799: Standalone Features** → `user/features/`, `user/tasks/`
+- Features not tied to a specific vertical slice
+- Cross-cutting or independent functionality
+- Example: `750-feature.dark-mode.md`, `750-tasks.dark-mode.md`
 
 **800-899: Reserved** (100 slots)
 - Available for future semantic categorization
@@ -289,7 +320,8 @@ This structure enables automated project snapshots:
   "project": "trading",
   "foundation": ["001-concept.trading.md", "002-spec.trading.md"],
   "architecture": ["050-arch.hld-trading.md"],
-  "activeWork": ["100-slice.timescale-data.md", "200-slice.realtime-ws.md"],
+  "slices": ["100-slice.timescale-data.md", "200-slice.realtime-ws.md"],
+  "standaloneFeatures": ["750-feature.export-csv.md"],
   "quality": ["900-review.timescale-layer.md"],
   "investigation": ["940-analysis.async-sync.md"],
   "maintenance": ["950-tasks.maintenance.md"]

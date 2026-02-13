@@ -38,13 +38,13 @@ project-documents/
 └── user/                 # Your project-specific work (parent repo)
     ├── analysis/            # codebase analysis & investigation (940-949)
     ├── architecture/        # high-level designs & system architecture (050-089)
-    ├── features/            # feature definitions & specifications
+    ├── features/            # standalone features (750-799) & slice-linked features
     ├── project-guides/      # project-specific guide customizations (001-009)
     │   ├── 001-concept.{project}.md # project concept documents
     │   ├── 002-spec.{project}.md    # project specifications
     │   └── 003-slices.{project}.md  # slice planning
     ├── reviews/             # code review docs & follow-up actions (900-939)
-    ├── slices/              # slice design documents (100-799)
+    ├── slices/              # slice design documents (100-749)
     └── tasks/               # task breakdowns & all work items
         └── 950-tasks.maintenance.md # maintenance & tech debt tracking
 ```

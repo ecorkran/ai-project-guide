@@ -115,6 +115,8 @@ lastUpdated: YYYYMMDD
 
 | Index Range | Purpose |
 |-------------|---------|
+| 100-749 | Slices and slice-linked features/tasks |
+| 750-799 | Standalone features |
 | 940-949 | Codebase analysis |
 | 950-999 | Maintenance tasks, inventories, reports |
 
@@ -155,6 +157,8 @@ After updating the submodule, these documents contain the authoritative standard
 | Date fields | lastUpdated only | Add created where missing |
 | Status field | Inconsistent | Use in_progress, completed, deprecated |
 | File indexing | Optional for some files | Required for all user/tasks/ files |
+| Standalone features | No dedicated range | 750-799 range |
+| Slice range | 100-799 | 100-749 (standalone features carved out) |
 
 ---
 
