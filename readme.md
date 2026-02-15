@@ -39,10 +39,18 @@ curl -fsSL https://raw.githubusercontent.com/ecorkran/ai-project-guide/main/scri
 
 Creates directory structure and adds ai-project-guide as submodule.
 
-**Update later:**
+**Update later, explicit:**
+```sh
+git submodule update --remote project-documents/ai-project-guide
+git add project-documents/ai-project-guide
+git commit -m "Update ai-project-guide submodule"
+```
+
+**Update later, script utility:**
 ```bash
 ./scripts/update-guides
 ```
+
 
 (Bootstrap creates this script for you)
 

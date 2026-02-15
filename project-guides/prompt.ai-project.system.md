@@ -158,17 +158,128 @@ If you need more information about architectural constraints or technical requir
 
 ##### Slice Planning (Phase 3)
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 3: High-Level Design & Slice Planning.  Use `guide.ai-project.003-slice-planning` with the project concept and specification documents to break {project} into manageable vertical slices.
+We're working in our guide.ai-project.000-process, Phase 3: Slice Planning. Use `guide.ai-project.003-slice-planning` to break the work described in the parent document into manageable vertical slices.
+
+**Parent document** (one of the following — only one will apply):
+1. Project specification (`user/project-guides/002-spec.{project}.md`) — for project-level planning
+2. Architecture document (`user/architecture/nnn-arch.{name}.md`) — for architecture-level planning
+
+If the parent is a project specification, also reference the concept document and any existing architecture documentation. If the parent is an architecture document, it functions as the HLD — do not create a separate one.
 
 Your role is Technical Fellow as described in the Process Guide. Work with the Project Manager to:
 
+1. Identify the planning context (project-level or architecture-level) per the guide
+2. Identify foundation work, feature slices, migration/refactoring slices, and integration work as applicable
+3. Create the slice plan document in the correct location:
+   - Project-level: `user/project-guides/003-slices.{project}.md`
+   - Architecture-level: `user/architecture/nnn-slices.{name}.md` (matching parent document index)
 
-2. Identify foundation work, feature slices, and integration work
-3. Create the slice plan document (003-slices.{project}.md)
+Use enough slices to completely define the scope of the parent document. Consider functional requirements only. Ignore non-functional requirements. Avoid speculative risk projections. Do not include calendar or time-based estimates.
 
-Use enough slices to completely define the project.  Consider functional requirements only.  Ignore all non-functional requirements.  Avoid speculative risk projections.    When defining slices, focus on slice independence and clear user value. If you have all required inputs and sufficient information, proceed with slice planning. If not, request required information from the Project Manager.
+When defining slices, focus on slice independence and clear value delivery (user value, developer value, or architectural enablement). Each slice must leave the system in a working state when complete. If you have all required inputs and sufficient information, proceed with slice planning. If not, request required information from the Project Manager.
 
 Note: This is a design and planning task, not a coding task.
+```
+
+```markdown
+##### Architectural Component Design (Phase 3.5)
+*Use this to design a high-level architectural component or initiative that will span multiple slices*
+
+```markdown
+We're designing a new architectural component for project {project}: {component-name}. Architectural components represent major structural changes or new subsystems that will likely result in multiple slices and many tasks. This is distinct from individual slices—it's about the foundational architecture that slices will build upon.
+
+Create a design document for the architectural component.
+
+Create file at `user/architecture/nnn-arch.{component-name}.md`, where nnn is the next available index in the range as defined in `file-naming-conventions.md` (050-089 as of 20260207).
+
+Your role is Technical Fellow as described in the Process Guide. Keep this document at the architectural level—do not include task-level breakdown or detailed slice specifications.
+
+**Document Structure**
+The component design should include:
+
+1. YAML Frontmatter
+```
+```yaml
+---
+docType: architecture
+layer: project
+project: {project}
+archIndex: nnn
+component: {component-name}
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: in_progress
+relatedSlices: []
+riskLevel: low|medium|high
+---
+```
+```markdown
+2. Content Sections
+**Overview**
+- High-level description of the architectural component or initiative
+- State the core problem it addresses and why it matters to the project
+- Scope: Short paragraph on what this component encompasses
+- Motivation: Brief explanation of why this architectural change/component is needed
+
+**Design Goals**
+- List primary design goals (max: ~5) for this component (outcomes-oriented, not implementation-specific)
+- Format as bulleted list of short paragraphs with goal name and brief description
+
+**Architectural Principles**
+- Key principles that will guide the design of slices and tasks within this component
+- These inform how work should be structured, not what work to do
+- Format as bulleted list with principle name and brief description
+
+**Current State**
+Brief description of the current architecture or state that necessitates this design work
+What constraints or problems does the current system have?
+
+**Envisioned State**
+How this component will function at completion
+Focus on the role it plays in the larger system, not implementation details
+Describe the architecture from a system perspective, not from user perspective
+
+**Technical Considerations**
+Key technical challenges, trade-offs, or decisions that will inform slice design
+Format as bulleted list with consideration title and explanation
+These are constraints/challenges to be addressed, not proposed solutions
+
+**Anticipated Slices (optional)**
+At a high level, what slices do we expect this component might decompose into?
+This is exploratory—not a commitment or task list
+Format as bulleted list with provisional slice concept and brief description
+Include only if you have meaningful ideas about slice boundaries
+
+**Related Work**
+Reference to related slices, features, initiatives, or domain knowledge (if any exist)
+Link to existing slice files, feature files, or framework guides
+No direct references to individual tasks
+
+3. Guidelines
+- Keep it high-level: This document informs slice planning, not implementation. Do not include code, pseudo-code, or detailed API specifications.
+- Focus on architecture: Describe structural decisions and principles, not individual features or user-facing behaviors.
+- Avoid implementation detail: Do not prescribe how tasks will be organized or which technologies to use. That emerges during slice design.
+- Link to context: Reference existing slices, features, or framework guides where relevant. Do not reference individual tasks.
+- Be concrete about principles: Architectural principles should be clear enough to guide slice designers. Avoid vague statements.
+
+**Expected Output**
+* Concise architectural component design document in user/architecture/nnn-arch.{component-name}.md
+* Create if it doesn't already exist. If file exists, edit existing file as described above.
+* Include all required YAML frontmatter
+* Preserve any Project Manager-provided context or requirements
+
+Follow dependency management—identify what foundation work or other architectural components this initiative depends on or affects.
+
+Avoid:
+- Vague fluff about future performance testing or involved benchmarking unless specifically relevant
+- Speculative risk items; include only if truly relevant
+- Time estimates in any form
+- Task-level breakdown (that's slice planning's job)
+- Code examples unless absolutely essential to convey architectural meaning
+
+If you need more information about the component requirements or architectural constraints, stop and request clarification from the Project Manager.
+
+Note: This is a design and planning task, not a coding task. Any code samples should be minimal and limited to what is truly needed to convey architectural information.
 ```
 
 ##### Slice Design (Phase 4)
@@ -465,107 +576,6 @@ Avoid:
 3. Do not add a time estimate in minutes/hours/days etc.  You may use 1-5 relative effort scale.
 
 If you need more information about the feature requirements, stop and request from Project Manager.  Note that this is a project and process task, NOT a coding task.  Any code samples should be minimal and limited to what is truly needed to provide the information.
-```
-
-```markdown
-##### Architectural Component Design (Phase 3.5)
-*Use this to design a high-level architectural component or initiative that will span multiple slices.*
-
-```markdown
-We're designing a new architectural component for project {project}: {component-name}. Architectural components represent major structural changes or new subsystems that will likely result in multiple slices and many tasks. This is distinct from individual slices—it's about the foundational architecture that slices will build upon.
-
-Create a design document for the architectural component.
-
-Create file at `user/architecture/nnn-arch.{component-name}.md`, where nnn is the next available index in the range as defined in `file-naming-conventions.md` (050-089 as of 20260207).
-
-Your role is Technical Fellow as described in the Process Guide. Keep this document at the architectural level—do not include task-level breakdown or detailed slice specifications.
-
-**Document Structure**
-The component design should include:
-
-1. YAML Frontmatter
-```
-```yaml
----
-docType: architecture
-layer: project
-project: {project}
-archIndex: nnn
-component: {component-name}
-dateCreated: YYYYMMDD
-dateUpdated: YYYYMMDD
-status: in_progress
-relatedSlices: []
-riskLevel: low|medium|high
----
-```
-```markdown
-2. Content Sections
-**Overview**
-- High-level description of the architectural component or initiative
-- State the core problem it addresses and why it matters to the project
-- Scope: Short paragraph on what this component encompasses
-- Motivation: Brief explanation of why this architectural change/component is needed
-
-**Design Goals**
-- List primary design goals (max: ~5) for this component (outcomes-oriented, not implementation-specific)
-- Format as bulleted list of short paragraphs with goal name and brief description
-
-**Architectural Principles**
-- Key principles that will guide the design of slices and tasks within this component
-- These inform how work should be structured, not what work to do
-- Format as bulleted list with principle name and brief description
-
-**Current State**
-Brief description of the current architecture or state that necessitates this design work
-What constraints or problems does the current system have?
-
-**Envisioned State**
-How this component will function at completion
-Focus on the role it plays in the larger system, not implementation details
-Describe the architecture from a system perspective, not from user perspective
-
-**Technical Considerations**
-Key technical challenges, trade-offs, or decisions that will inform slice design
-Format as bulleted list with consideration title and explanation
-These are constraints/challenges to be addressed, not proposed solutions
-
-**Anticipated Slices (optional)**
-At a high level, what slices do we expect this component might decompose into?
-This is exploratory—not a commitment or task list
-Format as bulleted list with provisional slice concept and brief description
-Include only if you have meaningful ideas about slice boundaries
-
-**Related Work**
-Reference to related slices, features, initiatives, or domain knowledge (if any exist)
-Link to existing slice files, feature files, or framework guides
-No direct references to individual tasks
-
-3. Guidelines
-- Keep it high-level: This document informs slice planning, not implementation. Do not include code, pseudo-code, or detailed API specifications.
-- Focus on architecture: Describe structural decisions and principles, not individual features or user-facing behaviors.
-- Avoid implementation detail: Do not prescribe how tasks will be organized or which technologies to use. That emerges during slice design.
-- Link to context: Reference existing slices, features, or framework guides where relevant. Do not reference individual tasks.
-- Be concrete about principles: Architectural principles should be clear enough to guide slice designers. Avoid vague statements.
-
-**Expected Output**
-* Concise architectural component design document in user/architecture/nnn-arch.{component-name}.md
-* Create if it doesn't already exist. If file exists, edit existing file as described above.
-* Include all required YAML frontmatter
-* Preserve any Project Manager-provided context or requirements
-
-Follow dependency management—identify what foundation work or other architectural components this initiative depends on or affects.
-
-Avoid:
-- Vague fluff about future performance testing or involved benchmarking unless specifically relevant
-- Speculative risk items; include only if truly relevant
-- Time estimates in any form
-- Task-level breakdown (that's slice planning's job)
-- Code examples unless absolutely essential to convey architectural meaning
-
-If you need more information about the component requirements or architectural constraints, stop and request clarification from the Project Manager.
-
-Note: This is a design and planning task, not a coding task. Any code samples should be minimal and limited to what is truly needed to convey architectural information.
 ```
 
 
