@@ -284,40 +284,47 @@ Note: This is a design and planning task, not a coding task. Any code samples sh
 
 ##### Slice Design (Phase 4)
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 4: Slice Design (Low-Level Design). Create a detailed design for slice: {slice} in project {project} by following the instructions here. These instructions may be used for adding a new slice with provided description, or designing {slice} included in the project slice plan.
+We're working in our guide.ai-project.000-process, Phase 4: Slice Design (Low-Level Design). Create a detailed design for slice: {slice} in project {project} by following `guide.ai-project.004-slice-design`.
 
-Use the following inputs:
-1. The project high-level design (architecture/050-arch.hld-{project}.md) if applicable.
-2. One of the following (only one will be applicable):
-	1. Slice description provided with this request.
-	2. The project slice plan at `user/project-guides/003-slices.{project}.md`.
+**Inputs** (two levels — use what applies):
 
-Note: if you are using the slice plan, it must contain information on this slice.
+*Strategic context* (provides the big-picture view of where this slice fits):
+- Architecture document, HLD, or project spec — as identified by the Project Manager or referenced in the slice plan's parent document.
 
-Create the slice design document at `user/slices/{slice}.md`.  Your role is Technical Fellow.
+*Working input* (defines what this specific slice should accomplish — one of the following):
+1. Slice plan entry from `user/project-guides/003-slices.{project}.md` (project-level)
+2. Slice plan entry from `user/architecture/nnn-slices.{name}.md` (architecture-level)
+3. Slice description provided directly with this request
+
+If using a slice plan, it must contain an entry for this slice. If the strategic context document is not obvious, ask the Project Manager.
+
+Create the slice design document at `user/slices/nnn-slice.{slice-name}.md`. Your role is Technical Fellow.
 
 Include:
-- YAML frontmatter as described below.
+- YAML frontmatter as described below
 - Detailed technical decisions for this slice
 - Data flows and component interactions
-- UI mockups or detailed specifications (if applicable)
+- For migration/refactoring slices: migration plan (source/destination, consumer updates, behavior verification)
+- UI mockups or API/tool specifications (if applicable)
 - Cross-slice dependencies and interfaces
-- Any conflicts or considerations discovered
+- Success criteria specific enough for task creation
+- Only template sections that are relevant to this slice — omit sections that don't apply
 
 Avoid:
-- Time estimates in hours/days/etc.  You may use a 1-5 relative effort scale.
+- Time estimates in hours/days/etc. You may use a 1-5 relative effort scale.
 - Extensive benchmarking tasks unless actually relevant to this effort.
-- Extensive or speculative risk items.  Include only if truly relevant.
-- Any substantial code writing.  This is a planning and process task.
+- Extensive or speculative risk items. Include only if truly relevant.
+- Any substantial code writing. This is a planning and process task.
+- Filling in template sections with boilerplate just because they exist.
 
-YAML Frontmatter Details:
+YAML Frontmatter:
 ---
-item: {slice}
+docType: slice-design
+slice: {slice-name}
 project: {project}
-type: slice
-github: {url of github issue, if one is related}
+parent: {path to the slice plan this slice comes from}
 dependencies: [list-if-any]
-projectState: brief current state
+interfaces: [list-of-slices-that-depend-on-this]
 status: not started
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
@@ -325,7 +332,7 @@ dateUpdated: YYYYMMDD
 
 If framework or platform are specified, guide(s) for the framework(s) should be provided in `ai-project-guide/framework-guides/{framework}/introduction.md`. If tools are specified, guide for each tool should be available at `ai-project-guide/tool-guides/{tool}/introduction.md`.
 
-Stop and request clarification if you need more information to complete the slice design.  This is a design and process task -- not a coding task!  Any code present should be minimal, and should provide essential information.
+Stop and request clarification if you need more information to complete the slice design. This is a design and process task — not a coding task! Any code present should be minimal, and should provide essential information.
 ```
 
 ##### Task Breakdown (Phase 5)
