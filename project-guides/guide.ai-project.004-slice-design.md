@@ -4,27 +4,43 @@ phase: 4
 phaseName: slice-design
 guideRole: primary
 audience: [human, ai]
-description: Phase 4 playbook for creating detailed low-level designs for individual slices.
+description: Phase 4 playbook for creating detailed low-level designs for individual slices. Works with slices from project-level or architecture-level slice plans.
 dependsOn:
   - guide.ai-project.000-process.md
-  - guide.ai-project.002-spec.md
   - guide.ai-project.003-slice-planning.md
 dateCreated: 20250101
-dateUpdated: 20260121
+dateUpdated: 20260215
 ---
 
 #### Summary
-This guide provides instructions for Phase 4: Slice Design (Low-Level Design). This phase takes an approved slice from the slice plan and creates a detailed technical design that can be converted into implementable tasks. The slice design serves as the technical blueprint for Phase 5 (Task Breakdown) and Phase 7 (Implementation).
+This guide provides instructions for Phase 4: Slice Design (Low-Level Design). This phase takes an approved slice from a slice plan and creates a detailed technical design that can be converted into implementable tasks. The slice design serves as the technical blueprint for Phase 5 (Task Breakdown) and Phase 7 (Implementation).
+
+Slice designs are created for slices defined in either a project-level slice plan or an architecture-level slice plan. The process is the same; what varies is which documents provide context.
 
 #### Inputs and Outputs
+
 **Inputs:**
-* `guide.ai-project.000-process` (main process guide)
+
+Slice design typically uses two levels of input:
+
+* **Strategic context** — the document that provides the big-picture view of where this slice fits in the overall system. This is one of:
+  * Project HLD (`user/architecture/050-arch.hld-{project}.md`)
+  * Architecture document (`user/architecture/nnn-arch.{name}.md`)
+  * Project specification (`user/project-guides/002-spec.{project}.md`)
+
+* **Working input** — the slice plan entry that defines what this specific slice should accomplish. This is one of:
+  * Project-level slice plan (`user/project-guides/003-slices.{project}.md`)
+  * Architecture-level slice plan (`user/architecture/nnn-slices.{name}.md`)
+  * Slice description provided directly by the Project Manager
+
+The strategic context tells the agent *why this slice exists and how it relates to the whole*. The working input tells the agent *what this slice needs to deliver*. Both are typically needed; the strategic context may be skipped for simple or self-contained slices at the Project Manager's discretion.
+
+**Additional inputs (as applicable):**
+* `guide.ai-project.000-process` (process guide)
 * `guide.ai-project.004-slice-design` (this document)
-* Project specification (Phase 2 output): `user/project-guides/002-spec.{project}.md`
-* High-level design (Phase 3 output): `user/architecture/050-arch.hld-{project}.md`
-* Slice plan (Phase 3 output): `user/project-guides/003-slices.{project}.md`
 * Relevant tool guides from `ai-project-guide/tool-guides/{tool}/`
 * Framework guides from `ai-project-guide/framework-guides/{framework}/`
+* Prior slice designs if this slice depends on them
 
 **Output:**
 * Slice design document: `user/slices/nnn-slice.{slice-name}.md`
@@ -43,24 +59,30 @@ Each slice design should:
 - Minimize dependencies on other slices
 - Define clean interfaces where dependencies exist
 - Be implementable and testable in isolation
-- Deliver meaningful functionality when complete
+- Leave the system in a working state when complete
+- Deliver meaningful value (user-facing, developer-facing, or architectural)
 
 ##### Implementation Readiness
 The design should bridge the gap between high-level architecture and concrete tasks:
 - Include specific technical decisions
 - Reference exact tools, libraries, and patterns
-- Provide mockups or detailed specifications for UI components
-- Define data schemas and API contracts
+- Provide mockups or detailed specifications for UI components (if applicable)
+- Define data schemas and API contracts (if applicable)
+
+##### Appropriate Detail
+- Include sections that are relevant to this slice. Omit sections that don't apply.
+- A migration slice may not need UI Specifications or API Contracts. A UI slice may not need Database Schema. Use judgment.
+- The template below is comprehensive; it is not a mandatory checklist. Every section marked "(if applicable)" should be included only when relevant.
 
 #### Slice Design Structure
 
 ##### Document Template
 ```markdown
 ---
-layer: project
 docType: slice-design
 slice: {slice-name}
 project: {project}
+parent: {path to the slice plan this slice comes from}
 dependencies: [list-of-prerequisite-slices]
 interfaces: [list-of-slices-that-depend-on-this]
 dateCreated: YYYYMMDD
@@ -72,17 +94,16 @@ dateUpdated: YYYYMMDD
 ## Overview
 Brief description of what this slice delivers and why it matters.
 
-## User Value
-What specific user need does this slice address? How will users interact with it?
+## Value
+What does this slice deliver? This may be user-facing functionality, developer-facing improvements (testability, reduced complexity), or architectural enablement (unblocking subsequent slices). Describe how the target audience benefits.
 
 ## Technical Scope
-What components, features, and functionality are included in this slice?
+What components, features, and functionality are included in this slice? What is explicitly excluded?
 
 ## Dependencies
 ### Prerequisites
-- Foundation work that must be complete
-- Other slices that must be implemented first
-- External services or APIs required
+- Foundation work or other slices that must be complete
+- External services, APIs, or packages required
 
 ### Interfaces Required
 - What this slice needs from other parts of the system
@@ -100,13 +121,13 @@ What components, features, and functionality are included in this slice?
 - Input sources and output destinations
 - Data transformations and processing
 
-### State Management
+### State Management (if applicable)
 - What state this slice manages
 - How state is persisted or shared
 - State update patterns and flows
 
 ## Technical Decisions
-### Technology Choices
+### Technology Choices (if applicable)
 - Specific libraries, frameworks, or tools
 - Rationale for technical choices
 - Alternatives considered and rejected
@@ -117,13 +138,21 @@ What components, features, and functionality are included in this slice?
 - Error handling approaches
 
 ## Implementation Details
+
+### Migration Plan (for migration/refactoring slices)
+- What is being moved, extracted, or restructured
+- Source and destination locations
+- Consumers that must be updated
+- Data migration strategy (if state/storage is affected)
+- Verification that behavior is preserved
+
 ### API Contracts (if applicable)
-- Endpoints this slice provides
+- Endpoints or tool interfaces this slice provides
 - Request/response formats
 - Authentication and authorization
 
-### Database Schema (if applicable)
-- Tables or collections this slice requires
+### Database / Storage Schema (if applicable)
+- Tables, collections, or storage structures this slice requires
 - Relationships to existing data
 - Migration considerations
 
@@ -146,43 +175,37 @@ What components, features, and functionality are included in this slice?
 
 ## Success Criteria
 ### Functional Requirements
-- Specific features that must work
-- User workflows that must be complete
-- Performance or reliability targets
+- Specific features or behaviors that must work
+- Workflows that must be complete
+- For migration slices: the system continues to work identically from a user perspective
 
 ### Technical Requirements
 - Code quality standards
 - Test coverage expectations
 - Documentation requirements
 
-### Integration Requirements
-- What other slices can successfully integrate
+### Integration Requirements (if applicable)
+- What other slices can successfully integrate after this is complete
 - System-wide functionality that works correctly
 - End-to-end workflows that function
 
-## Risk Assessment
+## Risk Assessment (if applicable)
+Include only if there are genuine, non-trivial risks. Omit for low-risk slices.
+
 ### Technical Risks
 - Complex implementations or unknown territory
 - External dependencies that might cause issues
-- Performance or scalability concerns
-
-### Integration Risks
-- Potential conflicts with other slices
-- Assumptions about other slice implementations
-- Coordination challenges
 
 ### Mitigation Strategies
 - How to reduce or manage identified risks
 - Fallback plans for high-risk elements
-- Early validation approaches
 
 ## Implementation Notes
 ### Development Approach
-- Suggested implementation order
-- Key milestones or checkpoints
+- Suggested implementation order within this slice
 - Testing strategy for this slice
 
-### Special Considerations
+### Special Considerations (if applicable)
 - Unusual requirements or constraints
 - Performance-critical sections
 - Security considerations specific to this slice
@@ -190,60 +213,47 @@ What components, features, and functionality are included in this slice?
 
 #### Slice Design Patterns
 
-##### UI-Focused Slices
-For slices that primarily deliver user interface:
+##### Feature Slices
+For slices that deliver new functionality (UI, API, or full-stack):
 
-###### Component Architecture
-- Page/route components
-- Shared UI components specific to this slice
+**UI-focused:**
+- Component hierarchy, page/route structure
 - State management patterns (local vs global)
-- Form handling and validation approaches
-
-###### Design Specifications
-- Mockups or wireframes for all major screens
 - Interaction patterns and user flows
-- Responsive design breakpoints
-- Accessibility requirements (ARIA, keyboard navigation)
+- Design specifications, responsive breakpoints, accessibility
 
-###### Data Integration
-- How UI components fetch and display data
-- Loading and error state handling
-- Real-time update requirements
+**API-focused:**
+- Endpoint or tool interface design with request/response formats
+- Business logic and validation rules
+- Data layer (schema, queries, caching)
+- External service integration
 
-##### API-Focused Slices
-For slices that primarily provide backend functionality:
+**Full-stack:**
+- Integration strategy between frontend and backend
+- Shared types or interfaces across layers
+- Error handling and user feedback across the stack
 
-###### Endpoint Design
-- RESTful resource patterns or GraphQL schema
-- Request/response formats with examples
-- Error response formats and codes
-- Rate limiting and authentication requirements
+##### Migration / Refactoring Slices
+For slices that extract, move, or restructure existing code:
 
-###### Business Logic
-- Core algorithms or processing logic
-- Data validation and transformation rules
-- Integration with external services
-- Background job or queue requirements
+**Code Extraction:**
+- Identify all source files being extracted and their destination
+- Map every consumer (import) of the extracted code
+- Define the update strategy: do consumers change their imports, or do re-exports maintain backward compatibility?
+- Verify that the extracted code has no dependencies on the source environment (e.g., Electron APIs, browser globals)
 
-###### Data Layer
-- Database schema changes or additions
-- Query patterns and optimization considerations
-- Caching strategies
-- Data migration requirements
+**Storage Migration:**
+- Old storage mechanism and new storage mechanism
+- Data format mapping (if schema changes)
+- One-time migration strategy for existing data
+- Concurrent access considerations (if multiple processes may read/write)
 
-##### Full-Stack Feature Slices
-For slices that include both UI and backend:
+**Dependency Restructuring:**
+- Before and after dependency graphs
+- Build configuration changes
+- Impact on existing test suites
 
-###### Integration Strategy
-- How frontend and backend communicate
-- Data synchronization patterns
-- Error handling across the stack
-- User feedback and loading states
-
-###### Consistency Requirements
-- Shared types or interfaces between frontend/backend
-- Validation rules applied in both layers
-- Security considerations across the stack
+**Key constraint:** Every migration slice must leave the application in a working state. The design must explicitly describe how this is ensured — typically by verifying that all consumers are updated within the same slice.
 
 #### Common Design Decisions
 
@@ -252,32 +262,14 @@ When incorporating new tools or libraries:
 - Justify the choice based on slice requirements
 - Document configuration and setup needs
 - Identify potential conflicts with existing tech stack
-- Plan for learning curve or training needs
 
-##### Performance Considerations
-For each slice, consider:
-- Expected load and usage patterns
-- Critical performance metrics
-- Caching strategies
-- Database query optimization needs
-
-##### Security Requirements
-Address security at the slice level:
-- Authentication and authorization needs
-- Data validation and sanitization
-- Secure communication requirements
-- Privacy and data protection considerations
-
-#### Working with Dependencies
-
-##### Managing Slice Dependencies
+##### Working with Dependencies
 When a slice depends on another slice:
 - Define exact interface requirements
-- Specify fallback behavior if dependency fails
-- Document version or contract expectations
+- Specify fallback behavior if dependency fails or isn't available
+- Document contract expectations
 - Plan for independent testing approaches
 
-##### Foundation Dependencies
 When depending on foundation work:
 - Verify foundation work is complete and stable
 - Document specific foundation features needed
@@ -287,30 +279,33 @@ When depending on foundation work:
 
 ##### Design Review Checklist
 Before approving a slice design:
-- [ ] User value is clearly articulated
+- [ ] Value is clearly articulated (user, developer, or architectural)
 - [ ] Technical scope is well-defined and bounded
 - [ ] Dependencies are identified and realistic
 - [ ] Architecture supports the intended functionality
 - [ ] Success criteria are specific and measurable
 - [ ] Integration points are clearly defined
-- [ ] Risks are identified with mitigation strategies
-- [ ] Implementation approach is realistic for the team
+- [ ] Migration slices explicitly ensure the system remains working
+- [ ] Irrelevant template sections are omitted rather than filled with boilerplate
+- [ ] Project Manager approves the design
 
 ##### Common Issues to Avoid
-- **Scope Creep:** Keep slice focused on specific user value
+- **Scope Creep:** Keep slice focused on its defined value delivery
 - **Hidden Dependencies:** Ensure all dependencies are explicit
 - **Over-Engineering:** Design for current needs, not hypothetical futures
 - **Under-Specification:** Include enough detail for task creation
 - **Integration Gaps:** Clearly define how this slice connects to others
+- **Template Stuffing:** Don't fill in sections just because they exist in the template; omit what doesn't apply
+- **Broken Intermediate State:** Migration slices that leave consumers pointing at moved code without updating imports
 
 #### Success Criteria
 Phase 4 is complete when:
-- [ ] Slice design document exists and follows the template
+- [ ] Slice design document exists with proper frontmatter
 - [ ] Technical approach is detailed enough for task creation
 - [ ] Dependencies and integration points are clearly defined
-- [ ] UI mockups or API specifications are included as appropriate
+- [ ] Relevant specifications are included (UI, API, migration plan, etc.)
 - [ ] Success criteria are specific and measurable
-- [ ] Risks are identified with mitigation strategies
+- [ ] Migration slices describe how the system remains working throughout
 - [ ] Project Manager and Technical Fellow approve the design
 
 #### Next Steps
