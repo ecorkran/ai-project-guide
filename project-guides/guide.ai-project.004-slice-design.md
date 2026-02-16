@@ -44,6 +44,7 @@ The strategic context tells the agent *why this slice exists and how it relates 
 
 **Output:**
 * Slice design document: `user/slices/nnn-slice.{slice-name}.md`
+  * `nnn` shares the initiative's base index (for the first slice) or increments from it (for subsequent slices). See `file-naming-conventions.md`.
 
 #### Core Principles
 

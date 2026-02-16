@@ -40,9 +40,8 @@ The process is the same at both levels. What changes is the parent document, the
 * Slice planning document: `user/project-guides/003-slices.{project}.md`
 
 *Architecture-level planning:*
-* Slice planning document: `user/architecture/nnn-slices.{name}.md` where `nnn` matches the parent architecture document's index
-  * Example: If the parent is `055-arch.context-forge-restructure.md`, the slice plan is `055-slices.context-forge-restructure.md`
-* No separate HLD — the architecture document serves as the HLD for this work
+* Slice planning document: `user/architecture/nnn-slices.{name}.md` where `nnn` shares the parent architecture document's base index
+  * Example: If the parent is `100-arch.context-forge-restructure.md`, the slice plan is `100-slices.context-forge-restructure.md`
 
 #### Core Principles
 
@@ -97,7 +96,7 @@ Determine whether this is project-level or architecture-level planning:
 
 **Project-level**: The parent document is a project specification. You may need to create an HLD first (Phase 2.5) or confirm one exists. The output slice plan goes in `user/project-guides/`.
 
-**Architecture-level**: The parent document is an architecture document (`user/architecture/nnn-arch.{name}.md`). The architecture document functions as the HLD — do not create a separate one. The output slice plan goes in `user/architecture/` with a matching index.
+**Architecture-level**: The parent document is an architecture document (`user/architecture/nnn-arch.{name}.md`), where `nnn` is the initiative's base index in the 100-799 working range (see `file-naming-conventions.md`). The architecture document functions as the HLD — do not create a separate one. The output slice plan goes in `user/architecture/` sharing the same base index.
 
 If unclear, confirm with the Project Manager before proceeding.
 
@@ -240,7 +239,7 @@ This helps catch "Slice A needs X but Slice B needs Y" conflicts early.
 
 **For architecture-level planning**, create:
 
-*Slice Plan* (`user/architecture/nnn-slices.{name}.md`, matching parent document index):
+*Slice Plan* (`user/architecture/nnn-slices.{name}.md`, sharing parent document's base index):
 
 **Slice plan template:**
 ```markdown
@@ -293,5 +292,6 @@ Phase 3 is complete when:
 #### Next Steps
 With approved slice plan:
 1. For each slice: Phase 4 (Slice Design) → Phase 5 (Task Breakdown) → Phase 6 (Task Enhancement) → Phase 7 (Execution) → Phase 8 (Review)
+   - Slice design files share or increment from the initiative's base index (e.g., `100-slice.first.md`, `101-slice.second.md`). See `file-naming-conventions.md`.
 2. Complete integration work as needed
 3. Iterate and add new slices as requirements evolve

@@ -76,7 +76,7 @@ Note: This is a design and planning task, not a coding task.
 ```markdown
 We're creating a High-Level Design (HLD) for project {project}. Use the Phase 2.5 guidelines in `guide.ai-project.000-process` with the project concept and specification documents to create the HLD. The HLD serves as the architectural blueprint that will inform slice planning and guide all subsequent slice designs. It establishes the system's structural foundation without diving into slice-level details.
 
-Create file at `user/architecture/nnn-arch.hld-{project}.md` using the next available index in the 050-089 range as defined in `file-naming-conventions.md`.
+Create file at `user/architecture/nnn-arch.hld-{project}.md` using the next available index in the 050-099 range as defined in `file-naming-conventions.md`.
 
 Your role is Technical Fellow as described in the Process Guide.
 
@@ -172,7 +172,7 @@ Your role is Technical Fellow as described in the Process Guide. Work with the P
 2. Identify foundation work, feature slices, migration/refactoring slices, and integration work as applicable
 3. Create the slice plan document in the correct location:
    - Project-level: `user/project-guides/003-slices.{project}.md`
-   - Architecture-level: `user/architecture/nnn-slices.{name}.md` (matching parent document index)
+   - Architecture-level: `user/architecture/nnn-slices.{name}.md` (sharing the parent architecture document's base index, per `file-naming-conventions.md`)
 
 Use enough slices to completely define the scope of the parent document. Consider functional requirements only. Ignore non-functional requirements. Avoid speculative risk projections. Do not include calendar or time-based estimates.
 
@@ -190,7 +190,9 @@ We're designing a new architectural component for project {project}: {component-
 
 Create a design document for the architectural component.
 
-Create file at `user/architecture/nnn-arch.{component-name}.md`, where nnn is the next available index in the range as defined in `file-naming-conventions.md` (050-089 as of 20260207).
+Create file at `user/architecture/nnn-arch.{component-name}.md`, where nnn is the next available base index at an increment of 10 in the 100-799 initiative working range as defined in `file-naming-conventions.md`. This base index will be shared by the slice plan and slice designs derived from this architecture document (e.g., if this document is `120-arch.{name}.md`, its slice plan will be `120-slices.{name}.md` and its first slice design will be `120-slice.{first-slice}.md`).
+
+Note: Do not use the 050-099 range — that is reserved for project-level architecture (HLD). Initiative-level architecture documents use the working range.
 
 Your role is Technical Fellow as described in the Process Guide. Keep this document at the architectural level—do not include task-level breakdown or detailed slice specifications.
 
@@ -298,7 +300,7 @@ We're working in our guide.ai-project.000-process, Phase 4: Slice Design (Low-Le
 
 If using a slice plan, it must contain an entry for this slice. If the strategic context document is not obvious, ask the Project Manager.
 
-Create the slice design document at `user/slices/nnn-slice.{slice-name}.md`. Your role is Technical Fellow.
+Create the slice design document at `user/slices/nnn-slice.{slice-name}.md`, where `nnn` shares the initiative's base index (for the first slice) or increments sequentially from it (for subsequent slices), per `file-naming-conventions.md`. Your role is Technical Fellow.
 
 Include:
 - YAML frontmatter as described below
@@ -345,7 +347,7 @@ Your role is Senior AI. Use exactly one of the following as input:
 1. The slice design document `user/slices/{slice}.md`.
 2. The feature design document `user/features/{feature}.md`.
 
-Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md`.  
+Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md` (where `{sliceindex}` matches the parent slice's index, preserving lineage per `file-naming-conventions.md`). 
 
 Include:
 1. YAML front matter including slice name, project, LLD reference, dependencies, and current project state
@@ -382,7 +384,7 @@ Your role is Senior AI. Use exactly one of the following as input:
 1. The slice design document `user/slices/{slice}.md`.
 2. The feature design document `user/features/{feature}.md`.
 
-Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md`.  
+Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md` (where `{sliceindex}` matches the parent slice's index, preserving lineage per `file-naming-conventions.md`). 
 
 Include:
 1. YAML front matter including slice name, project, LLD reference, dependencies, and current project state

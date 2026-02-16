@@ -62,7 +62,7 @@ For an app example:
 2.5 **Phase 2.5: Project High-Level Design (HLD)**
    - Using the spec document as your primary input, create a project-level high-level design.
    - The HLD serves as the architectural blueprint that informs slice planning.
-   - Create file at `user/architecture/nnn-arch.hld-{project}.md` using the next available index in the Architecture and System Design range as defined in `file-naming-conventions.md`.
+   - Create file at `user/architecture/nnn-arch.hld-{project}.md` using the next available index in the project-level architecture range (050-099) as defined in `file-naming-conventions.md`.
    - Your role is Technical Fellow.
    - Include:
      - System architecture overview and major subsystems
@@ -78,9 +78,10 @@ For an app example:
 
 3. **Phase 3: Slice Planning**
    - Convert the spec into logical vertical slices of functionality.  Use enough slices to completely define the product.
-   - Categorize work into three types:
+   - Categorize work into four types:
      - **Foundation work** (must be done first, hard to slice - e.g., project setup, core architecture)
-     - **Independent features** (can be sliced vertically - e.g., user auth, dashboard, reporting)
+     - **Feature slices** (can be sliced vertically - e.g., user auth, dashboard, reporting)
+     - **Migration / refactoring slices** (extract, move, or restructure existing code - e.g., monorepo extraction, storage migration)
      - **Integration work** (happens after features are built - e.g., performance optimization, deployment)
    - Each slice should be as independent as possible and deliver meaningful user value
    - Strive for early testability.  Build core features then expand.
@@ -96,7 +97,7 @@ For an app example:
    - Include specific technical decisions, data flows, and component interactions
    - Identify any cross-slice dependencies or conflicts
    - Create mockups or detailed specifications for UI components
-   - Save as `user/slices/nnn-slice.{slice-name}.md.
+   - Save as `user/slices/nnn-slice.{slice-name}.md` where `nnn` follows initiative-based indexing per `file-naming-conventions.md`.
    - Outcome: _Detailed design document for implementing this slice.
 
 5. **Phase 5: Slice Task Breakdown**
@@ -104,7 +105,7 @@ For an app example:
    - For each {tool} in use described in the design, ensure that you consult knowledge in `ai-project-guide/tool-guides/{tool}/`.  If not present search web if possible and alert Project Manager.
    - Only include tasks that can reasonably be completed by an AI. Do not include open-ended human-centric tasks such as SEO optimization.
    - If insufficient information is available to fully convert an item into tasks, _stop_ and request clarifying information before continuing.
-   - Save as `user/tasks/nnn-tasks.{slice-name}.md` using existing task file naming conventions
+ - Save as `user/tasks/nnn-tasks.{slice-name}.md` where `nnn` matches the parent slice's index per `file-naming-conventions.md`
    - Include YAML front matter and context header:
      ```yaml
      ---
@@ -196,7 +197,7 @@ The following structure should be present in every project.  Assume files are in
 ```markdown
 * user/: information customized to our current project.
 * user/analysis/: analysis documents and research findings.
-* user/architecture/: high-level design documents (HLD).
+* user/architecture/: architecture documents (project HLD, initiative architecture docs, slice plans).
 * user/features/: feature designs and specifications.
 * user/project-guides/: project-specific guide customizations.
 * user/reviews/: code review findings, task lists, and resolutions.
