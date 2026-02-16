@@ -18,6 +18,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [0.11.0] - 2026-02-15
+
+### Added
+- **Phase 2.5: Project HLD Creation** - Dedicated phase for high-level design before slice planning
+  - New process guide section in `guide.ai-project.000-process.md`
+  - New parameterized prompt in `prompt.ai-project.system.md`
+  - HLD now created separately from slice planning, using next available index in 050-089
+- **Phase 3.5: Architectural Component Design** - Design architectural initiatives spanning multiple slices
+  - New prompt for creating `nnn-arch.{component-name}.md` documents
+  - Architecture documents function as HLD for their scope
+- **Standalone feature index range (750-799)** - Dedicated range for features not tied to a slice
+  - Slice range narrowed from 100-799 to 100-749 (650 slots)
+  - New naming convention: `nnn-feature.{feature-name}.md`
+- **Migration guides directory** (`project-guides/migrations/`)
+  - `20260121-migration-guide.md` - Consistency standards migration
+  - Moved v0.10.0 migration guide here (marked obsolete)
+  - Root `MIGRATION.md` now serves as index
+- **DEVLOG.md** - Internal session log for development continuity
+- **Electron tool guides** - Comprehensive guides (00-05) covering architecture, project structure, electron-vite, testing, and decision guide
+- **MCP tool guide** (`tool-guides/mcp/`) - Overview of Model Context Protocol integration
+
+### Changed
+- **YAML date fields standardized** to `dateCreated`/`dateUpdated` (was `created`/`lastUpdated`)
+  - All dates use YYYYMMDD format (no dashes)
+  - Updated all 78+ markdown files and all YAML specs in prompts/guides
+- **Phase 3 (Slice Planning) updated** for dual-context support
+  - Now accepts either project specification or architecture document as parent
+  - Architecture documents serve as HLD for their scope (no separate HLD needed)
+  - Updated `guide.ai-project.003-slice-planning.md` with dual-context methodology
+- **Phase 4 (Slice Design) updated** to reflect current standards
+- **Index ranges restructured**
+  - 100-749: Slices and slice-linked work
+  - 750-799: Standalone features (new)
+  - 800-899: Reserved
+  - Updated `file-naming-conventions.md`, `directory-structure.md`, and all references
+- **All task files in `user/tasks/` now require index prefix**
+  - `inventory.index-migration.md` → `952-inventory.index-migration.md`
+  - `report.index-migration.20250930.md` → `953-report.index-migration.md`
+- **Project-guides readme** updated with Phase 2.5/3.5, migrations, agents/rules sections, and dateCreated/dateUpdated in author schema
+- **YAML frontmatter** now required on all markdown files (was ~55% coverage, now 100%)
+
+### Fixed
+- Malformed frontmatter in `tool-guides/shadcn/setup.md`
+- Removed empty/orphaned files: `900-slice.maintenance.md`, `guide.object-creation.complex.md`, `api-guides/usgs/`
+- Corrected 800-range misuse (feature file moved to 105-slice/tasks)
+- All date fields across project now use consistent `dateCreated`/`dateUpdated` naming
+
 ## [0.10.0] - 2025-10-08
 
 ### BREAKING CHANGES

@@ -56,3 +56,34 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 - Framework guide files (project-guides/*.md) do not require date fields - stable methodology docs
 - Migration guides use YYYYMMDD prefix for chronological sorting
 - All files in `user/tasks/` must use nnn- index prefix
+
+---
+
+## 20260121-20260215
+
+**Session**: Expanded architecture support, Phase 3/4 updates, tool guides, version 0.11.0
+
+### Completed
+- Added Phase 2.5 (HLD Creation) to process guide and prompt library
+- Added Phase 3.5 (Architectural Component Design) prompt
+- Updated Phase 3 (Slice Planning) for dual-context support (project-level and architecture-level)
+- Updated Phase 4 (Slice Design) to reflect current standards
+- Standardized all YAML date fields to `dateCreated`/`dateUpdated` across all files
+- Added standalone feature index range (750-799)
+- Added Electron tool guides (00-05)
+- Added MCP tool guide
+- Updated project-guides readme with new phases, resources, and author schema
+- Full compliance audit — all files verified against naming conventions
+- Released v0.11.0
+
+### Decisions
+- YAML date fields use camelCase: `dateCreated`, `dateUpdated`
+- Standalone features get dedicated 750-799 range (slices narrowed to 100-749)
+- Architecture documents can serve as HLD for their scope (no separate project HLD needed)
+- Tool guides may use 2-digit indices (will formalize in future update)
+- Phase numbering uses decimals (2.5, 3.5) for now — re-indexing deferred
+
+### Open Issues
+- Formalize tool guide indexing conventions
+- Review open GitHub issues (#1, #3, #4, #6)
+- `setup-ide` script needs verification with current structure
