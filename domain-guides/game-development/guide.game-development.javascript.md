@@ -5,6 +5,7 @@ domain: game-development
 subject: javascript-libraries
 audience: [human, ai]
 description: Overview of popular JavaScript 2D game development libraries and frameworks
+dateUpdated: 20260121
 ---
 
 # JavaScript 2D Game Libraries and Frameworks

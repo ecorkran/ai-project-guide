@@ -4,6 +4,7 @@ layer: tool-guide
 tool: react-three-fiber
 audience: [human, ai]
 description: React Three Fiber integration for Three.js in React applications
+dateUpdated: 20260121
 ---
 
 # React Three Fiber (R3F)

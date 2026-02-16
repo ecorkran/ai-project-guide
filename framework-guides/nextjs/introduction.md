@@ -5,6 +5,7 @@ audience:
   - human
   - ai
 purpose: Quickstart guide for non‑interactive, CLI‑driven Next.js projects
+dateUpdated: 20250718
 ---
 
 

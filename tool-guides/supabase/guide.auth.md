@@ -5,6 +5,7 @@ tool: supabase
 subject: authentication
 audience: [human, ai]
 description: Guide to implementing authentication using Supabase in React/Vite apps
+dateUpdated: 20260121
 ---
 
 # Supabase Authentication Guide

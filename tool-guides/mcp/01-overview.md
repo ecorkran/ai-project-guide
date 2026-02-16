@@ -1,3 +1,12 @@
+---
+layer: tool-guide
+tool: MCP
+docType: overview
+description: Overview of Model Context Protocol — architecture, transports, Python/TypeScript SDKs, tool annotations, and best practices.
+dateCreated: 20260215
+dateUpdated: 20260215
+---
+
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
 # I need to provide AI with good guidance on MCP creation.  I'd like to use Anthropic's guidelines, and potentially material from its MCP course.  If needed I could find code samples.

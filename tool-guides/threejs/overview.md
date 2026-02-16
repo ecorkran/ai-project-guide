@@ -6,6 +6,7 @@ audience:
   - ai
 features:
 purpose: 3d graphics and animation
+dateUpdated: 20250718
 ---
 
 ## Essential Three.js Knowledge for Developers

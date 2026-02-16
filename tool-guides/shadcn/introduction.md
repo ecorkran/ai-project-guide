@@ -10,6 +10,7 @@ description: >
   high‑performance UIs with ShadCN, Radix, Tailwind, and Framer Motion in
   React / Next.js projects.
 dependsOn: []
+dateUpdated: 20250717
 ---
 # The Ultimate ShadCN UI Developer Guide: Building Standout Interfaces
 

@@ -5,6 +5,7 @@ framework: nextjs
 subject: troubleshooting
 audience: [human, ai]
 description: Troubleshooting common Next.js issues and upgrade problems
+dateUpdated: 20260121
 ---
 
 # Next.js Troubleshooting and Upgrading

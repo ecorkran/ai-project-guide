@@ -7,6 +7,7 @@ audience: [human, ai]
 description: Local file crawling prompt for automated code reviews
 version: 1.0
 
+dateUpdated: 20250724
 ---
 
   

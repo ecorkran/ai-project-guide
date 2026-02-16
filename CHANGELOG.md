@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [0.11.1] - 2026-02-16
+
+### Fixed
+- Standardize guide frontmatter; ensure `dateUpdated` present on all guide files
+
 ## [0.11.0] - 2026-02-15
 
 ### Added

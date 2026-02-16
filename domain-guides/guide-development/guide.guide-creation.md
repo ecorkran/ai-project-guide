@@ -4,6 +4,7 @@ layer: domain-guide
 subject: creating-tool-guides
 audience: [ai, human]
 description: Standard template and process for producing platform/tool guides
+dateUpdated: 20260121
 ---
 
 # Guide-on-Guides

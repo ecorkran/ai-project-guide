@@ -4,6 +4,7 @@ layer: tool-guide
 tool: supabase
 audience: [human, ai]
 description: Overview of Supabase guides for AI-assisted development
+dateUpdated: 20260121
 ---
 
 # Supabase Tool Guides

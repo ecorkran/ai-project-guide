@@ -3,6 +3,7 @@ docType: index
 layer: process
 audience: [human, ai]
 description: Quick reference and navigation for AI Project Guide methodology files
+dateUpdated: 20260214
 ---
 
 # Project Guides Index

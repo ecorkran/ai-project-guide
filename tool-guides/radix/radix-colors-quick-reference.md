@@ -5,6 +5,7 @@ tool: radix
 subject: colors
 audience: [human, ai]
 description: Quick reference for Radix Colors semantic color system
+dateUpdated: 20260121
 ---
 
 # Radix Colors Quick Reference

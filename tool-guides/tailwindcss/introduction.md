@@ -4,6 +4,7 @@ layer: tool-guide
 tool: tailwindcss
 audience: [human, ai]
 description: Tailwind CSS v4 installation and setup guide
+dateUpdated: 20260121
 ---
 
 # Tailwind CSS v4 Install & Setup Guide

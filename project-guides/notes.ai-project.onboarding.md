@@ -6,6 +6,7 @@ guideRole: onboarding   # new role distinct from primary/support
 audience: [human]       # adjust if AI agents will parse it too
 description: What a new contributor should read & set up before Phase 1.
 dependsOn: [guide.ai-project.000-process.md]
+dateUpdated: 20250930
 ---
 Collection of notes I found useful as a human working with AIs.  AIs are free to read this too.
 

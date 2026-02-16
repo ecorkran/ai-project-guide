@@ -5,6 +5,7 @@ tool: threejs
 subject: lighting
 audience: [human, ai]
 description: Best practices for lighting Three.js scenes
+dateUpdated: 20260121
 ---
 
 # Three.js Lighting Guide

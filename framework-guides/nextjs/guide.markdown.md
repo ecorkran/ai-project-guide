@@ -5,6 +5,7 @@ framework: nextjs
 subject: markdown-rendering
 audience: [human, ai]
 description: Simplified guide to using markdown in Next.js without MDX complexity
+dateUpdated: 20260121
 ---
 
 # Markdown in Next.js

@@ -5,6 +5,7 @@ tool: radix
 subject: theming
 audience: [human, ai]
 description: Comprehensive guide to Radix Colors for dynamic theming with Tailwind v4
+dateUpdated: 20260121
 ---
 
 # Radix Color Theming Guide

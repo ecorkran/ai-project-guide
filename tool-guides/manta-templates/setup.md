@@ -3,6 +3,7 @@ docType: setup-guide
 platform: manta-templates
 audience: [ ai, human ]
 purpose: Detailed installation, configuration, and customization guide for manta-templates
+dateUpdated: 20251008
 ---
 
 # Manta Templates - Setup & Configuration 🔧

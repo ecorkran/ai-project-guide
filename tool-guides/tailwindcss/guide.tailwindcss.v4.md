@@ -5,6 +5,7 @@ tool: tailwindcss
 subject: v4-migration
 audience: [human, ai]
 description: Key changes, migration guide, and setup for Tailwind CSS v4
+dateUpdated: 20260121
 ---
 
 # Tailwind CSS v4 Guide: Key Changes, Migration, and Setup

@@ -4,6 +4,7 @@ platform: manta-templates
 audience: [ ai, human ]
 features: [ layouts, cards, grids, components, responsive-design ]
 purpose: Comprehensive guide to manta-templates component system and layouts
+dateUpdated: 20250724
 ---
 
 # Manta Templates - Component & Layout System 🎯

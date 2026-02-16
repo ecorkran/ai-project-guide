@@ -7,6 +7,7 @@ audience:
   - ai
 description: Setup, configuration, and process (CI) details for use with ShadCN project.
 dependsOn: [./introduction]
+dateUpdated: 20260121
 ---
 
 ## Getting Started

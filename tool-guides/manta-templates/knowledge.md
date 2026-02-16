@@ -3,6 +3,7 @@ docType: knowledge-guide
 platform: manta-templates
 audience: [ ai, human ]
 purpose: Complete component API reference, patterns, and troubleshooting guide
+dateUpdated: 20251008
 ---
 
 # Manta Templates - Component Reference & Knowledge Base 📖

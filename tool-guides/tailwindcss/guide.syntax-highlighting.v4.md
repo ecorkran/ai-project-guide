@@ -5,6 +5,7 @@ tool: tailwindcss
 subject: syntax-highlighting
 audience: [human, ai]
 description: Using Shiki and rehype-shiki for syntax highlighting in Tailwind v4 apps
+dateUpdated: 20260121
 ---
 
 # Syntax Highlighting in Tailwind CSS v4

@@ -6,6 +6,7 @@ guideRole: primary
 audience: [human, ai]
 description: How to write a Phase 1 Concept document.
 dependsOn: [guide.ai-project.000-process.md]
+dateUpdated: 20251008
 ---
 This guide will assist us in creating a project concept, allowing us to describe projects using a consistent format and increasing our chances of completing them successfully.  This Concept is Phase 1 in our guide.ai-project.000-process.  If you do not have access to that guide, stop now and request it from the Project Manager.
 

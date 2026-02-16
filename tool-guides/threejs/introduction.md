@@ -3,6 +3,7 @@ docType: tool-guide
 platform: threejs
 audience: human, ai
 purpose: 3d graphics and animation
+dateUpdated: 20250718
 ---
 
 

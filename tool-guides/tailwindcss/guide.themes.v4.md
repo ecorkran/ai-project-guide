@@ -5,6 +5,7 @@ tool: tailwindcss
 subject: theming-v4
 audience: [human, ai]
 description: Color palettes and multi-theme setup for Tailwind CSS v4
+dateUpdated: 20260121
 ---
 
 # Tailwind CSS v4 Theming Guide

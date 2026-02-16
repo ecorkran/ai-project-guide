@@ -8,6 +8,7 @@ features:
   - React integration with ShadCN UI
   - Option for zero-JS static setup
 purpose: Quickstart guide for Astro projects with and without React
+dateUpdated: 20250718
 ---
 
 

@@ -5,6 +5,7 @@ audience:
   - human
   - ai
 purpose: installation & project setup
+dateUpdated: 20250718
 ---
 
 ## Three.js Setup Guide

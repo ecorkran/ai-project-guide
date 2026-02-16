@@ -4,6 +4,7 @@ platform: radix-ui
 audience: [ai, human]
 features: [theming, colors, ui-components, accessibility]
 purpose: Guide to using Radix UI Colors and Components for accessible theming
+dateUpdated: 20250718
 ---
 
 # Radix UI Tool Guide

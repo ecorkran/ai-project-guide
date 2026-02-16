@@ -5,6 +5,7 @@ domain: game-development
 subject: 2D-platforms
 audience: [human, ai]
 description: Overview of top 2D game development platforms
+dateUpdated: 20260121
 ---
 
 # Top 2D Game Development Platforms in 2025

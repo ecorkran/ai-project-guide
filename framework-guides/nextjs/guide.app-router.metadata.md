@@ -5,6 +5,7 @@ framework: nextjs
 subject: app-router-metadata
 audience: [human, ai]
 description: Managing metadata in Next.js App Router applications
+dateUpdated: 20260121
 ---
 
 # Developer Guide: Using Metadata in Next.js Apps with the App Router

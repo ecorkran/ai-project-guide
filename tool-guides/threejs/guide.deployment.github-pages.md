@@ -5,6 +5,7 @@ tool: threejs
 subject: deployment-github-pages
 audience: [human, ai]
 description: Deploying Vite + Three.js apps to GitHub Pages with custom domains
+dateUpdated: 20260121
 ---
 
 # Deploying to GitHub Pages
