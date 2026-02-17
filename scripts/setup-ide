@@ -152,9 +152,11 @@ copy_rules() {
         cp "$file" "$target_path"
         print_status $GREEN "✅ Copied $filename → $target_filename"
         
-        # Validate frontmatter
-        if ! validate_frontmatter "$target_path"; then
-            ((warning_count++))
+        # Validate frontmatter (skip for agent files — different schema)
+        if [ "$file_type" != "agent" ]; then
+            if ! validate_frontmatter "$target_path"; then
+                ((warning_count++))
+            fi
         fi
         
         ((copied_count++))
