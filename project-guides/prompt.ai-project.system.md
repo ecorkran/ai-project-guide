@@ -726,7 +726,7 @@ Process:
 3. File Creation Rules:
 - Use existing file naming conventions from `file-naming-conventions.md`
 - Include YAML front matter for all created files
-- Add the correct date (YYYY-MM-DD) in the file's frontmatter
+- Add the correct date (YYYYMMDD) in the file's frontmatter
 - Reference source analysis document (if applicable)
 - Add line numbers and specific locations where applicable
 

@@ -1,9 +1,10 @@
 ---
-description: TypeScript syntax rules, tRPC router guidelines, and strict typing standards
+description: Electron-specific development rules including module loading and process architecture
 globs: ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"]
 alwaysApply: false
 ---
 
+# Electron Rules
 Module Loading: ESM vs CJS (Electron)
 	•	Use ESM for main and renderer processes — modern syntax, async loading, cleaner imports.
 	•	Keep preload scripts CJS if contextIsolation: true (default and secure).

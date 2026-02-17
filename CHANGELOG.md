@@ -12,11 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-### Changed
-
 ### Fixed
+- Minor consistency fixes across rules files and `setup-ide` agent validation
 
 ## [0.11.2] - 2026-02-17
 

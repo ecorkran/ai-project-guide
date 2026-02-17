@@ -8,7 +8,7 @@ alwaysApply: false
 
 ## TypeScript & Syntax
 - Strict mode. Avoid `any`.
-- Use optional chaining, union types (no enums).
+- Use optional chaining, union types (no TS enums — prefer `as const` objects or string literal unions).
 
 ## Structure
 - Use `tsx` scripts for migrations.

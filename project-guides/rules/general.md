@@ -33,6 +33,19 @@ alwaysApply: true
 - **Preserve User-Provided Concept sections** - When editing project documents (concept, spec, feature, architecture, slice designs), NEVER modify or remove sections titled "## User-Provided Concept". These contain the human's original vision and must be preserved exactly as written. You may add new sections or edit AI-generated sections, but user concept sections are sacred.
 - never include usernames, passwords, API keys, or similar sensitive information in any source code or comments.  At the very least it must be loaded from environment variables, and the .env used must be included in .gitignore.  If you find any code in violation of this, you must raise an issue with Project Manager.
 
+## Document Standards
+- **All markdown files must include YAML frontmatter.** Minimum: `docType` field. See `file-naming-conventions` for full metadata spec.
+- **Dates in YAML**: Use `YYYYMMDD` format (no dashes). Example: `dateCreated: 20260217`
+- **Document naming**: Use periods (`.`) as primary separators, hyphens (`-`) for secondary grouping: `[document-type].[subject].[additional-info].md`
+- **3-digit index system (000-999)**: Files use indices for lineage tracing and categorization. Related documents share a base index. See `file-naming-conventions` for reserved ranges and initiative-based numbering.
+  - 000-009: Core process guides
+  - 050-099: Project-level architecture
+  - 100-799: Initiative working space (claim base at increments of 10)
+  - 900-999: Operational (reviews, analysis, maintenance)
+- **File size limits**: Target ~350 lines for non-architecture project documents. If a file exceeds this by >33% (~465 lines), split using `-1.md`, `-2.md` suffix convention.
+- **Living Document Pattern**: Human and AI collaborate on a single evolving file. Sections titled `## User-Provided Concept` are sacred and must never be modified by AI. See `guide.ai-project.000-process` for details.
+- **Modular rules**: Additional platform-specific rules may exist in `project-guides/rules/`. Consult if working in a technology not covered by the rules loaded here.
+
 ## MCP (Model Context Protocol)
 - Always use context7 (if available) to locate current relevant documentation for specific technologies or tools in use.
 - Do not use smithery Toolbox (toolbox) for general tasks. Project manager will guide its use.
@@ -53,4 +66,4 @@ alwaysApply: true
 - After all changes are made, ALWAYS build the project.
 - If available, git add and commit *from project root* at least once per task (not per child subitem)
 
-- Log warnings to `/project-documents/user/tasks/950-tasks.maintenance.md`. Write in raw markdown format, with each warning as a list item, using a checkbox in place of standard bullet point. Note that this path is affected by `monorepo active` mode.
+- Log warnings to `project-documents/user/tasks/950-tasks.maintenance.md`. Write in raw markdown format, with each warning as a list item, using a checkbox in place of standard bullet point. Note that this path is affected by `monorepo active` mode.

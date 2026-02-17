@@ -62,7 +62,6 @@ alwaysApply: false
 - Use `async`/`await` for I/O-bound operations (DB, API calls).
 - Use `asyncio.TaskGroup` (3.11+) for safer concurrent task management.
 - Profile before optimizing (use `py-spy` or `cProfile`).
-- functools.cache for expensive pure functions
 - Use `functools.cache` or `lru_cache` for expensive pure functions.
 
 ## Security & Best Practices
