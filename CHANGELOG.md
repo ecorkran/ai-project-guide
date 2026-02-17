@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.3] - 2026-02-17
+
+### Added
+- **Phase 5: Task Breakdown guide** (`guide.ai-project.005-task-breakdown.md`) — playbook for converting slice designs into granular task lists
+
 ### Fixed
 - Minor consistency fixes across rules files and `setup-ide` agent validation
 
