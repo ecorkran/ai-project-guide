@@ -18,6 +18,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [0.11.2] - 2026-02-17
+
+### Added
+- Session State Summary prompt in `prompt.ai-project.system.md` for DEVLOG entries at end of work sessions
+
+### Changed
+- Phase 7: Added Session State Summary step at end of each work session
+- Phase 8: Added Session State Summary step for integration results and next planned slice
+
 ## [0.11.1] - 2026-02-16
 
 ### Fixed

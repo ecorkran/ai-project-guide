@@ -623,6 +623,42 @@ Perform the following items and add their output to the compacted context:
 * add the tag --COMPACTED-- after inserting this information. 
 ```
 
+##### Session State Summary
+*Use at the end of any work session — whether a slice is complete, partially complete, or work was interrupted. Produces a DEVLOG entry that enables project resumption by a human or AI in a new session. This is distinct from Summarize Context (above), which preserves state for in-session compaction.*
+```markdown
+Write a Session State Summary for project {project}. Append to DEVLOG.md under today's date heading (## YYYYMMDD). If an entry for today already exists, append below it under a new subsection.
+
+Your role is Senior AI.
+
+**If a slice was completed:**
+###### Slice nnn: {Slice Name} — Complete
+Include:
+- Commits made during this slice (short hash + one-line description, table or list)
+- What works: build status, test results, verified functionality
+- What's pending: manual verification, known issues, deferred items
+- Issues logged to maintenance (file reference + brief description)
+- Key implementation decisions or surprises worth noting for future context
+- Next: the next slice or work item to pick up
+
+**If work is in progress (mid-slice or mid-task):**
+###### Slice nnn: {Slice Name} — In Progress
+Include:
+- Current task and subtask (reference the task file and specific item)
+- What's been completed so far in this session
+- Commits made during this session (if any)
+- Blockers or open questions for Project Manager
+- Key decisions made during the session
+- State needed to resume: which task, what file, any important context
+
+**Guidelines:**
+- Keep it concise — this will be used as input for context assembly on the next session
+- Do not include full code listings or verbose explanations
+- Focus on: state, decisions, and continuation context
+- If tests are relevant, include pass/fail counts and note any failures with brief descriptions
+- Reference file paths for any issues logged to maintenance or other task files
+- This is a documentation task, not a coding task
+```
+
 ##### Maintenance Task
 ```markdown
 Operate as a Senior AI. Use the issue description provided, and add tasks to the maintenance file to address implementation of the issue or feature. Add a new task to your maintenance file, which should be `tasks/950-tasks.maintenance.md` unless there is reason to deviate (there normally isn't). This should be used for an item small enough to represent as a single main task.

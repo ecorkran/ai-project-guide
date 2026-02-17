@@ -147,6 +147,7 @@ For an app example:
    - Code reviews
    - Design reviews
    - Ensuring alignment with the slice design and overall project vision
+   - At the end of each work session — whether all tasks are complete or work is paused mid-slice — write a Session State Summary to `DEVLOG.md`. Use the Session State Summary prompt in `prompt.ai-project.system`.
    - Outcome: _Working software increment for the slice, tested and validated._
 
 8. **Phase 8: Slice Integration & Iteration**
@@ -155,9 +156,9 @@ For an app example:
    - For team projects or future parallelization, this becomes similar to git merge/PR integration
    - Verify that slice dependencies and interfaces work as expected
    - Update project documentation and architecture understanding
+   - Write a Session State Summary to `DEVLOG.md` if one was not written at the end of Phase 7. The Phase 8 summary should include integration results and the next planned slice.
    - Plan next slice or address any issues discovered
    - Outcome: _Integrated functionality ready for the next development cycle._
-
 ---
 
 #### When to Use Slice-Based vs Traditional Approach
