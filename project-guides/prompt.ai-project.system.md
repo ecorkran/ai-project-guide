@@ -348,6 +348,7 @@ Your role is Senior AI. Use exactly one of the following as input:
 2. The feature design document `user/features/{feature}.md`.
 
 Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md` (where `{sliceindex}` matches the parent slice's index, preserving lineage per `file-naming-conventions.md`). 
+Use `guide.ai-project.005-task-breakdown` for detailed guidance on this phase.
 
 Include:
 1. YAML front matter including slice name, project, LLD reference, dependencies, and current project state

@@ -271,6 +271,8 @@ These files, shared by all of our projects, are contained in {project-root}/proj
   and breaking projects into vertical slices.
 * guide.ai-project.004-slice-design: detailed guidance on creating low-level designs
   for individual slices.
+* guide.ai-project.005-task-breakdown: guidance on converting slice/feature
+  designs into granular task lists.  
 * guide.ai-project.006-task-expansion (aka: AI Task Expansion Guide): specific
   guidance on task expansion for slice-based development.
 * guide.ai-project.090-code-review (aka: AI Code Review Guide): specific guidance for 
