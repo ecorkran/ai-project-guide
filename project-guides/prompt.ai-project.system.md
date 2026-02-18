@@ -627,7 +627,7 @@ Perform the following items and add their output to the compacted context:
 ##### Session State Summary
 *Use at the end of any work session — whether a slice is complete, partially complete, or work was interrupted. Produces a DEVLOG entry that enables project resumption by a human or AI in a new session. This is distinct from Summarize Context (above), which preserves state for in-session compaction.*
 ```markdown
-Write a Session State Summary for project {project}. Append to DEVLOG.md under today's date heading (## YYYYMMDD). If an entry for today already exists, append above it under a new subsection, preserving the reverse chronological order both overall, and within the entries themselves.
+Write a Session State Summary for project {project}. Append to DEVLOG.md in the project root.  Add entry under today's date heading (## YYYYMMDD). If an entry for today already exists, append above it under a new subsection, preserving the reverse chronological order both overall, and within the entries themselves.
 
 Your role is Senior AI.
 
@@ -669,7 +669,7 @@ Include:
 - This is a documentation task, not a coding task
 
 **DEVLOG.md format:**
-If DEVLOG.md does not exist, create it with the following structure:
+If DEVLOG.md does not exist, create it at project-root directory with the following structure:
 
 # Development Log
 
