@@ -118,6 +118,23 @@ AI agents executing tasks lack the mental continuity a human developer maintains
 8. Config tests
 9. Full validation pass
 
+#### Commit Strategy
+
+Tasks should be structured so that work is committed frequently enough to enable rollback if subsequent tasks fail. Do not batch all commits into a single final task.
+
+**Rules:**
+- **Commit at coherent checkpoints.** Each commit should leave the project in a buildable (or at minimum, non-broken) state. A good checkpoint is after a logical group of tasks that together represent a stable milestone.
+- **Never defer all commits to the end.** A single "commit everything" task at the end of a slice means any mid-slice failure requires redoing all work. Distribute commits throughout the task sequence.
+- **Verify before destructive tasks.** When a task sequence involves creating something new and then deleting the old version (migration, extraction, refactoring), insert a build/test verification step between creation and deletion. Commit after verification passes so the old files are still recoverable if needed.
+- **One commit per task is a reasonable default.** For simple tasks this may be more granular than necessary, but it's a safer starting point than too few commits. The task breakdown may specify a different cadence if justified.
+
+**Example checkpoint pattern for a migration/extraction slice:**
+1. Create new files → commit
+2. Wire up exports, verify build → commit
+3. Update consumers → commit
+4. Verify full build/tests pass → commit
+5. Delete old files, final verification → commit
+
 #### What to Include
 - Consult `ai-project-guide/tool-guides/{tool}/` for each tool referenced in the design. If tool knowledge is not present, search the web if possible and alert the Project Manager.
 - If the project contains or will contain `package.json`, include a setup task that adds scripts from `snippets/npm-scripts.ai-support.json`.

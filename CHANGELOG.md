@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+- Phase 5 Guide: added frequent commit stretegy.
+
+### Fixed
+
+
 ## [0.11.4] - 2026-02-17
 
 ### Added
