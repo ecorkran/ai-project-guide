@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.4] - 2026-02-17
+
+### Added
+- UI development rules file (`rules/ui-development.md`)
+
+### Changed
+- Phase 5 guide: added "test-with" principle for task breakdown
+- Phase 6 guide: streamlined and updated to reflect 2026 practices
+- Session State Summary prompt: updated for clarity
+
 ## [0.11.3] - 2026-02-17
 
 ### Added

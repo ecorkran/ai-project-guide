@@ -4,218 +4,117 @@ phase: 6
 phaseName: task-expansion
 guideRole: primary
 audience: [human, ai]
-description: Phase 6 playbook for turning slice task breakdowns into atomic subtasks.
+description: Optional Phase 6 playbook for expanding complex tasks into more granular subtasks.
 dependsOn:
   - guide.ai-project.000-process.md
-  - guide.ai-project.002-spec.md
-  - guide.ai-project.003-slice-planning.md
+  - guide.ai-project.005-task-breakdown.md
 dateCreated: 20250101
-dateUpdated: 20260121
+dateUpdated: 20260218
 ---
+
 #### Summary
-This guide provides instructions and methodology for expanding and enhancing slice task breakdowns in order to create manageable lists to give to an (AI) working as a developer. This assignment is Phase 6 in `guide.ai-projects.00-process`, and will not be received (and cannot be started) until confirmation that the Slice Task Breakdown (Phase 5 Output) is available and approved by the Project Manager.
+This guide provides instructions for expanding complex slice task breakdowns into more granular, atomic subtasks. This is Phase 6 in `guide.ai-project.000-process`.
 
-#### Inputs and Outputs
-The inputs to this task are as follows:
+**This phase is optional.** Most task breakdowns produced in Phase 5 are sufficient for direct execution. Phase 6 should only be invoked when the Project Manager determines that specific tasks are too complex or ambiguous for a junior AI developer to execute without additional guidance.
+
+Phase 6 cannot begin until the slice task breakdown (Phase 5 output) is approved by the Project Manager.
+
+#### Role
+Senior AI performs this phase. The Project Manager approves the output before proceeding to Phase 7 (Implementation).
+
+#### When to Use This Phase
+Invoke Phase 6 when a Phase 5 task breakdown contains tasks that:
+- Require multi-step coordination across several files or systems
+- Involve unfamiliar libraries or tools where the agent would benefit from explicit setup steps
+- Bundle multiple distinct concerns that should be separated for reliable execution
+- Have ambiguous success criteria that need to be made more specific
+
+Do not invoke Phase 6 merely to add verbosity. If a task is clear and actionable as written, it should pass through unchanged.
+
+#### Inputs
 * guide.ai-project.000-process
+* guide.ai-project.005-task-breakdown
 * guide.ai-project.006-task-expansion (this document)
-* {project} - spec (phase 2 output)
-* {project} - high-level design (phase 3 output)
-* {slice} - slice design (phase 4 output)
-* {slice} - slice task breakdown (phase 5 output)
-* rules/ - directory containing specific coding rules and guidelines organized by platform/technology.
+* {project} - spec (Phase 2 output)
+* {project} - high-level design (Phase 2.5 output)
+* {slice} - slice design (Phase 4 output)
+* {slice} - slice task breakdown (Phase 5 output)
+* rules/ - directory containing coding rules and guidelines organized by platform/technology
 
-If any inputs are missing, insufficient, or you have questions, stop and resolve these with the Project Manager before proceeding.
+If any inputs are missing or insufficient, stop and resolve with the Project Manager before proceeding.
 
-The output should be the updated slice task file with expanded and enhanced tasks. Ensure that every task in the input is accounted for.
+#### Output
+The updated slice task file with expanded tasks. The output replaces the Phase 5 file in place. Update the `dateUpdated` field in the YAML front matter. Follow the formatting conventions established in `guide.ai-project.005-task-breakdown`.
 
-#### Output Formatting
-For this job we'll work in raw markdown code. It's easy for all of us to read and write, and the raw code more easily pastes into other applications and documents.
+#### Procedure
+1. Review the Phase 5 task file alongside the slice design and HLD.
+2. For each task, evaluate: can a junior AI developer complete this as described without making product decisions or assumptions? If yes, keep it as-is. If no, expand it.
+3. When expanding, add granularity through subtasks, explicit file paths, or brief code hints — but avoid writing full implementation code. This remains a planning document.
+4. Preserve the test-with ordering established in Phase 5. Tests for a component must remain immediately after that component's implementation. If the Phase 5 input does not follow this pattern, restructure during expansion. See `guide.ai-project.005-task-breakdown` for details.
+5. Verify every original task is accounted for in the output.
+6. Verify file length remains within the guidelines specified in `guide.ai-project.005-task-breakdown`.
 
-We will continue to follow the checkbox list format that we have for our main tasks document. L1 items have checkbox, L2 items underneath them, indented and also with checkboxes. The Success condition remains in the L2 list not the L1. Subtasks beyond L2 are considered L3, and should be numbered.
+#### Example: When Expansion Helps
 
-Code blocks should use the multi-line code block syntax tagged with their language:
-```{language}
-{code block here}
-```
-
-Very simple code statements (ex: npm run dev) can use inline: `npm run dev` (etc).
-
-Document may begin with a 1-line title in H1 format. No other H1 should be present. In general, start at H3 or H3 and prefer H3, H4, H5. Avoid any emoji in this document. This is designed to be efficient, streamlined, and fast -- no distractions.
-
-#### Specific Instructions
-Our job is to examine the slice task breakdown and expand or enhance the tasks where this additional granularity would improve our AI developer's chances of completing the task successfully.
-
-For any additional context, how and where we fit into the project or the overall plan, consult the additional documentation provided with the input. While we are mostly not writing code, the rules/ directory will provide guidelines for writing any minimal required code as well as potential usefulness in structuring the tasks.
-
-Phases 1-5 are completed and approved. We are going to work on Phase 6, Task enhancement and expansion for the current slice. We will work with the slice task file created in Phase 5: `user/tasks/nnn-tasks.{slice-name}.md`.
-
-###### Procedure
-* Identify and review all required inputs and confirm any questions, omissions, or inconsistencies.
-* Work with the existing slice task file `user/tasks/nnn-tasks.{slice-name}.md`.
-* For each task in the slice, examine it. Can a relatively junior developer complete it as described? If we could improve the odds of that by making the task more granular, adding detail, potentially splitting into subtasks, let's do it.
-* Preserve the YAML front matter and context summary - these are crucial for context management.
-* Make sure we cover all the tasks.
-* If a task cannot effectively be improved, add it to our output verbatim.
-* Update the `lastUpdated` field in the YAML front matter.
-
-##### Example of Input Task (from Phase 5)
-Note: do use the markdown multiline codeblocks as we described. I couldn't embed them all in here due to formatting concerns and have indicated them in the input and output examples.
+**Phase 5 input (too vague):**
 
 ```markdown
----
-slice: user-authentication
-project: trading-app
-lld: user/slices/01-slice.user-authentication.md
-dependencies: [foundation-setup]
-projectState: foundation complete, database schema defined
-dateCreated: 20250115
-dateUpdated: 20250115
----
-
-## Context Summary
-- Working on user authentication slice
-- Foundation work (Next.js app, database) is complete
-- This slice provides login/logout/registration functionality
-- Next slice: trading-dashboard (depends on this)
-
-### User Registration & Login Setup
-- [ ] Set up NextAuth.js authentication system  
-  - [ ] Install and configure NextAuth.js with TypeScript support
-  - [ ] Configure providers (email/password for MVP)
-  - [ ] Set up database adapter for user sessions
+- [ ] Set up authentication system
+  - [ ] Install and configure auth library with database adapter
+  - [ ] Configure providers for email/password
+  - [ ] Set up session management
   - [ ] Success: Users can register and login successfully
 ```
 
-##### Example of Expansion (Phase 6)
-This is provided as an example of expansion. Use this in addition to the additional information in this document to guide your evaluation and expansion.
+**Phase 6 expansion:**
 
 ```markdown
----
-slice: user-authentication
-project: trading-app
-lld: user/slices/01-slice.user-authentication.md
-dependencies: [foundation-setup]
-projectState: foundation complete, database schema defined
-dateCreated: 20250115
-dateUpdated: 20250116
----
+- [ ] Install authentication dependencies
+  - [ ] Install core auth package and database adapter via package manager
+  - [ ] Verify no dependency conflicts with existing packages
+  - [ ] Success: Dependencies installed, lock file updated
 
-## Context Summary
-- Working on user authentication slice
-- Foundation work (Next.js app, database) is complete
-- This slice provides login/logout/registration functionality
-- Next slice: trading-dashboard (depends on this)
-
-### User Registration & Login Setup
-
-#### Install and Configure NextAuth.js
-- [ ] Install NextAuth.js dependencies
-  - [ ] Install core NextAuth.js packages
-    1. Run:
-       (multi-line code block)
-       npm install next-auth @next-auth/prisma-adapter
-       npm install -D @types/next-auth
-       
-  - [ ] Verify TypeScript support is properly configured
-  - [ ] Success: NextAuth packages installed without conflicts
-
-#### Configure Authentication Providers
-- [ ] Set up email/password authentication
-  - [ ] Create NextAuth configuration file at `pages/api/auth/[...nextauth].ts`
+- [ ] Configure authentication provider
+  - [ ] Create auth configuration file at the path specified in the framework docs
   - [ ] Configure credentials provider for email/password
-    (multi-line code block)typescript
-    import NextAuth from 'next-auth'
-    import CredentialsProvider from 'next-auth/providers/credentials'
-    
-    export default NextAuth({
-      providers: [
-        CredentialsProvider({
-          name: 'credentials',
-          credentials: {
-            email: { label: 'Email', type: 'email' },
-            password: { label: 'Password', type: 'password' }
-          },
-          // Configuration continues...
-        })
-      ]
-    })
-    
-  - [ ] Add environment variables for NextAuth configuration
-    1. Add to `.env.local`:
-       (multi-line code block)
-       NEXTAUTH_URL=http://localhost:3000
-       NEXTAUTH_SECRET=your-secret-key-here
-       
-  - [ ] Success: Basic email/password authentication configured
+  - [ ] Add required environment variables to `.env.example`
+  - [ ] Success: Auth configuration loads without errors
 
-#### Set Up Database Integration
-- [ ] Configure Prisma adapter for NextAuth
-  - [ ] Install Prisma adapter: `npm install @next-auth/prisma-adapter`
-  - [ ] Update NextAuth config to use Prisma adapter
-  - [ ] Add NextAuth schema to Prisma schema file
-    (multi-line code block)prisma
-    model Account {
-      id                String  @id @default(cuid())
-      userId            String
-      type              String
-      provider          String
-      providerAccountId String
-      // Additional NextAuth fields...
-    }
-    
-  - [ ] Run database migration: `npx prisma migrate dev --name add-auth`
-  - [ ] Success: Database tables created for authentication
+- [ ] Configure database integration for sessions
+  - [ ] Add auth-related tables to the database schema
+  - [ ] Run database migration
+  - [ ] Success: Session tables created, adapter connects successfully
 
-#### Create Authentication UI Components
-- [ ] Build login form component
-  - [ ] Create `src/components/auth/LoginForm.tsx`
-  - [ ] Include email and password fields with validation
-  - [ ] Add login button that calls NextAuth signIn
-  - [ ] Handle loading states and error messages
-  - [ ] Success: Functional login form renders and submits
-
-- [ ] Build registration form component
-  - [ ] Create `src/components/auth/RegisterForm.tsx`
-  - [ ] Include email, password, and confirm password fields
-  - [ ] Add client-side validation for password strength
-  - [ ] Handle user creation and automatic login after registration
-  - [ ] Success: Users can create accounts through the form
-
-#### Final Integration Testing
-- [ ] Test complete authentication flow
-  - [ ] Verify user registration creates database records
-  - [ ] Verify login works with created credentials
-  - [ ] Verify logout clears session properly
-  - [ ] Test invalid credentials handling
-  - [ ] Success: End-to-end authentication flow works correctly
+- [ ] Write authentication tests
+  - [ ] Test user registration creates database records
+  - [ ] Test login succeeds with valid credentials
+  - [ ] Test login fails with invalid credentials
+  - [ ] Test session is cleared on logout
+  - [ ] Success: All auth tests pass
 ```
 
-Tasks expansions continue with similar levels of details, and should conclude with something such as the following:
+Notice the expansion split one vague task into three focused implementation tasks with a test task immediately following, while remaining stack-agnostic.
+
+#### Example: When Expansion Is Unnecessary
+
+**Phase 5 input (already sufficient):**
+
 ```markdown
-#### Final Verification
-- [ ] Confirm slice completion criteria:
-  - [ ] All authentication functionality working
-  - [ ] Database integration tested
-  - [ ] UI components responsive and accessible
-  - [ ] Error handling implemented
-  - [ ] Ready for integration with next slice (trading-dashboard)
+- [ ] Define AgentState enum
+  - [ ] Create `src/project/models.py`
+  - [ ] Define `AgentState(StrEnum)` with values: idle, processing, failed, terminated
+  - [ ] Success: `from project.models import AgentState` works; all values match spec
 ```
 
-##### Additional Rules for UI Tasks
-When working with UI/UX tasks, always consult the AI Development Guide - UI (`guide.ui-development.ai`).
-Mockups should be provided to cover all UI tasks. Mockups should be interpreted as layout and design guides. Ensure that controls or placeholders are present, in 1:1 correspondence with the UI. Placeholders are only acceptable if specifically indicated and for the specific elements referenced. UI elements should be laid out and positioned as specified by the mockup.
+This task is clear, narrow, and has specific success criteria. Pass it through unchanged.
 
-If requested, generate a color scheme from a base color and a description, and apply this theme to the UI.
+#### Success Criteria
+Phase 6 is complete when:
+- All tasks from the Phase 5 input are accounted for
+- Complex or ambiguous tasks have been expanded into actionable subtasks
+- Clear tasks have been preserved as-is (not padded with unnecessary detail)
+- Test-with ordering is maintained throughout
+- The Project Manager approves the expanded task breakdown
 
-If requested to draw elements in a certain general style (ex: bento cards), adhere to this layout and use it to guide any design. If you do not have enough information or knowledge of the style, request information and don't proceed until satisfied you have the information you need.
-
-##### Context Preservation
-This phase is crucial for maintaining context across development sessions. The expanded tasks should include enough detail that:
-- A fresh AI agent can understand what needs to be done
-- The slice can be resumed after context loss or agent restart
-- Dependencies on other slices are clearly documented
-- Current project state is preserved
-
-##### Summary
-Phase 6 transforms slice task breakdowns into detailed, implementable work items that our AI developers can execute with confidence. The focus is on granularity, clarity, and context preservation to ensure successful slice completion.
+#### Next Steps
+With approved task expansion, proceed to Phase 7: Implementation.

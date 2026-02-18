@@ -83,6 +83,41 @@ Each task must have:
 
 Tasks should be organized so they can be completed sequentially.  Create separate sub-tasks for each similar component rather than grouping them.
 
+#### Testing Strategy: Test-With, Not Test-After
+
+Tests for a component must be the immediate successor task to that component's implementation, not batched into a separate testing phase. This principle is called **test-with** and applies to all task breakdowns.
+
+**Why this matters for AI-driven execution:**
+AI agents executing tasks lack the mental continuity a human developer maintains across a coding session. If tests are deferred, defects introduced early compound silently through subsequent tasks. Catching issues immediately after implementation — while the component is the "current concern" — keeps the feedback loop tight and prevents rework cascades.
+
+**Rules:**
+- **Test infrastructure first.** If the slice requires new test scaffolding (conftest, fixtures, test utilities), that task must appear before any implementation tasks that will be tested.
+- **Pair implementation with tests.** Each implementation task or logical group of closely related implementation tasks must be immediately followed by its corresponding test task. Never batch all tests at the end.
+- **Tests gate forward progress.** A test task's success criteria must pass before subsequent implementation tasks begin. This is implicit in sequential ordering — place the test task between the implementation it validates and the next implementation that depends on it.
+- **Pure TDD is not required.** Writing tests before implementation (red-green-refactor) is acceptable but not mandated. The minimum expectation is that tests are written and passing immediately after their corresponding implementation, within the same logical unit of work.
+
+**Example ordering (correct):**
+1. Project setup
+2. Test infrastructure (conftest, fixtures)
+3. Implement models
+4. **Model tests** ← immediately after models
+5. Implement provider registry
+6. **Provider registry tests** ← immediately after registry
+7. Implement config
+8. **Config tests** ← immediately after config
+9. Full validation pass
+
+**Anti-pattern (incorrect):**
+1. Project setup
+2. Implement models
+3. Implement provider registry
+4. Implement config
+5. Test infrastructure ← too late
+6. Model tests ← 3 tasks too late
+7. Provider registry tests
+8. Config tests
+9. Full validation pass
+
 #### What to Include
 - Consult `ai-project-guide/tool-guides/{tool}/` for each tool referenced in the design. If tool knowledge is not present, search the web if possible and alert the Project Manager.
 - If the project contains or will contain `package.json`, include a setup task that adds scripts from `snippets/npm-scripts.ai-support.json`.

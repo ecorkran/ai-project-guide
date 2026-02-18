@@ -341,7 +341,7 @@ Stop and request clarification if you need more information to complete the slic
 *This should be usable for Slice or Feature task breakdown.*
 
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown. Convert the design for {slice | feature} in project {project} into granular, actionable tasks.  Note that this request can be used for *slice* or *feature*, but only one will be applicable to a particular request.
+We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown. Convert the design for {slice | feature} in project {project} into granular, actionable tasks.  Note that this request can be used for *slice* or *feature*, but only one will be applicable to a particular request.  
 
 Your role is Senior AI. Use exactly one of the following as input:
 1. The slice design document `user/slices/{slice}.md`.
@@ -627,7 +627,7 @@ Perform the following items and add their output to the compacted context:
 ##### Session State Summary
 *Use at the end of any work session — whether a slice is complete, partially complete, or work was interrupted. Produces a DEVLOG entry that enables project resumption by a human or AI in a new session. This is distinct from Summarize Context (above), which preserves state for in-session compaction.*
 ```markdown
-Write a Session State Summary for project {project}. Append to DEVLOG.md under today's date heading (## YYYYMMDD). If an entry for today already exists, append below it under a new subsection.
+Write a Session State Summary for project {project}. Append to DEVLOG.md under today's date heading (## YYYYMMDD). If an entry for today already exists, append above it under a new subsection, preserving the reverse chronological order both overall, and within the entries themselves.
 
 Your role is Senior AI.
 
@@ -651,6 +651,15 @@ Include:
 - Key decisions made during the session
 - State needed to resume: which task, what file, any important context
 
+**If design or planning work was completed (no implementation):**
+###### Slice nnn: {Slice Name} — Design Complete
+Include:
+- Documents created or updated (file paths)
+- Key design decisions and rationale
+- Scope summary (what the design covers)
+- Notable findings (broken imports, gaps discovered, deferred items)
+- Next: what implementation or planning step follows
+
 **Guidelines:**
 - Keep it concise — this will be used as input for context assembly on the next session
 - Do not include full code listings or verbose explanations
@@ -658,6 +667,19 @@ Include:
 - If tests are relevant, include pass/fail counts and note any failures with brief descriptions
 - Reference file paths for any issues logged to maintenance or other task files
 - This is a documentation task, not a coding task
+
+**DEVLOG.md format:**
+If DEVLOG.md does not exist, create it with the following structure:
+
+# Development Log
+
+A lightweight, append-only record of development activity. Newest entries first.
+Format: `## YYYYMMDD` followed by brief notes (1-3 lines per session).
+---
+
+## YYYYMMDD
+### Slice nnn: {Slice Name} — {Status}
+- {concise session notes as described above}
 ```
 
 ##### Maintenance Task
