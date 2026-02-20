@@ -12,10 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
+## [0.11.5] - 2026-02-19
 
 ### Changed
-- Phase 5 Guide: added frequent commit stretegy.
+- Phase 5 guide: added frequent commit strategy, specify DEVLOG.md location
+- TypeScript rules: full overhaul
 
 ### Fixed
 
