@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.6] - 2026-02-20
+
+### Added
+- Git conventions and rules file (`rules/git.md`) with semantic commit specification
+- Future work section in slice planning guide
+
+### Changed
+- Testing rules: specify centralized testing approach
+- Various rules files updated (electron, general, python, react, review, sql, ui-development)
+
 ## [0.11.5] - 2026-02-19
 
 ### Changed

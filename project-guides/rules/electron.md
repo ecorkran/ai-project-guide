@@ -4,7 +4,7 @@ globs: ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"]
 alwaysApply: false
 ---
 
-# Electron Rules
+### Electron Rules
 Module Loading: ESM vs CJS (Electron)
 	•	Use ESM for main and renderer processes — modern syntax, async loading, cleaner imports.
 	•	Keep preload scripts CJS if contextIsolation: true (default and secure).

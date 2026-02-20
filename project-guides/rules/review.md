@@ -4,9 +4,9 @@ globs:
 alwaysApply: false
 ---
 
-# Code Review Rules
+### Code Review Rules
 
-## Purpose
+#### Purpose
 
 These rules provide **quick reference for lightweight, ad-hoc code reviews** during active development—spot-checking code, reviewing changes before commit, or quick quality checks.
 
@@ -14,9 +14,9 @@ These rules provide **quick reference for lightweight, ad-hoc code reviews** dur
 
 **→ `project-documents/ai-project-guide/project-guides/guide.ai-project.090-code-review.md`**
 
-## Quick Reference
+#### Quick Reference
 
-### File Naming
+##### File Naming
 
 **Review documents:**
 - Location: `user/reviews/`
@@ -34,7 +34,7 @@ These rules provide **quick reference for lightweight, ad-hoc code reviews** dur
 
 All files with `905` are part of the same review batch.
 
-### Review Checklist Categories
+##### Review Checklist Categories
 
 When reviewing code, systematically check:
 
@@ -51,14 +51,14 @@ When reviewing code, systematically check:
 11. **Accessibility** - ARIA labels, keyboard navigation, screen readers (UI-specific)
 12. **Platform-Specific** - React/TypeScript/NextJS best practices, deprecated patterns
 
-### Quick Process
+##### Quick Process
 
 1. **Create review doc** in `user/reviews/nnn-review.{name}.md`
 2. **Apply checklist** systematically to each file
 3. **Create task files** in `user/tasks/nnn-tasks.code-review.{filename}.md` for issues found
 4. **Prioritize** findings: P0 (critical) → P1 (quality) → P2 (best practices) → P3 (enhancements)
 
-### YAML Frontmatter
+##### YAML Frontmatter
 
 All code review files should include:
 ```yaml
@@ -68,7 +68,7 @@ docType: review
 ---
 ```
 
-## For Detailed Reviews
+#### For Detailed Reviews
 
 **Use the comprehensive guide** when you need:
 - Full methodology and templates

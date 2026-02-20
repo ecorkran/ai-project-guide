@@ -4,9 +4,9 @@ globs: ["**/*.sql", "**/*.psql", "**/migrations/*.sql", "**/schema.sql"]
 alwaysApply: false
 ---
 
-# SQL & PostgreSQL Development Rules
+### SQL & PostgreSQL Development Rules
 
-## Query Style & Formatting
+#### Query Style & Formatting
 
 - UPPERCASE SQL keywords: `SELECT`, `FROM`, `WHERE`, not `select`
 - Lowercase table and column names with underscores: `user_accounts`
@@ -15,7 +15,7 @@ alwaysApply: false
 - Leading commas in SELECT lists for easier modification
 - Meaningful table aliases, avoid single letters
 
-## Query Optimization
+#### Query Optimization
 
 - Always use EXPLAIN ANALYZE for performance tuning
 - Create indexes for WHERE, JOIN, and ORDER BY columns
@@ -25,7 +25,7 @@ alwaysApply: false
 - Avoid SELECT * in production code
 - Use EXISTS instead of COUNT for existence checks
 
-## PostgreSQL Best Practices
+#### PostgreSQL Best Practices
 
 - Use appropriate data types: JSONB over JSON, TEXT over VARCHAR
 - UUID for distributed IDs, SERIAL/BIGSERIAL for single-node
@@ -35,7 +35,7 @@ alwaysApply: false
 - RETURNING clause to get modified data
 - CTEs (WITH clauses) for complex queries
 
-## Naming & Schema Design
+#### Naming & Schema Design
 
 - Singular table names: `user` not `users`
 - Primary key as `id` or `table_name_id`
@@ -45,7 +45,7 @@ alwaysApply: false
 - Use schemas to organize related tables
 - Version control migrations with sequential numbering
 
-## Security & Safety
+#### Security & Safety
 
 - Always use parameterized queries, never string concatenation
 - GRANT minimum required privileges
@@ -55,7 +55,7 @@ alwaysApply: false
 - Connection pooling with appropriate limits
 - Set statement_timeout for long-running queries
 
-## pgvector Specific
+#### pgvector Specific
 
 - Use `vector` type for embeddings
 - Create HNSW or IVFFlat indexes for similarity search
@@ -64,7 +64,7 @@ alwaysApply: false
 - Batch insert embeddings for performance
 - Consider dimension reduction for large vectors
 
-## TimescaleDB Specific
+#### TimescaleDB Specific
 
 - Create hypertables for time-series data
 - Use appropriate chunk intervals (typically 1 week to 1 month)
@@ -74,7 +74,7 @@ alwaysApply: false
 - Use time_bucket() for time-based aggregations
 - Data retention policies with drop_chunks()
 
-## Performance & Monitoring
+#### Performance & Monitoring
 
 - Index foreign keys and commonly filtered columns
 - VACUUM and ANALYZE regularly
@@ -84,7 +84,7 @@ alwaysApply: false
 - Avoid excessive indexes (write performance cost)
 - Use COPY for bulk inserts
 
-## Migrations & Maintenance
+#### Migrations & Maintenance
 
 - Always reversible migrations when possible
 - Test migrations on copy of production data

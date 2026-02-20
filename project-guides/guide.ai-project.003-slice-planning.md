@@ -149,6 +149,9 @@ For complex efforts, create brief design sketches for each slice to identify pot
 
 This helps catch "Slice A needs X but Slice B needs Y" conflicts early.
 
+##### Note: Acknowledging that Future Work May be Added During Later Phases:
+The Future Work section of a slice plan is a living backlog. New entries may be added during slice design (Phase 4), task breakdown (Phase 5), or implementation (Phase 7) as out-of-scope work is identified. This avoids scope creep in active slices while ensuring ideas are captured.
+
 #### Examples
 
 ##### Example 1: Project-Level (Greenfield)
@@ -273,10 +276,15 @@ dateUpdated: YYYYMMDD
 ## Notes
 - Key decisions made during planning
 - Alternative approaches considered
+- Future work planned for later phases
 - Open questions for later phases
-```
 
 Include only the slice categories that apply. A restructuring effort may have no feature slices. A greenfield project may have no migration slices.
+
+## Future Work
+Items discovered during slice design, task breakdown, or implementation that are out of scope for the current plan but worth tracking. Add entries here as they arise — they serve as a backlog for future planning cycles.
+
+Format matches the slice entries above (numbered, checkbox, name, description, dependencies, effort), but number future work slices restarting at 1.
 
 #### Success Criteria
 Phase 3 is complete when:
@@ -295,3 +303,4 @@ With approved slice plan:
    - Slice design files share or increment from the initiative's base index (e.g., `100-slice.first.md`, `101-slice.second.md`). See `file-naming-conventions.md`.
 2. Complete integration work as needed
 3. Iterate and add new slices as requirements evolve
+```
