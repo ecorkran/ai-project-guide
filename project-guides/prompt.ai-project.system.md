@@ -9,6 +9,8 @@ ai description: Parameterized prompt library mapped to slice-based project phase
 dependsOn:
   - guide.ai-project.000-process.md
 npmScriptsAiSupport: "!include ../snippets/npm-scripts.ai-support.json"
+dateCreated: 20250724
+dateUpdated: 20260218
 ---
 ## Prompts
 This document contains prepared prompts useful in applying the `guide.ai-project.000-process` and performing additional supplemental tasks.

@@ -9,7 +9,7 @@ dependsOn:
   - guide.ai-project.000-process.md
   - guide.ai-project.002-spec.md
 dateCreated: 20250101
-dateUpdated: 20260214
+dateUpdated: 20260220
 ---
 
 #### Summary
