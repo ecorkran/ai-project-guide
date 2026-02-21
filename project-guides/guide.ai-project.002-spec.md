@@ -6,7 +6,7 @@ guideRole: primary
 audience: [human, ai]
 description: Template & checklist for Phase 2 Specs.
 dependsOn: [guide.ai-project.001-concept.md]
-dateUpdated: 20251008
+dateUpdated: 20260216
 ---
 We will use this as a guide for creating a project spec.  We generally will not need all of these items in each spec.  The resulting spec document constitutes the output of Phase 2 in `guide.ai-project.000-process`.  Project manager will provide guidance on any variations or changes to the standard guide in the context of a particular project.  This guide should be available to you any time you are working with a project specification.  If it is missing and you cannot find it, do not make any assumptions.  Get the document from the Project Manager before proceeding.
 ##### 1. Overview and Purpose

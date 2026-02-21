@@ -8,7 +8,7 @@ description: Checklist and tips for Phase 5 code reviews (human ↔ AI pair).
 dependsOn:
   - guide.ai-project.002-spec.md
   - guide.ai-project.006-task-expansion.md
-dateUpdated: 20251008
+dateUpdated: 20260216
 ---
 # Code Review Guidelines
 
