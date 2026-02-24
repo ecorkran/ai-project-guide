@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.8] - 2026-02-24
+
+### Fixed
+- `setup-ide claude`: Fix CLAUDE.md compilation — heading detection, code-fence awareness, heading level promotion (#10)
+
 ## [0.11.7] - 2026-02-23
 
 ### Changed

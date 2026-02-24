@@ -4,7 +4,7 @@ globs: ["**/*.py", "**/pyproject.toml", "**/requirements*.txt", "**/Pipfile"]
 alwaysApply: false
 ---
 
-### Python Development Rules
+### Python Rules
 
 #### General
 * Target Python 3.12+ for production (stability & ecosystem compatibility).

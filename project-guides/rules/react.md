@@ -4,7 +4,7 @@ globs: ["**/*.tsx", "**/*.jsx", "**/*.ts", "**/*.js", "src/components/**/*", "ap
 alwaysApply: false
 ---
 
-### React & Next.js Rules
+### React and Next.js Rules
 
 #### Components & Naming
 - Use functional components

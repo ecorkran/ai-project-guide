@@ -4,7 +4,7 @@ globs: ["**/*.sql", "**/*.psql", "**/migrations/*.sql", "**/schema.sql"]
 alwaysApply: false
 ---
 
-### SQL & PostgreSQL Development Rules
+### SQL and PostgreSQL Development Rules
 
 #### Query Style & Formatting
 

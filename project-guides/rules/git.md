@@ -3,8 +3,7 @@ description: Rules for modern Python development with focus on readability and t
 alwaysApply: true
 ---
 
-```markdown
-### Git Conventions
+### Git Rules
 
 #### Branch Naming
 When working on a slice, use a branch named after the slice (without the `.md` extension but with the numeric index prefix).
@@ -38,7 +37,7 @@ Actions (optional, use if applicable):
 - `extract`: primarily used in refactoring
 - `reduce`: if primary work involves reduction or streamlining
 
-#### Rules:
+#### Guidelines:
 - Summary is imperative mood ("add X" not "added X" or "adds X")
 - Keep to ~72 characters
 - No period at end
@@ -51,4 +50,3 @@ refactor(core): extract service instantiation into shared helper
 docs: add MCP server installation instructions to README
 test: add unit tests for prompt_list tool handler
 chore: update @modelcontextprotocol/server to v2.1
-```

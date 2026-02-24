@@ -193,8 +193,8 @@ EOF
         
         # Extract content after frontmatter and heading, incrementing heading levels
         awk '
-        BEGIN { in_frontmatter = 0; past_frontmatter = 0; past_heading = 0 }
-        /^---$/ { 
+        BEGIN { in_frontmatter = 0; past_frontmatter = 0; past_heading = 0; in_code = 0 }
+        /^---$/ {
             if (!past_frontmatter) {
                 in_frontmatter = !in_frontmatter
                 if (!in_frontmatter) past_frontmatter = 1
@@ -202,6 +202,8 @@ EOF
             }
         }
         in_frontmatter { next }
+        /^```/ { in_code = !in_code }
+        in_code { print; next }
         past_frontmatter && !past_heading && /^#{1,6} / { past_heading = 1; next }
         past_frontmatter && past_heading {
             # Promote heading levels by removing one #
@@ -232,8 +234,8 @@ EOF
         
         # Extract the main heading from the file to use as section title
         local section_title=$(awk '
-        BEGIN { past_frontmatter = 0; in_frontmatter = 0 }
-        /^---$/ { 
+        BEGIN { past_frontmatter = 0; in_frontmatter = 0; in_code = 0 }
+        /^---$/ {
             if (!past_frontmatter) {
                 in_frontmatter = !in_frontmatter
                 if (!in_frontmatter) past_frontmatter = 1
@@ -241,8 +243,10 @@ EOF
             }
         }
         in_frontmatter { next }
-        past_frontmatter && /^# / { 
-            gsub(/^# /, "")
+        /^```/ { in_code = !in_code; next }
+        in_code { next }
+        past_frontmatter && /^#{1,6} / {
+            sub(/^#{1,6} /, "")
             print
             exit
         }
@@ -257,10 +261,10 @@ EOF
             echo "## $fallback_title Rules" >> "$target_file"
         fi
         
-        # Extract content after frontmatter and heading, incrementing heading levels
+        # Extract content after frontmatter and heading, promoting heading levels
         awk '
-        BEGIN { in_frontmatter = 0; past_frontmatter = 0; past_heading = 0 }
-        /^---$/ { 
+        BEGIN { in_frontmatter = 0; past_frontmatter = 0; past_heading = 0; in_code = 0 }
+        /^---$/ {
             if (!past_frontmatter) {
                 in_frontmatter = !in_frontmatter
                 if (!in_frontmatter) past_frontmatter = 1
@@ -268,6 +272,8 @@ EOF
             }
         }
         in_frontmatter { next }
+        /^```/ { in_code = !in_code }
+        in_code { print; next }
         past_frontmatter && !past_heading && /^#{1,6} / { past_heading = 1; next }
         past_frontmatter && past_heading {
             # Promote heading levels by removing one #
