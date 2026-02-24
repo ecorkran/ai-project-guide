@@ -202,13 +202,13 @@ EOF
             }
         }
         in_frontmatter { next }
-        past_frontmatter && /^# / { past_heading = 1; next }
-        past_frontmatter && past_heading { 
-            # Increment heading levels by adding one #
-            if (/^#{1,5} /) {
-                gsub(/^#/, "##")
+        past_frontmatter && !past_heading && /^#{1,6} / { past_heading = 1; next }
+        past_frontmatter && past_heading {
+            # Promote heading levels by removing one #
+            if (/^#{2,6} /) {
+                sub(/^#/, "")
             }
-            print 
+            print
         }
         ' "$source_dir/general.md" >> "$target_file"
         
@@ -268,13 +268,13 @@ EOF
             }
         }
         in_frontmatter { next }
-        past_frontmatter && /^# / { past_heading = 1; next }
-        past_frontmatter && past_heading { 
-            # Increment heading levels by adding one #
-            if (/^#{1,5} /) {
-                gsub(/^#/, "##")
+        past_frontmatter && !past_heading && /^#{1,6} / { past_heading = 1; next }
+        past_frontmatter && past_heading {
+            # Promote heading levels by removing one #
+            if (/^#{2,6} /) {
+                sub(/^#/, "")
             }
-            print 
+            print
         }
         ' "$file" >> "$target_file"
         
