@@ -95,6 +95,8 @@ If you prefer manual setup or need to troubleshoot the automated process:
 
 ### Core Rules (`ai-project-guide/project-guides/rules/`)
 - **general.md** - General coding rules and project structure guidelines
+- **electron.md** - Electron UI rules
+- **git.md** - rules for working with git
 - **react.md** - React and Next.js component rules and best practices
 - **typescript.md** - TypeScript syntax rules and typing standards
 - **python.md** - Python development rules and best practices

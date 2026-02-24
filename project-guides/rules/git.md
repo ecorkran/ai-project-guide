@@ -26,10 +26,11 @@ Types:
 - `fix` — Bug fix
 - `refactor` — Code restructuring without behavior change
 - `test` — Adding or updating tests
-- `chore` — Build config, dependencies, tooling, CI
 - `style` — Formatting, whitespace, linting (no logic change)
 - `guides` - Update or addition to project guides (system/project level)
 - `docs` — Update or addition to user/ guides or documentation (slices, readme, etc)
+- `package` - Updates related to packaging, npm, package.json, PyPi, etc
+- `chore` — Build config, dependencies, tooling, CI
 
 Actions (optional, use if applicable):
 - `update`: primarily update/edit to existing information

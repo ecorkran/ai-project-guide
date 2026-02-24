@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.7] - 2026-02-23
+
+### Changed
+- README: streamlined and reorganized
+- Git rules: minor updates
+- Setup-ide readme: updates
+
+### Removed
+- Removed `user/analysis/940-analysis.initial-codebase.md` (stale analysis file)
+
 ## [0.11.6] - 2026-02-20
 
 ### Added
