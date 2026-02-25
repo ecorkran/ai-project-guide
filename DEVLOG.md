@@ -10,6 +10,25 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260225
+
+**Session**: Modular rules support (#11)
+
+### Completed
+- Refactored `setup-ide claude` to support modular rules: `alwaysApply: true` rules embedded in CLAUDE.md, all others copied to `.claude/rules/`
+- Added `paths` → `globs` conversion for Cursor in `setup-ide cursor`
+- Stripped unsupported `name` field from frontmatter when copying to `.claude/rules/` and `.cursor/rules/`
+- Marked `git.md` as `alwaysApply: true`
+- Dropped Windsurf support from `setup-ide`
+- Moved `review.md` and `ui-development.md` to `project-guides/skills/` (future skill support)
+
+### Key decisions
+- Rules files use `paths` (Claude-native format) as source of truth; Cursor conversion happens at copy time
+- `name` field kept in source rules files but stripped on copy (not supported by Claude or Cursor)
+- Only `general.md` and `git.md` are `alwaysApply: true`
+
+---
+
 ## 20260121
 
 **Session**: Codebase analysis and consistency standardization

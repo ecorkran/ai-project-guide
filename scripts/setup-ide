@@ -2,7 +2,7 @@
 
 # AI Project Guide - IDE Setup Script
 # Copies project rules to your IDE configuration directory
-# Supports: Cursor, Windsurf
+# Supports: Cursor, Claude Code
 
 set -e
 
@@ -75,13 +75,11 @@ show_usage() {
     echo "Usage: $0 <ide>"
     echo ""
     echo "Supported IDEs:"
-    echo "  cursor    - Copy rules to .cursor/rules/ (renames .md to .mdc)"
-    echo "  windsurf  - Copy rules to .windsurf/rules/ (keeps .md extension)"
-    echo "  claude    - Generate CLAUDE.md file for Claude Code agent"
+    echo "  cursor    - Copy rules to .cursor/rules/ (renames .md to .mdc, converts paths to globs)"
+    echo "  claude    - Embed alwaysApply rules in CLAUDE.md, copy others to .claude/rules/"
     echo ""
     echo "Examples:"
     echo "  $0 cursor"
-    echo "  $0 windsurf"
     echo "  $0 claude"
     echo ""
     echo "This script copies AI project rules from project-guides/ to your IDE's"
@@ -110,128 +108,190 @@ validate_frontmatter() {
         return 1
     fi
     
-    if ! grep -q "globs:" "$file"; then
-        print_status $YELLOW "⚠️  WARNING: $filename missing 'globs' in frontmatter"
+    if ! grep -q "paths:" "$file" && ! grep -q "globs:" "$file" && ! grep -q "alwaysApply:" "$file"; then
+        print_status $YELLOW "⚠️  WARNING: $filename missing 'paths', 'globs', or 'alwaysApply' in frontmatter"
         return 1
     fi
     
     return 0
 }
 
-# Function to copy and potentially rename files
-copy_rules() {
+# Check if a rules file has alwaysApply: true in its frontmatter
+has_always_apply() {
+    local file=$1
+    awk '
+    BEGIN { in_frontmatter = 0 }
+    /^---$/ {
+        if (!in_frontmatter) { in_frontmatter = 1; next }
+        else { exit 1 }
+    }
+    in_frontmatter && /^alwaysApply:[ ]*true/ { exit 0 }
+    ' "$file"
+}
+
+# Convert paths frontmatter to Cursor globs format
+# Input: source file with paths: YAML list
+# Output: file with globs: JSON array format
+convert_paths_to_globs() {
+    local source_file=$1
+    local target_file=$2
+
+    awk '
+    BEGIN { in_frontmatter = 0; in_paths = 0; path_count = 0 }
+    /^---$/ {
+        if (!in_frontmatter) {
+            in_frontmatter = 1
+            print
+            next
+        } else {
+            # End of frontmatter — output collected paths as globs
+            if (path_count > 0) {
+                printf "globs: ["
+                for (i = 1; i <= path_count; i++) {
+                    if (i > 1) printf ", "
+                    printf "%s", paths[i]
+                }
+                printf "]\n"
+            }
+            in_frontmatter = 0
+            in_paths = 0
+            print
+            next
+        }
+    }
+    in_frontmatter {
+        # Strip name field (not supported by Cursor)
+        if (/^name:/) { next }
+        if (/^paths:[ ]*$/) {
+            # Start collecting paths entries
+            in_paths = 1
+            next
+        }
+        if (in_paths && /^[ ]+-[ ]+/) {
+            # Collect path entry (keep quotes)
+            path_count++
+            val = $0
+            sub(/^[ ]+-[ ]+/, "", val)
+            paths[path_count] = val
+            next
+        }
+        if (in_paths && !/^[ ]+-/) {
+            # End of paths list, new field
+            in_paths = 0
+        }
+        print
+        next
+    }
+    { print }
+    ' "$source_file" > "$target_file"
+}
+
+# Copy files with optional .mdc rename (used for agents and simple copies)
+copy_files() {
     local source_dir=$1
     local target_dir=$2
     local rename_extension=$3
     local file_type=$4
-    
+
     if [ ! -d "$source_dir" ]; then
         print_status $RED "❌ Source directory not found: $source_dir"
         return 1
     fi
-    
+
     local copied_count=0
-    local warning_count=0
-    
+
     for file in "$source_dir"/*.md; do
         if [ ! -f "$file" ]; then
             continue
         fi
-        
+
         local filename=$(basename "$file")
         local target_filename="$filename"
-        
-        # Rename .md to .mdc for cursor
+
         if [ "$rename_extension" = true ]; then
             target_filename="${filename%.md}.mdc"
         fi
-        
-        local target_path="$target_dir/$target_filename"
-        
-        # Copy file
-        cp "$file" "$target_path"
+
+        cp "$file" "$target_dir/$target_filename"
         print_status $GREEN "✅ Copied $filename → $target_filename"
-        
-        # Validate frontmatter (skip for agent files — different schema)
-        if [ "$file_type" != "agent" ]; then
-            if ! validate_frontmatter "$target_path"; then
-                ((warning_count++))
-            fi
-        fi
-        
         ((copied_count++))
     done
-    
+
     print_status $BLUE "📋 Copied $copied_count $file_type files"
+}
+
+# Copy rules for Cursor: rename .md→.mdc and convert paths→globs in frontmatter
+copy_cursor_rules() {
+    local source_dir=$1
+    local target_dir=$2
+
+    if [ ! -d "$source_dir" ]; then
+        print_status $RED "❌ Source directory not found: $source_dir"
+        return 1
+    fi
+
+    local copied_count=0
+    local warning_count=0
+
+    for file in "$source_dir"/*.md; do
+        if [ ! -f "$file" ]; then
+            continue
+        fi
+
+        local filename=$(basename "$file")
+        local target_filename="${filename%.md}.mdc"
+        local target_path="$target_dir/$target_filename"
+
+        # Convert paths to globs format for Cursor
+        convert_paths_to_globs "$file" "$target_path"
+        print_status $GREEN "✅ Converted $filename → $target_filename"
+
+        if ! validate_frontmatter "$target_path"; then
+            ((warning_count++))
+        fi
+
+        ((copied_count++))
+    done
+
+    print_status $BLUE "📋 Converted $copied_count rule files for Cursor"
     if [ $warning_count -gt 0 ]; then
         print_status $YELLOW "⚠️  $warning_count files have frontmatter issues"
     fi
 }
 
-# Function to compile rules into CLAUDE.md format
+# Compile alwaysApply rules into CLAUDE.md format
+# Only processes files with alwaysApply: true in frontmatter
 compile_claude_rules() {
     local source_dir=$1
     local target_file=$2
-    
+
     if [ ! -d "$source_dir" ]; then
         print_status $RED "❌ Source directory not found: $source_dir"
         return 1
     fi
-    
-    print_status $BLUE "📄 Compiling rules into CLAUDE.md format..."
-    
+
+    print_status $BLUE "📄 Compiling alwaysApply rules into CLAUDE.md..."
+
     # Create CLAUDE.md file
     cat > "$target_file" << 'EOF'
 # Project Guidelines for Claude
 
 EOF
-    
-    # Always start with general rules
-    if [ -f "$source_dir/general.md" ]; then
-        print_status $GREEN "✅ Adding General Development Rules"
-        echo "## General Development Rules" >> "$target_file"
-        
-        # Extract content after frontmatter and heading, incrementing heading levels
-        awk '
-        BEGIN { in_frontmatter = 0; past_frontmatter = 0; past_heading = 0; in_code = 0 }
-        /^---$/ {
-            if (!past_frontmatter) {
-                in_frontmatter = !in_frontmatter
-                if (!in_frontmatter) past_frontmatter = 1
-                next
-            }
-        }
-        in_frontmatter { next }
-        /^```/ { in_code = !in_code }
-        in_code { print; next }
-        past_frontmatter && !past_heading && /^#{1,6} / { past_heading = 1; next }
-        past_frontmatter && past_heading {
-            # Promote heading levels by removing one #
-            if (/^#{2,6} /) {
-                sub(/^#/, "")
-            }
-            print
-        }
-        ' "$source_dir/general.md" >> "$target_file"
-        
-        echo "" >> "$target_file"
-    fi
-    
-    # Process other rules files
+
+    local compiled_count=0
+
     for file in "$source_dir"/*.md; do
         if [ ! -f "$file" ]; then
             continue
         fi
-        
-        local filename=$(basename "$file")
-        
-        # Skip general.md as it's already processed
-        if [ "$filename" = "general.md" ]; then
+
+        # Only embed alwaysApply files in CLAUDE.md
+        if ! has_always_apply "$file"; then
             continue
         fi
-        
-        print_status $GREEN "✅ Adding $(basename "$filename" .md) rules"
-        
+
+        local filename=$(basename "$file")
+
         # Extract the main heading from the file to use as section title
         local section_title=$(awk '
         BEGIN { past_frontmatter = 0; in_frontmatter = 0; in_code = 0 }
@@ -251,16 +311,15 @@ EOF
             exit
         }
         ' "$file")
-        
+
         # Add section heading
         if [ -n "$section_title" ]; then
             echo "## $section_title" >> "$target_file"
         else
-            # Fallback to filename-based title
             local fallback_title=$(echo "$filename" | sed 's/\.md$//' | sed 's/\b\w/\U&/g' | sed 's/-/ /g')
             echo "## $fallback_title Rules" >> "$target_file"
         fi
-        
+
         # Extract content after frontmatter and heading, promoting heading levels
         awk '
         BEGIN { in_frontmatter = 0; past_frontmatter = 0; past_heading = 0; in_code = 0 }
@@ -276,19 +335,72 @@ EOF
         in_code { print; next }
         past_frontmatter && !past_heading && /^#{1,6} / { past_heading = 1; next }
         past_frontmatter && past_heading {
-            # Promote heading levels by removing one #
             if (/^#{2,6} /) {
                 sub(/^#/, "")
             }
             print
         }
         ' "$file" >> "$target_file"
-        
+
         echo "" >> "$target_file"
+        print_status $GREEN "✅ Embedded $(basename "$filename" .md) rules in CLAUDE.md"
+        ((compiled_count++))
     done
-    
-    print_status $GREEN "✅ CLAUDE.md compiled successfully"
+
+    print_status $BLUE "📋 Embedded $compiled_count alwaysApply rules in CLAUDE.md"
     return 0
+}
+
+# Strip name field from frontmatter (not supported by Claude or Cursor rules)
+strip_name_field() {
+    local source_file=$1
+    local target_file=$2
+
+    awk '
+    BEGIN { in_frontmatter = 0; past_frontmatter = 0 }
+    /^---$/ {
+        if (!past_frontmatter) {
+            in_frontmatter = !in_frontmatter
+            if (!in_frontmatter) past_frontmatter = 1
+        }
+        print
+        next
+    }
+    in_frontmatter && /^name:/ { next }
+    { print }
+    ' "$source_file" > "$target_file"
+}
+
+# Copy non-alwaysApply rules to .claude/rules/ as modular rule files
+copy_claude_modular_rules() {
+    local source_dir=$1
+    local target_dir=$2
+
+    if [ ! -d "$source_dir" ]; then
+        return 1
+    fi
+
+    mkdir -p "$target_dir"
+
+    local copied_count=0
+
+    for file in "$source_dir"/*.md; do
+        if [ ! -f "$file" ]; then
+            continue
+        fi
+
+        # Skip alwaysApply files (they go in CLAUDE.md)
+        if has_always_apply "$file"; then
+            continue
+        fi
+
+        local filename=$(basename "$file")
+        strip_name_field "$file" "$target_dir/$filename"
+        print_status $GREEN "✅ Copied $filename → .claude/rules/$filename"
+        ((copied_count++))
+    done
+
+    print_status $BLUE "📋 Copied $copied_count modular rules to .claude/rules/"
 }
 
 # Main script logic
@@ -308,7 +420,7 @@ main() {
     
     # Validate IDE parameter
     case "$ide" in
-        cursor|windsurf|claude)
+        cursor|claude)
             ;;
         *)
             print_status $RED "❌ Error: Unsupported IDE '$1'"
@@ -331,32 +443,35 @@ main() {
         fi
         
         local claude_file="$TARGET_ROOT/CLAUDE.md"
+        local claude_rules_dir="$TARGET_ROOT/.claude/rules"
         local claude_agents_dir="$TARGET_ROOT/.claude/agents"
-        
-        # Compile rules into CLAUDE.md
+
+        # Compile alwaysApply rules into CLAUDE.md
         if compile_claude_rules "$RULES_SOURCE_DIR" "$claude_file"; then
             echo ""
-            
+
+            # Copy modular rules to .claude/rules/
+            print_status $BLUE "📄 Copying modular rules..."
+            copy_claude_modular_rules "$RULES_SOURCE_DIR" "$claude_rules_dir"
+            echo ""
+
             # Copy agents if directory exists
             if [ -d "$AGENTS_SOURCE_DIR" ]; then
                 mkdir -p "$claude_agents_dir"
                 print_status $GREEN "📁 Created directory: $claude_agents_dir"
                 print_status $BLUE "🤖 Copying agent files..."
-                copy_rules "$AGENTS_SOURCE_DIR" "$claude_agents_dir" false "agent"
+                copy_files "$AGENTS_SOURCE_DIR" "$claude_agents_dir" false "agent"
                 echo ""
             fi
-            
+
             print_status $GREEN "✅ Setup complete for Claude Code!"
             echo ""
             print_status $BLUE "💡 Claude Code setup notes:"
-            echo "   • CLAUDE.md file created in project root"
-            echo "   • Contains all project rules in Claude-friendly format"
-            echo "   • General Development Rules are listed first"
-            echo "   • Additional rules organized by category"
+            echo "   • CLAUDE.md contains alwaysApply rules (general, git)"
+            echo "   • Modular rules copied to .claude/rules/"
             if [ -d "$AGENTS_SOURCE_DIR" ]; then
-                echo "   • Agents copied to .claude/agents/ directory"
+                echo "   • Agents copied to .claude/agents/"
             fi
-            echo "   • Ready to use with Claude Code agent"
         else
             print_status $RED "❌ Failed to compile CLAUDE.md"
             exit 1
@@ -365,79 +480,47 @@ main() {
         return 0
     fi
     
-    # Set up target directory and file extension behavior for other IDEs
-    local target_base_dir="$TARGET_ROOT/.$ide"
-    local rules_target_dir="$target_base_dir/rules"
-    local agents_target_dir="$target_base_dir/agents"
-    local rename_to_mdc=false
-    
-    if [ "$ide" = "cursor" ]; then
-        rename_to_mdc=true
-    fi
-    
-    print_status $BLUE "🚀 Setting up $ide IDE rules..."
+    # Cursor setup
+    local rules_target_dir="$TARGET_ROOT/.cursor/rules"
+    local agents_target_dir="$TARGET_ROOT/.cursor/agents"
+
+    print_status $BLUE "🚀 Setting up Cursor IDE rules..."
     echo ""
-    
+
     # Validate source directories exist
     if [ ! -d "$RULES_SOURCE_DIR" ]; then
         print_status $RED "❌ Error: Rules source directory not found: $RULES_SOURCE_DIR"
         print_status $YELLOW "💡 Make sure you're running this from a project that includes ai-project-guide"
         exit 1
     fi
-    
+
     # Create target directories
     mkdir -p "$rules_target_dir"
     print_status $GREEN "📁 Created directory: $rules_target_dir"
-    
-    # Copy rules
-    print_status $BLUE "📄 Copying rules files..."
-    copy_rules "$RULES_SOURCE_DIR" "$rules_target_dir" $rename_to_mdc "rule"
-    
+
+    # Copy rules with paths→globs conversion
+    print_status $BLUE "📄 Converting and copying rules files..."
+    copy_cursor_rules "$RULES_SOURCE_DIR" "$rules_target_dir"
+
     echo ""
-    
+
     # Copy agents if directory exists
     if [ -d "$AGENTS_SOURCE_DIR" ]; then
         mkdir -p "$agents_target_dir"
         print_status $GREEN "📁 Created directory: $agents_target_dir"
         print_status $BLUE "🤖 Copying agent files..."
-        copy_rules "$AGENTS_SOURCE_DIR" "$agents_target_dir" $rename_to_mdc "agent"
+        copy_files "$AGENTS_SOURCE_DIR" "$agents_target_dir" true "agent"
     else
         print_status $YELLOW "⚠️  Agents directory not found, skipping"
     fi
-    
+
     echo ""
-    print_status $GREEN "✅ Setup complete for $ide!"
-    
-    # IDE-specific instructions
-    case "$ide" in
-        cursor)
-            echo ""
-            print_status $BLUE "💡 Cursor setup notes:"
-            echo "   • Rules are now in .cursor/rules/ as .mdc files"
-            echo "   • Agents are now in .cursor/agents/ as .mdc files"
-            echo "   • Files with frontmatter warnings may need manual fixes"
-            echo "   • Restart Cursor to ensure rules are loaded"
-            ;;
-        windsurf)
-            echo ""
-            print_status $BLUE "💡 Windsurf setup notes:"
-            echo "   • Rules are now in .windsurf/rules/ as .md files"
-            echo "   • Agents are now in .windsurf/agents/ as .md files"
-            echo "   • Files with frontmatter warnings may need manual fixes"
-            echo "   • Restart Windsurf to ensure rules are loaded"
-            ;;
-    esac
-    
-    if grep -q "WARNING" <(echo ""); then
-        echo ""
-        print_status $YELLOW "⚠️  Some files had frontmatter issues. For Cursor compatibility,"
-        print_status $YELLOW "   ensure all .mdc files have proper YAML frontmatter with:"
-        echo "   ---"
-        echo "   description: Brief description of what this rule does"
-        echo "   globs: [\"**/*.ext\"]"
-        echo "   alwaysApply: false"
-        echo "   ---"
-    fi
+    print_status $GREEN "✅ Setup complete for Cursor!"
+    echo ""
+    print_status $BLUE "💡 Cursor setup notes:"
+    echo "   • Rules converted to .cursor/rules/ as .mdc files (paths→globs)"
+    echo "   • Agents copied to .cursor/agents/ as .mdc files"
+    echo "   • Restart Cursor to ensure rules are loaded"
 }
 
 # Run main function with all arguments

@@ -1,6 +1,7 @@
 ---
 name: git-rules
 description: Git workflow conventions including commit message format, branch naming, PR process, and merge strategy. Use when committing, creating branches, or preparing pull requests.
+alwaysApply: true
 ---
 
 ### Git Rules

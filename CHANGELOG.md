@@ -12,6 +12,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-02-25
+
+### Added
+- `setup-ide claude`: modular rules support — non-alwaysApply rules copied to `.claude/rules/` (#11)
+
+### Changed
+- `setup-ide claude`: CLAUDE.md now only embeds `alwaysApply: true` rules (general, git)
+- `setup-ide cursor`: converts `paths` frontmatter to Cursor `globs` format, strips `name` field
+- Rules files: standardized on `paths` (Claude-native) frontmatter format
+- `git.md`: marked as `alwaysApply: true`
+
+### Removed
+- Windsurf IDE support dropped from `setup-ide`
+
 ## [0.11.8] - 2026-02-24
 
 ### Fixed

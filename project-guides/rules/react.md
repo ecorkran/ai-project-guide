@@ -6,7 +6,6 @@ paths:
   - "**/*.jsx"
   - "src/components/**/*"
   - "app/**/*"
-globs: 
 ---
 
 ### React and Next.js Rules
