@@ -1,7 +1,11 @@
 ---
-description: Rules for SQL, PostgreSQL, pgvector, and TimescaleDB development
-globs: ["**/*.sql", "**/*.psql", "**/migrations/*.sql", "**/schema.sql"]
-alwaysApply: false
+name: sql-rules
+description: SQL coding standards for PostgreSQL, pgvector, and TimescaleDB. Use when writing queries, migrations, schema definitions, or database functions. Covers naming, indexing, query optimization, and extension-specific patterns.
+paths: 
+  - "**/*.sql"
+  - "**/*.psql"
+  - "**/migrations/*.sql"
+  - "**/schema.sql"
 ---
 
 ### SQL and PostgreSQL Development Rules

@@ -1,7 +1,10 @@
 ---
-description: Rules for modern Python development with focus on readability and testability
-globs: ["**/*.py", "**/pyproject.toml", "**/requirements*.txt", "**/Pipfile"]
-alwaysApply: false
+name: python-rules
+description: Python coding standards and conventions. Use when writing, modifying, or reviewing .py files, pyproject.toml, or requirements files.
+paths:
+ - "**/*.py"
+ - "**/pyproject.toml"
+ - "**/requirements*.txt"
 ---
 
 ### Python Rules

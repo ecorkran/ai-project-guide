@@ -1,7 +1,12 @@
 ---
-description: React and Typescript component rules, naming conventions, and best practices
-globs: ["**/*.tsx", "**/*.jsx", "**/*.ts", "**/*.js", "src/components/**/*", "app/**/*"]
-alwaysApply: false
+name: react-rules
+description: React component patterns, hooks conventions, and JSX best practices. Use when working with React components. Assumes TypeScript rules also apply for .tsx files.
+paths: 
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "src/components/**/*"
+  - "app/**/*"
+globs: 
 ---
 
 ### React and Next.js Rules

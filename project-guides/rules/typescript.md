@@ -1,7 +1,9 @@
 ---
-description: TypeScript strict typing standards, idiomatic patterns, and project conventions
-globs: ["**/*.ts", "**/*.tsx", "src/lib/api/**/*"]
-alwaysApply: false
+name: typescript-rules
+description:   TypeScript strict typing standards, idiomatic patterns, and project conventions. Use for all TypeScript files. Covers type annotations, generics, module patterns, and error handling.
+paths: 
+  - "**/*.ts"
+  - "**/*.tsx"
 ---
 
 ### TypeScript Rules

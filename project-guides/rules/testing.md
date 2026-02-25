@@ -1,7 +1,11 @@
 ---
-description: Testing guidelines and best practices for quality assurance
-globs: ["**/*.test.*", "**/*.spec.*", "**/*.stories.*", "src/stories/**/*"]
-alwaysApply: false
+name: testing-rules
+description: Testing standards and best practices. Use when writing, modifying, or reviewing tests. Covers test structure, naming, mocking patterns, assertion style, and coverage expectations.
+paths: 
+  - "**/*.test.*"
+  - "**/*.spec.*"
+  - "**/*.stories.*"
+  - "src/stories/**/*"
 ---
 
 ### Testing Rules

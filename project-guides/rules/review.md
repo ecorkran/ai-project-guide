@@ -1,7 +1,6 @@
 ---
-description: Quick reference for code reviews during development; see full guide for comprehensive reviews
-globs:
-alwaysApply: false
+name: review-rules
+description: Code review standards and checklist. Use when reviewing code, evaluating PRs, checking implementation quality, or when asked to review changes. Covers correctness, error handling, testing expectations, and architectural consistency.
 ---
 
 ### Code Review Rules

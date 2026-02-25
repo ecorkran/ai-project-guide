@@ -1,7 +1,12 @@
 ---
-description: Electron-specific development rules including module loading and process architecture
-globs: ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"]
-alwaysApply: false
+name: electron-rules
+description: Electron desktop application rules including main/renderer process architecture, IPC patterns, preload scripts, and module loading. Use when working on Electron apps, desktop applications using Electron, or files involving IPC, BrowserWindow, or electron-vite.
+paths:
+  - "electron/**/*"
+  - "src/preload/**/*"
+  - "electron-builder.*"
+  - "forge.config.*"
+  - "**/electron.vite.*"
 ---
 
 ### Electron Rules
