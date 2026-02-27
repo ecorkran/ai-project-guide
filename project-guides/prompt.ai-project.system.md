@@ -353,7 +353,7 @@ Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md` (where `{slic
 Use `guide.ai-project.005-task-breakdown` for detailed guidance on this phase.
 
 Include:
-1. YAML front matter including slice name, project, LLD reference, dependencies, and current project state
+1. YAML front matter including slice name, project, LLD reference, dependencies, current project state, and status: not started
 2. Context summary section
 3. Granular tasks following Phase 5 guidelines
 4. Create separate sub-tasks for each similar component.
