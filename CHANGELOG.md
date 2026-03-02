@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.1] - 2026-02-28
+
+### Changed
+- Standardized status values to underscore format: `not_started`, `in_progress`, `completed`, `deprecated`
+- Promoted `dateCreated`/`dateUpdated` to required frontmatter fields in file-naming-conventions
+- Removed standalone feature concept (`feature.` prefix, 750+ range) from file-naming-conventions and guides
+
 ## [0.12.0] - 2026-02-25
 
 ### Added

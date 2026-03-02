@@ -3,10 +3,9 @@ docType: repository-overview
 ---
 # AI Project Guide
 
-A structured methodology for AI-assisted software development. Gives your AI coding tools the context, process, and conventions they need to produce consistently good results on complex projects.
+AI Project Guide is a structured methodology and set of guides for AI-assisted software development.  Gives your AI coding tools the context, process, and conventions they need to produce consistently good and verifiable results on complex projects.
 
 **What it does:**
-
 - Structures project knowledge so AI agents can consume it effectively
 - Provides a phase-based workflow for breaking complex work into implementable pieces
 - Includes guides for frameworks, tools, and coding conventions
@@ -14,7 +13,17 @@ A structured methodology for AI-assisted software development. Gives your AI cod
 
 **Works with:** Claude Code, Cursor, Windsurf, and any AI coding tool that reads project files.
 
-**Best with [Context Forge](https://github.com/ecorkran/context-forge):** An MCP server that automatically assembles structured context prompts from your project configuration and these templates. Install it alongside ai-project-guide for the full workflow — see [Context Forge on npm](https://www.npmjs.com/package/@context-forge/mcp).
+## How to Use
+
+### Context Forge
+While it can be used standalone, it works *much* better with [Context Forge](https://github.com/ecorkran/context-forge), becoming mostly transparent.  Context Forge provides An MCP server that automatically assembles structured context prompts from your project configuration and these templates. 
+
+Install it alongside ai-project-guide for the full workflow — see [Context Forge on npm](https://www.npmjs.com/package/@context-forge/mcp).
+
+
+### Context Visualizer
+[Context Visualizer](https://github.com/ecorkran/context-visualizer) functions as an MCP client and provides a visual representation of your projects' components and states.  
+
 
 
 ## Install
@@ -80,11 +89,9 @@ The methodology breaks development into phases. You don't need to follow all of 
 
 **Phase 5 — Task Breakdown:** AI converts slice designs into task lists in `user/tasks/nnn-tasks.{name}.md`. Each task is specific enough for an AI agent to implement.
 
-**Phase 6 — Task Enhancement:** AI refines tasks for clarity — adds file paths, test expectations, edge cases.
+**Phase 6 — Task Enhancement:** AI refines tasks for clarity — adds file paths, test expectations, edge cases.  Rarelyneeded in 2026
 
 **Phase 7 — Implementation:** AI implements the code, runs tests, checks off tasks.
-
-**Architecture documents** live in `user/architecture/` and are created when needed. High-level design typically starts at `050-arch.hld-{project}.md`.
 
 For the full methodology details, see `project-guides/guide.ai-project.000-process.md`.
 
@@ -104,7 +111,6 @@ project-documents/
     architecture/               HLD, component architecture docs
     slices/                     slice designs
     tasks/                      task breakdowns
-    features/                   feature specs
     reviews/                    code review outputs
     analysis/                   codebase analysis docs
 ```

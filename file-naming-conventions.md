@@ -17,6 +17,8 @@ Minimum required frontmatter:
 ```yaml
 ---
 docType: [guide|reference|slice|tasks|analysis|notes|template|intro-guide]
+dateCreated: Date file was created (YYYYMMDD format, immutable)
+dateUpdated: Date of last modification (YYYYMMDD format)
 ---
 ```
 
@@ -25,9 +27,7 @@ Common optional fields:
 - `audience`: [human, ai] or subset
 - `description`: Brief purpose description
 - `dependsOn`: Related documents
-- `dateCreated`: Date file was created (YYYYMMDD format, immutable)
-- `dateUpdated`: Date of last modification (YYYYMMDD format)
-- `status`: in_progress, completed, deprecated
+- `status`: not_started, in_progress, completed, deprecated
 
 ### Date Format in YAML
 
@@ -53,7 +53,7 @@ This format:
 
 The project uses 3-digit indices (000-999). Indices serve two purposes: **lineage tracing** (related documents share a base index) and **broad categorization** (reserved ranges for system, operational, and standalone work).
 
-The filename prefix (`arch.`, `slice.`, `tasks.`, `feature.`, `slices.`) identifies document type. The index identifies document family.
+The filename prefix (`arch.`, `slice.`, `tasks.`, `slices.`) identifies document type. The index identifies document family.
 
 ### Reserved Ranges
 
@@ -84,7 +84,7 @@ The filename prefix (`arch.`, `slice.`, `tasks.`, `feature.`, `slices.`) identif
 
 ### Working Range (100-799): Initiative-Based Indexing
 
-The range 100-799 is a shared index space for all initiative work. An **initiative** is a cohesive body of work — typically originating from an architecture document — that produces slice plans, slice designs, tasks, and features.
+The range 100-799 is a shared index space for all initiative work. An **initiative** is a cohesive body of work — typically originating from an architecture document — that produces slice plans, slice designs, and tasks.
 
 #### How It Works
 
@@ -98,18 +98,12 @@ The range 100-799 is a shared index space for all initiative work. An **initiati
    - `101-slice.core-types-extraction.md`, `101-tasks.core-types-extraction.md`
    - `102-slice.core-services-extraction.md`, `102-tasks.core-services-extraction.md`
    - ...up to `109-slice.{name}.md`
-4. **Features** share the index of their parent slice:
-   - `103-feature.some-enhancement.md` (extends `103-slice.{name}.md`)
 
 #### Overflow
 
 Most initiatives fit within 10 indices. If an initiative needs more (e.g., 12 slices), it spills into the next band. Simply skip that band when claiming the next initiative's base index:
 - Initiative A: 100-111 (12 slices)
 - Initiative B: 120+ (next available increment of 10)
-
-#### Standalone Features (No Initiative Parent)
-
-Features not tied to any initiative or slice claim an index in the working range like any other work. Use the next available index that doesn't conflict with an active initiative band. Alternatively, a project may designate a conventional range (e.g., 750+) for standalone features if preferred.
 
 #### Numbering Rules
 
@@ -161,10 +155,6 @@ Initiative B (110-band):
   111-slice.chart-widgets.md
   112-slice.filter-controls.md
 
-Standalone feature:
-  750-feature.dark-mode.md
-  750-tasks.dark-mode.md
-
 Operational:
   900-review.ingestion-service.md
   950-tasks.maintenance.md
@@ -204,20 +194,19 @@ When including dates in filenames:
 
 ## Task Files
 
-Task files share the index of their parent slice or feature:
+Task files share the index of their parent slice:
 
 ```
 nnn-tasks.{section}.md
 ```
 
 Where:
-- `nnn` matches the parent slice or feature index (lineage link)
+- `nnn` matches the parent slice index (lineage link)
 - `{section}` is the section name in lowercase with special characters removed and spaces replaced with hyphens
 
 Examples:
 - `100-tasks.monorepo-scaffolding.md` (tasks for `100-slice.monorepo-scaffolding.md`)
 - `101-tasks.core-types-extraction.md` (tasks for `101-slice.core-types-extraction.md`)
-- `103-tasks.some-feature.md` (tasks for `103-feature.some-feature.md`)
 - `950-tasks.maintenance.md` (operational — maintenance range)
 
 ### Legacy Task File Patterns
@@ -258,49 +247,6 @@ Where:
 
 Example:
 - `100-slices.context-forge-restructure.md` (plan for `100-arch.context-forge-restructure.md`)
-
-## Feature Files
-
-### Slice-Linked Features
-Feature files linked to a parent slice share that slice's index:
-
-```
-{sliceindex}-feature.{feature-name}.md
-```
-
-Where:
-- `{sliceindex}` matches the parent slice's index number (lineage link)
-- `{feature-name}` describes the specific feature
-
-Examples:
-- `103-feature.remember-me.md` (extends `103-slice.auth.md`)
-- `103-feature.oauth-providers.md` (extends `103-slice.auth.md`)
-
-### Standalone Features
-Features not tied to a specific initiative or slice use any available index in the working range. Projects may conventionally group these at 750+:
-
-```
-nnn-feature.{feature-name}.md
-```
-
-Examples:
-- `750-feature.dark-mode.md`
-- `751-feature.export-csv.md`
-
-## Feature Task Files
-Feature-specific task files follow the same index pattern as their parent feature:
-
-```
-{featureindex}-tasks.{feature-name}.md
-```
-
-Examples (slice-linked):
-- `103-tasks.auth.md` (main slice tasks for `103-slice.auth.md`)
-- `103-tasks.remember-me.md` (feature-specific tasks for `103-feature.remember-me.md`)
-
-Examples (standalone):
-- `750-tasks.dark-mode.md` (tasks for `750-feature.dark-mode.md`)
-- `751-tasks.export-csv.md` (tasks for `751-feature.export-csv.md`)
 
 
 ## File Size Limits and Splitting
@@ -347,8 +293,8 @@ The index structure provides a machine-readable project architecture. This enabl
 - Specialized utility guides (090-099)
 - Example: `050-arch.hld-trading.md`
 
-**100-799: Initiative Working Space** → `user/architecture/`, `user/slices/`, `user/features/`, `user/tasks/`
-- Architecture documents, slice plans, slice designs, features, and tasks
+**100-799: Initiative Working Space** → `user/architecture/`, `user/slices/`, `user/tasks/`
+- Architecture documents, slice plans, slice designs, and tasks
 - Organized by initiative family (shared base index), not by document type
 - Initiatives claim base indices at increments of 10
 - Example family: `100-arch.data-pipeline.md`, `100-slices.data-pipeline.md`, `100-slice.ingestion.md`, `100-tasks.ingestion.md`
@@ -389,7 +335,6 @@ This structure enables automated project snapshots:
       "slices": ["110-slice.layout.md", "111-slice.widgets.md"]
     }
   },
-  "standaloneFeatures": ["750-feature.dark-mode.md"],
   "quality": ["900-review.ingestion-service.md"],
   "investigation": ["940-analysis.async-sync.md"],
   "maintenance": ["950-tasks.maintenance.md"]

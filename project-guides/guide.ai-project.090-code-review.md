@@ -160,7 +160,7 @@ Create a review document named `nnn-review.{filename}.md` in `user/reviews/`, wh
 #### For Directory Crawl Reviews
 Create a review document following the naming convention `nnn-review.{project}.md` in the `user/reviews/` directory, where `nnn` is in the 900-939 range. Use the same `nnn` for all task files in this review session.
 
-All reviewed files should be present in either Files with Issues, or Files with No Issues sections. No file should be unaccounted for. Update this after reviewing each file. Additionally, keep track of how many files have been reviewed, and what the last filed review was, so this can be restarted at any time. Make sure to update the status (started, in-progress, complete). We need to be able to pause and resume this task without losing work or missing items.
+All reviewed files should be present in either Files with Issues, or Files with No Issues sections. No file should be unaccounted for. Update this after reviewing each file. Additionally, keep track of how many files have been reviewed, and what the last filed review was, so this can be restarted at any time. Make sure to update the status (started, in_progress, complete). We need to be able to pause and resume this task without losing work or missing items.
 
 If useful, you can add a review summary or overview for each file. Note that this does not obviate the need to create tasks. Perform all tasks exactly as specified here.
 

@@ -10,6 +10,17 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260228
+
+**Session**: Guide standardization
+
+### Completed
+- Standardized all status enum values to underscore format (`not_started`, `in_progress`) across guides and system prompt
+- Promoted `dateCreated`/`dateUpdated` from optional to required frontmatter
+- Removed standalone feature concept (reduced complexity with no practical benefit)
+
+---
+
 ## 20260225
 
 **Session**: Modular rules support (#11)

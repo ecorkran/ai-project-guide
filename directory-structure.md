@@ -38,7 +38,6 @@ project-documents/
 └── user/                 # Your project-specific work (parent repo)
     ├── analysis/            # codebase analysis & investigation (940-949)
     ├── architecture/        # high-level designs & system architecture (050-089)
-    ├── features/            # standalone features (750-799) & slice-linked features
     ├── project-guides/      # project-specific guide customizations (001-009)
     │   ├── 001-concept.{project}.md # project concept documents
     │   ├── 002-spec.{project}.md    # project specifications
