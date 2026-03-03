@@ -4,7 +4,7 @@ phase: 5
 phaseName: task-breakdown
 guideRole: primary
 audience: [human, ai]
-description: Phase 5 playbook for converting slice or feature designs into granular task lists.
+description: Phase 5 playbook for converting slice designs into granular task lists.
 dependsOn:
   - guide.ai-project.000-process.md
   - guide.ai-project.003-slice-planning.md
@@ -25,7 +25,7 @@ Senior AI performs this phase. The Project Manager approves the output before pr
 * guide.ai-project.000-process
 * guide.ai-project.005-task-breakdown (this document)
 * {slice-plan} - slice plan for our architectural component (phase 3 output)
-* {slice} - slice design (Phase 4 output), OR {feature} - feature design
+* {slice} - slice design (Phase 4 output)
 * rules/ - directory containing coding rules and guidelines organized by platform/technology
 * tool-guides/{tool}/ - for each tool referenced in the design
 

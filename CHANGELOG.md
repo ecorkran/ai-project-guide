@@ -11,16 +11,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Changed
-- Numerous changes made to streamline and simplify process.  Everything now fits under an architectural component and a slice plan is created for each.  
 
-### Added
+## [0.13.0] - 2026-02-28
+
+### Changed
+- Streamlined process: unified architecture → slice plan → slice → task pipeline
+- Consolidated project-level and architecture-level planning into single flow
+- Simplified Phase 1 (Concept) to focus on project vision without separate spec
+- Updated system prompt to reflect simplified process
 
 ### Removed
-- Feature concept as a standalone complex feature.  Everything is a slice
-- Separate spec and project-level HLD.  Everything fits into architectural component and slice plan
-- Task expansion as separate phase
-
+- Standalone feature concept — everything is a slice
+- Separate spec phase and project-level HLD — absorbed into architecture
+- Task expansion as separate phase (006) — renamed to variant of 005
+- Legacy task migration guide (091)
+- Onboarding notes
 
 ## [0.12.1] - 2026-02-28
 

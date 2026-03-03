@@ -12,6 +12,23 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20260228
 
+**Session**: v0.13.0 — Process streamlining
+
+### Completed
+- Unified architecture → slice plan → slice → task as the single pipeline
+- Consolidated project-level vs architecture-level planning (was redundant)
+- Simplified Phase 1 (Concept) — spec absorbed into architecture phase
+- Removed standalone feature concept, task expansion phase, legacy migration guide, onboarding notes
+- Updated 005-task-breakdown to remove feature references, deleted 091-legacy-task-migration
+
+### Key decisions
+- "Feature Slices" kept as a slice *type* descriptor (different from removed standalone feature document category)
+- Migration guide docType enum left as-is (historical)
+
+---
+
+## 20260228
+
 **Session**: Guide standardization
 
 ### Completed
