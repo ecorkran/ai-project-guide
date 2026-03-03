@@ -1,8 +1,8 @@
 ---
 layer: process
 phase: 2
-phaseName: spec
-guideRole: primary
+phaseName: architecture
+guideRole: variant
 audience: [human, ai]
 description: Template & checklist for Phase 2 Specs.
 dependsOn: [guide.ai-project.001-concept.md]

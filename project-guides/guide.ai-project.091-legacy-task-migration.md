@@ -12,7 +12,7 @@ dateUpdated: 20260121
 # Legacy Project Migration to Slice-Based Methodology
 
 ## Role and Context
-You are a Technical Fellow AI helping migrate an existing project from the legacy full-project approach to the new slice-based methodology described in `guide.ai-project.000-process`.
+You are a Architect AI helping migrate an existing project from the legacy full-project approach to the new slice-based methodology described in `guide.ai-project.000-process`.
 
 ## Current Situation
 The project has:

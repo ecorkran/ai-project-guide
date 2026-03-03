@@ -14,18 +14,17 @@ dateUpdated: 20260218
 ---
 
 #### Summary
-This guide provides instructions for converting approved slice or feature designs into granular, actionable task lists. This is Phase 5 in `guide.ai-project.000-process`. Phase 5 cannot begin until the slice design (Phase 4 output) or feature design is approved by the Project Manager.
+This guide provides instructions for converting approved slice designs into granular, actionable task lists. This is Phase 5 in `guide.ai-project.000-process`. Phase 5 cannot begin until the slice design (Phase 4 output) is approved by the Project Manager.
 
 The goal is to produce a task list that can be executed in a single context session by a junior AI or human developer. Each task must be self-contained enough to complete without requiring product decisions.
 
 #### Role
-Senior AI performs this phase. The Project Manager approves the output before proceeding to Phase 6 (Task Expansion).
+Senior AI performs this phase. The Project Manager approves the output before proceeding to Phase 6 (implementation) or in particularly complex cases additional task expansion.
 
 #### Inputs
 * guide.ai-project.000-process
 * guide.ai-project.005-task-breakdown (this document)
-* {project} - spec (Phase 2 output)
-* {project} - high-level design (Phase 2.5 output)
+* {slice-plan} - slice plan for our architectural component (phase 3 output)
 * {slice} - slice design (Phase 4 output), OR {feature} - feature design
 * rules/ - directory containing coding rules and guidelines organized by platform/technology
 * tool-guides/{tool}/ - for each tool referenced in the design
@@ -49,6 +48,7 @@ dependencies: [list-of-prerequisite-slices]
 projectState: brief description of current state
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
+status: not_started | in_progress
 ---
 
 ## Context Summary
@@ -168,8 +168,3 @@ Phase 5 is complete when:
 - File length is within guidelines
 - Project Manager approves the task breakdown
 
-#### Next Steps
-With approved task breakdown:
-1. Proceed to Phase 6: Task Enhancement and Expansion
-2. Use `guide.ai-project.006-task-expansion` for detailed guidance
-3. The Phase 6 output becomes the ready-to-execute task list for Phase 7

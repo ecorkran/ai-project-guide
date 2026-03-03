@@ -15,7 +15,7 @@ dateUpdated: 20260218
 #### Summary
 This guide provides instructions for expanding complex slice task breakdowns into more granular, atomic subtasks. This is Phase 6 in `guide.ai-project.000-process`.
 
-**This phase is optional.** Most task breakdowns produced in Phase 5 are sufficient for direct execution. Phase 6 should only be invoked when the Project Manager determines that specific tasks are too complex or ambiguous for a junior AI developer to execute without additional guidance.
+**This phase is optional and should be used only if explicitly specified.** Most task breakdowns produced in Phase 5 are sufficient for direct execution. Phase 6 should only be invoked when the Project Manager determines that specific tasks are too complex or ambiguous for a junior AI developer to execute without additional guidance.
 
 Phase 6 cannot begin until the slice task breakdown (Phase 5 output) is approved by the Project Manager.
 
@@ -115,6 +115,3 @@ Phase 6 is complete when:
 - Clear tasks have been preserved as-is (not padded with unnecessary detail)
 - Test-with ordering is maintained throughout
 - The Project Manager approves the expanded task breakdown
-
-#### Next Steps
-With approved task expansion, proceed to Phase 7: Implementation.

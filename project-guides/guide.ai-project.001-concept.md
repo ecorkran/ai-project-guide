@@ -4,39 +4,87 @@ phase: 1
 phaseName: concept
 guideRole: primary
 audience: [human, ai]
-description: How to write a Phase 1 Concept document.
+description: How to create a Phase 1 Concept document.
 dependsOn: [guide.ai-project.000-process.md]
-dateUpdated: 20260216
+dateUpdated: 20260302
 ---
-This guide will assist us in creating a project concept, allowing us to describe projects using a consistent format and increasing our chances of completing them successfully.  This Concept is Phase 1 in our guide.ai-project.000-process.  If you do not have access to that guide, stop now and request it from the Project Manager.
 
-#### High-Level Project Concept
-What are we making?  What makes it unique i.e. why are we making it?  Tell everyone why it's going to be great.  Where does it run?  Who uses it and how do they access it?  Are we creating the whole thing now, or does this concept apply to a particular component, layer, front-end/back-end, etc?
+This guide covers creating a Phase 1 Concept document as described in `guide.ai-project.000-process`. If you do not have access to the process guide, stop and request it from the Project Manager.
 
-If application or project characteristics lend themselves to a bullet list, add it here.  For example: 
-* *This is a NextJS application for an email management SaaS product*
-* *Minimal but effective and attractive UI*
-* *Subscription based, with 3 tiers the 1st being free.*
+### Purpose
 
-*In this sub-project we will create a base NextJS application into which we will add at least a main view and a subscription page, created from sketch mockups.*
-*n the future.*
+The concept document captures what we're building, why, and the initial technical direction. It is the lightest-weight planning artifact — enough to anchor Phase 2 (Architecture) without over-committing to details that belong in later phases.
 
-##### Target Users
-Include information on the target users for the application?  Will this change as the product develops?
+**Phase 1 Outcome** (from process guide): _A short doc describing the problem, target users, overall solution approach, and initial technology direction._
 
-##### Proposed Technical Stack
-Describe the technical stack as much is known.  What frameworks, languages, or platforms will we use to develop it?  Where does it run?  Does it need any 3rd-party components (ex: SciChart)?  Start by identifying the proposed platform.
+### How It's Created
 
-##### Proposed Development Methodology
-Also include proposed development methodology here.  TDD?  DDD?  Speed or ironclad reliability (rarely both)?  
+Concept documents follow the **Living Document Pattern** described in the process guide. The typical flow:
 
-When creating the concept document, include the following in proposed methodology:
+1. **PM describes the project** — usually conversationally, sometimes as a starter document. Either works.
+2. **AI asks clarifying questions** — do not assume or guess. This is especially important at the concept stage where ambiguity is highest and early misunderstandings compound through later phases.
+3. **Together they produce the concept document** — the PM's original vision is preserved in the User-Provided Concept section; the AI adds structured analysis as the Refined Concept.
+4. **Iterative refinement** — both continue to evolve the document as understanding develops.
+
+### Document Structure
+
+```yaml
+---
+layer: project
+phase: 1
+phaseName: concept
+guideRole: primary
+audience: [human, ai]
+description: Concept for {project}
+dependsOn: []
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: in_progress
+---
 ```
-In general, favor simplicity and avoid over-engineering.  Remember the cliche about premature optimization.  Use industry standard solutions where practical and available.  Avoid reinventing wheels.
+
+```markdown
+# {Project Name}
+
+## Overview
+[One-sentence description of what this project is]
+
+## User-Provided Concept
+[PM's original concept — goals, vision, motivation, constraints]
+[This section is SACRED — AI must preserve it during all edits]
+
+## Refined Concept
+
+### Problem & Motivation
+What are we making? What problem does it solve? Why now?
+
+### Target Users
+Who uses it? How do they access it? Will the audience evolve?
+
+### Solution Approach
+High-level description of the approach. Where does it run?
+What makes it distinct? Are we building the whole thing or a
+specific component/layer?
+
+### Initial Technical Direction
+Languages, frameworks, platforms — as much as is known.
+Third-party dependencies worth noting early. This is directional,
+not committal; detailed stack decisions belong in Phase 2.
+
+### Development Approach
+Methodology preferences (TDD, DDD, etc.), quality vs. speed
+tradeoffs, any known constraints on how we'll work.
 ```
 
-##### Summary
-The goal here is to create a high-level concept document tailored to the current project.
+Not every section needs substantial content. A small utility project might have a one-liner for Target Users and nothing for Development Approach. Scale to fit.
 
-##### Output Location
-Save the completed concept document as `001-concept.{project}.md` in the `user/project-guides/` directory, where `{project}` is your project name.
+### Guidelines
+
+- **Keep it high-level.** Architecture, component boundaries, and API design belong in Phase 2. If you're drawing system diagrams, you've gone too far.
+- **Capture decisions and constraints, not solutions.** "Must run on GCP" is concept-level. "Use Cloud Run with a Redis sidecar" is architecture-level.
+- **Flag unknowns explicitly.** It's better to say "platform TBD pending cost analysis" than to leave it out.
+- In general, favor simplicity and avoid over-engineering. Use industry-standard solutions where practical and available.
+
+### Output Location
+
+Save as `001-concept.{project}.md` in the `user/project-guides/` directory.

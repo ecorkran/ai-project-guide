@@ -26,10 +26,8 @@ Slice design typically uses two levels of input:
 * **Strategic context** — the document that provides the big-picture view of where this slice fits in the overall system. This is one of:
   * Project HLD (`user/architecture/050-arch.hld-{project}.md`)
   * Architecture document (`user/architecture/nnn-arch.{name}.md`)
-  * Project specification (`user/project-guides/002-spec.{project}.md`)
 
-* **Working input** — the slice plan entry that defines what this specific slice should accomplish. This is one of:
-  * Project-level slice plan (`user/project-guides/003-slices.{project}.md`)
+* **Working input** — the slice plan entry that defines what this specific slice should accomplish.  This is one of:
   * Architecture-level slice plan (`user/architecture/nnn-slices.{name}.md`)
   * Slice description provided directly by the Project Manager
 
@@ -78,7 +76,7 @@ The design should bridge the gap between high-level architecture and concrete ta
 #### Slice Design Structure
 
 ##### Document Template
-```markdown
+```yaml
 ---
 docType: slice-design
 slice: {slice-name}
@@ -88,8 +86,10 @@ dependencies: [list-of-prerequisite-slices]
 interfaces: [list-of-slices-that-depend-on-this]
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
+status: not_started | in_progress
 ---
-
+```
+```markdown
 # Slice Design: {Slice Name}
 
 ## Overview
@@ -307,13 +307,7 @@ Phase 4 is complete when:
 - [ ] Relevant specifications are included (UI, API, migration plan, etc.)
 - [ ] Success criteria are specific and measurable
 - [ ] Migration slices describe how the system remains working throughout
-- [ ] Project Manager and Technical Fellow approve the design
+- [ ] Project Manager and Architect approve the design
 
-#### Next Steps
-With approved slice design:
-1. Proceed to Phase 5: Slice Task Breakdown
-2. Convert design into granular, implementable tasks
-3. Begin Phase 6: Task Enhancement and Expansion
-4. Move to Phase 7: Slice Execution
-
+#### Summary
 The slice design serves as the technical contract for implementation and the reference point for all subsequent development work on this slice.

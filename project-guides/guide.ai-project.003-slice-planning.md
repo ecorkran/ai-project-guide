@@ -13,11 +13,11 @@ dateUpdated: 20260220
 ---
 
 #### Summary
-This guide provides instructions for Phase 3: Slice Planning. This phase takes a parent document — either a project specification or an architecture document — and breaks it into manageable, independent slices that can be designed and implemented separately. This approach reduces complexity, improves context management, and enables parallelization.
+This guide provides instructions for Phase 3: Slice Planning. This phase takes a parent document — usually an architecture document but optionally a project spec — and breaks it into manageable, independent slices that can be designed and implemented separately. This approach reduces complexity, improves context management, and enables parallelization.
 
 Slice planning applies at two levels:
-- **Project-level**: Breaking a new project (from its spec) into initial vertical slices. Parent document is typically a project specification.
-- **Architecture-level**: Breaking an architectural component, restructure, or major initiative into slices within an existing project. Parent document is an architecture document.
+- **Architecture-level**: Breaking an architectural component, restructure, or major initiative into slices within an existing project. Parent document is an architecture document.  This is the most common application
+- **Project-level** (variant): Breaking a new project (from its spec) into initial vertical slices. Parent document is typically a project specification.
 
 The process is the same at both levels. What changes is the parent document, the output location, and the types of work involved.
 
@@ -27,21 +27,13 @@ The process is the same at both levels. What changes is the parent document, the
 * `guide.ai-project.000-process` (process guide)
 * `guide.ai-project.003-slice-planning` (this document)
 * **Parent document** — one of:
-  * Project specification (Phase 2 output) for project-level planning
   * Architecture document (`user/architecture/nnn-arch.{name}.md`) for architecture-level planning
-* Project concept document (Phase 1 output), for reference
-* Any existing architecture documentation, for reference
-
+  * Project specification (Phase 2 output) for project-level planning, with Phase 1 document for reference
+  
 **Outputs:**
-
-*Project-level planning:*
-* High-level design document (if one does not already exist): `user/architecture/050-arch.hld-{project}.md`
-  * Note: HLD creation is handled by a separate Phase 2.5 prompt. If an HLD or architecture document already exists that serves this purpose, do not create another. Confirm with Project Manager.
-* Slice planning document: `user/project-guides/003-slices.{project}.md`
-
-*Architecture-level planning:*
 * Slice planning document: `user/architecture/nnn-slices.{name}.md` where `nnn` shares the parent architecture document's base index
   * Example: If the parent is `100-arch.context-forge-restructure.md`, the slice plan is `100-slices.context-forge-restructure.md`
+  * If parent is project specification (Phase 2: variant) then use 003 as the index here.
 
 #### Core Principles
 
@@ -92,12 +84,9 @@ Not all projects will have all four types. A greenfield project may have no migr
 
 ##### Step 1: Identify the Planning Context
 
-Determine whether this is project-level or architecture-level planning:
-
-**Project-level**: The parent document is a project specification. You may need to create an HLD first (Phase 2.5) or confirm one exists. The output slice plan goes in `user/project-guides/`.
-
 **Architecture-level**: The parent document is an architecture document (`user/architecture/nnn-arch.{name}.md`), where `nnn` is the initiative's base index in the 100-799 working range (see `file-naming-conventions.md`). The architecture document functions as the HLD — do not create a separate one. The output slice plan goes in `user/architecture/` sharing the same base index.
 
+If parent is project level spec (002), use 003 for the output index here.  Output file is placed in `user/architecture/` in both cases.
 If unclear, confirm with the Project Manager before proceeding.
 
 ##### Step 2: Identify Foundation Work
@@ -218,7 +207,7 @@ The Future Work section of a slice plan is a living backlog. New entries may be 
 
 #### Working with AI
 
-**Technical Fellow Role:**
+**Architect Role:**
 - Help identify logical slice boundaries
 - Spot potential conflicts between slices
 - Suggest alternative slice organizations
@@ -233,27 +222,24 @@ The Future Work section of a slice plan is a living backlog. New entries may be 
 - "Does this migration slice leave the system in a working state?"
 
 #### Output Format
-
-**For project-level planning**, create:
-
-*HLD* (`user/architecture/050-arch.hld-{project}.md`) — only if one does not already exist. Confirm with Project Manager.
-
-*Slice Plan* (`user/project-guides/003-slices.{project}.md`):
-
 **For architecture-level planning**, create:
-
 *Slice Plan* (`user/architecture/nnn-slices.{name}.md`, sharing parent document's base index):
 
+**For project-level planning**, create:
+*Slice Plan* (`user/architecture/003-slices.{project}.md`):
+
 **Slice plan template:**
-```markdown
+```yaml
 ---
 docType: slice-plan
 parent: {path to parent document}
 project: {project-name}
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
+status: not_started | in_progress
 ---
-
+```
+```markdown
 # Slice Plan: {Name}
 
 ## Parent Document
@@ -296,11 +282,3 @@ Phase 3 is complete when:
 - [ ] Migration slices (if any) each leave the system in a working state
 - [ ] Slice plan document is created in the correct location with proper frontmatter
 - [ ] Project Manager approves the slice plan
-
-#### Next Steps
-With approved slice plan:
-1. For each slice: Phase 4 (Slice Design) → Phase 5 (Task Breakdown) → Phase 6 (Task Enhancement) → Phase 7 (Execution) → Phase 8 (Review)
-   - Slice design files share or increment from the initiative's base index (e.g., `100-slice.first.md`, `101-slice.second.md`). See `file-naming-conventions.md`.
-2. Complete integration work as needed
-3. Iterate and add new slices as requirements evolve
-```

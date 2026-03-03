@@ -11,6 +11,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Numerous changes made to streamline and simplify process.  Everything now fits under an architectural component and a slice plan is created for each.  
+
+### Added
+
+### Removed
+- Feature concept as a standalone complex feature.  Everything is a slice
+- Separate spec and project-level HLD.  Everything fits into architectural component and slice plan
+- Task expansion as separate phase
+
 
 ## [0.12.1] - 2026-02-28
 
