@@ -38,8 +38,6 @@ The remainder of this guide provides detailed processes for both modes, with par
 - Review documents: `user/reviews/nnn-review.{name}.md` (range 900-939)
 - Task files: `user/tasks/nnn-tasks.code-review.{filename}.md` (same nnn as review)
 
-Note: The `user/` path may map to `project-artifacts/` in monorepo development. If unclear, confirm with Project Manager.
-
 ### For Directory Crawl Reviews
 
 **Batching Strategy:**

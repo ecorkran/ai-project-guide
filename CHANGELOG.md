@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.2] - 2026-03-04
+
+### Removed
+- Obsolete `project-artifacts` monorepo pattern references from directory-structure, system prompt, and code review guide
+- Monorepo Context Initialization prompt (superseded by standard context init)
+
+### Changed
+- Renamed `monorepo-scaffolding` examples to `restructure-scaffolding` in file-naming-conventions
+
 ## [0.13.0] - 2026-02-28
 
 ### Changed

@@ -92,8 +92,8 @@ The range 100-799 is a shared index space for all initiative work. An **initiati
 2. **The base index** is shared by the architecture doc, slice plan, and first slice:
    - `100-arch.context-forge-restructure.md`
    - `100-slices.context-forge-restructure.md`
-   - `100-slice.monorepo-scaffolding.md`
-   - `100-tasks.monorepo-scaffolding.md`
+   - `100-slice.restructure-scaffolding.md`
+   - `100-tasks.restructure-scaffolding.md`
 3. **Subsequent slices** increment from the base:
    - `101-slice.core-types-extraction.md`, `101-tasks.core-types-extraction.md`
    - `102-slice.core-services-extraction.md`, `102-tasks.core-services-extraction.md`
@@ -117,8 +117,8 @@ Most initiatives fit within 10 indices. If an initiative needs more (e.g., 12 sl
 ```
 100-arch.context-forge-restructure.md        # Architecture document
 100-slices.context-forge-restructure.md      # Slice plan
-100-slice.monorepo-scaffolding.md            # Slice 1 design
-100-tasks.monorepo-scaffolding.md            # Slice 1 tasks
+100-slice.restructure-scaffolding.md         # Slice 1 design
+100-tasks.restructure-scaffolding.md         # Slice 1 tasks
 101-slice.core-types-extraction.md           # Slice 2 design
 101-tasks.core-types-extraction.md           # Slice 2 tasks
 102-slice.core-services-extraction.md        # Slice 3
@@ -205,7 +205,7 @@ Where:
 - `{section}` is the section name in lowercase with special characters removed and spaces replaced with hyphens
 
 Examples:
-- `100-tasks.monorepo-scaffolding.md` (tasks for `100-slice.monorepo-scaffolding.md`)
+- `100-tasks.restructure-scaffolding.md` (tasks for `100-slice.restructure-scaffolding.md`)
 - `101-tasks.core-types-extraction.md` (tasks for `101-slice.core-types-extraction.md`)
 - `950-tasks.maintenance.md` (operational — maintenance range)
 
@@ -229,7 +229,7 @@ Where:
 - `{slice-name}` is the slice name in lowercase with spaces replaced by hyphens
 
 Examples:
-- `100-slice.monorepo-scaffolding.md` (first slice, shares initiative base)
+- `100-slice.restructure-scaffolding.md` (first slice, shares initiative base)
 - `101-slice.core-types-extraction.md` (second slice, increments)
 - `102-slice.core-services-extraction.md` (third slice)
 

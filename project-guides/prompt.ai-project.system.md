@@ -396,36 +396,6 @@ If tasks file is already present, it should be your primary focus.  Slice design
 If given an instruction similar to "process and stand by", make sure you understand all instructions, what files or architecture components are involved, and alert Project Manager to any missing, incomplete, or vague information preventing you from accurately carrying out your instructions.  Wait for confirmation from Project Manager before proceeding further.  
 ```
 
-##### Context Initialization - Monorepo
-*This is the monorepo version of the context initialization prompt.  This creates some duplication but it is sufficient and direct. *
-```markdown
-The following provides context on our current work in project {project}. 
-
-We are using the slice-based methodology from `ai-project-guide/project-guides/guide.ai-project.000-process`. Current work context:
-- Project: {project}
-- Slice: {slice}
-- Tasks: {task-file}
-- Phase: {development-phase}
-- if [slice] is provided it can be decomposed into [sliceindex]-slice.[slicename].md
-
-Refer to the Resource Structure in `ai-project-guide/project-guides/guide.ai-project.000-process` for locations of resources. Key project documents and locations:
-- Project Documents: `project-artifacts/{project-type}/{project}` where project type == 'template' (only value in use 20251003), for example: `project-artifacts/template/react/`.  This is interpreted as the value of user/ wherever that is encountered.  For example if a prompt references: user/tasks/100-tasks.some-tasks, this would be interpreted as: project-artifacts/template/react/.  Alternately, it can be flattened on level to: project-artifacts/template-react/.  
-
-- Slice design: user/slices/{slice}.md maps to: project-artifacts/{project-type}-{project}/slices/{slice}.md
-- Tasks file: user/tasks/{sliceindex}-tasks.{slicename}.md --> synonym: {taskfile}, maps to: project-artifacts/{project-type}-{project}/tasks/{taskfile}.md
-
-Refer to the Resource Structure in `ai-project-guide/project-guides/guide.ai-project.000-process` for locations of resources. Concentrate on the most granular level available (e.g. tasks if present), and use the higher-level files as reference only if needed.  Key project documents:
-- High-level design: user/architecture/050-arch.hld-{project}.md
-- Current slice design: user/slices/{slice}.md
-- Tasks file: user/tasks/{sliceindex}-tasks.{slicename}.md
-*Note: legacy HLD location is: user/project-guide/050-hld.{project}.md*
-
-If you were previously assigned a role, continue in that role. If not, assume role of Senior AI as defined in the Process Guide.  
-
-If tasks file is already present, it should be your primary focus.  Slice design may be used to gain overview or as a source for generating tasks.  Once we have the tasks, we primarily work from those.
-
-If given an instruction similar to "process and stand by", make sure you understand all instructions, what files or architecture components are involved, and alert Project Manager to any missing, incomplete, or vague information preventing you from accurately carrying out your instructions.  Wait for confirmation from Project Manager before proceeding further.  
-```
 ##### Tool Usage
 ```markdown
 You will need to consult specific knowledge for 3rd party tools, libraries, or packages, which should be available to you in the `ai-project-guide/tool-guides/[tool]/` directory for our curated knowledge.  Follow these steps when working with these tools, libraries, or packages.  Use proactively.

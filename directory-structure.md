@@ -47,18 +47,11 @@ project-documents/
     └── tasks/               # task breakdowns & all work items
         └── 950-tasks.maintenance.md # maintenance & tech debt tracking
 ```
-> **Directory Structure by Use Case:**
->
-> **1. Regular Development** (standard project development - most users):
+> **Directory Structure:**
 > - Your project work goes in `project-documents/user/`
 > - Framework guides are in `project-documents/ai-project-guide/` (git submodule)
 > - This is the standard structure shown above
 >
-> **2. Monorepo Template Development** (advanced - working on templates themselves):
-> - References to `user/` map to `project-artifacts/{template-name}/` instead
-> - Example: `user/tasks/` becomes `project-artifacts/react-template/tasks/`
-> - This prevents contaminating templates with development artifacts
-> - Framework guides location (`project-documents/ai-project-guide/`) remains the same
 
 ## Zero-ambiguity decision matrix
 
