@@ -10,6 +10,16 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260306
+
+**Session**: Prompt cleanup and obsolete reference removal
+
+### Completed
+- Removed obsolete `project-artifacts` monorepo pattern references (v0.13.2)
+- Simplified Context Initialization prompt: removed redundant bullet lists, hardcoded HLD path, legacy path note; replaced with `{{#if fileArch}}` / `{{#if fileSlicePlan}}` template variables (v0.13.3)
+
+---
+
 ## 20260228
 
 **Session**: v0.13.0 — Process streamlining

@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.3] - 2026-03-06
+
+### Changed
+- Simplified Context Initialization prompt: removed redundant work context bullet list, key documents section, hardcoded HLD path, and legacy path note
+- Replaced static file references with `{{#if fileArch}}` / `{{#if fileSlicePlan}}` template variables
+
 ## [0.13.2] - 2026-03-04
 
 ### Removed
