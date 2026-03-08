@@ -333,8 +333,8 @@ Notes:
 - Do not guess, assume, or proceed without required files.
 ```
 
-##### Integration (Phase 7)
-We are completing integration for {slice} in project {project}, phase 7 of `ai-project-guide/project-guides/guide.ai-project.000-process`.
+##### Slice Integration (Phase 7)
+We are completing slice integration (Phase 7) for {slice} in project {project}, as described in `ai-project-guide/project-guides/guide.ai-project.000-process`.
 
 Your role is Senior AI.
 
@@ -492,7 +492,11 @@ Format: `## YYYYMMDD` followed by brief notes (1-3 lines per session).
 
 ##### Maintenance Task
 ```markdown
-Operate as a Senior AI. Use the issue description provided, and add tasks to the maintenance file to address implementation of the issue. Add a new task to your maintenance file, which should be `tasks/950-tasks.maintenance.md` unless there is reason to deviate (there normally isn't). This should be used for an item small enough to represent as a single main task.
+Operate as a Senior AI. Use the issue description provided, and add tasks to the maintenance file to address implementation of the issue.  Use a maintenance task and slice file in the 950-999 range.  Add a concise description in the slist file and add a new task to the task file. Use an existing slice and task file in the maintenance range if present and the item is small enough to represent as a single main task.  Create new files if needed.
+
+Example files:
+`slices/950-slices.maintenance.md`
+`tasks/950-tasks.maintenance.md`
 
 Include:
 1. A new Task {n}

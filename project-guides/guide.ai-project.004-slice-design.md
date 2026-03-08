@@ -13,7 +13,7 @@ dateUpdated: 20260215
 ---
 
 #### Summary
-This guide provides instructions for Phase 4: Slice Design (Low-Level Design). This phase takes an approved slice from a slice plan and creates a detailed technical design that can be converted into implementable tasks. The slice design serves as the technical blueprint for Phase 5 (Task Breakdown) and Phase 7 (Implementation).
+This guide provides instructions for Phase 4: Slice Design (Low-Level Design). This phase takes an approved slice from a slice plan and creates a detailed technical design that can be converted into implementable tasks. The slice design serves as the technical blueprint for Phase 5 (Task Breakdown) and Phase 6 (Implementation).
 
 Slice designs are created for slices defined in either a project-level slice plan or an architecture-level slice plan. The process is the same; what varies is which documents provide context.
 

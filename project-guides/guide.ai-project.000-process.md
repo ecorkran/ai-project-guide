@@ -147,15 +147,18 @@ Slices are grouped under architectural initiatives, each with its own architectu
      - Code reviews
      - Design reviews
      - Ensuring alignment with the slice design and overall project vision
+
    - Outcome: _Working software increment for the slice, tested and validated._
 
 7. **Phase 7: Slice Integration**
+*Note*: this phase is only run when explicitly needed.  It is omitted in most workflows.
    - Integrate completed slice with existing codebase.
    - For single-developer projects, this is typically straightforward.
    - For team projects or future parallelization, this becomes similar to git merge/PR integration.
    - Verify that slice dependencies and interfaces work as expected.
    - Update project documentation and architecture understanding where applicable.
-   - Check off the completed slice in the parent slice plan.
+   - Check off the completed slice in the parent slice and/or slice plan
+   - Ensure that any relevant completed files (task, slice) have status: complete
    - Outcome: _Integrated functionality ready for the next development cycle._
 
 ##### DEVLOG
