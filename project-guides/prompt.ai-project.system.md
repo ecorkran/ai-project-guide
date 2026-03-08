@@ -18,28 +18,28 @@ This document contains prepared prompts useful in applying the `guide.ai-project
 ### Context Profiles
 Maps prompt templates to their required context documents.
 Variables not listed are excluded from context assembly.
-Order: concept → hld → spec → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present (we frequently do not have fileHLD or fileSpec, for example). 
+Order: concept → hld → spec → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present (we frequently do not have fileHLD or fileSpec, for example).  This table is an interrim solution before we split the monolitic prompt file, which should happen soon.
 ```yaml
 context_profiles:
-  Concept:                []
-  Architecture:           [fileConcept, fileHLD, fileSpec]
-  Slice Planning:         [fileArch]
-  Slice Design:           [fileArch, fileSlicePlan]
-  Task Breakdown:         [fileSlicePlan, fileSlice]
-  Task Expansion:         [fileSlice, fileTasks]
-  Implementation:         [fileSlicePlan, fileSlice, fileTasks]
-  Integration:            [fileArch, fileSlicePlan, fileSlice, fileTasks]
-  Maintenance Task:       [fileTasks]
-  Perform Maintenance:    [fileSlice, fileTasks]
-  Analysis Processing:    []
-  Analysis Task Creation: [fileTasks]
-```
-
-##### Project Phase (Phase n)
-*Use to directly execute a phase without additional instructions needed.*
-
-```
-Refer to the `guide.ai-project.000-process`, and function as a Senior AI.  Implement the phase requested according to the respective procedures described in the guide.  Remember to follow the rules in `directory-structure` for any files or directories created.
+  concept-phase-1:                   []
+  architecture-phase-2:              [fileConcept, fileHLD, fileSpec]
+  slice-planning-phase-3:            [fileArch]
+  slice-design-phase-4:              [fileArch, fileSlicePlan]
+  task-breakdown-phase-5:            [fileSlicePlan, fileSlice]
+  implementation-phase-6:            [fileSlicePlan, fileSlice, fileTasks]
+  slice-integration-phase-7:         [fileArch, fileSlicePlan, fileSlice, fileTasks]
+  task-breakdown-supplement-phase-5: [fileSlicePlan, fileSlice]
+  task-expansion-variant-phase-5:    [fileSlicePlan, fileSlice]
+  context-initialization:            []
+  maintenance-task:                  [fileTasks]
+  maintenance-routine:               [fileSlice, fileTasks]
+  analysis-processing:               [fileSlice, fileTasks]
+  analysis-task-creation:            [fileTasks]
+  analysis-to-lld:                   [fileSlice]
+  analysis-task-implementation:      [fileSlice, fileTasks]
+  analyze-codebase:                  []
+  custom-instruction:                []
+  _default:                          [fileArch, fileSlicePlan, fileSlice, fileTasks]
 ```
 
 ##### Concept (Phase 1)
@@ -55,7 +55,7 @@ We will use the completed concept as a basis for architecture and subsequent des
 When creating the concept, *ask questions* if any information is missing or unclear. The guideline of do not assume or guess applies, but is even more important here at this early concept stage where misunderstandings compound through later phases. Request any needed clarifications from the Project Manager.
 ```
 
-###### Architecture (Phase 2)
+##### Architecture (Phase 2)
 *Use this to design a high-level architectural component or initiative that will span multiple slices. This is the most common entry point for work on existing projects.*
 
 ```markdown
@@ -280,45 +280,6 @@ Notes:
 * Always use mathematical comparison when evaluating file length vs target size. Always compare vs actual number of lines in the file, not number of list items or checkboxes.
 ```
 
-##### Task Breakdown Supplement (Supplement: Phase 5)
-*Add this when you have a detailed slice design especially one containing code that may have been iterated on in order to solve complex or subtle design problems.  This should be added to the regular task breakdown prompt.*  
-
-```markdown
-###### Important Additional Information
-Note that our slice design is intricate, detailed, and has been refined extensively in order to address complex and/or subtle issues.  The slice design contains code, and we *need* to use this code in our task planning.
-
-As you are planning tasks, proceed *carefully* through the slice design, creating tasks to accomplish the design *exactly* as presented.  Once you complete the task breakdown, review it in light of the slice design to ensure that:
-1. You completely addressed the design.  If there are similar items, for example numerous wrapper components, ensure that your tasks explicitly address creation of each one.  
-2. You did not miss any details.  This is critical.  Do not "gloss over", simplify, or add workarounds to any coding sections of the design even though they may be difficult.
-   
-Note also that tasks may reference the relevant design document.  You do not need to replicate large pieces of the design document all over the task list.  Ensure that references are accurate.  Do not assume or guess anywhere in this task.
-
-After creation of task list, you must review the entire list against the slice design to ensure that these requirements are met.
-```
-
-##### Task Expansion (Variant: Phase 5))
-*This is no longer a separate phase. Use only when task breakdown results need additional enhancement, which is uncommon. See `guide.ai-project.005-variant-task-expansion` for detailed guidance.*
-
-```markdown
-We're working in our guide.ai-project.000-process, Phase 5 (optional task expansion). Enhance the tasks for slice {slice} in project {project} to improve the chances that our "junior" AI workers can complete assigned tasks on their own.  Only enhance tasks that can truly benefit from it.  Many tasks may already be described with sufficient detail.
-
-Use `guide.ai-project.005-variant-task-expansion` as your detailed guide. Work on the task file `user/tasks/{sliceindex}-tasks.{slicename}.md`.
-
-Your role is Senior AI. For each task:
-- If it would benefit from expansion or subdivision, enhance it.
-- If it's already appropriate, output it verbatim.
-- Ensure all tasks are accounted for.
-  
-Additionally:
-- Make sure that you do NOT use this expansion as a way to write code in a design and planning phase.  Expanded tasks should not look like writing code for the the tasks.  You may spec out interfaces or use minimal code examples where truly useful.  Evaluate carefully before doing so.
-
-After any expansion, review it against the original unexpanded task and ensure that your expansion is a detailed representation of the original task, not a reinterpretation or change of the original task.
-
-Output results by updating the existing task file. Success: All tasks have been processed and either output as is, or enhanced and divided into further subtasks.
-
-Note: This is a project planning task, not a coding task.
-```
-
 ##### Implementation (Phase 6)
 ```markdown
 We are working on {slice} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.000-process`. 
@@ -411,32 +372,6 @@ You will need to consult specific knowledge for 3rd party tools, libraries, or p
 3. Search Docs: Search within those specific documentation sources first using `grep_search` or `codebase_search`.
 4. Additional documentation.  If you have a documentation tool available (ex: context7 MCP) use it for additional information.  Always use it if available and no specific tool guide is provided.
 5. Web Search Fallback: If the targeted search doesn't yield results, then search the web.
-```
-
-##### Ad-Hoc Tasks
-```markdown
-Create tasks for {bugfix|maintenance-work} in project {project}. This is for smaller work items that need task breakdown but don't require full slice design.
-
-Your role is Senior AI. Analyze the work item and create a task file at `user/tasks/nnn-tasks.{item-name}.md` with:
-
-1. YAML front matter:
----
-item: {item-name}
-project: {project}
-type: maintenance|bugfix
-dependencies: [list-if-any]
-projectState: brief current state
-dateCreated: YYYYMMDD
-dateUpdated: YYYYMMDD
-status: not_started | in_progress
----
-
-2. Context summary explaining the work
-3. Granular tasks following Phase 5 guidelines
-
-Skip slice design creation - go directly from description to implementable tasks. Each task should be completable by a junior AI with clear success criteria.
-
-If the item is too complex for this approach, recommend creating a slice design instead. If you need more information about the requirements, stop and request from Project Manager.  Keep tasks focused and atomic.
 ```
 
 ##### Summarize Context
@@ -534,7 +469,7 @@ Each task must be completable by a junior AI with clear success criteria. If ins
 This is a project planning task, not a coding task.
 ```
 
-##### Perform Routine Maintenance 
+##### Maintenance Routine
 ```markdown
 We are performing routine maintenance by implementing solutions for incomplete tasks in the maintenance task file. Unless otherwise specified, use file `tasks/950-tasks.maintenance.md` and scan for incomplete tasks. If given a particular section heading in the file, consider only that section.
 
@@ -737,6 +672,46 @@ Analyze the following existing codebase and document your findings. We want this
 ```markdown
 Custom instructions apply.  See Additional Context for instruction prompt.
 ```
+
+##### Task Breakdown (Supplement: Phase 5)
+*Add this when you have a detailed slice design especially one containing code that may have been iterated on in order to solve complex or subtle design problems.  This should be added to the regular task breakdown prompt.*  
+
+```markdown
+###### Important Additional Information
+Note that our slice design is intricate, detailed, and has been refined extensively in order to address complex and/or subtle issues.  The slice design contains code, and we *need* to use this code in our task planning.
+
+As you are planning tasks, proceed *carefully* through the slice design, creating tasks to accomplish the design *exactly* as presented.  Once you complete the task breakdown, review it in light of the slice design to ensure that:
+1. You completely addressed the design.  If there are similar items, for example numerous wrapper components, ensure that your tasks explicitly address creation of each one.  
+2. You did not miss any details.  This is critical.  Do not "gloss over", simplify, or add workarounds to any coding sections of the design even though they may be difficult.
+   
+Note also that tasks may reference the relevant design document.  You do not need to replicate large pieces of the design document all over the task list.  Ensure that references are accurate.  Do not assume or guess anywhere in this task.
+
+After creation of task list, you must review the entire list against the slice design to ensure that these requirements are met.
+```
+
+##### Task Expansion (Variant: Phase 5))
+*This is no longer a separate phase. Use only when task breakdown results need additional enhancement, which is uncommon. See `guide.ai-project.005-variant-task-expansion` for detailed guidance.*
+
+```markdown
+We're working in our guide.ai-project.000-process, Phase 5 (optional task expansion). Enhance the tasks for slice {slice} in project {project} to improve the chances that our "junior" AI workers can complete assigned tasks on their own.  Only enhance tasks that can truly benefit from it.  Many tasks may already be described with sufficient detail.
+
+Use `guide.ai-project.005-variant-task-expansion` as your detailed guide. Work on the task file `user/tasks/{sliceindex}-tasks.{slicename}.md`.
+
+Your role is Senior AI. For each task:
+- If it would benefit from expansion or subdivision, enhance it.
+- If it's already appropriate, output it verbatim.
+- Ensure all tasks are accounted for.
+  
+Additionally:
+- Make sure that you do NOT use this expansion as a way to write code in a design and planning phase.  Expanded tasks should not look like writing code for the the tasks.  You may spec out interfaces or use minimal code examples where truly useful.  Evaluate carefully before doing so.
+
+After any expansion, review it against the original unexpanded task and ensure that your expansion is a detailed representation of the original task, not a reinterpretation or change of the original task.
+
+Output results by updating the existing task file. Success: All tasks have been processed and either output as is, or enhanced and divided into further subtasks.
+
+Note: This is a project planning task, not a coding task.
+```
+
 
 ***
 ### Experimental

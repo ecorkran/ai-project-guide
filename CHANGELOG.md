@@ -12,6 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.5] - 2026-03-08
+
+### Changed
+- Prompts: Expanded context_profiles with kebab-case keys, added default profile and supplemental entries
+- Prompts: Fixed Architecture heading level (h6 → h5)
+- Prompts: Renamed "Perform Routine Maintenance" to "Maintenance Routine"
+- Prompts: Moved Task Breakdown Supplement and Task Expansion to supplemental section
+
+### Removed
+- Prompts: Removed obsolete "Project Phase" and "Ad-Hoc Tasks" prompts
+
 ## [0.13.4] - 2026-03-08
 
 ### Added
