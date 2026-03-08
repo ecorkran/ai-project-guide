@@ -14,18 +14,25 @@ dateUpdated: 20260302
 ---
 ## Prompts
 This document contains prepared prompts useful in applying the `guide.ai-project.000-process` and performing additional supplemental tasks.
-##### Project Object Model and Parameters
-```python
-# input keys
-{
-  project,
-  slice,
-  section, 
-  subsection,
-  framework/language,
-  tools,
-  apis,
-}
+
+### Context Profiles
+Maps prompt templates to their required context documents.
+Variables not listed are excluded from context assembly.
+Order: concept → hld → spec → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present (we frequently do not have fileHLD or fileSpec, for example). 
+```yaml
+context_profiles:
+  Concept:                []
+  Architecture:           [fileConcept, fileHLD, fileSpec]
+  Slice Planning:         [fileArch]
+  Slice Design:           [fileArch, fileSlicePlan]
+  Task Breakdown:         [fileSlicePlan, fileSlice]
+  Task Expansion:         [fileSlice, fileTasks]
+  Implementation:         [fileSlicePlan, fileSlice, fileTasks]
+  Integration:            [fileArch, fileSlicePlan, fileSlice, fileTasks]
+  Maintenance Task:       [fileTasks]
+  Perform Maintenance:    [fileSlice, fileTasks]
+  Analysis Processing:    []
+  Analysis Task Creation: [fileTasks]
 ```
 
 ##### Project Phase (Phase n)

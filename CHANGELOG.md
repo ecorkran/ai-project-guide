@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.4] - 2026-03-08
+
+### Added
+- Prompts: Added context_profiles table to specify inputs per prompt.
+
+### Changed
+- Prompts: Clarified Phase 7 as not included in standard flow.
+- Prompts: indexing specified for slice plans
+
 ## [0.13.3] - 2026-03-06
 
 ### Changed
