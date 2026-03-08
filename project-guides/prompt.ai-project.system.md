@@ -166,6 +166,7 @@ Your role is Architect as described in the Process Guide. Work with the Project 
 2. Identify foundation work, functional slices, migration/refactoring slices, and integration work as applicable
 3. Create the slice plan document in the correct location:
    `user/architecture/nnn-slices.{name}.md` (sharing the parent architecture document's base index, per `file-naming-conventions.md`)
+4. When numbering slices, you may use an index starting with 1, but continue the same index throughout the document.  Do not restart the numbering within the plan.
 
 Use enough slices to completely define the scope of the parent document. Consider functional requirements only. Ignore non-functional requirements. Avoid speculative risk projections. Do not include calendar or time-based estimates.
 
@@ -189,7 +190,15 @@ We're working in our guide.ai-project.000-process, Phase 4: Slice Design (Low-Le
 
 If using a slice plan, it must contain an entry for this slice. If the strategic context document is not obvious, ask the Project Manager.
 
-Create the slice design document at `user/slices/nnn-slice.{slice-name}.md`, where `nnn` shares the initiative's base index (for the first slice) or increments sequentially from it (for subsequent slices), per `file-naming-conventions.md`. Your role is Architect.
+Create the slice design document at `user/slices/nnn-slice.{slice-name}.md`, where `nnn` shares the initiative's base index (for the first slice) or increments sequentially from it (for subsequent slices), per `file-naming-conventions.md`. 
+
+When creating a slice design for a slice plan entry, update its entry to include the materialized `nnn` index.  
+Example:
+Creating slice 175 for slice plan entry 11:
+pre:  11 [ ] **Our Slice Title** {slice plan entry text}
+post: 11 [ ] **(175) Our Slice Title** {slice plan entry text}
+
+Your role is Architect.
 
 Include:
 - YAML frontmatter as described below.  Ensure that status field is present.
