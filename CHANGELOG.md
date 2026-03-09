@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.10] - 2026-03-09
+
+### Changed
+- Prompts: Phase 4 verification walkthrough noted as draft to be refined during implementation
+- Prompts: Phase 6 now requires running verification walkthrough after task completion and updating it with actual results
+
 ## [0.13.9] - 2026-03-09
 
 ### Added

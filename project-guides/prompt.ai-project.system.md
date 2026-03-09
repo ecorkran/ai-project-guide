@@ -229,7 +229,7 @@ Include:
 - UI mockups or API/tool specifications (if applicable)
 - Cross-slice dependencies and interfaces
 - Success criteria specific enough for task creation
-- Verification walkthrough: concrete commands, workflows, and step-by-step confirmation that the user can follow to prove the slice delivers what it claims. This is not a restatement of success criteria — it's the "demo script" showing what the user can actually do.
+- Verification walkthrough: concrete commands, workflows, and step-by-step confirmation that the user can follow to prove the slice delivers what it claims. This is not a restatement of success criteria — it's the "demo script" showing what the user can actually do.  This is the draft walkthrough that will be refined when Phase 6 (Implementation) is complete.
 - Only template sections that are relevant to this slice — omit sections that don't apply
 
 Avoid:
@@ -311,9 +311,9 @@ Work carefully and sequentially through the tasks, ensuring that each task is ve
 
 If you encounter a failing test, an ambiguous requirement, or a design decision not covered by the slice design, stop and confer with the Project Manager. Do not make more than three attempts at a failing approach before stopping.
 
-If an attempted solution does not work or you find reason to try another approach, do not make more than three attempts without stopping and obtaining confirmation from Project Manager.
-
 Be sure to check off tasks as they are completed.  If a parent slice plan file contains checklist items, check off parent items after all child items are complete. If a `task-checker` tool|agent is available to you, use it.
+
+After completing all tasks, run through the Verification Walkthrough section of the slice design as a final confirmation. If any step doesn't work as described, stop and confer with Project Manager before marking the slice complete. Update the Verification Walkthrough with actual commands, expected command output, corrections, and any caveats discovered during implementation.  The goal is for the walkthrough to be aditionally verifiable by an external agent (human or AI, as applicable).
 
 Maintain the YAML frontmatter including:
 - Status: not_started, in_progress, complete, not_applicable
