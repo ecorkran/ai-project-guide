@@ -174,7 +174,21 @@ Your role is Architect as described in the Process Guide. Work with the Project 
 3. Create the slice plan document in the correct location:
    `user/architecture/nnn-slices.{name}.md` (sharing the parent architecture document's base index, per `file-naming-conventions.md`)
 4. When numbering slices, you may use an index starting with 1, but continue the same index throughout the document.  Do not restart the numbering within the plan.
+5. Include YAML frontmatter with `status: active` (or `complete` if all slices are done). Each slice entry should also include a status field: `not_started`, `in_progress`, `complete`, or `blocked`.
 
+**Example YAML FrontMatter**:
+```yaml
+---
+docType: slice-plan
+parent: user/architecture/140-arch.context-forge-restructure.md
+project: context-forge
+status: active
+dateCreated: 20260214
+dateUpdated: 20260217
+---
+```
+
+```markdown
 Use enough slices to completely define the scope of the parent document. Consider functional requirements only. Ignore non-functional requirements. Avoid speculative risk projections. Do not include calendar or time-based estimates.
 
 When defining slices, focus on slice independence and clear value delivery (user value, developer value, or architectural enablement). Each slice must leave the system in a working state when complete. If you have all required inputs and sufficient information, proceed with slice planning. If not, request required information from the Project Manager.
