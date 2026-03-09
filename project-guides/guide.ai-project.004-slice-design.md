@@ -190,6 +190,15 @@ What components, features, and functionality are included in this slice? What is
 - System-wide functionality that works correctly
 - End-to-end workflows that function
 
+### Verification Walkthrough
+This section bridges the gap between abstract success criteria and concrete proof of delivery. It should read like a short tutorial, not a test plan.
+
+- What commands can be run? (with example invocations and expected output)
+- What workflows become possible or testable end-to-end?
+- How does the user confirm it works? (a step-by-step "demo script")
+
+If a command doesn't exist yet, say so. If a workflow requires manual steps, list them.
+
 ## Risk Assessment (if applicable)
 Include only if there are genuine, non-trivial risks. Omit for low-risk slices.
 
@@ -285,6 +294,7 @@ Before approving a slice design:
 - [ ] Dependencies are identified and realistic
 - [ ] Architecture supports the intended functionality
 - [ ] Success criteria are specific and measurable
+- [ ] Verification walkthrough provides concrete, runnable confirmation of delivery
 - [ ] Integration points are clearly defined
 - [ ] Migration slices explicitly ensure the system remains working
 - [ ] Irrelevant template sections are omitted rather than filled with boilerplate

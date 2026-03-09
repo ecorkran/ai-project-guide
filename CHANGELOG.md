@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.8] - 2026-03-09
+
+### Added
+- Guides: Added Verification Walkthrough section to Phase 4 (Slice Design) with checklist item
+- Prompts: Added verification walkthrough requirement to Slice Design prompt
+
+### Changed
+- Prompts: Phase 5 task breakdown now specifies test-with pattern (tests after each implementation, not batched)
+- Prompts: Phase 6 implementation updated with explicit commit checkpoint guidance and three-attempt retry limit
+
 ## [0.13.7] - 2026-03-08
 
 ### Added

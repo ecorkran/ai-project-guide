@@ -192,8 +192,8 @@ We're working in our guide.ai-project.000-process, Phase 4: Slice Design (Low-Le
 - Architecture document or HLD — as identified by the Project Manager or referenced in the slice plan's parent document.
 
 *Working input* (defines what this specific slice should accomplish:
-2. Slice plan entry from `user/architecture/nnn-slices.{name}.md`
-3. Slice description provided directly with this request
+1. Slice plan entry from `user/architecture/nnn-slices.{name}.md`
+2. Slice description provided directly with this request
 
 If using a slice plan, it must contain an entry for this slice. If the strategic context document is not obvious, ask the Project Manager.
 
@@ -215,6 +215,7 @@ Include:
 - UI mockups or API/tool specifications (if applicable)
 - Cross-slice dependencies and interfaces
 - Success criteria specific enough for task creation
+- Verification walkthrough: concrete commands, workflows, and step-by-step confirmation that the user can follow to prove the slice delivers what it claims. This is not a restatement of success criteria — it's the "demo script" showing what the user can actually do.
 - Only template sections that are relevant to this slice — omit sections that don't apply
 
 Avoid:
@@ -261,7 +262,8 @@ Include:
 3. Granular tasks following Phase 5 guidelines
 4. Create separate sub-tasks for each similar component.
 5. Organize so that tasks can be completed sequentially.
-6. Use checklist format for all task files.
+6. Test-with pattern: place test tasks immediately after their corresponding implementation tasks, not batched at the end. Each feature or component task should be followed by its test task before moving to the next feature.
+7. Use checklist format for all task files.
 
 Avoid:
 - Time estimates in hours/days/etc.  You may use a 1-5 relative effort scale.
@@ -289,9 +291,11 @@ Your job is to complete the tasks in the `user/tasks/{sliceindex}-tasks.{slicena
 Use the following as overview input when needed.  Primary input is the task file referenced above.
 - The slice design at `user/slices/{slice}.md`.
 
-Always git commit at least once per task but ideally after every section of items containing a 'Success:' criteria.  For example, if a file contains Task 1.2, Task 1.2.1, commit after each task.  If 1.2.1 contains multiple checklists each with its own 'Success:' criteria, commit after any section containing Success.  STOP and confer with Project Manager after each task, unless directed otherwise 
+Commit at each checkpoint marked in the task file (look for lines starting with `**Commit**:`). Use the commit message provided. If a task has no explicit commit marker, commit at the end of the task before moving to the next.
 
 Work carefully and sequentially through the tasks, ensuring that each task is verified complete before proceeding to the next.  You should write unit tests for code as you work through the task. Ensure that tests pass and task is complete before moving to the next.
+
+If you encounter a failing test, an ambiguous requirement, or a design decision not covered by the slice design, stop and confer with the Project Manager. Do not make more than three attempts at a failing approach before stopping.
 
 If an attempted solution does not work or you find reason to try another approach, do not make more than three attempts without stopping and obtaining confirmation from Project Manager.
 

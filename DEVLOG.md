@@ -10,6 +10,17 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260309
+
+**Session**: Slice design and implementation prompt improvements
+
+### Completed
+- Added Verification Walkthrough section to Phase 4 guide and prompt — bridges gap between success criteria and concrete proof of delivery (v0.13.8)
+- Updated Phase 5 prompt with test-with pattern (tests placed after corresponding implementation tasks)
+- Updated Phase 6 prompt: commit at explicit checkpoints, three-attempt retry limit with PM escalation
+
+---
+
 ## 20260306
 
 **Session**: Prompt cleanup and obsolete reference removal
