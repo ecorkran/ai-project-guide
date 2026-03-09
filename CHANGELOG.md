@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.7] - 2026-03-08
+
+### Added
+- Rules: Added "Parsing & Pattern Matching" section to general rules — prefer lenient parsing, handle format variations, test with real input
+
 ## [0.13.6] - 2026-03-08
 
 ### Fixed

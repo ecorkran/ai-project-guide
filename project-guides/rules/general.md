@@ -24,6 +24,19 @@ alwaysApply: true
 - Git add and commit from project root at least once per task.
 - Confirm your current working directory before file/shell commands.
 
+## Parsing & Pattern Matching
+
+- Prefer lenient parsing over strict matching. A regex that silently
+  fails on valid input (e.g. requiring exact whitespace counts or
+  line-ending positions) is a bug. Parse the semantic content, not
+  the formatting.
+- When parsing structured text (YAML, key-value pairs, etc.), handle
+  common format variations (compact vs multi-line, varying indent
+  levels, trailing whitespace) rather than requiring one exact layout.
+- If a parser returns empty/default on bad input, add at least one
+  test using real-world input (e.g. the actual file it will parse)
+  to catch silent failures.
+  
 ### Project Navigation
 
 - Follow `guide.ai-project.000-process` and its links for workflow.
