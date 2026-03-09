@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.6] - 2026-03-08
+
+### Fixed
+- Prompts: Corrected context_profiles input mappings for architecture, slice planning, slice design, task breakdown, implementation, and supplement/expansion variants
+
 ## [0.13.5] - 2026-03-08
 
 ### Changed
