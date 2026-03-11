@@ -84,11 +84,11 @@ layer: project
 project: {project}
 archIndex: nnn
 component: {component-name}
+relatedSlices: []
+riskLevel: low|medium|high
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
 status: in_progress
-relatedSlices: []
-riskLevel: low|medium|high
 ---
 ```
 ```markdown
@@ -182,9 +182,9 @@ Your role is Architect as described in the Process Guide. Work with the Project 
 docType: slice-plan
 parent: user/architecture/140-arch.context-forge-restructure.md
 project: context-forge
-status: active
 dateCreated: 20260214
 dateUpdated: 20260217
+status: not_started
 ---
 ```
 

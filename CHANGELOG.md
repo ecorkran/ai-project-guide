@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.11] - 2026-03-10
+
+### Changed
+- Guides: Clarified slice planning success criteria format (bullet list, no checkboxes)
+- Prompts: Rearranged YAML frontmatter fields for consistency (dates before status)
+
 ## [0.13.10] - 2026-03-09
 
 ### Changed

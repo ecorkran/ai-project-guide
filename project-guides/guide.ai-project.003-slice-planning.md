@@ -112,7 +112,7 @@ For each major area of work in the parent document:
 ```markdown
 ## Slice: {slice-name}
 **Value:** What does this deliver? (user value, developer value, or architectural enablement)
-**Success Criteria:** How do we know it's complete?
+**Success Criteria:** How do we know it's complete?  Use bullet list.  Checkboxes are not needed at this level.
 **Dependencies:** What foundation work or other slices must be done first?
 **Interfaces:** What APIs, contracts, or packages does this provide/consume?
 **Risk Level:** Low/Medium/High based on technical complexity
