@@ -254,7 +254,7 @@ Example:
 To maintain manageable file sizes and improve readability:
 
 ### Size Guidelines
-- **Non-architecture files**: Target ~350 lines maximum
+- **Non-architecture files**: Target ~350 lines when possible
 - **Architecture files**: Allowed to grow larger as needed
 - **Trigger for splitting**: When a file exceeds limits by >33% (~465 lines for non-architecture files)
 

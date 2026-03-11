@@ -174,7 +174,8 @@ Your role is Architect as described in the Process Guide. Work with the Project 
 3. Create the slice plan document in the correct location:
    `user/architecture/nnn-slices.{name}.md` (sharing the parent architecture document's base index, per `file-naming-conventions.md`)
 4. When numbering slices, you may use an index starting with 1, but continue the same index throughout the document.  Do not restart the numbering within the plan.
-5. Include YAML frontmatter with `status: active` (or `complete` if all slices are done). Each slice entry should also include a status field: `not_started`, `in_progress`, `complete`, or `blocked`.
+5. When naming slices in the slice plan, avoid use of ampersand or other special characters not commonly accepted in filenames.  - and space are fine.  Include a tentative slice number starting with the sliceplan index.  Example:  1. [ ] **(100) MCP Server Scaffolding** - {remainder of entry}
+6. Include YAML frontmatter with `status: active` (or `complete` if all slices are done). Each slice entry should also include a status field: `not_started`, `in_progress`, `complete`, or `blocked`.
 
 **Example YAML FrontMatter**:
 ```yaml
@@ -286,7 +287,7 @@ Avoid:
 
 For each {tool} in use, consult knowledge in `ai-project-guide/tool-guides/{tool}/`. Follow all task creation guidelines from the Process Guide.
 
-Each task must be completable by a junior AI with clear success criteria. If insufficient information is available, stop and request clarifying information.  Keep files to about 350 lines or less.  If considerably more space is needed modify files as detailed here.  Do not split a file if it's less than about 100 line overrun.
+Each task must be completable by a junior AI with clear success criteria. If insufficient information is available, stop and request clarifying information.  Keep files to about 450 lines or less.  If considerably more space is needed modify files as detailed here.  Do not split a file if it's less than about 100 line overrun.
 1. rename current file nnn-tasks.[task section name]-1.md
 2. add new file nnn-tasks.[task-section-name]-2.md
 3. ...etc...

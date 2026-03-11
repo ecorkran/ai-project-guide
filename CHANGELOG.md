@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.12] - 2026-03-10
+
+### Changed
+- Relaxed non-architecture file size from "~350 max" to "~350 when possible"
+- Raised task file line limit from ~350 to ~450 in guide and prompt
+- Prompts: Added slice naming guidance (avoid special characters, include tentative slice number)
+
 ## [0.13.11] - 2026-03-10
 
 ### Changed

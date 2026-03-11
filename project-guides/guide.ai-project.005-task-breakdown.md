@@ -67,7 +67,7 @@ Use the checklist format defined in `guide.ai-project.000-process` under Task Fi
 - Success criteria remain at L2 level, not separated from their task
 
 ##### File Length
-Keep task files to approximately 350 lines or fewer. If considerably more space is needed:
+Keep task files to approximately 450 lines or fewer. If considerably more space is needed:
 1. Rename current file `nnn-tasks.{task-section-name}-1.md`
 2. Add new file `nnn-tasks.{task-section-name}-2.md`
 3. Continue as needed
