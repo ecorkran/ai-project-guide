@@ -276,6 +276,8 @@ compile_claude_rules() {
     cat > "$target_file" << 'EOF'
 # Project Guidelines for Claude
 
+[//]: # (context-forge:managed)
+
 EOF
 
     local compiled_count=0
