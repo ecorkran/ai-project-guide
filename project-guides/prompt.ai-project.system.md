@@ -88,7 +88,6 @@ relatedSlices: []
 riskLevel: low|medium|high
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
-status: in_progress
 ---
 ```
 ```markdown
@@ -145,6 +144,7 @@ No direct references to individual tasks
 * Create if it doesn't already exist. If file exists, edit existing file as described above.
 * Include all required YAML frontmatter
 * Preserve any Project Manager-provided context or requirements
+* Register the document: `cf set arch <nnn>` (e.g., `cf set arch 100`)
 
 Follow dependency management—identify what foundation work or other architectural components this initiative depends on or affects.
 

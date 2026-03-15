@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.15] - 2026-03-13
+
+### Changed
+- Prompts: Removed `status` field from architecture YAML frontmatter template
+- Prompts: Added directive to register architecture document via `cf set arch <nnn>` after creation
+
 ## [0.13.14] - 2026-03-13
 
 ### Added
