@@ -228,6 +228,8 @@ The Future Work section of a slice plan is a living backlog. New entries may be 
 **For project-level planning**, create:
 *Slice Plan* (`user/architecture/003-slices.{project}.md`):
 
+*Note: {tsi} in template below is {tentative-slice-index}.  The first slice should receive the index of the plan itself which matches the plan's architectural initiative index (ex: 100, 120, etc).  Additional slices receive consecutive index values (101, 102, etc)*
+
 **Slice plan template:**
 ```yaml
 ---
@@ -246,18 +248,18 @@ status: not_started | in_progress
 {Reference to the spec or architecture document this plan derives from}
 
 ## Foundation Work
-1. [ ] **{Name}** — Brief description. Effort: n/5
+1. [ ] **({tsi}) {Name}** — Brief description. Effort: n/5
 
 ## Migration / Refactoring Slices (if applicable)
-1. [ ] **{Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
-2. [ ] **{Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
+1. [ ] **({tsi}) {Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
+2. [ ] **({tsi}) {Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
 
 ## Feature Slices (in implementation order)
-1. [ ] **{Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
-2. [ ] **{Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
+1. [ ] **({tsi}) {Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
+2. [ ] **({tsi}) {Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
 
 ## Integration Work
-1. [ ] **{Name}** — Brief description. Effort: n/5
+1. [ ] **({tsi}) {Name}** — Brief description. Effort: n/5
 
 ## Notes
 - Key decisions made during planning

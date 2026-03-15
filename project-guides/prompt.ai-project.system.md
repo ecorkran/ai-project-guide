@@ -175,7 +175,7 @@ Your role is Architect as described in the Process Guide. Work with the Project 
    `user/architecture/nnn-slices.{name}.md` (sharing the parent architecture document's base index, per `file-naming-conventions.md`)
 4. When numbering slices, you may use an index starting with 1, but continue the same index throughout the document.  Do not restart the numbering within the plan.
 5. When naming slices in the slice plan, avoid use of ampersand or other special characters not commonly accepted in filenames.  - and space are fine.  Include a tentative slice number starting with the sliceplan index.  Example:  1. [ ] **(100) MCP Server Scaffolding** - {remainder of entry}
-6. Include YAML frontmatter with `status: active` (or `complete` if all slices are done). Each slice entry should also include a status field: `not_started`, `in_progress`, `complete`, or `blocked`.
+6. Include YAML frontmatter with `status: active` (or `complete` if all slices are done). 
 
 **Example YAML FrontMatter**:
 ```yaml
@@ -393,15 +393,35 @@ You will need to consult specific knowledge for 3rd party tools, libraries, or p
 5. Web Search Fallback: If the targeted search doesn't yield results, then search the web.
 ```
 
-##### Summarize Context
-*Use when nearing context limit, e.g. when facing imminent auto-compaction in Claude Code.  Make sure to include inside `[ ]` or Claude will ignore the instructions.  Currently it appears that at best Claude will output the `[ ]` information into the new context.*
-```markdown
-Perform the following items and add their output to the compacted context:
-* Preserve the initial context describing what we are working on.
-* Summarize current project state at time of this compaction.
-* Include any open todo list items and work in progress.
-* add the tag --COMPACTED-- after inserting this information. 
-```
+
+##### Add Slice Overview
+*Use to add a slice overview to an existing slice plan.  You should have architecture and slice plan documents associated in order to use this prompt.  If these documents are not present, inform the user or agent that required inputs are missing.*
+
+###### Inputs & Role
+* discovery tool: you should have access to a discovery tool, for example a get_status function or skill (/cf:status or similar).  Use this as needed to scan for required inputs and prompt user/agent if any are missing.
+* architecture file (arch): associated architecture file
+* slice plan file (plan): associated slice plan file
+* Your role is Architect as described in the Process Guide.
+
+###### Outputs:
+* slice plan updated with overview on the new slice.  
+* slice overview as described here.
+
+###### Slice Overview in Slice Plan (required) 
+Slices created here will normally go in the Feature Slices section of the slice plan.  Unless specifically instructed, add new slice to end of Feature Slices list
+
+*Note: {tsi} in template below is {tentative-slice-index}.  Use the next available sequential index and tentative slice index.  Do not update index values for additional slices that follow unless asked to do so.*  
+
+*Existing Feature Slices Form*
+i. [ ] ** ({tsi}) {Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High.  Effort: n/5
+
+*Example with New Slice Added*
+14. [ ] **(113) {Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
+15. [ ] **(114) {New Slice Name}** — Brief description. Dependencies: [list]. Risk: Low/Med/High. Effort: n/5
+
+## Integration Work
+16. [ ] **(115) {Name}** — Brief description. Effort: n/5
+
 
 ##### Session State Summary
 *Use at the end of any work session — whether a slice is complete, partially complete, or work was interrupted. Produces a DEVLOG entry that enables project resumption by a human or AI in a new session. This is distinct from Summarize Context (above), which preserves state for in-session compaction.*
@@ -450,7 +470,6 @@ Include:
 If DEVLOG.md does not exist, create it at project-root directory with the following structure:
 
 # Development Log
-
 A lightweight, append-only record of development activity. Newest entries first.
 Format: `## YYYYMMDD` followed by brief notes (1-3 lines per session).
 ---
@@ -692,22 +711,6 @@ Analyze the following existing codebase and document your findings. We want this
 Custom instructions apply.  See Additional Context for instruction prompt.
 ```
 
-##### Task Breakdown (Supplement: Phase 5)
-*Add this when you have a detailed slice design especially one containing code that may have been iterated on in order to solve complex or subtle design problems.  This should be added to the regular task breakdown prompt.*  
-
-```markdown
-###### Important Additional Information
-Note that our slice design is intricate, detailed, and has been refined extensively in order to address complex and/or subtle issues.  The slice design contains code, and we *need* to use this code in our task planning.
-
-As you are planning tasks, proceed *carefully* through the slice design, creating tasks to accomplish the design *exactly* as presented.  Once you complete the task breakdown, review it in light of the slice design to ensure that:
-1. You completely addressed the design.  If there are similar items, for example numerous wrapper components, ensure that your tasks explicitly address creation of each one.  
-2. You did not miss any details.  This is critical.  Do not "gloss over", simplify, or add workarounds to any coding sections of the design even though they may be difficult.
-   
-Note also that tasks may reference the relevant design document.  You do not need to replicate large pieces of the design document all over the task list.  Ensure that references are accurate.  Do not assume or guess anywhere in this task.
-
-After creation of task list, you must review the entire list against the slice design to ensure that these requirements are met.
-```
-
 ##### Task Expansion (Variant: Phase 5))
 *This is no longer a separate phase. Use only when task breakdown results need additional enhancement, which is uncommon. See `guide.ai-project.005-variant-task-expansion` for detailed guidance.*
 
@@ -739,5 +742,31 @@ Note: This is a project planning task, not a coding task.
 ***
 ### Deprecated 
 
+##### Summarize Context
+*Use when nearing context limit, e.g. when facing imminent auto-compaction in Claude Code.  Make sure to include inside `[ ]` or Claude will ignore the instructions.*
+
+```markdown
+Perform the following items and add their output to the compacted context:
+* Preserve the initial context describing what we are working on.
+* Summarize current project state at time of this compaction.
+* Include any open todo list items and work in progress.
+* add the tag --COMPACTED-- after inserting this information. 
+```
+
+##### Task Breakdown (Supplement: Phase 5)
+*Add this when you have a detailed slice design especially one containing code that may have been iterated on in order to solve complex or subtle design problems.*  
+
+```markdown
+###### Important Additional Information
+Note that our slice design is intricate, detailed, and has been refined extensively in order to address complex and/or subtle issues.  The slice design contains code, and we *need* to use this code in our task planning.
+
+As you are planning tasks, proceed *carefully* through the slice design, creating tasks to accomplish the design *exactly* as presented.  Once you complete the task breakdown, review it in light of the slice design to ensure that:
+1. You completely addressed the design.  If there are similar items, for example numerous wrapper components, ensure that your tasks explicitly address creation of each one.  
+2. You did not miss any details.  This is critical.  Do not "gloss over", simplify, or add workarounds to any coding sections of the design even though they may be difficult.
+   
+Note also that tasks may reference the relevant design document.  You do not need to replicate large pieces of the design document all over the task list.  Ensure that references are accurate.  Do not assume or guess anywhere in this task.
+
+After creation of task list, you must review the entire list against the slice design to ensure that these requirements are met.
+```
 
 

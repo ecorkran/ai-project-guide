@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.14] - 2026-03-13
+
+### Added
+- Guides: Slice plan template now includes `{tsi}` (tentative slice index) in all slice entries with explanation note
+- Prompts: Added "Add Slice Overview" prompt for appending new slices to existing slice plans
+
+### Changed
+- Prompts: Clarified Phase 3 YAML frontmatter — removed per-slice status field note
+- Prompts: Moved "Summarize Context" and "Task Breakdown Supplement" to Deprecated section
+
 ## [0.13.13] - 2026-03-13
 
 ### Added
