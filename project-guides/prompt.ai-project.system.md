@@ -59,16 +59,24 @@ When creating the concept, *ask questions* if any information is missing or uncl
 *Use this to design a high-level architectural component or initiative that will span multiple slices. This is the most common entry point for work on existing projects.*
 
 ```markdown
-We're designing a new architectural component for project {project}: {component-name}. Architectural components represent major structural elements or new subsystems that will likely result in multiple slices and many tasks. This is distinct from individual slices—it's about the foundational architecture that slices will build upon.
+We're designing a new architectural component for project {project}. Architectural components represent major structural elements or new subsystems that will likely result in multiple slices and many tasks. This is distinct from individual slices—it's about the foundational architecture that slices will build upon.
 
-All projects will have at least one architectural component.  A small project may have only one, and will directly reference the concept document to create its architectural component.  In most projects, the project manager will describe the concept being designed in the architectural component.
+All projects will have at least one architectural component. A small project may have only one, and will directly reference the concept document to create its architectural component. In most projects, the project manager will describe the concept being designed in the architectural component.
 
+**Before proceeding, determine the component name and base index:**
+1. If the project's `fileArch` is already set, use that component name and index.
+2. If Additional Instructions below describe the component, derive the name from that description.
+3. Otherwise, **stop and ask the Project Manager** what architectural component they want to create. Do not proceed with placeholder names.
 
-Create a design document for the architectural component.
+**To determine the base index:**
+- Scan `user/architecture/` for existing `nnn-arch.*.md` files to find the highest index in use.
+- The next available index is the next multiple of 10 (e.g., if `200-arch.*.md` exists, use `210`).
+- Valid range: 100–799 (initiative working range per `file-naming-conventions.md`).
+- Do not use 050–099 — that is reserved for project-level architecture (HLD).
 
-Create file at `user/architecture/nnn-arch.{component-name}.md`, where nnn is the next available base index at an increment of 10 in the 100-799 initiative working range as defined in `file-naming-conventions.md`. This base index will be shared by the slice plan and slice designs derived from this architecture document (e.g., if this document is `120-arch.{name}.md`, its slice plan will be `120-slices.{name}.md` and its first slice design will be `120-slice.{first-slice}.md`).
+This base index will be shared by the slice plan and slice designs derived from this architecture document (e.g., if this document is `120-arch.name.md`, its slice plan will be `120-slices.name.md` and its first slice design will be `121-slice.first-slice.md`).
 
-Note: Do not use the 050-099 range — that is reserved for project-level architecture (HLD). Initiative-level architecture documents use the working range.  
+Create the design document for the architectural component.
 
 Your role is Architect as described in the Process Guide. Keep this document at the architectural level—do not include task-level breakdown or detailed slice specifications.
 
@@ -83,7 +91,7 @@ docType: architecture
 layer: project
 project: {project}
 archIndex: nnn
-component: {component-name}
+component: component-name
 relatedSlices: []
 riskLevel: low|medium|high
 dateCreated: YYYYMMDD
@@ -140,11 +148,11 @@ No direct references to individual tasks
 - Be concrete about principles: Architectural principles should be clear enough to guide slice designers. Avoid vague statements.
 
 **Expected Output**
-* Concise architectural component design document in user/architecture/nnn-arch.{component-name}.md
+* Concise architectural component design document in `user/architecture/nnn-arch.component-name.md`
 * Create if it doesn't already exist. If file exists, edit existing file as described above.
 * Include all required YAML frontmatter
 * Preserve any Project Manager-provided context or requirements
-* Register the document: `cf set arch <nnn>` (e.g., `cf set arch 100`)
+* Register the document: `cf set arch <nnn>` (e.g., `cf set arch 120`)
 
 Follow dependency management—identify what foundation work or other architectural components this initiative depends on or affects.
 

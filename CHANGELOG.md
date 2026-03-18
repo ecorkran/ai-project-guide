@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.16] - 2026-03-17
+
+### Changed
+- Prompts: Phase 2 (Architecture) prompt now includes explicit steps for determining component name and base index
+- Prompts: Clarified index scanning, valid range, and reserved range in Phase 2
+
 ## [0.13.15] - 2026-03-13
 
 ### Changed
