@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.17] - 2026-03-18
+
+### Changed
+- Prompts: Phase 2 (Architecture) prompt adds worktree context block with pre-resolved index and naming
+
 ## [0.13.16] - 2026-03-17
 
 ### Changed

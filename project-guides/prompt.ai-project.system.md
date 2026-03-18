@@ -63,6 +63,12 @@ We're designing a new architectural component for project {project}. Architectur
 
 All projects will have at least one architectural component. A small project may have only one, and will directly reference the concept document to create its architectural component. In most projects, the project manager will describe the concept being designed in the architectural component.
 
+{{#if worktreeName}}
+**Worktree context:** You are working in the `{{worktreeName}}` worktree (index range {{worktreeRange}}).
+- Base index for this component's architecture document: {{worktreeIndexStart}}
+- Architecture file naming: `{{worktreeIndexStart}}-arch.<component-name>.md`
+- Current arch doc: `{{arch}}` (empty means none set yet — create one at index {{worktreeIndexStart}})
+{{else}}
 **Before proceeding, determine the component name and base index:**
 1. If the project's `fileArch` is already set, use that component name and index.
 2. If Additional Instructions below describe the component, derive the name from that description.
@@ -75,6 +81,7 @@ All projects will have at least one architectural component. A small project may
 - Do not use 050–099 — that is reserved for project-level architecture (HLD).
 
 This base index will be shared by the slice plan and slice designs derived from this architecture document (e.g., if this document is `120-arch.name.md`, its slice plan will be `120-slices.name.md` and its first slice design will be `121-slice.first-slice.md`).
+{{/if}}
 
 Create the design document for the architectural component.
 
