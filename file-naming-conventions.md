@@ -16,7 +16,7 @@ This document outlines standard naming conventions for project files and directo
 Minimum required frontmatter:
 ```yaml
 ---
-docType: [guide|reference|slice|tasks|analysis|notes|template|intro-guide]
+docType: [guide|reference|slice|tasks|analysis|notes|template|intro-guide|review]
 dateCreated: Date file was created (YYYYMMDD format, immutable)
 dateUpdated: Date of last modification (YYYYMMDD format)
 ---
@@ -75,10 +75,10 @@ The filename prefix (`arch.`, `slice.`, `tasks.`, `slices.`) identifies document
 - **800-899**: Reserved for future use
 
 - **900-999**: Operational work (not tied to an initiative)
-  - **900-939**: Code reviews, audits, quality gates → `user/reviews/`
+  - **900-939**: Ad-hoc reviews, audits, quality gates → `user/reviews/`
   - **940-949**: Codebase analysis, research, investigation → `user/analysis/`
   - **950-999**: Maintenance, tech debt, bug tracking → `user/tasks/`
-  - Example: `900-review.auth-module.md`
+  - Example: `900-review.auth-module.md` (standalone audit, no parent slice)
   - Example: `940-analysis.dependency-audit.md`
   - Example: `950-tasks.maintenance.md`
 
@@ -248,6 +248,41 @@ Where:
 Example:
 - `100-slices.context-forge-restructure.md` (plan for `100-arch.context-forge-restructure.md`)
 
+## Review Files
+
+Reviews come in two forms: **slice-lineage reviews** that are part of a slice's lifecycle, and **operational reviews** that stand alone.
+
+### Slice-Lineage Reviews
+
+Reviews produced during slice execution (e.g., task review after phase 5, code review after phase 6) share the index of their parent slice. This follows the same lineage principle as task files — the index identifies the family.
+
+nnn-review.{template}.{slice-name}.md
+
+Where:
+- `nnn` matches the parent slice index (lineage link)
+- `{template}` is the review template name (`tasks`, `code`, `arch`)
+- `{slice-name}` matches the parent slice name
+
+Directory: `user/reviews/`
+
+Examples:
+- `179-review.tasks.cli-foundation.md` (task review for `179-tasks.cli-foundation.md`)
+- `179-review.code.cli-foundation.md` (code review for `179-slice.cli-foundation.md`)
+- `105-review.arch.review-workflow-templates.md` (arch review for `105-slice.review-workflow-templates.md`)
+
+When a pipeline re-runs a review (e.g., after fixing CONCERNS findings), the file is overwritten in place. Git history preserves prior runs.
+
+### Operational Reviews
+
+Standalone reviews not tied to a slice use the 900-939 range:
+9nn-review.{subject}.md
+
+Directory: `user/reviews/`
+
+Examples:
+- `900-review.auth-module.md` (ad-hoc audit of the auth module)
+- `901-review.dependency-security.md` (one-off security review)
+
 
 ## File Size Limits and Splitting
 
@@ -293,18 +328,19 @@ The index structure provides a machine-readable project architecture. This enabl
 - Specialized utility guides (090-099)
 - Example: `050-arch.hld-trading.md`
 
-**100-799: Initiative Working Space** → `user/architecture/`, `user/slices/`, `user/tasks/`
-- Architecture documents, slice plans, slice designs, and tasks
+**100-799: Initiative Working Space** → `user/architecture/`, `user/slices/`, `user/tasks/`, `user/reviews/`
+- Architecture documents, slice plans, slice designs, tasks, and slice-lineage reviews
 - Organized by initiative family (shared base index), not by document type
-- Initiatives claim base indices at increments of 10
-- Example family: `100-arch.data-pipeline.md`, `100-slices.data-pipeline.md`, `100-slice.ingestion.md`, `100-tasks.ingestion.md`
+- Initiatives claim base indices at increments of 10 or 20
+- Example family: `100-arch.data-pipeline.md`, `100-slices.data-pipeline.md`, `100-slice.ingestion.md`, `100-tasks.ingestion.md`, `100-review.tasks.ingestion.md`
 
 **800-899: Reserved**
 - Available for future semantic categorization
 - Not currently in use
 
 **900-939: Quality Assurance** → `user/reviews/`
-- Code reviews, audits, quality gates
+- Ad-hoc reviews, audits, quality gates (not tied to a slice lifecycle)
+- Slice-lineage reviews live at their parent slice's index in the 100-799 range
 - Example: `900-review.auth-module.md`
 
 **940-949: Investigation** → `user/analysis/`
@@ -328,7 +364,8 @@ This structure enables automated project snapshots:
       "arch": "100-arch.data-pipeline.md",
       "slicePlan": "100-slices.data-pipeline.md",
       "slices": ["100-slice.ingestion.md", "101-slice.transform.md"],
-      "tasks": ["100-tasks.ingestion.md", "101-tasks.transform.md"]
+      "tasks": ["100-tasks.ingestion.md", "101-tasks.transform.md"],
+      "reviews": ["100-review.tasks.ingestion.md", "100-review.code.ingestion.md"]
     },
     "110": {
       "arch": "110-arch.user-dashboard.md",

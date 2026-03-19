@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.18] - 2026-03-18
+
+### Added
+- File naming: Index-matched review artifact conventions (slice-lineage and operational reviews)
+
+### Changed
+- Prompts: Phase 2 now requires agent to confirm architecture goal with PM when not specified
+- File naming: Clarified 900-939 range as ad-hoc reviews; slice-lineage reviews use parent index
+
 ## [0.13.17] - 2026-03-18
 
 ### Changed

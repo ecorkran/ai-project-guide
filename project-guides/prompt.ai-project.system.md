@@ -59,9 +59,11 @@ When creating the concept, *ask questions* if any information is missing or uncl
 *Use this to design a high-level architectural component or initiative that will span multiple slices. This is the most common entry point for work on existing projects.*
 
 ```markdown
-We're designing a new architectural component for project {project}. Architectural components represent major structural elements or new subsystems that will likely result in multiple slices and many tasks. This is distinct from individual slices—it's about the foundational architecture that slices will build upon.
+We're designing a new architectural component for project {project}. Architectural components represent major structural elements or new subsystems that will likely result in multiple slices and many tasks. This is distinct from individual slices — it's about the foundational architecture that slices will build upon.
 
 All projects will have at least one architectural component. A small project may have only one, and will directly reference the concept document to create its architectural component. In most projects, the project manager will describe the concept being designed in the architectural component.
+
+If the architectural component is not otherwise specified (e.g. arch set in cf project), stop and confirm the goal with the Project Manager.  Do not just infer an architectural component to create.  Similarly if arch is specified but you have insufficient information or something is unclear, stop and ask the PM before proceeding.
 
 {{#if worktreeName}}
 **Worktree context:** You are working in the `{{worktreeName}}` worktree (index range {{worktreeRange}}).
