@@ -59,17 +59,24 @@ When creating the concept, *ask questions* if any information is missing or uncl
 *Use this to design a high-level architectural component or initiative that will span multiple slices. This is the most common entry point for work on existing projects.*
 
 ```markdown
+**Before proceeding with document creation, confirm you have a clear component definition:**
+- The component must be explicitly specified by the PM (via `arch` field, Additional Instructions, or conversation)
+- A worktree name is NOT a component specification — it only tells you where files go
+- If you only have a worktree name and a concept document, STOP and ask the PM what component to design
+- If Additional Instructions describe the component, confirm your understanding with the PM before writing
+
 We're designing a new architectural component for project {project}. Architectural components represent major structural elements or new subsystems that will likely result in multiple slices and many tasks. This is distinct from individual slices — it's about the foundational architecture that slices will build upon.
 
 All projects will have at least one architectural component. A small project may have only one, and will directly reference the concept document to create its architectural component. In most projects, the project manager will describe the concept being designed in the architectural component.
 
-If the architectural component is not otherwise specified (e.g. arch set in cf project), stop and confirm the goal with the Project Manager.  Do not just infer an architectural component to create.  Similarly if arch is specified but you have insufficient information or something is unclear, stop and ask the PM before proceeding.
-
 {{#if worktreeName}}
-**Worktree context:** You are working in the `{{worktreeName}}` worktree (index range {{worktreeRange}}).
+**Worktree context (file location only — this does NOT define the component):**
+You are working in the `{{worktreeName}}` worktree (index range {{worktreeRange}}).
 - Base index for this component's architecture document: {{worktreeIndexStart}}
 - Architecture file naming: `{{worktreeIndexStart}}-arch.<component-name>.md`
-- Current arch doc: `{{arch}}` (empty means none set yet — create one at index {{worktreeIndexStart}})
+- Current arch doc: `{{arch}}` (empty means not set — STOP and ask project manager for additional details)
+
+**Component definition check:** If the component is not clearly defined in the `arch` field above or in Additional Instructions below, stop here and confirm the goal with the Project Manager. Do not infer a component from the worktree name, concept document, or other contextual clues.
 {{else}}
 **Before proceeding, determine the component name and base index:**
 1. If the project's `fileArch` is already set, use that component name and index.
@@ -171,8 +178,6 @@ Avoid:
 - Time estimates in any form
 - Task-level breakdown (that's slice planning's job)
 - Code examples unless absolutely essential to convey architectural meaning
-
-If you need more information about the component requirements or architectural constraints, stop and request clarification from the Project Manager.
 
 Note: This is a design and planning task, not a coding task. Any code samples should be minimal and limited to what is truly needed to convey architectural information.
 ```

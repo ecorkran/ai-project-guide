@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.19] - 2026-03-18
+
+### Changed
+- Prompts: Phase 2 guard clause strengthened — worktree name no longer implies component, explicit PM confirmation required
+
 ## [0.13.18] - 2026-03-18
 
 ### Added
