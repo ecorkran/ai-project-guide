@@ -427,6 +427,7 @@ You will need to consult specific knowledge for 3rd party tools, libraries, or p
 
 ###### Outputs:
 * slice plan updated with overview on the new slice.  
+* slice plan dateUpdated set to today's date in YYYYMMDD format.
 * slice overview as described here.
 
 ###### Slice Overview in Slice Plan (required) 
