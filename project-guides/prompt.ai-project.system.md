@@ -336,7 +336,10 @@ If you encounter a failing test, an ambiguous requirement, or a design decision 
 
 Be sure to check off tasks as they are completed.  If a parent slice plan file contains checklist items, check off parent items after all child items are complete. If a `task-checker` tool|agent is available to you, use it.
 
-After completing all tasks, run through the Verification Walkthrough section of the slice design as a final confirmation. If any step doesn't work as described, stop and confer with Project Manager before marking the slice complete. Update the Verification Walkthrough with actual commands, expected command output, corrections, and any caveats discovered during implementation.  The goal is for the walkthrough to be aditionally verifiable by an external agent (human or AI, as applicable).
+After completing all tasks, perform the following steps:
+1. Run through the Verification Walkthrough section of the slice design as a final confirmation. If any step doesn't work as described, stop and confer with Project Manager before marking the slice complete. Update the Verification Walkthrough with actual commands, expected command output, corrections, and any caveats discovered during implementation.  The goal is for the walkthrough to be aditionally verifiable by an external agent (human or AI, as applicable).
+
+2. Run workflow_check (preferred) or cf check, if either are available to you, and specify the 'fix' parameter to auto-fix any issues.
 
 Maintain the YAML frontmatter including:
 - Status: not_started, in_progress, complete, not_applicable

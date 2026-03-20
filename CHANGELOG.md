@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.20] - 2026-03-20
+
+### Changed
+- Prompts: Phase 6 now specifies `workflow_check`/`cf check` with fix parameter as post-implementation step
+
 ## [0.13.19] - 2026-03-18
 
 ### Changed
