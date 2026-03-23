@@ -57,6 +57,62 @@ If the project involves multiple capability areas or components, identify them i
 When creating the concept, *ask questions* if any information is missing or unclear. The guideline of do not assume or guess applies, but is even more important here at this early concept stage where misunderstandings compound through later phases. Request any needed clarifications from the Project Manager.
 ```
 
+##### Initiative Plan (Phase 1)
+```markdown
+We're working on project {project}, Phase 1: Initiative Plan. Use `guide.ai-project.001-initiative-plan` for detailed guidance on this phase.
+
+Your role is Architect, working with the Project Manager to decompose the project concept into named initiatives.
+
+**Input**: Concept document at `user/project-guides/001-concept.{project}.md`. Review the Solution Approach section for identified capability areas.
+
+**Output**: Initiative plan at `user/project-guides/001-initiative-plan.{project}.md`.
+
+Work with the Project Manager to:
+
+1. Identify initiatives from the concept's capability areas. Each initiative represents a cohesive body of work that will produce an architecture document and slice plan.
+2. Assign base indices from the 100-799 working range. Discuss index gap with PM:
+   - Default gap of 20 (100, 120, 140) works for most projects
+   - Broad initiatives may use wider gaps (50, 100, or 200)
+   - Record the convention in the plan
+3. Declare cross-initiative dependencies — which initiatives need stable interfaces from others before architecture design can begin.
+4. List initiatives in checklist format matching slice plan convention:
+   `1. [ ] **(nnn) {Initiative Name}** — {scope}. Dependencies: {list}. Status: not_started`
+
+This is a collaborative, strategic task. Ask questions about scope boundaries, sequencing priorities, and dependency assumptions. Do not make unilateral decisions about initiative decomposition.
+
+Small projects with a single capability area may have only one initiative — that's fine. Not every project needs many initiatives.
+
+Include YAML frontmatter per `guide.ai-project.001-initiative-plan`.
+
+Note: This is a planning task, not a coding task.
+```
+
+###### Initiative Plan Migration (Variant)
+*Use this when an existing project already has architecture documents but no initiative plan.*
+```markdown
+We need to create an initiative plan for project {project} by scanning existing architecture documents. Use `guide.ai-project.001-initiative-plan` for the document structure and conventions.
+
+Your role is Architect, working with the Project Manager.
+
+**Process**:
+1. Scan `user/architecture/` for existing `nnn-arch.*.md` files
+2. For each architecture document, extract:
+   - Initiative name (from the `component` field or document title)
+   - Base index (from the `archIndex` field or filename prefix)
+   - Dependencies (from the document's dependency references)
+3. Scan `user/architecture/` for `nnn-slices.*.md` to determine initiative status:
+   - Has slice plan = at least in_progress
+   - All slices complete = complete
+   - No slice plan yet = not_started
+4. Generate initiative plan at `user/project-guides/001-initiative-plan.{project}.md`
+5. Populate cross-initiative dependencies from architecture document references
+6. Present the generated plan to the PM for review before writing
+
+**Important**: This is a migration task — the initiatives already exist as architecture documents. The goal is to create the missing initiative plan that documents them, not to reorganize the existing work. Existing indices should be preserved.
+
+Include YAML frontmatter per `guide.ai-project.001-initiative-plan`.
+```
+
 ##### Architecture (Phase 2)
 *Use this to design a high-level architectural component or initiative that will span multiple slices. This is the most common entry point for work on existing projects.*
 
