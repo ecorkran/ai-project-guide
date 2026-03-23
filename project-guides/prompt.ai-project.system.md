@@ -48,7 +48,7 @@ We're starting work on a new project {project}. We will use our curated AI Proje
 
 Our goal is to collaboratively create the concept document. The Project Manager will describe the project — usually conversationally, though they may also provide a starter document in `user/project-guides/001-concept.{project}.md`. Either approach works; follow the PM's lead.
 
-Through conversation, refine the PM's vision into a concept document following the Living Document Pattern and the structure described in `guide.ai-project.001-concept`. The PM's original concept is preserved in the User-Provided Concept section; structured technical analysis goes into the Refined Concept section.
+Through conversation, refine the PM's vision into a concept document following the Living Document Pattern and the structure described in `guide.ai-project.000-concept`. The PM's original concept is preserved in the User-Provided Concept section; structured technical analysis goes into the Refined Concept section.
 
 We will use the completed concept as a basis for architecture and subsequent design work — breaking the project into architectural components, slice plans, and tasks.
 

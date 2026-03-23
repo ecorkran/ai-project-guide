@@ -266,8 +266,8 @@ These files, shared by all of our projects, are contained in {project-root}/proj
 
 * guide.ai-project.process (aka: AI Project Guide): this document.  Describes
   roles and project phases.  Always start here.
-* guide.ai-project.001-concept (aka: AI Project Concept Guide): details on creating 
-  Project Concept documents.
+* guide.ai-project.000-concept (aka: AI Project Concept Guide): details on creating
+  Phase 0 Concept documents.
 * guide.ai-project.002-spec (aka: AI Spec Guide): details on creating Project 
   Specification (Spec) documents.  Rarely needed for architecture-first workflows.
 * guide.ai-project.003-slice-planning: guidance on breaking architectural components
