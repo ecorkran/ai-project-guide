@@ -1,13 +1,12 @@
 ---
 layer: process
-phase: 0               # 0 = meta-guide that defines all phases
-phaseName: meta
+phaseName: meta         # meta-guide that defines all phases, not a numbered phase
 guideRole: primary
 audience: [human, ai]
 description: Master process guide describing roles and the slice-based workflow.
 dependsOn: []
 dateCreated: 20250101
-dateUpdated: 20260302
+dateUpdated: 20260323
 ---
 
 #### Overview
