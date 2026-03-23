@@ -29,6 +29,7 @@ Types:
 - `style` — Formatting, whitespace, linting (no logic change)
 - `guides` - Update or addition to project guides (system/project level)
 - `docs` — Update or addition to user/ guides or documentation (slices, readme, etc)
+- `review` — Code review, design review, or audit documentation
 - `package` - Updates related to packaging, npm, package.json, PyPi, etc
 - `chore` — Build config, dependencies, tooling, CI
 
