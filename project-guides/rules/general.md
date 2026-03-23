@@ -39,7 +39,7 @@ alwaysApply: true
   
 ### Project Navigation
 
-- Follow `guide.ai-project.000-process` and its links for workflow.
+- Follow `guide.ai-project.process` and its links for workflow.
 - Follow `file-naming-conventions` for all document naming and metadata.
 - Project guides: `project-documents/ai-project-guide/project-guides/`
 - Tool guides: `project-documents/ai-project-guide/tool-guides/`

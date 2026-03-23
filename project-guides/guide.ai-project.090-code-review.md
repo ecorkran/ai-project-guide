@@ -197,7 +197,7 @@ Transform review findings into actionable tasks in `user/tasks/`:
 - Task files: `900-tasks.code-review.header.md`, `900-tasks.code-review.sidebar.md`, etc.
 
 ### Step 4: Task Processing
-Process the task list according to Phase 3 and Phase 4 of the `guide.ai-project.000-process`:
+Process the task list according to Phase 3 and Phase 4 of the `guide.ai-project.process`:
 
 1. **Phase 3: Granularity and Clarity**
 - Convert each review finding into clear, actionable tasks

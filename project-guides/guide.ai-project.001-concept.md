@@ -5,11 +5,11 @@ phaseName: concept
 guideRole: primary
 audience: [human, ai]
 description: How to create a Phase 1 Concept document.
-dependsOn: [guide.ai-project.000-process.md]
+dependsOn: [guide.ai-project.process.md]
 dateUpdated: 20260302
 ---
 
-This guide covers creating a Phase 1 Concept document as described in `guide.ai-project.000-process`. If you do not have access to the process guide, stop and request it from the Project Manager.
+This guide covers creating a Phase 1 Concept document as described in `guide.ai-project.process`. If you do not have access to the process guide, stop and request it from the Project Manager.
 
 ### Purpose
 

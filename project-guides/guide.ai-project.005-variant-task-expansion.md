@@ -6,14 +6,14 @@ guideRole: primary
 audience: [human, ai]
 description: Optional Phase 6 playbook for expanding complex tasks into more granular subtasks.
 dependsOn:
-  - guide.ai-project.000-process.md
+  - guide.ai-project.process.md
   - guide.ai-project.005-task-breakdown.md
 dateCreated: 20250101
 dateUpdated: 20260218
 ---
 
 #### Summary
-This guide provides instructions for expanding complex slice task breakdowns into more granular, atomic subtasks. This is Phase 6 in `guide.ai-project.000-process`.
+This guide provides instructions for expanding complex slice task breakdowns into more granular, atomic subtasks. This is Phase 6 in `guide.ai-project.process`.
 
 **This phase is optional and should be used only if explicitly specified.** Most task breakdowns produced in Phase 5 are sufficient for direct execution. Phase 6 should only be invoked when the Project Manager determines that specific tasks are too complex or ambiguous for a junior AI developer to execute without additional guidance.
 
@@ -32,7 +32,7 @@ Invoke Phase 6 when a Phase 5 task breakdown contains tasks that:
 Do not invoke Phase 6 merely to add verbosity. If a task is clear and actionable as written, it should pass through unchanged.
 
 #### Inputs
-* guide.ai-project.000-process
+* guide.ai-project.process
 * guide.ai-project.005-task-breakdown
 * guide.ai-project.006-task-expansion (this document)
 * {project} - spec (Phase 2 output)

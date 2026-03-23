@@ -171,7 +171,7 @@ EOF
     echo ""
     echo "  3. Start using the framework:"
     echo "       • Review: project-documents/ai-project-guide/readme.md"
-    echo "       • Process: project-documents/ai-project-guide/project-guides/guide.ai-project.000-process.md"
+    echo "       • Process: project-documents/ai-project-guide/project-guides/guide.ai-project.process.md"
     echo "       • Your work goes in: project-documents/user/"
     echo ""
 else

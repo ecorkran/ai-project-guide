@@ -93,7 +93,7 @@ The methodology breaks development into phases. You don't need to follow all of 
 
 **Phase 7 — Implementation:** AI implements the code, runs tests, checks off tasks.
 
-For the full methodology details, see `project-guides/guide.ai-project.000-process.md`.
+For the full methodology details, see `project-guides/guide.ai-project.process.md`.
 
 
 ## Project Structure

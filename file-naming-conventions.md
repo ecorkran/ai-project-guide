@@ -58,7 +58,7 @@ The filename prefix (`arch.`, `slice.`, `tasks.`, `slices.`) identifies document
 ### Reserved Ranges
 
 - **000-009**: Core AI-project process guides
-  - Example: `guide.ai-project.000-process.md`, `guide.ai-project.001-concept.md`
+  - Example: `guide.ai-project.process.md`, `guide.ai-project.000-concept.md`
   - Matching project files: `user/project-guides/001-concept.{project}.md`
 
 - **010-049**: Reserved for future process extensions

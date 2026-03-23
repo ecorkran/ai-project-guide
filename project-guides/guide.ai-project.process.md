@@ -264,7 +264,7 @@ This replaces the older pattern where human creates one file and AI creates a se
 ```markdown
 These files, shared by all of our projects, are contained in {project-root}/project-documents/ai-project-guide/project-guides/.  Synonyms (syn, aka (for also known as)) are provided as some older documentation may still reference by these names.
 
-* guide.ai-project.000-process (aka: AI Project Guide): this document.  Describes 
+* guide.ai-project.process (aka: AI Project Guide): this document.  Describes
   roles and project phases.  Always start here.
 * guide.ai-project.001-concept (aka: AI Project Concept Guide): details on creating 
   Project Concept documents.

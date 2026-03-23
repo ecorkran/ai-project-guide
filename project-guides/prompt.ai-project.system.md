@@ -7,13 +7,13 @@ audience:
   - ai
 ai description: Parameterized prompt library mapped to slice-based project phases.
 dependsOn:
-  - guide.ai-project.000-process.md
+  - guide.ai-project.process.md
 npmScriptsAiSupport: "!include ../snippets/npm-scripts.ai-support.json"
 dateCreated: 20250724
 dateUpdated: 20260302
 ---
 ## Prompts
-This document contains prepared prompts useful in applying the `guide.ai-project.000-process` and performing additional supplemental tasks.
+This document contains prepared prompts useful in applying the `guide.ai-project.process` and performing additional supplemental tasks.
 
 ### Context Profiles
 Maps prompt templates to their required context documents.
@@ -44,7 +44,7 @@ context_profiles:
 
 ##### Concept (Phase 1)
 ```markdown
-We're starting work on a new project {project}. We will use our curated AI Project Creation methods in `guide.ai-project.000-process` (can also be referred to as Project Guide or Process Guide) to assist us in designing and performing the work. Your role as described in the Project Guide is Architect.
+We're starting work on a new project {project}. We will use our curated AI Project Creation methods in `guide.ai-project.process` (can also be referred to as Project Guide or Process Guide) to assist us in designing and performing the work. Your role as described in the Project Guide is Architect.
 
 Our goal is to collaboratively create the concept document. The Project Manager will describe the project — usually conversationally, though they may also provide a starter document in `user/project-guides/001-concept.{project}.md`. Either approach works; follow the PM's lead.
 
@@ -184,7 +184,7 @@ Note: This is a design and planning task, not a coding task. Any code samples sh
 
 ##### Slice Planning (Phase 3)
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 3: Slice Planning. Use `guide.ai-project.003-slice-planning` to break the work described in the parent document into manageable vertical slices.
+We're working in our guide.ai-project.process, Phase 3: Slice Planning. Use `guide.ai-project.003-slice-planning` to break the work described in the parent document into manageable vertical slices.
 
 **Parent document** 
 1. Architecture document (`user/architecture/nnn-arch.{name}.md`) — for architecture-level planning
@@ -221,7 +221,7 @@ Note: This is a design and planning task, not a coding task.
 
 ##### Slice Design (Phase 4)
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 4: Slice Design (Low-Level Design). Create a detailed design for slice: {slice} in project {project} by following `guide.ai-project.004-slice-design`.
+We're working in our guide.ai-project.process, Phase 4: Slice Design (Low-Level Design). Create a detailed design for slice: {slice} in project {project} by following `guide.ai-project.004-slice-design`.
 
 **Inputs** (two levels — use what applies):
 
@@ -285,7 +285,7 @@ Stop and request clarification if you need more information to complete the slic
 
 ##### Task Breakdown (Phase 5)
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown. Convert the design for {slice} in project {project} into granular, actionable tasks.  
+We're working in our guide.ai-project.process, Phase 5: Slice Task Breakdown. Convert the design for {slice} in project {project} into granular, actionable tasks.  
 
 Your role is Senior AI. Use the following as input:
 - The slice design document `user/slices/{slice}.md`.
@@ -321,7 +321,7 @@ Notes:
 
 ##### Implementation (Phase 6)
 ```markdown
-We are working on {slice} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.000-process`. 
+We are working on {slice} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.process`. 
 
 Your job is to complete the tasks in the `user/tasks/{sliceindex}-tasks.{slicename}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the relevant provided rules (`rules/`, `CLAUDE.md`, etc).  Your role is "Senior AI". 
 
@@ -355,7 +355,7 @@ Notes:
 ```
 
 ##### Slice Integration (Phase 7)
-We are completing slice integration (Phase 7) for {slice} in project {project}, as described in `ai-project-guide/project-guides/guide.ai-project.000-process`.
+We are completing slice integration (Phase 7) for {slice} in project {project}, as described in `ai-project-guide/project-guides/guide.ai-project.process`.
 
 Your role is Senior AI.
 
@@ -393,7 +393,7 @@ Your role is Senior AI.
 ```markdown
 The following provides context on our current work in project {project}.
 
-Refer to `ai-project-guide/project-guides/guide.ai-project.000-process` for resource structure and locations.
+Refer to `ai-project-guide/project-guides/guide.ai-project.process` for resource structure and locations.
 
 {{#if fileArch}}Architecture: {fileArch}{{/if}}
 {{#if fileSlicePlan}}Slice Plan: {fileSlicePlan}{{/if}}
@@ -592,7 +592,7 @@ Process:
 
 *Create tasks based on codebase analysis.  While we don't yet have a generic analysis prompt, we do have the following modified task-creation prompt for use with analysis results.*
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown. Convert the issues from {analysis-file} into granular, actionable tasks if they are not already.  Keep them in priority order (P0/P1/P2/P3). 
+We're working in our guide.ai-project.process, Phase 5: Slice Task Breakdown. Convert the issues from {analysis-file} into granular, actionable tasks if they are not already.  Keep them in priority order (P0/P1/P2/P3). 
 
 If the tasks are already sufficiently granular and in checklist format, you do not need to modify them. Note that each success criteria needs a checkbox.
 
@@ -603,7 +603,7 @@ Create task file at `user/tasks/nnn-analysis{.subproject?}-{date}.md` with:
 2. Context summary section
 3. Granular tasks following Phase 5 guidelines
 4. Keep success criteria with their respective task
-5. Always use checklist format described in guide.ai-project.000-process under Task Files.
+5. Always use checklist format described in guide.ai-project.process under Task Files.
 
 For each {tool} in use, consult knowledge in `ai-project-guide/tool-guides/{tool}/`. Follow all task creation guidelines from the Process Guide.
 
@@ -666,7 +666,7 @@ Note: This creates implementation-ready technical designs, not high-level planni
 ##### Analysis Task Implementation
 *Phase 6 Task Implementation customized for analysis files.*
 ```markdown
-We are working on the analysis file {analysis} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.000-process`. 
+We are working on the analysis file {analysis} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.process`. 
 
 Your role is "Senior AI". Your job is to complete the tasks in the `user/tasks/nnn-analysis-{topic}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the rules in the rules/ directory.
 
@@ -742,7 +742,7 @@ Custom instructions apply.  See Additional Context for instruction prompt.
 *This is no longer a separate phase. Use only when task breakdown results need additional enhancement, which is uncommon. See `guide.ai-project.005-variant-task-expansion` for detailed guidance.*
 
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 5 (optional task expansion). Enhance the tasks for slice {slice} in project {project} to improve the chances that our "junior" AI workers can complete assigned tasks on their own.  Only enhance tasks that can truly benefit from it.  Many tasks may already be described with sufficient detail.
+We're working in our guide.ai-project.process, Phase 5 (optional task expansion). Enhance the tasks for slice {slice} in project {project} to improve the chances that our "junior" AI workers can complete assigned tasks on their own.  Only enhance tasks that can truly benefit from it.  Many tasks may already be described with sufficient detail.
 
 Use `guide.ai-project.005-variant-task-expansion` as your detailed guide. Work on the task file `user/tasks/{sliceindex}-tasks.{slicename}.md`.
 
