@@ -432,6 +432,7 @@ You will need to consult specific knowledge for 3rd party tools, libraries, or p
 * slice plan updated with overview on the new slice.  
 * slice plan dateUpdated set to today's date in YYYYMMDD format.
 * slice overview as described here.
+* if this slice overview is a result of promoting an existing "Future Work" slice, delete the old future work entry. Knowing that it was previously future work is not a useful data point so we don't keep it.
 
 ###### Slice Overview in Slice Plan (required) 
 Slices created here will normally go in the Feature Slices section of the slice plan.  Unless specifically instructed, add new slice to end of Feature Slices list
