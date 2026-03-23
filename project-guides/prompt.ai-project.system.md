@@ -18,17 +18,17 @@ This document contains prepared prompts useful in applying the `guide.ai-project
 ### Context Profiles
 Maps prompt templates to their required context documents.
 Variables not listed are excluded from context assembly.
-Order: concept → hld → spec → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present (we frequently do not have fileHLD or fileSpec, for example).  This table is an interrim solution before we split the monolitic prompt file, which should happen soon.
+Order: concept → hld → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present (we frequently do not have fileHLD, for example).  This table is an interim solution before we split the monolithic prompt file, which should happen soon.
 ```yaml
 context_profiles:
-  concept-phase-1:                   []
-  architecture-phase-2:              [fileConcept, fileHLD, fileSpec, fileArch]
+  concept-phase-0:                   []
+  initiative-plan-phase-1:           [fileConcept]
+  architecture-phase-2:              [fileConcept, fileHLD, fileArch]
   slice-planning-phase-3:            [fileArch, fileSlicePlan]
   slice-design-phase-4:              [fileArch, fileSlicePlan, fileSlice]
   task-breakdown-phase-5:            [fileSlicePlan, fileSlice, fileTasks]
   implementation-phase-6:            [fileSlice, fileTasks]
   slice-integration-phase-7:         [fileArch, fileSlicePlan, fileSlice, fileTasks]
-  task-breakdown-supplement-phase-5: [fileSlicePlan, fileSlice, fileTasks]
   task-expansion-variant-phase-5:    [fileSlicePlan, fileSlice, fileTasks]
   context-initialization:            []
   maintenance-task:                  [fileTasks]
@@ -42,7 +42,7 @@ context_profiles:
   _default:                          [fileArch, fileSlicePlan, fileSlice, fileTasks]
 ```
 
-##### Concept (Phase 1)
+##### Concept (Phase 0)
 ```markdown
 We're starting work on a new project {project}. We will use our curated AI Project Creation methods in `guide.ai-project.process` (can also be referred to as Project Guide or Process Guide) to assist us in designing and performing the work. Your role as described in the Project Guide is Architect.
 
@@ -50,7 +50,9 @@ Our goal is to collaboratively create the concept document. The Project Manager 
 
 Through conversation, refine the PM's vision into a concept document following the Living Document Pattern and the structure described in `guide.ai-project.000-concept`. The PM's original concept is preserved in the User-Provided Concept section; structured technical analysis goes into the Refined Concept section.
 
-We will use the completed concept as a basis for architecture and subsequent design work — breaking the project into architectural components, slice plans, and tasks.
+We will use the completed concept as a basis for the initiative plan and subsequent design work — decomposing the project into initiatives, then breaking each into architectural components, slice plans, and tasks.
+
+If the project involves multiple capability areas or components, identify them in the Solution Approach section. These are not yet initiatives with indices — just the named pieces that Phase 1 (Initiative Plan) will later formalize.
 
 When creating the concept, *ask questions* if any information is missing or unclear. The guideline of do not assume or guess applies, but is even more important here at this early concept stage where misunderstandings compound through later phases. Request any needed clarifications from the Project Manager.
 ```
