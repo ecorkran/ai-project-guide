@@ -28,9 +28,10 @@ Note: Multiple roles can be combined in a single contributor (human or AI), and 
 ##### Phase Approval
 Each phase has an approval authority that must sign off before proceeding to the next phase. By default, the Project Manager & Tech Lead approves all phases. However, the Project Manager may delegate approval authority:
 
-- **Phases 1–3** (strategic decisions): Normally require human PM approval.
-- **Phases 4–5** (design and planning execution): May be approved by an AI Architect when operating under established patterns and clear architectural direction.
-- **Phases 6–7** (execution and integration): May self-validate via tests and CI when automation pipelines are in place.
+- **Phases 0–2** (strategic decisions): Normally require human PM approval.
+- **Phases 3–5** (design and planning execution): May be approved by an AI Architect when operating under established patterns and clear architectural direction.
+- **Phase 6** (execution): May self-validate via tests and CI when automation pipelines are in place.
+- **Phase 7** (integration): Normally requires PM approval; may self-validate for routine integrations.
 
 When working on project phases, ensure you have all required information first. If in doubt, request and obtain the required information from the Project Manager before proceeding. Do not guess or make assumptions.
 
@@ -41,37 +42,47 @@ Slices are grouped under architectural initiatives, each with its own architectu
 
 ##### Phases Detail
 
-1. **Phase 1: Concept**
+0. **Phase 0: Concept**
    - Project Manager provides an initial product concept in plain language.
    - Collaborate with the Architect to refine the vision, identify challenges, and define the core product concept.
    - Include initial tech stack identification and key constraints where known.
-   - Outcome: _A short doc describing the problem, target users, overall solution approach, and initial technology direction._
+   - If the project involves multiple capability areas or components, identify them in the Solution Approach section. These are not yet initiatives — just the named pieces that Phase 1 will formalize.
+   - Use `guide.ai-project.000-concept` for detailed guidance.
+   - Outcome: _A short doc describing the problem, target users, overall solution approach (including identified capability areas), and initial technology direction._
+
+1. **Phase 1: Initiative Plan**
+   - Decompose the concept into named initiatives, each representing a cohesive body of work that will produce an architecture document and slice plan.
+   - PM and Architect collaborate to create a single living document per project at `user/project-guides/001-initiative-plan.{project}.md`.
+   - Assign base indices to each initiative. Index gap is a project-level decision: default gap of 20 (100, 120, 140) works for most projects; broad initiatives may use wider gaps (100, 200, 300). The choice is recorded in the initiative plan and can be adjusted via re-indexing.
+   - Declare cross-initiative dependencies.
+   - Use `guide.ai-project.001-initiative-plan` for detailed guidance.
+   - Outcome: _An ordered list of initiatives with base indices, scope descriptions, and dependency declarations._
+
+   **Small projects** with a single initiative may combine Phase 0 and Phase 1 — the concept identifies one capability area, and Phase 1 simply assigns it a base index and proceeds to architecture.
 
 2. **Phase 2: Architecture**
-   - Establish the structural foundation that will inform slice planning. This phase scales by project size and entry point:
-   
-   **Small or new project** (single initiative):
+   - Establish the structural foundation that will inform slice planning. Create one architecture document per initiative identified in the initiative plan.
+
+   **Single-initiative project**:
    - Create a project-level High-Level Design (HLD) at `user/architecture/nnn-arch.hld-{project}.md` using the 050-099 range per `file-naming-conventions.md`.
    - The HLD serves as both the architectural blueprint and the basis for slice planning.
    - Include: system architecture overview, major subsystems, technology stack rationale, data flow, integration points, infrastructure/deployment (if applicable).
    - Avoid: implementation specifics, slice-level breakdown, code examples.
    - Proceed directly to Phase 3 (Slice Planning) from the HLD.
-   
-   **Large or evolving project** (multiple initiatives):
-   - Identify architectural components or initiatives from the concept.
-   - For each component, create an architecture document at `user/architecture/nnn-arch.{component-name}.md` using the 100-799 initiative working range per `file-naming-conventions.md`.
-   - Each component architecture document functions as the HLD for its scope.
-   - Each component then gets its own slice plan in Phase 3.
-   
-   **New initiative on existing project**:
-   - Create the component architecture document directly. No project-level concept or HLD needed.
-   - Proceed to Phase 3 (Slice Planning) for that component.
-   
-   The Architect role leads this phase. If we are applying technologies for which we do not have knowledge, indicate this — search in `tool-guides/` for available knowledge. Project Manager gathers missing knowledge and adds to project.
-   
-   - Outcome: _Architectural blueprint(s) that guide slice planning. One HLD for small projects, or component architecture documents for larger projects._
 
-   **Note on Specifications**: For projects requiring a traditional specification document (e.g., client-facing deliverables or formal requirements), use `guide.ai-project.002-spec` to create `user/project-guides/002-spec.{project}.md` as a sub-step of this phase. This is rarely needed for projects following the architecture-first workflow.
+   **Multi-initiative project**:
+   - For each initiative in the initiative plan, create an architecture document at `user/architecture/nnn-arch.{component-name}.md` using the base index assigned in the initiative plan.
+   - Each architecture document functions as the HLD for its initiative's scope.
+   - Each initiative then gets its own slice plan in Phase 3.
+
+   **New initiative on existing project**:
+   - Add the initiative to the initiative plan (or create one if it doesn't exist).
+   - Create the architecture document directly.
+   - Proceed to Phase 3 (Slice Planning) for that initiative.
+
+   The Architect role leads this phase. If we are applying technologies for which we do not have knowledge, indicate this — search in `tool-guides/` for available knowledge. Project Manager gathers missing knowledge and adds to project.
+
+   - Outcome: _Architectural blueprint(s) that guide slice planning. One HLD for small projects, or component architecture documents for larger projects._
 
 3. **Phase 3: Slice Planning**
    - Break the work described in the parent architecture document into manageable vertical slices.
@@ -170,13 +181,13 @@ DEVLOG updates are a standing practice across all phases, not specific to any si
 Projects use the same phases but differ in scope and entry point:
 
 **Single-initiative project** (new, small-to-medium):
-- Phase 1 (Concept) → Phase 2 (Architecture: single HLD) → Phase 3 (Slice Planning) → execute slices
+- Phase 0 (Concept) → Phase 1 (Initiative Plan: single initiative) → Phase 2 (Architecture: single HLD) → Phase 3 (Slice Planning) → execute slices
 
 **Multi-initiative project** (new, large):
-- Phase 1 (Concept) → Phase 2 (Architecture: identify components, create architecture docs) → Phase 3 (Slice Planning per component) → execute slices
+- Phase 0 (Concept) → Phase 1 (Initiative Plan: decompose into initiatives) → Phase 2 (Architecture per initiative) → Phase 3 (Slice Planning per initiative) → execute slices
 
 **New initiative on existing project**:
-- Phase 2 (Architecture: component doc) → Phase 3 (Slice Planning) → execute slices
+- Phase 1 (Update initiative plan) → Phase 2 (Architecture: component doc) → Phase 3 (Slice Planning) → execute slices
 
 **Small maintenance or ad-hoc work**:
 - Skip directly to Phase 5 (Task Breakdown) using the Ad-Hoc Tasks prompt in `prompt.ai-project.system`.
@@ -252,7 +263,7 @@ When creating concept, spec, or architecture documents, use the **living documen
 
 #### Applies To
 - Concept documents (`001-concept.{project}.md`)
-- Specifications (`002-spec.{project}.md`) — when used
+- Initiative plans (`001-initiative-plan.{project}.md`)
 - Architecture documents (`nnn-arch.{component}.md`)
 - Slice designs (`nnn-slice.{slice}.md`)
 
@@ -268,8 +279,8 @@ These files, shared by all of our projects, are contained in {project-root}/proj
   roles and project phases.  Always start here.
 * guide.ai-project.000-concept (aka: AI Project Concept Guide): details on creating
   Phase 0 Concept documents.
-* guide.ai-project.002-spec (aka: AI Spec Guide): details on creating Project 
-  Specification (Spec) documents.  Rarely needed for architecture-first workflows.
+* guide.ai-project.001-initiative-plan: guidance on creating the Phase 1 Initiative
+  Plan, which decomposes a concept into named initiatives with index assignments.
 * guide.ai-project.003-slice-planning: guidance on breaking architectural components
   into vertical slices.
 * guide.ai-project.004-slice-design: detailed guidance on creating low-level designs
