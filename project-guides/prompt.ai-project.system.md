@@ -824,34 +824,5 @@ Note: This is a project planning task, not a coding task.
 ### Experimental
 *Less than no guarantees here.  Generally promoted to active, or deprecated.*
 
-***
-### Deprecated 
-
-##### Summarize Context
-*Use when nearing context limit, e.g. when facing imminent auto-compaction in Claude Code.  Make sure to include inside `[ ]` or Claude will ignore the instructions.*
-
-```markdown
-Perform the following items and add their output to the compacted context:
-* Preserve the initial context describing what we are working on.
-* Summarize current project state at time of this compaction.
-* Include any open todo list items and work in progress.
-* add the tag --COMPACTED-- after inserting this information. 
-```
-
-##### Task Breakdown (Supplement: Phase 5)
-*Add this when you have a detailed slice design especially one containing code that may have been iterated on in order to solve complex or subtle design problems.*  
-
-```markdown
-###### Important Additional Information
-Note that our slice design is intricate, detailed, and has been refined extensively in order to address complex and/or subtle issues.  The slice design contains code, and we *need* to use this code in our task planning.
-
-As you are planning tasks, proceed *carefully* through the slice design, creating tasks to accomplish the design *exactly* as presented.  Once you complete the task breakdown, review it in light of the slice design to ensure that:
-1. You completely addressed the design.  If there are similar items, for example numerous wrapper components, ensure that your tasks explicitly address creation of each one.  
-2. You did not miss any details.  This is critical.  Do not "gloss over", simplify, or add workarounds to any coding sections of the design even though they may be difficult.
-   
-Note also that tasks may reference the relevant design document.  You do not need to replicate large pieces of the design document all over the task list.  Ensure that references are accurate.  Do not assume or guess anywhere in this task.
-
-After creation of task list, you must review the entire list against the slice design to ensure that these requirements are met.
-```
 
 
