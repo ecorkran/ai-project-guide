@@ -7,28 +7,28 @@ audience:
   - ai
 ai description: Parameterized prompt library mapped to slice-based project phases.
 dependsOn:
-  - guide.ai-project.000-process.md
+  - guide.ai-project.process.md
 npmScriptsAiSupport: "!include ../snippets/npm-scripts.ai-support.json"
 dateCreated: 20250724
 dateUpdated: 20260302
 ---
 ## Prompts
-This document contains prepared prompts useful in applying the `guide.ai-project.000-process` and performing additional supplemental tasks.
+This document contains prepared prompts useful in applying the `guide.ai-project.process` and performing additional supplemental tasks.
 
 ### Context Profiles
 Maps prompt templates to their required context documents.
 Variables not listed are excluded from context assembly.
-Order: concept → hld → spec → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present (we frequently do not have fileHLD or fileSpec, for example).  This table is an interrim solution before we split the monolitic prompt file, which should happen soon.
+Order: concept → hld → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present (we frequently do not have fileHLD, for example).  This table is an interim solution before we split the monolithic prompt file, which should happen soon.
 ```yaml
 context_profiles:
-  concept-phase-1:                   []
-  architecture-phase-2:              [fileConcept, fileHLD, fileSpec, fileArch]
+  concept-phase-0:                   []
+  initiative-plan-phase-1:           [fileConcept]
+  architecture-phase-2:              [fileConcept, fileHLD, fileArch]
   slice-planning-phase-3:            [fileArch, fileSlicePlan]
   slice-design-phase-4:              [fileArch, fileSlicePlan, fileSlice]
   task-breakdown-phase-5:            [fileSlicePlan, fileSlice, fileTasks]
   implementation-phase-6:            [fileSlice, fileTasks]
   slice-integration-phase-7:         [fileArch, fileSlicePlan, fileSlice, fileTasks]
-  task-breakdown-supplement-phase-5: [fileSlicePlan, fileSlice, fileTasks]
   task-expansion-variant-phase-5:    [fileSlicePlan, fileSlice, fileTasks]
   context-initialization:            []
   maintenance-task:                  [fileTasks]
@@ -42,17 +42,49 @@ context_profiles:
   _default:                          [fileArch, fileSlicePlan, fileSlice, fileTasks]
 ```
 
-##### Concept (Phase 1)
+##### Concept (Phase 0)
 ```markdown
-We're starting work on a new project {project}. We will use our curated AI Project Creation methods in `guide.ai-project.000-process` (can also be referred to as Project Guide or Process Guide) to assist us in designing and performing the work. Your role as described in the Project Guide is Architect.
+We're starting work on a new project {project}. We will use our curated AI Project Creation methods in `guide.ai-project.process` (can also be referred to as Project Guide or Process Guide) to assist us in designing and performing the work. Your role as described in the Project Guide is Architect.
 
 Our goal is to collaboratively create the concept document. The Project Manager will describe the project — usually conversationally, though they may also provide a starter document in `user/project-guides/001-concept.{project}.md`. Either approach works; follow the PM's lead.
 
-Through conversation, refine the PM's vision into a concept document following the Living Document Pattern and the structure described in `guide.ai-project.001-concept`. The PM's original concept is preserved in the User-Provided Concept section; structured technical analysis goes into the Refined Concept section.
+Through conversation, refine the PM's vision into a concept document following the Living Document Pattern and the structure described in `guide.ai-project.000-concept`. The PM's original concept is preserved in the User-Provided Concept section; structured technical analysis goes into the Refined Concept section.
 
-We will use the completed concept as a basis for architecture and subsequent design work — breaking the project into architectural components, slice plans, and tasks.
+We will use the completed concept as a basis for the initiative plan and subsequent design work — decomposing the project into initiatives, then breaking each into architectural components, slice plans, and tasks.
+
+If the project involves multiple capability areas or components, identify them in the Solution Approach section. These are not yet initiatives with indices — just the named pieces that Phase 1 (Initiative Plan) will later formalize.
 
 When creating the concept, *ask questions* if any information is missing or unclear. The guideline of do not assume or guess applies, but is even more important here at this early concept stage where misunderstandings compound through later phases. Request any needed clarifications from the Project Manager.
+```
+
+##### Initiative Plan (Phase 1)
+```markdown
+We're working on project {project}, Phase 1: Initiative Plan. Use `guide.ai-project.001-initiative-plan` for detailed guidance on this phase.
+
+Your role is Architect, working with the Project Manager to decompose the project concept into named initiatives.
+
+**Input**: Concept document at `user/project-guides/001-concept.{project}.md`. Review the Solution Approach section for identified capability areas.
+
+**Output**: Initiative plan at `user/project-guides/001-initiative-plan.{project}.md`.
+
+Work with the Project Manager to:
+
+1. Identify initiatives from the concept's capability areas. Each initiative represents a cohesive body of work that will produce an architecture document and slice plan.
+2. Assign base indices from the 100-799 working range. Discuss index gap with PM:
+   - Default gap of 20 (100, 120, 140) works for most projects
+   - Broad initiatives may use wider gaps (50, 100, or 200)
+   - Record the convention in the plan
+3. Declare cross-initiative dependencies — which initiatives need stable interfaces from others before architecture design can begin.
+4. List initiatives in checklist format matching slice plan convention:
+   `1. [ ] **(nnn) {Initiative Name}** — {scope}. Dependencies: {list}. Status: not_started`
+
+This is a collaborative, strategic task. Ask questions about scope boundaries, sequencing priorities, and dependency assumptions. Do not make unilateral decisions about initiative decomposition.
+
+Small projects with a single capability area may have only one initiative — that's fine. Not every project needs many initiatives.
+
+Include YAML frontmatter per `guide.ai-project.001-initiative-plan`.
+
+Note: This is a planning task, not a coding task.
 ```
 
 ##### Architecture (Phase 2)
@@ -184,7 +216,7 @@ Note: This is a design and planning task, not a coding task. Any code samples sh
 
 ##### Slice Planning (Phase 3)
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 3: Slice Planning. Use `guide.ai-project.003-slice-planning` to break the work described in the parent document into manageable vertical slices.
+We're working in our guide.ai-project.process, Phase 3: Slice Planning. Use `guide.ai-project.003-slice-planning` to break the work described in the parent document into manageable vertical slices.
 
 **Parent document** 
 1. Architecture document (`user/architecture/nnn-arch.{name}.md`) — for architecture-level planning
@@ -221,7 +253,7 @@ Note: This is a design and planning task, not a coding task.
 
 ##### Slice Design (Phase 4)
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 4: Slice Design (Low-Level Design). Create a detailed design for slice: {slice} in project {project} by following `guide.ai-project.004-slice-design`.
+We're working in our guide.ai-project.process, Phase 4: Slice Design (Low-Level Design). Create a detailed design for slice: {slice} in project {project} by following `guide.ai-project.004-slice-design`.
 
 **Inputs** (two levels — use what applies):
 
@@ -285,7 +317,7 @@ Stop and request clarification if you need more information to complete the slic
 
 ##### Task Breakdown (Phase 5)
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown. Convert the design for {slice} in project {project} into granular, actionable tasks.  
+We're working in our guide.ai-project.process, Phase 5: Slice Task Breakdown. Convert the design for {slice} in project {project} into granular, actionable tasks.  
 
 Your role is Senior AI. Use the following as input:
 - The slice design document `user/slices/{slice}.md`.
@@ -321,7 +353,7 @@ Notes:
 
 ##### Implementation (Phase 6)
 ```markdown
-We are working on {slice} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.000-process`. 
+We are working on {slice} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.process`. 
 
 Your job is to complete the tasks in the `user/tasks/{sliceindex}-tasks.{slicename}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the relevant provided rules (`rules/`, `CLAUDE.md`, etc).  Your role is "Senior AI". 
 
@@ -355,7 +387,7 @@ Notes:
 ```
 
 ##### Slice Integration (Phase 7)
-We are completing slice integration (Phase 7) for {slice} in project {project}, as described in `ai-project-guide/project-guides/guide.ai-project.000-process`.
+We are completing slice integration (Phase 7) for {slice} in project {project}, as described in `ai-project-guide/project-guides/guide.ai-project.process`.
 
 Your role is Senior AI.
 
@@ -393,7 +425,7 @@ Your role is Senior AI.
 ```markdown
 The following provides context on our current work in project {project}.
 
-Refer to `ai-project-guide/project-guides/guide.ai-project.000-process` for resource structure and locations.
+Refer to `ai-project-guide/project-guides/guide.ai-project.process` for resource structure and locations.
 
 {{#if fileArch}}Architecture: {fileArch}{{/if}}
 {{#if fileSlicePlan}}Slice Plan: {fileSlicePlan}{{/if}}
@@ -592,7 +624,7 @@ Process:
 
 *Create tasks based on codebase analysis.  While we don't yet have a generic analysis prompt, we do have the following modified task-creation prompt for use with analysis results.*
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 5: Slice Task Breakdown. Convert the issues from {analysis-file} into granular, actionable tasks if they are not already.  Keep them in priority order (P0/P1/P2/P3). 
+We're working in our guide.ai-project.process, Phase 5: Slice Task Breakdown. Convert the issues from {analysis-file} into granular, actionable tasks if they are not already.  Keep them in priority order (P0/P1/P2/P3). 
 
 If the tasks are already sufficiently granular and in checklist format, you do not need to modify them. Note that each success criteria needs a checkbox.
 
@@ -603,7 +635,7 @@ Create task file at `user/tasks/nnn-analysis{.subproject?}-{date}.md` with:
 2. Context summary section
 3. Granular tasks following Phase 5 guidelines
 4. Keep success criteria with their respective task
-5. Always use checklist format described in guide.ai-project.000-process under Task Files.
+5. Always use checklist format described in guide.ai-project.process under Task Files.
 
 For each {tool} in use, consult knowledge in `ai-project-guide/tool-guides/{tool}/`. Follow all task creation guidelines from the Process Guide.
 
@@ -666,7 +698,7 @@ Note: This creates implementation-ready technical designs, not high-level planni
 ##### Analysis Task Implementation
 *Phase 6 Task Implementation customized for analysis files.*
 ```markdown
-We are working on the analysis file {analysis} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.000-process`. 
+We are working on the analysis file {analysis} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.process`. 
 
 Your role is "Senior AI". Your job is to complete the tasks in the `user/tasks/nnn-analysis-{topic}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the rules in the rules/ directory.
 
@@ -742,7 +774,7 @@ Custom instructions apply.  See Additional Context for instruction prompt.
 *This is no longer a separate phase. Use only when task breakdown results need additional enhancement, which is uncommon. See `guide.ai-project.005-variant-task-expansion` for detailed guidance.*
 
 ```markdown
-We're working in our guide.ai-project.000-process, Phase 5 (optional task expansion). Enhance the tasks for slice {slice} in project {project} to improve the chances that our "junior" AI workers can complete assigned tasks on their own.  Only enhance tasks that can truly benefit from it.  Many tasks may already be described with sufficient detail.
+We're working in our guide.ai-project.process, Phase 5 (optional task expansion). Enhance the tasks for slice {slice} in project {project} to improve the chances that our "junior" AI workers can complete assigned tasks on their own.  Only enhance tasks that can truly benefit from it.  Many tasks may already be described with sufficient detail.
 
 Use `guide.ai-project.005-variant-task-expansion` as your detailed guide. Work on the task file `user/tasks/{sliceindex}-tasks.{slicename}.md`.
 
@@ -766,34 +798,5 @@ Note: This is a project planning task, not a coding task.
 ### Experimental
 *Less than no guarantees here.  Generally promoted to active, or deprecated.*
 
-***
-### Deprecated 
-
-##### Summarize Context
-*Use when nearing context limit, e.g. when facing imminent auto-compaction in Claude Code.  Make sure to include inside `[ ]` or Claude will ignore the instructions.*
-
-```markdown
-Perform the following items and add their output to the compacted context:
-* Preserve the initial context describing what we are working on.
-* Summarize current project state at time of this compaction.
-* Include any open todo list items and work in progress.
-* add the tag --COMPACTED-- after inserting this information. 
-```
-
-##### Task Breakdown (Supplement: Phase 5)
-*Add this when you have a detailed slice design especially one containing code that may have been iterated on in order to solve complex or subtle design problems.*  
-
-```markdown
-###### Important Additional Information
-Note that our slice design is intricate, detailed, and has been refined extensively in order to address complex and/or subtle issues.  The slice design contains code, and we *need* to use this code in our task planning.
-
-As you are planning tasks, proceed *carefully* through the slice design, creating tasks to accomplish the design *exactly* as presented.  Once you complete the task breakdown, review it in light of the slice design to ensure that:
-1. You completely addressed the design.  If there are similar items, for example numerous wrapper components, ensure that your tasks explicitly address creation of each one.  
-2. You did not miss any details.  This is critical.  Do not "gloss over", simplify, or add workarounds to any coding sections of the design even though they may be difficult.
-   
-Note also that tasks may reference the relevant design document.  You do not need to replicate large pieces of the design document all over the task list.  Ensure that references are accurate.  Do not assume or guess anywhere in this task.
-
-After creation of task list, you must review the entire list against the slice design to ensure that these requirements are met.
-```
 
 

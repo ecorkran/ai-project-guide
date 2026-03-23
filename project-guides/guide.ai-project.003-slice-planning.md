@@ -4,10 +4,9 @@ phase: 3
 phaseName: slice-planning
 guideRole: primary
 audience: [human, ai]
-description: Phase 3 playbook for breaking work into manageable vertical slices. Applies at project level (from spec) or architecture level (from architecture document).
+description: Phase 3 playbook for breaking work into manageable vertical slices. Applies at architecture level (from architecture document).
 dependsOn:
-  - guide.ai-project.000-process.md
-  - guide.ai-project.002-spec.md
+  - guide.ai-project.process.md
 dateCreated: 20250101
 dateUpdated: 20260220
 ---
@@ -24,7 +23,7 @@ The process is the same at both levels. What changes is the parent document, the
 #### Inputs and Outputs
 
 **Inputs:**
-* `guide.ai-project.000-process` (process guide)
+* `guide.ai-project.process` (process guide)
 * `guide.ai-project.003-slice-planning` (this document)
 * **Parent document** — one of:
   * Architecture document (`user/architecture/nnn-arch.{name}.md`) for architecture-level planning

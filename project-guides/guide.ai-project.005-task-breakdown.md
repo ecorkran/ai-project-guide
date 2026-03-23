@@ -6,7 +6,7 @@ guideRole: primary
 audience: [human, ai]
 description: Phase 5 playbook for converting slice designs into granular task lists.
 dependsOn:
-  - guide.ai-project.000-process.md
+  - guide.ai-project.process.md
   - guide.ai-project.003-slice-planning.md
   - guide.ai-project.004-slice-design.md
 dateCreated: 20260217
@@ -14,7 +14,7 @@ dateUpdated: 20260218
 ---
 
 #### Summary
-This guide provides instructions for converting approved slice designs into granular, actionable task lists. This is Phase 5 in `guide.ai-project.000-process`. Phase 5 cannot begin until the slice design (Phase 4 output) is approved by the Project Manager.
+This guide provides instructions for converting approved slice designs into granular, actionable task lists. This is Phase 5 in `guide.ai-project.process`. Phase 5 cannot begin until the slice design (Phase 4 output) is approved by the Project Manager.
 
 The goal is to produce a task list that can be executed in a single context session by a junior AI or human developer. Each task must be self-contained enough to complete without requiring product decisions.
 
@@ -22,7 +22,7 @@ The goal is to produce a task list that can be executed in a single context sess
 Senior AI performs this phase. The Project Manager approves the output before proceeding to Phase 6 (implementation) or in particularly complex cases additional task expansion.
 
 #### Inputs
-* guide.ai-project.000-process
+* guide.ai-project.process
 * guide.ai-project.005-task-breakdown (this document)
 * {slice-plan} - slice plan for our architectural component (phase 3 output)
 * {slice} - slice design (Phase 4 output)
@@ -60,7 +60,7 @@ status: not_started | in_progress
 ```
 
 ##### Checklist Format
-Use the checklist format defined in `guide.ai-project.000-process` under Task Files. Key rules:
+Use the checklist format defined in `guide.ai-project.process` under Task Files. Key rules:
 - L1 items have checkboxes and describe the task objective
 - L2 items are indented with checkboxes for important sub-items and all success criteria
 - L3 subtasks (if needed) are numbered

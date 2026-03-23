@@ -39,7 +39,7 @@ print_info "Renaming private/ → user/ in ai-project-guide repo"
 echo ""
 
 # Confirm this is ai-project-guide repo
-if [ ! -f "project-guides/guide.ai-project.000-process.md" ]; then
+if [ ! -f "project-guides/guide.ai-project.process.md" ]; then
     print_error "This doesn't appear to be the ai-project-guide repository"
     print_info "This script is for updating the ai-project-guide repo itself"
     print_info "For user projects, use: scripts/migrate-private-to-user.sh"
@@ -55,9 +55,9 @@ FILES_TO_UPDATE=(
     "file-naming-conventions.md"
     "readme.md"
     "project-guides/agents/code-review-agent.md"
-    "project-guides/guide.ai-project.000-process.md"
-    "project-guides/guide.ai-project.001-concept.md"
-    "project-guides/guide.ai-project.002-spec.md"
+    "project-guides/guide.ai-project.process.md"
+    "project-guides/guide.ai-project.000-concept.md"
+    "project-guides/guide.ai-project.001-initiative-plan.md"
     "project-guides/guide.ai-project.003-slice-planning.md"
     "project-guides/guide.ai-project.004-slice-design.md"
     "project-guides/guide.ai-project.006-task-expansion.md"

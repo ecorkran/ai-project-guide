@@ -8,7 +8,7 @@ audience:
   - ai
 description: UI-specific playbook for Phases 4-5 (component naming, states, tests).
 dependsOn:
-  - guide.ai-project.002-spec.md
+  - guide.ai-project.process.md
 dateUpdated: 20251008
 ---
 This document provides specialized knowledge and techniques useful in completion of UI/UX tasks.

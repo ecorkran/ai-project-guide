@@ -16,17 +16,16 @@ Quick reference and navigation for AI Project Guide methodology files.
 
 | Phase                | Primary guide                          | Quick link                                                                   |
 | -------------------- | -------------------------------------- | ---------------------------------------------------------------------------- |
-| 0 – Meta             | AI Project Process                     | [guide.ai-project.000-process.md](guide.ai-project.000-process.md)                   |
-| 1 – Concept          | Concept Guide                          | [guide.ai-project.001-concept.md](guide.ai-project.001-concept.md)                   |
-| 2 – Spec             | Spec Guide                             | [guide.ai-project.002-spec.md](guide.ai-project.002-spec.md)                         |
-| 2.5 – HLD            | _see Process Guide & System Prompts_   | [guide.ai-project.000-process.md](guide.ai-project.000-process.md)                   |
+| Meta                 | AI Project Process                     | [guide.ai-project.process.md](guide.ai-project.process.md)                          |
+| 0 – Concept          | Concept Guide                          | [guide.ai-project.000-concept.md](guide.ai-project.000-concept.md)                   |
+| 1 – Initiative Plan  | Initiative Plan Guide                  | [guide.ai-project.001-initiative-plan.md](guide.ai-project.001-initiative-plan.md)   |
+| 2 – Architecture     | _see Process Guide & System Prompts_   | [guide.ai-project.process.md](guide.ai-project.process.md)                          |
 | 3 – Slice Planning   | Slice Planning Guide                   | [guide.ai-project.003-slice-planning.md](guide.ai-project.003-slice-planning.md)     |
-| 3.5 – Arch Component | _see System Prompts_                   | [prompt.ai-project.system.md](prompt.ai-project.system.md)                           |
 | 4 – Slice Design     | Slice Design Guide                     | [guide.ai-project.004-slice-design.md](guide.ai-project.004-slice-design.md)         |
-| 5 – Task Breakdown   | _see Process Guide_                    | [guide.ai-project.000-process.md](guide.ai-project.000-process.md)                   |
-| 6 – Task Expansion   | Task-Expansion Guide                   | [guide.ai-project.006-task-expansion.md](guide.ai-project.006-task-expansion.md)     |
-| 7 – Execution        | _see Process Guide_                    | [guide.ai-project.000-process.md](guide.ai-project.000-process.md)                   |
-| 8 – Integration      | _see Process Guide_                    | [guide.ai-project.000-process.md](guide.ai-project.000-process.md)                   |
+| 5 – Task Breakdown   | Task Breakdown Guide                   | [guide.ai-project.005-task-breakdown.md](guide.ai-project.005-task-breakdown.md)     |
+| 5v – Task Expansion  | Task-Expansion Guide (optional)        | [guide.ai-project.005-variant-task-expansion.md](guide.ai-project.005-variant-task-expansion.md) |
+| 6 – Execution        | _see Process Guide_                    | [guide.ai-project.process.md](guide.ai-project.process.md)                          |
+| 7 – Integration      | _see Process Guide_                    | [guide.ai-project.process.md](guide.ai-project.process.md)                          |
 
 ## Supplemental Guides (90+)
 

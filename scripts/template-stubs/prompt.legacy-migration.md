@@ -55,8 +55,8 @@ If you find relative references like:
 Common file references to update:
 
 ```
-project-guides/guide.ai-project.000-process.md
-  → ai-project-guide/project-guides/guide.ai-project.000-process.md
+project-guides/guide.ai-project.process.md
+  → ai-project-guide/project-guides/guide.ai-project.process.md
 
 project-guides/guide.ai-project.090-code-review.md
   → ai-project-guide/project-guides/guide.ai-project.090-code-review.md
@@ -105,14 +105,14 @@ grep -r "project-guides\|tool-guides\|framework-guides\|snippets\|domain-guides"
 
 **Before:**
 ```markdown
-See `project-guides/guide.ai-project.000-process.md` for the overall process.
+See `project-guides/guide.ai-project.process.md` for the overall process.
 
 Refer to tool-guides/nextjs/introduction.md for Next.js setup.
 ```
 
 **After:**
 ```markdown
-See `ai-project-guide/project-guides/guide.ai-project.000-process.md` for the overall process.
+See `ai-project-guide/project-guides/guide.ai-project.process.md` for the overall process.
 
 Refer to ai-project-guide/tool-guides/nextjs/introduction.md for Next.js setup.
 ```
@@ -123,7 +123,7 @@ Refer to ai-project-guide/tool-guides/nextjs/introduction.md for Next.js setup.
 ```markdown
 ---
 dependsOn:
-  - ../../project-guides/guide.ai-project.002-spec.md
+  - ../../project-guides/guide.ai-project.process.md
 ---
 
 Consult ../tool-guides/react/ for component patterns.
@@ -133,7 +133,7 @@ Consult ../tool-guides/react/ for component patterns.
 ```markdown
 ---
 dependsOn:
-  - ../../ai-project-guide/project-guides/guide.ai-project.002-spec.md
+  - ../../ai-project-guide/project-guides/guide.ai-project.process.md
 ---
 
 Consult ../ai-project-guide/tool-guides/react/ for component patterns.

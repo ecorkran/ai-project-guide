@@ -6,7 +6,7 @@ guideRole: primary
 audience: [human, ai]
 description: Phase 4 playbook for creating detailed low-level designs for individual slices. Works with slices from project-level or architecture-level slice plans.
 dependsOn:
-  - guide.ai-project.000-process.md
+  - guide.ai-project.process.md
   - guide.ai-project.003-slice-planning.md
 dateCreated: 20250101
 dateUpdated: 20260215
@@ -34,7 +34,7 @@ Slice design typically uses two levels of input:
 The strategic context tells the agent *why this slice exists and how it relates to the whole*. The working input tells the agent *what this slice needs to deliver*. Both are typically needed; the strategic context may be skipped for simple or self-contained slices at the Project Manager's discretion.
 
 **Additional inputs (as applicable):**
-* `guide.ai-project.000-process` (process guide)
+* `guide.ai-project.process` (process guide)
 * `guide.ai-project.004-slice-design` (this document)
 * Relevant tool guides from `ai-project-guide/tool-guides/{tool}/`
 * Framework guides from `ai-project-guide/framework-guides/{framework}/`
