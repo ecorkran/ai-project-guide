@@ -4,10 +4,9 @@ phase: 3
 phaseName: slice-planning
 guideRole: primary
 audience: [human, ai]
-description: Phase 3 playbook for breaking work into manageable vertical slices. Applies at project level (from spec) or architecture level (from architecture document).
+description: Phase 3 playbook for breaking work into manageable vertical slices. Applies at architecture level (from architecture document).
 dependsOn:
   - guide.ai-project.process.md
-  - guide.ai-project.002-spec.md
 dateCreated: 20250101
 dateUpdated: 20260220
 ---

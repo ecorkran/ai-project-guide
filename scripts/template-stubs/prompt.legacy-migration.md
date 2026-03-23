@@ -123,7 +123,7 @@ Refer to ai-project-guide/tool-guides/nextjs/introduction.md for Next.js setup.
 ```markdown
 ---
 dependsOn:
-  - ../../project-guides/guide.ai-project.002-spec.md
+  - ../../project-guides/guide.ai-project.process.md
 ---
 
 Consult ../tool-guides/react/ for component patterns.
@@ -133,7 +133,7 @@ Consult ../tool-guides/react/ for component patterns.
 ```markdown
 ---
 dependsOn:
-  - ../../ai-project-guide/project-guides/guide.ai-project.002-spec.md
+  - ../../ai-project-guide/project-guides/guide.ai-project.process.md
 ---
 
 Consult ../ai-project-guide/tool-guides/react/ for component patterns.

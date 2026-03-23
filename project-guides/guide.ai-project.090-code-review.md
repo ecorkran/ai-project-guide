@@ -6,8 +6,7 @@ guideRole: support
 audience: [human, ai]
 description: Checklist and tips for Phase 5 code reviews (human ↔ AI pair).
 dependsOn:
-  - guide.ai-project.002-spec.md
-  - guide.ai-project.006-task-expansion.md
+  - guide.ai-project.process.md
 dateUpdated: 20260216
 ---
 # Code Review Guidelines
