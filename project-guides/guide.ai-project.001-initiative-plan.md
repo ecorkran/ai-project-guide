@@ -120,7 +120,7 @@ Projects that already have architecture documents but no initiative plan can gen
 4. Generate `user/project-guides/001-initiative-plan.{project}.md` with initiatives listed in checklist format
 5. Present to PM for review before writing
 
-This is agent-assisted — use the Initiative Plan Migration prompt in `prompt.ai-project.system` for the full workflow.
+This is agent-assisted — see the v0.14.0 migration guide (`migrations/20260323-migration-v0.14.0.md`) for the full migration prompt.
 
 #### Output Location
 

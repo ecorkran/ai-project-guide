@@ -18,12 +18,9 @@ This version restructures the project phase numbering and introduces the **Initi
 Update your ai-project-guide submodule to the latest version. This gives you all the new and renamed guide files automatically.
 
 ```bash
-cd project-documents/ai-project-guide
-git pull origin main
-cd ../..
+cf guides update
 ```
 
-If using npm/pnpm, update the package version instead.
 
 ## Step 2: Structural Changes (Awareness)
 
@@ -57,46 +54,40 @@ git mv 001-concept.{project}.md 000-concept.{project}.md
 
 Then search your `user/` directory for references to the old filename and update them.
 
-**Option B (acceptable for completed/stable projects):** Leave the concept file at 001. The index collision with the initiative plan is cosmetic — both files are in the same directory but serve different purposes. This is acceptable if the project is no longer actively using the concept document.
-
 ## Step 3: Create Initiative Plan (Primary Migration Task)
 
 The initiative plan is a new Phase 1 document that formalizes your project's initiative decomposition. If your project already has architecture documents, you already have initiatives — they just aren't documented in a single plan.
 
-### Using the Migration Prompt (Recommended)
+### Migration Prompt
 
-The easiest approach is to use the **Initiative Plan Migration** prompt in `prompt.ai-project.system`. This prompt guides an agent to:
+Use the following prompt with your agent to generate the initiative plan from existing architecture documents. The agent will scan your architecture directory, extract initiative information, and produce a plan for your review.
 
-1. Scan your `user/architecture/` directory for existing architecture documents
-2. Extract initiative names, indices, and dependencies
-3. Generate an initiative plan document for your review
+```markdown
+We need to create an initiative plan for project {project} by scanning existing architecture documents. Use `guide.ai-project.001-initiative-plan` for the document structure and conventions.
 
-To use it, provide the prompt to your agent along with your project name. The agent will create `user/project-guides/001-initiative-plan.{project}.md`.
+Your role is Architect, working with the Project Manager.
 
-### Manual Creation
+**Process**:
+1. Scan `user/architecture/` for existing `nnn-arch.*.md` files
+2. For each architecture document, extract:
+   - Initiative name (from the `component` field or document title)
+   - Base index (from the `archIndex` field or filename prefix)
+   - Dependencies (from the document's dependency references)
+3. Scan `user/architecture/` for `nnn-slices.*.md` to determine initiative status:
+   - Has slice plan = at least in_progress
+   - All slices complete = complete
+   - No slice plan yet = not_started
+4. Generate initiative plan at `user/project-guides/001-initiative-plan.{project}.md`
+5. Populate cross-initiative dependencies from architecture document references
+6. Present the generated plan to the PM for review before writing
 
-If you prefer to create the initiative plan manually:
+For each initiative, use the same checklist format as slice plan overviews:
+1. [ ] **(nnn) {Initiative Name}** — {Brief scope description}. Dependencies: {list or "None"}. Status: {status}
 
-1. Create `user/project-guides/001-initiative-plan.{project}.md`
-2. Add frontmatter per `guide.ai-project.001-initiative-plan`
-3. For each architecture document in `user/architecture/nnn-arch.*.md`, add an initiative entry using the same checklist format as slice plan overviews:
+**Important**: This is a migration task — the initiatives already exist as architecture documents. The goal is to create the missing initiative plan that documents them, not to reorganize the existing work. Existing indices should be preserved.
 
+Include YAML frontmatter per `guide.ai-project.001-initiative-plan`.
 ```
-1. [ ] **(nnn) {Initiative Name}** — {Brief scope description}. Dependencies: {list or "None"}. Status: {not_started|in_progress|complete}
-```
-
-Where `nnn` is the base index from the architecture document's filename.
-
-4. Add a Cross-Initiative Dependencies section declaring any edges between initiatives
-5. Document your index gap convention (default: 20)
-
-Refer to `guide.ai-project.001-initiative-plan` for the full document structure and conventions.
-
-### Determining Initiative Status
-
-- Architecture document exists, no slice plan → `not_started`
-- Slice plan exists, slices in progress → `in_progress`
-- All slices complete → `complete`
 
 ## Summary of Actions
 

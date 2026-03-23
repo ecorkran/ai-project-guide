@@ -87,32 +87,6 @@ Include YAML frontmatter per `guide.ai-project.001-initiative-plan`.
 Note: This is a planning task, not a coding task.
 ```
 
-###### Initiative Plan Migration (Variant)
-*Use this when an existing project already has architecture documents but no initiative plan.*
-```markdown
-We need to create an initiative plan for project {project} by scanning existing architecture documents. Use `guide.ai-project.001-initiative-plan` for the document structure and conventions.
-
-Your role is Architect, working with the Project Manager.
-
-**Process**:
-1. Scan `user/architecture/` for existing `nnn-arch.*.md` files
-2. For each architecture document, extract:
-   - Initiative name (from the `component` field or document title)
-   - Base index (from the `archIndex` field or filename prefix)
-   - Dependencies (from the document's dependency references)
-3. Scan `user/architecture/` for `nnn-slices.*.md` to determine initiative status:
-   - Has slice plan = at least in_progress
-   - All slices complete = complete
-   - No slice plan yet = not_started
-4. Generate initiative plan at `user/project-guides/001-initiative-plan.{project}.md`
-5. Populate cross-initiative dependencies from architecture document references
-6. Present the generated plan to the PM for review before writing
-
-**Important**: This is a migration task — the initiatives already exist as architecture documents. The goal is to create the missing initiative plan that documents them, not to reorganize the existing work. Existing indices should be preserved.
-
-Include YAML frontmatter per `guide.ai-project.001-initiative-plan`.
-```
-
 ##### Architecture (Phase 2)
 *Use this to design a high-level architectural component or initiative that will span multiple slices. This is the most common entry point for work on existing projects.*
 
