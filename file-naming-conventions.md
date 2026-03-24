@@ -307,21 +307,26 @@ Use periods (`.`) as primary separators and hyphens (`-`) for secondary grouping
 ```
 
 Examples:
-- `review.chartcanvas.0419.md`
-- `tasks.code-review.chartcanvas.0419.md`
-- `guide.development.react.md`
+- `120-arch.data-pipeline.md`
+- `120-slices.data-pipeline.md`
+- `121-slice.ingestion-service.md`
+- `121-tasks.ingestion-service.md`
+- `121-review.tasks.ingestion-service.md`
 
 ### Document Types
 
 Common document type prefixes:
-- `introduction` - Overview of platform, tech, or project area
-- `tasks` - Task lists for implementation
-- `review` - Code or design review documents
+- `arch` - Architecture documents (`nnn-arch.{component}.md`)
+- `slices` - Slice plan documents (`nnn-slices.{initiative}.md`)
+- `slice` - Slice design documents (`nnn-slice.{slice-name}.md`)
+- `tasks` - Task lists for implementation (`nnn-tasks.{slice-name}.md`)
+- `review` - Code or design review documents (`nnn-review.{template}.{slice-name}.md`)
+- `analysis` - Codebase analysis documents (`nnn-analysis.{topic}.md`)
 - `guide` - Technical or process guidance
-- `spec` - Technical specifications
+- `introduction` - Overview of platform, tech, or project area
 - `notes` - Meeting notes or research findings
-- `template` - Prompt or other templates, organized with project-guides.
-- `maintenance` - maintenance tasks, centralized in `user/tasks/950-tasks.maintenance.md`.
+- `template` - Prompt or other templates, organized with project-guides
+- `maintenance` - Maintenance tasks, centralized in `user/tasks/950-tasks.maintenance.md`
 
 ### Date Format
 
@@ -345,13 +350,6 @@ Examples:
 - `100-tasks.restructure-scaffolding.md` (tasks for `100-slice.restructure-scaffolding.md`)
 - `101-tasks.core-types-extraction.md` (tasks for `101-slice.core-types-extraction.md`)
 - `950-tasks.maintenance.md` (operational — maintenance range)
-
-### Legacy Task File Patterns
-Previously used patterns (now deprecated):
-- `tasks.[category].[component/feature].[additional-info].md`
-- `{section}-tasks-phase-4.md`
-- `nn-tasks-{section}.md` (2-digit index, replaced by nnn-tasks pattern)
-- `tasks.code-review.{filename}.{date}.md` (still used for code review tasks)
 
 ## Slice Files
 
@@ -426,9 +424,9 @@ Examples:
 To maintain manageable file sizes and improve readability:
 
 ### Size Guidelines
-- **Non-architecture files**: Target ~350 lines when possible
+- **Non-architecture files**: Target ~450 lines when possible
 - **Architecture files**: Allowed to grow larger as needed
-- **Trigger for splitting**: When a file exceeds limits by >33% (~465 lines for non-architecture files)
+- **Trigger for splitting**: When a file exceeds limits by >33% (~600 lines for non-architecture files)
 
 ### File Splitting Procedure
 When a file considerably overruns the size limit (>33% over):
@@ -438,7 +436,7 @@ When a file considerably overruns the size limit (>33% over):
 3. **Subsequent splits**: Continue with `-3.md`, `-4.md`, etc. as needed
 
 ### Examples
-- `103-tasks.auth.md` → exceeds 465 lines
+- `103-tasks.auth.md` → exceeds 600 lines
 - Rename to: `103-tasks.auth-1.md`
 - Create: `103-tasks.auth-2.md`
 - If needed: `103-tasks.auth-3.md`
