@@ -49,10 +49,12 @@ if [[ "$SCRIPT_DIR" == */ai-project-guide/scripts ]]; then
     # We're in the ai-project-guide source repository
     RULES_SOURCE_DIR="$SCRIPT_DIR/../project-guides/rules"
     AGENTS_SOURCE_DIR="$SCRIPT_DIR/../project-guides/agents"
+    SKILLS_SOURCE_DIR="$SCRIPT_DIR/../project-guides/skills"
 else
     # We're in a project that includes ai-project-guide as submodule
     RULES_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/rules"
     AGENTS_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/agents"
+    SKILLS_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/skills"
 fi
 
 # Function to check if we're in the right directory
@@ -218,6 +220,36 @@ copy_files() {
     done
 
     print_status $BLUE "📋 Copied $copied_count $file_type files"
+}
+
+# Copy skill directories (preserving name/SKILL.md structure)
+copy_skills() {
+    local source_dir=$1
+    local target_dir=$2
+
+    if [ ! -d "$source_dir" ]; then
+        return 0
+    fi
+
+    local copied_count=0
+
+    for skill_dir in "$source_dir"/*/; do
+        if [ ! -d "$skill_dir" ]; then
+            continue
+        fi
+
+        local skill_name=$(basename "$skill_dir")
+        local target_skill_dir="$target_dir/$skill_name"
+
+        mkdir -p "$target_skill_dir"
+        cp "$skill_dir"* "$target_skill_dir/" 2>/dev/null
+        print_status $GREEN "✅ Copied skill: $skill_name"
+        ((copied_count++))
+    done
+
+    if [ $copied_count -gt 0 ]; then
+        print_status $BLUE "📋 Copied $copied_count skill(s) to .claude/skills/"
+    fi
 }
 
 # Copy rules for Cursor: rename .md→.mdc and convert paths→globs in frontmatter
@@ -466,6 +498,15 @@ main() {
                 echo ""
             fi
 
+            # Copy skills if directory exists
+            if [ -d "$SKILLS_SOURCE_DIR" ]; then
+                local claude_skills_dir="$TARGET_ROOT/.claude/skills"
+                mkdir -p "$claude_skills_dir"
+                print_status $BLUE "⚡ Copying skill files..."
+                copy_skills "$SKILLS_SOURCE_DIR" "$claude_skills_dir"
+                echo ""
+            fi
+
             print_status $GREEN "✅ Setup complete for Claude Code!"
             echo ""
             print_status $BLUE "💡 Claude Code setup notes:"
@@ -473,6 +514,9 @@ main() {
             echo "   • Modular rules copied to .claude/rules/"
             if [ -d "$AGENTS_SOURCE_DIR" ]; then
                 echo "   • Agents copied to .claude/agents/"
+            fi
+            if [ -d "$SKILLS_SOURCE_DIR" ]; then
+                echo "   • Skills copied to .claude/skills/"
             fi
         else
             print_status $RED "❌ Failed to compile CLAUDE.md"
