@@ -13,21 +13,39 @@ This document outlines standard naming conventions for project files and directo
 
 **All markdown files in this project must include YAML frontmatter.** This enables consistent metadata, automated processing, and better AI comprehension.
 
-Minimum required frontmatter:
+### Universal Required Fields
+
+All document types must include these fields:
+
 ```yaml
 ---
-docType: [guide|reference|slice|tasks|analysis|notes|template|intro-guide|review]
-dateCreated: Date file was created (YYYYMMDD format, immutable)
-dateUpdated: Date of last modification (YYYYMMDD format)
+docType: <type>
+project: <project-name>
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started | in_progress | complete | deferred | deprecated
 ---
 ```
 
-Common optional fields:
+Valid `docType` values: `guide`, `reference`, `concept`, `initiative-plan`, `architecture`, `slice-plan`, `slice-design`, `slice`, `tasks`, `analysis`, `review`, `notes`, `template`, `intro-guide`, `migration`
+
+### Common Optional Fields
+
 - `layer`: process, project, tool-guide, framework-guide, domain-guide
 - `audience`: [human, ai] or subset
 - `description`: Brief purpose description
 - `dependsOn`: Related documents
-- `status`: not_started, in_progress, completed, deprecated
+- `aiModel`: AI model that generated the document (required for `review` docType)
+
+### Valid Status Values
+
+- `not_started` — work has not begun
+- `in_progress` — actively being worked on
+- `complete` — all work finished
+- `deferred` — postponed, may be revisited
+- `deprecated` — no longer relevant
+
+Note: `completed` is recognized as an alias for `complete` in existing documents, but new documents should use `complete`.
 
 ### Date Format in YAML
 
@@ -41,6 +59,125 @@ This format:
 - Matches filename date conventions
 - Sorts correctly as strings
 - Is unambiguous across locales
+
+### Per-DocType Schemas
+
+The following are the canonical schemas for each document type. Guides and prompts may include inline YAML examples for self-containedness, but they must agree with these definitions.
+
+#### concept
+```yaml
+---
+docType: concept
+layer: project
+phase: 0
+phaseName: concept
+project: {project}
+audience: [human, ai]
+description: Concept for {project}
+dependsOn: []
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
+---
+```
+
+#### initiative-plan
+```yaml
+---
+docType: initiative-plan
+layer: project
+project: {project}
+source: user/project-guides/001-concept.{project}.md
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
+---
+```
+
+#### architecture
+```yaml
+---
+docType: architecture
+layer: project
+project: {project}
+archIndex: nnn
+component: component-name
+relatedSlices: []
+riskLevel: low|medium|high
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
+---
+```
+
+#### slice-plan
+```yaml
+---
+docType: slice-plan
+parent: {path to parent architecture document}
+project: {project}
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
+---
+```
+
+#### slice-design
+```yaml
+---
+docType: slice-design
+slice: {slice-name}
+project: {project}
+parent: {path to slice plan}
+dependencies: [list-of-prerequisite-slices]
+interfaces: [list-of-slices-that-depend-on-this]
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
+---
+```
+
+#### tasks
+```yaml
+---
+docType: tasks
+slice: {slice-name}
+project: {project}
+lld: user/slices/nnn-slice.{slice-name}.md
+dependencies: [list-of-prerequisite-slices]
+projectState: brief description of current state
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
+---
+```
+
+#### review
+```yaml
+---
+docType: review
+layer: project
+project: {project}
+reviewType: tasks|code|arch
+sourceDocument: {path to reviewed document}
+aiModel: {model-identifier}
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
+---
+```
+
+#### analysis
+```yaml
+---
+docType: analysis
+project: {project}
+topic: {analysis-focus}
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
+---
+```
 
 ## Directory Structure
 - Use kebab-case (hyphenated lowercase) for directory names
