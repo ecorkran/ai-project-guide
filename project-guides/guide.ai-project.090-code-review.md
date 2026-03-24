@@ -166,12 +166,19 @@ Note: Upon completion of review, *every* file should be accounted for, meaning t
 You MUST update the main review file after each file is processed. Otherwise we lose our pause and resume ability. Not after each batch. After each file.
 
 #### YAML Block
-Place this at the beginning of all created code-review files:
+Place this at the beginning of all created code-review files. See `file-naming-conventions.md` for the canonical YAML schema reference.
 
 ```yaml
 ---
-layer: project
 docType: review
+layer: project
+project: {project}
+reviewType: tasks|code|arch
+sourceDocument: {path to reviewed document}
+aiModel: {model-identifier}
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+status: not_started
 ---
 ```
 

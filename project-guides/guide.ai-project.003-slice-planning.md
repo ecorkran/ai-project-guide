@@ -229,15 +229,15 @@ The Future Work section of a slice plan is a living backlog. New entries may be 
 
 *Note: {tsi} in template below is {tentative-slice-index}.  The first slice should receive the index of the plan itself which matches the plan's architectural initiative index (ex: 100, 120, etc).  Additional slices receive consecutive index values (101, 102, etc)*
 
-**Slice plan template:**
+**Slice plan template** (see `file-naming-conventions.md` for the canonical YAML schema reference):
 ```yaml
 ---
 docType: slice-plan
 parent: {path to parent document}
-project: {project-name}
+project: {project}
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
-status: not_started | in_progress
+status: not_started
 ---
 ```
 ```markdown

@@ -62,6 +62,8 @@ Each initiative should:
 
 #### Document Structure
 
+See `file-naming-conventions.md` for the canonical YAML schema reference.
+
 ##### Frontmatter
 ```yaml
 ---

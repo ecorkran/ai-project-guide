@@ -28,18 +28,21 @@ Concept documents follow the **Living Document Pattern** described in the proces
 
 ### Document Structure
 
+See `file-naming-conventions.md` for the canonical YAML schema reference.
+
 ```yaml
 ---
+docType: concept
 layer: project
 phase: 0
 phaseName: concept
-guideRole: primary
+project: {project}
 audience: [human, ai]
 description: Concept for {project}
 dependsOn: []
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
-status: in_progress
+status: not_started
 ---
 ```
 

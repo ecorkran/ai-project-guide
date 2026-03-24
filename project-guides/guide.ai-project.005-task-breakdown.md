@@ -37,18 +37,19 @@ A task file saved as `user/tasks/{sliceindex}-tasks.{slicename}.md`, where `{sli
 #### Task File Format
 
 ##### Front Matter and Context
-Every task file begins with YAML front matter and a context summary:
+Every task file begins with YAML front matter and a context summary. See `file-naming-conventions.md` for the canonical YAML schema reference.
 
 ```yaml
 ---
+docType: tasks
 slice: {slice-name}
-project: {project-name}
+project: {project}
 lld: user/slices/nnn-slice.{slice-name}.md
 dependencies: [list-of-prerequisite-slices]
 projectState: brief description of current state
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
-status: not_started | in_progress
+status: not_started
 ---
 
 ## Context Summary
