@@ -18,18 +18,17 @@ This document contains prepared prompts useful in applying the `guide.ai-project
 ### Context Profiles
 Maps prompt templates to their required context documents.
 Variables not listed are excluded from context assembly.
-Order: concept → hld → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present (we frequently do not have fileHLD, for example).  This table is an interim solution before we split the monolithic prompt file, which should happen soon.
+Order: concept → hld → arch → plan → slice → tasks.  Note that not all inputs may be or are required to be present if work can proceed without them.  This table is an interim solution before we split the monolithic prompt file, which should happen soon.
 ```yaml
 context_profiles:
   concept-phase-0:                   []
   initiative-plan-phase-1:           [fileConcept]
-  architecture-phase-2:              [fileConcept, fileHLD, fileArch]
+  architecture-phase-2:              [fileConcept, fileArch]
   slice-planning-phase-3:            [fileArch, fileSlicePlan]
   slice-design-phase-4:              [fileArch, fileSlicePlan, fileSlice]
-  task-breakdown-phase-5:            [fileSlicePlan, fileSlice, fileTasks]
+  task-breakdown-phase-5:            [fileSlice, fileTasks]
   implementation-phase-6:            [fileSlice, fileTasks]
   slice-integration-phase-7:         [fileArch, fileSlicePlan, fileSlice, fileTasks]
-  task-expansion-variant-phase-5:    [fileSlicePlan, fileSlice, fileTasks]
   context-initialization:            []
   maintenance-task:                  [fileTasks]
   maintenance-routine:               [fileSlice, fileTasks]
@@ -482,6 +481,26 @@ i. [ ] ** ({tsi}) {Slice Name}** — Brief description. Dependencies: [list]. Ri
 16. [ ] **(115) {Name}** — Brief description. Effort: n/5
 
 
+##### Add Initiative Overview
+*Use to add an initiative entry to an existing initiative plan.  You should have initiative plan document associated in order to use this prompt.  If not present, inform the user or agent that required inputs are missing.*
+
+###### Inputs & Role
+* discovery tool: you should have access to a discovery tool, for example a get_status function or skill (/cf:status or similar).  Use this as needed to scan for required inputs and prompt user/agent if any are missing.
+* initiative plan file: the projecct's initiative plan file
+* Your role is Architect as described in the Process Guide.
+
+###### Outputs:
+* initiative plan updated with overview on the new initiative.  
+* initiative plan dateUpdated set to today's date in YYYYMMDD format.
+* initiative entry as described here.
+* if this initiative is a result of promoting an existing "Future Work" initiative, delete the old future work entry. Knowing that it was previously future work is not a useful data point so we don't keep it.
+
+###### Initiative Entry in Initiative Plan (required) 
+1. Unless otherwise instructed, add new entry to end of existing list, maintaining existing index gap interval used in ths file.
+2. Update or add any relevant cross-initiative dependencies.
+3. New initiative should be listed in checklist form, matching the format of existing entries in the file.
+
+
 ##### Session State Summary
 *Use at the end of any work session — whether a slice is complete, partially complete, or work was interrupted. Produces a DEVLOG entry that enables project resumption by a human or AI in a new session. This is distinct from Summarize Context (above), which preserves state for in-session compaction.*
 ```markdown
@@ -580,219 +599,12 @@ Current project: {project}
 Active slice work: {slice} (if applicable)
 ```
 
-##### Analysis Processing
-```markdown
-We need to process the artifacts from our recent code analysis.
-
-Role: Senior AI, processing analysis results into actionable items
-Context: Analysis has been completed on {project} (optionally {subproject}) and findings need to be converted into proper maintenance tasks, code review issues, or GitHub issues as appropriate.
-
-Notes: 
-- Be sure to know the current date first.  Do not assume dates based on training 
-  data timeframes.
-
-Process:
-1. Categorize Findings:
-- P0 Critical: Data loss, security vulnerabilities, system failures
-- P1 High: Performance issues, major technical debt, broken features
-- P2 Medium: Code quality, maintainability, best practices
-- P3 Low: Optimizations, nice-to-have improvements
-
-2. Create File and Document by Priority:
-- Create markdown file `analysis/nnn-analysis.{project-name}{.subproject?}.md`
-  where nnn starts at 940 (analysis range).
-- Note that subproject is often not specified. Do not add its term to the name
-  if this is the case.
-- Divide file into Critical Issues (P0/P1) and Additional Issues(P2/P3)
-- Add concise documentation of each issue -- overview, context, conditions.  
-
-3. File Creation Rules:
-- Use existing file naming conventions from `file-naming-conventions.md`
-- Include YAML front matter for all created files
-- Add the correct date (YYYYMMDD) in the file's frontmatter
-- Reference source analysis document (if applicable)
-- Add line numbers and specific locations where applicable
-
-4. GitHub Integration (if available):
-- Create GitHub issues for P0/P1 items
-- Label appropriately: `bug`, `critical`, `technical-debt`, `analysis`
-- Reference analysis document in issue description
-- Include reproduction steps and success criteria
-```
-
-##### Analysis Task Creation
-
-*Create tasks based on codebase analysis.  While we don't yet have a generic analysis prompt, we do have the following modified task-creation prompt for use with analysis results.*
-```markdown
-We're working in our guide.ai-project.process, Phase 5: Slice Task Breakdown. Convert the issues from {analysis-file} into granular, actionable tasks if they are not already.  Keep them in priority order (P0/P1/P2/P3). 
-
-If the tasks are already sufficiently granular and in checklist format, you do not need to modify them. Note that each success criteria needs a checkbox.
-
-Your role is Senior AI. Use the specified analysis document `user/analysis/nnn-analysis.{project-name}{.subproject?}.md` as input. Note that subproject is optional (hence the ?). Avoid adding extra `.` characters to filename if subproject is not present.
-
-Create task file at `user/tasks/nnn-analysis{.subproject?}-{date}.md` with:
-1. YAML front matter including slice or subproject name, project, YYYYMMDD date, main analysis file reference, dependencies, and current project state
-2. Context summary section
-3. Granular tasks following Phase 5 guidelines
-4. Keep success criteria with their respective task
-5. Always use checklist format described in guide.ai-project.process under Task Files.
-
-For each {tool} in use, consult knowledge in `ai-project-guide/tool-guides/{tool}/`. Follow all task creation guidelines from the Process Guide.
-
-Each task must be completable by a junior AI with clear success criteria. If insufficient information is available, stop and request clarifying information.
-
-This is a project planning task, not a coding task.
-```
-
-##### Analysis to LLD
-*Note: this is rarely used and should normally be addressed using the standard architectural component → slice plan → slices methodology.*
-```markdown
-We need to create a Low-Level Design (LLD) for {component} identified during codebase analysis or task planning in project {project}.  It may be an expansion of an initial task section identified during analysis.
-
-Your role is Architect as described in the Process Guide. This LLD will bridge the gap between high-level understanding and implementable tasks.
-
-Context:
-- Analysis document: `user/analysis/nnn-analysis.{project-name}{.subproject or analysis topic?}` (or specify location)
-- Related task file: `user/tasks/nnn-analysis{.subproject?}-{date}.md` (if exists)
-- Current issue: {brief description of what analysis revealed}
-
-Create LLD document at: `user/slices/nnn-slice.{slice-name}.md`
-
-Required YAML front matter:
-```yaml
----
-layer: project
-docType: slice-design
-slice: {slice-name}
-project: {project}
-triggeredBy: analysis|task-breakdown|architecture-review
-sourceDocument: {path-to-analysis-or-task-file}
-dependencies: [list-any-prerequisites]
-affects: [list-components-or-slices-impacted]
-complexity: low|medium|high
-dateCreated: YYYYMMDD
-dateUpdated: YYYYMMDD
-status: not_started
----
-
-Guidelines for creating LLD:
-
-Cross-Reference Requirements:
-
-- Update source analysis/task document to reference this LLD
-- Add back-reference in this LLD to triggering document
-- Note any slice designs or existing slices this affects
-
-Focus Areas:
-
-- Keep design concrete and implementation-ready
-- Include code examples or pseudocode where helpful
-- Reference specific files, classes, or components by name
-- Address both immediate needs and future extensibility
-
-If you need more context about the analysis findings or existing system architecture, stop and request from Project Manager.
-
-Note: This creates implementation-ready technical designs, not high-level planning documents.
-```
-
-##### Analysis Task Implementation
-*Phase 6 Task Implementation customized for analysis files.*
-```markdown
-We are working on the analysis file {analysis} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.process`. 
-
-Your role is "Senior AI". Your job is to complete the tasks in the `user/tasks/nnn-analysis-{topic}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the rules in the rules/ directory.
-
-The analysis overview is available at {analysis} for additional context.
-
-STOP and confer with Project Manager after each task, unless directed otherwise by the Project Manager. Do not update any progress files until confirmation from Project Manager.
-
-Work carefully and ensure that each task is verified complete before proceeding to the next. If an attempted solution does not work or you find reason to try another approach, do not make more than three attempts without stopping and obtaining confirmation from Project Manager.
-
-Check off completed tasks in the task file when verified complete. When all tasks are complete, proceed to Phase 7 (integration) with Project Manager approval.
-
-Notes: 
-* Use the task-checker to manage lists if it is available to you
-* Ignore case sensitivity in all file and directory names
-* If you cannot locate referenced files, STOP and request information from Project Manager
-* Do not guess, assume, or proceed without required files.
-```
-
-##### Analyze Codebase
-*This is mostly specialized to front-end and web apps and should be moved to a specific guide.*
-```markdown
-Purpose: Perform discovery analysis of existing codebase to:
-- Document system architecture and technology stack
-- Identify technical debt and improvement opportunities
-- Provide foundation for creating architectural components, slices, or maintenance tasks
-- Create reference documentation for team members
-
-This is reconnaissance work - not goal-oriented development.
-
-Analyze the following existing codebase and document your findings. We want this to not only assist ourselves in updating and maintaining the codebase, but also to assist humans who may be working on the project.
-
-###### Expected Output
-* Document your findings in `user/analysis/nnn-analysis.{topic}.md` where:
-  - nnn starts at 940 (analysis range)
-  - {topic} describes the analysis focus (e.g., "initial-codebase", "dependency-audit", "architecture-review")
-* Write in markdown format, following our rules for markdown output.  
-
-###### General Guidelines
-* Document the codebase structure.  Also note presence of any project-documents or similar folders which probably contain information for us.
-* Document presence or average of tests, and an estimate of coverage if tests are present.
-* Identify technologies and frameworks in use.  
-* What package managers are in use?
-* Is there a DevOps pipeline indicated?
-* Analysis should be concise and relevant - no pontificating.
-* Add note in README as follows: Claude: please find code analysis details in {file mentioned above}.
-
-###### Front End
-* If this is a JS app, does it use React?  Vue?  Is it NextJS?  Is it typescript, javascript, or both?  Does it use TailWind?  ShadCN?  Something else?
-
-###### NextJS, React
-* Perform standard analysis and identify basic environment -- confirm NextJS, identify common packages in use (Tailwind, ShadCN, etc) and any unusual packages or features.  
-* If auth is present, attempt to determine its structure and describe its methodology
-* Is the project containerized?
-* If special scripts (ex: 'docker: {command}') are present, document them in the README.
-* Provide a description of the UI style, interactivity, etc
-* Document page structure.
-* What type of architecture is used to manage SSR vs CSR?
-  
-###### Tailwind
-* Is cn used instead of string operations with parameterized or variable   classNames?
-* Prefer Tailwind classes, there should not be custom CSS classes.
-* If this is Tailwind 4, are customizations correctly in CSS and no attempt to use tailwind.config.ts/.js.
-
-```
 
 ##### Custom Instruction
 *Used as a placeholder by context-builder app*
 ```markdown
 Custom instructions apply.  See Additional Context for instruction prompt.
 ```
-
-##### Task Expansion (Variant: Phase 5))
-*This is no longer a separate phase. Use only when task breakdown results need additional enhancement, which is uncommon. See `guide.ai-project.005-variant-task-expansion` for detailed guidance.*
-
-```markdown
-We're working in our guide.ai-project.process, Phase 5 (optional task expansion). Enhance the tasks for slice {slice} in project {project} to improve the chances that our "junior" AI workers can complete assigned tasks on their own.  Only enhance tasks that can truly benefit from it.  Many tasks may already be described with sufficient detail.
-
-Use `guide.ai-project.005-variant-task-expansion` as your detailed guide. Work on the task file `user/tasks/{sliceindex}-tasks.{slicename}.md`.
-
-Your role is Senior AI. For each task:
-- If it would benefit from expansion or subdivision, enhance it.
-- If it's already appropriate, output it verbatim.
-- Ensure all tasks are accounted for.
-  
-Additionally:
-- Make sure that you do NOT use this expansion as a way to write code in a design and planning phase.  Expanded tasks should not look like writing code for the the tasks.  You may spec out interfaces or use minimal code examples where truly useful.  Evaluate carefully before doing so.
-
-After any expansion, review it against the original unexpanded task and ensure that your expansion is a detailed representation of the original task, not a reinterpretation or change of the original task.
-
-Output results by updating the existing task file. Success: All tasks have been processed and either output as is, or enhanced and divided into further subtasks.
-
-Note: This is a project planning task, not a coding task.
-```
-
 
 ***
 ### Experimental
