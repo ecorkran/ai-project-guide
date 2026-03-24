@@ -143,6 +143,7 @@ relatedSlices: []
 riskLevel: low|medium|high
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
+status: not_started
 ---
 ```
 ```markdown
@@ -228,7 +229,7 @@ Your role is Architect as described in the Process Guide. Work with the Project 
    `user/architecture/nnn-slices.{name}.md` (sharing the parent architecture document's base index, per `file-naming-conventions.md`)
 4. When numbering slices, you may use an index starting with 1, but continue the same index throughout the document.  Do not restart the numbering within the plan.
 5. When naming slices in the slice plan, avoid use of ampersand or other special characters not commonly accepted in filenames.  - and space are fine.  Include a tentative slice number starting with the sliceplan index.  Example:  1. [ ] **(100) MCP Server Scaffolding** - {remainder of entry}
-6. Include YAML frontmatter with `status: active` (or `complete` if all slices are done). 
+6. Include YAML frontmatter with `status: not_started` (update to `in_progress` or `complete` as slices progress). 
 
 **Example YAML FrontMatter**:
 ```yaml
