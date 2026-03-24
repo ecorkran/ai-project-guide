@@ -3,7 +3,7 @@ docType: slice-plan
 parent: user/architecture/110-arch.schema-and-phases-update.md
 project: ai-project-guide
 dateCreated: 20260322
-dateUpdated: 20260322
+dateUpdated: 20260324
 status: not_started
 ---
 
@@ -17,7 +17,7 @@ status: not_started
 
 This initiative standardizes YAML frontmatter schemas across all document types, aligns prompts and guides to a single canonical source, restructures the early project phases (Concept → Phase 0, new Initiative Plan → Phase 1), removes the legacy spec phase, and cleans up deprecated prompts.
 
-Three feature slices plus integration verification.
+Four feature slices plus integration verification.
 
 ## Foundation Work
 
@@ -37,8 +37,10 @@ None — this initiative modifies existing guide and reference documents. No new
 
    Dependencies: none. Risk: Medium (touches process guide, multiple guide files, prompts, rules, and cf tooling). Effort: 4/5
 
-2. [ ] **(110) YAML Schema Standardization** — Create canonical per-docType schema definitions in file-naming-conventions.md (including new `initiative-plan` docType from slice 111), align all guide and prompt YAML examples to reference the canonical source, add `aiModel` common optional field, promote `project` and `status` to universal required fields, formalize valid status values. Dependencies: [111] (phase renumbering should land first to avoid editing renamed files twice). Risk: Medium (wide surface area across many files). Effort: 3/5
+2. [ ] **(113) Analysis Skill Extraction** — Extract the five analysis prompts from `prompt.ai-project.system.md` into a single combined `/analyze` skill at `project-guides/skills/analyze/SKILL.md`. Update `setup-ide` to copy skills to `.claude/skills/` during IDE setup. Retain analysis context profiles in the prompt file (lightweight, needed by cf). Dependencies: [111]. Risk: Low. Effort: 2/5
+
+3. [ ] **(110) YAML Schema Standardization** — Create canonical per-docType schema definitions in file-naming-conventions.md (including new `initiative-plan` docType from slice 111), align all guide and prompt YAML examples to reference the canonical source, add `aiModel` common optional field, promote `project` and `status` to universal required fields, formalize valid status values. Dependencies: [111] (phase renumbering should land first to avoid editing renamed files twice). Risk: Medium (wide surface area across many files). Effort: 3/5
 
 ## Integration Work
 
-3. [ ] **(112) Cross-Reference Verification** — Verify all guides, prompts, and file-naming-conventions are internally consistent after slices 110-111. Run cf check. Confirm existing project documents remain valid under updated schemas. Verify phase numbering is consistent across all references. Dependencies: [110, 111]. Effort: 1/5
+4. [ ] **(112) Cross-Reference Verification** — Verify all guides, prompts, and file-naming-conventions are internally consistent after slices 110-113. Run cf check. Confirm existing project documents remain valid under updated schemas. Verify phase numbering is consistent across all references. Dependencies: [110, 111, 113]. Effort: 1/5
