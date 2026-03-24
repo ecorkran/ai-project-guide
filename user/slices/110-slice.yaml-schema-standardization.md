@@ -7,7 +7,7 @@ dependencies: [111-phase-renumbering-and-initiative-plan]
 interfaces: [113-cross-reference-verification]
 dateCreated: 20260324
 dateUpdated: 20260324
-status: not_started
+status: complete
 ---
 
 # Slice Design: YAML Schema Standardization
@@ -26,7 +26,7 @@ YAML frontmatter is defined inconsistently — some docTypes have schemas in mul
 
 - Canonical YAML schema section in `file-naming-conventions.md` with per-docType blocks
 - Updated universal required fields: `docType`, `project`, `dateCreated`, `dateUpdated`, `status`
-- Formalized valid status values: `not_started`, `in_progress`, `complete`, `deprecated`
+- Formalized valid status values: `not_started`, `in_progress`, `complete`, `deferred`, `deprecated`
 - New common optional field: `aiModel`
 - Add missing `docType` to concept and tasks template schemas
 - Add missing `project` to concept template schema
@@ -55,7 +55,7 @@ docType: <type>
 project: <project-name>
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
-status: not_started | in_progress | complete | deprecated
+status: not_started | in_progress | complete | deferred | deprecated
 ```
 
 Current state promotes `docType`, `dateCreated`, `dateUpdated` as required. This adds `project` and `status`.
@@ -104,7 +104,7 @@ This is alignment, not duplication — guides and prompts keep their inline exam
 
 ### Status Value Standardization
 
-Current state: `status` values vary (`active`, `completed`, `not_started`, `in_progress`, `complete`, `deprecated`). Standardize to:
+Current state: `status` values vary (`active`, `completed`, `not_started`, `in_progress`, `complete`, `deferred`, `deprecated`). Standardize to:
 - `not_started` — work has not begun
 - `in_progress` — actively being worked on
 - `complete` — all work finished
@@ -117,7 +117,7 @@ Note: `completed` (with -ed) should be listed as a recognized alias for `complet
 ### Functional Requirements
 - [ ] `file-naming-conventions.md` contains a canonical schema section with per-docType blocks for: concept, initiative-plan, architecture, slice-plan, slice-design, tasks, review, analysis
 - [ ] Universal required fields are `docType`, `project`, `dateCreated`, `dateUpdated`, `status`
-- [ ] Valid status values are formalized: `not_started`, `in_progress`, `complete`, `deprecated`
+- [ ] Valid status values are formalized: `not_started`, `in_progress`, `complete`, `deferred`, `deprecated`
 - [ ] `aiModel` is listed as a common optional field, required for review docType
 - [ ] `initiative-plan` is in the docType list
 - [ ] All guide YAML examples match their canonical schema

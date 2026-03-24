@@ -76,6 +76,9 @@ The design should bridge the gap between high-level architecture and concrete ta
 #### Slice Design Structure
 
 ##### Document Template
+
+See `file-naming-conventions.md` for the canonical YAML schema reference.
+
 ```yaml
 ---
 docType: slice-design
@@ -86,7 +89,7 @@ dependencies: [list-of-prerequisite-slices]
 interfaces: [list-of-slices-that-depend-on-this]
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
-status: not_started | in_progress
+status: not_started
 ---
 ```
 ```markdown
