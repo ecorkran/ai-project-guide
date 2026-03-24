@@ -25,7 +25,7 @@ None — this initiative modifies existing guide and reference documents. No new
 
 ## Feature Slices
 
-1. [ ] **(111) Phase Renumbering and Initiative Plan** — [111-slice.phase-renumbering-and-initiative-plan.md](../slices/111-slice.phase-renumbering-and-initiative-plan.md). Restructure the phase numbering and add the Initiative Plan phase. Scope:
+1. [x] **(111) Phase Renumbering and Initiative Plan** — [111-slice.phase-renumbering-and-initiative-plan.md](../slices/111-slice.phase-renumbering-and-initiative-plan.md). Restructure the phase numbering and add the Initiative Plan phase. Scope:
    - **Process guide rename**: `guide.ai-project.000-process.md` → `guide.ai-project.process.md` (meta, no phase number — it describes the methodology, not a step within it)
    - **Concept → Phase 0**: Rename guide to `guide.ai-project.000-concept.md`, update phase field. Sharpen "Solution Approach" section to identify capability areas (named pieces that the initiative plan will later formalize and sequence). No other concept guide changes.
    - **Initiative Plan → Phase 1**: Create `guide.ai-project.001-initiative-plan.md`. Single living document per project at `user/project-guides/001-initiative-plan.{project}.md`. Bridges concept to architecture by formalizing initiatives with base indices, sequencing, and cross-initiative dependencies. Index gap is a project-level decision (default gap of 20; broad initiatives may use 100+; recorded in the plan, adjustable via re-indexing).
