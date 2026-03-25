@@ -368,16 +368,20 @@ If you encounter a failing test, an ambiguous requirement, or a design decision 
 
 Be sure to check off tasks as they are completed.  If a parent slice plan file contains checklist items, check off parent items after all child items are complete. If a `task-checker` tool|agent is available to you, use it.
 
+###### Completion
 After completing all tasks, perform the following steps:
 1. Run through the Verification Walkthrough section of the slice design as a final confirmation. If any step doesn't work as described, stop and confer with Project Manager before marking the slice complete. Update the Verification Walkthrough with actual commands, expected command output, corrections, and any caveats discovered during implementation.  The goal is for the walkthrough to be aditionally verifiable by an external agent (human or AI, as applicable).
 
 2. Run workflow_check (preferred) or cf check, if either are available to you, and specify the 'fix' parameter to auto-fix any issues.
 
-Maintain the YAML frontmatter including:
-- Status: not_started, in_progress, complete, not_applicable
-- Date updated
+3. Maintain the YAML frontmatter including:
+- status: not_started, in_progress, complete
+- dateUpdated: today's date
 
-Notes: 
+4. Update CHANGELOG.md in project root
+- if file does not exist, create it as described in project-guides/templates/changelog-format.md
+
+###### Notes: 
 - Use the task-checker to manage lists if it is available to you.
 - Ignore case sensitivity in all file and directory names.
 - Use the directory-structure and file-naming-conventions guides.
@@ -502,57 +506,26 @@ i. [ ] ** ({tsi}) {Slice Name}** — Brief description. Dependencies: [list]. Ri
 ##### Session State Summary
 *Use at the end of any work session — whether a slice is complete, partially complete, or work was interrupted. Produces a DEVLOG entry that enables project resumption by a human or AI in a new session. This is distinct from Summarize Context (above), which preserves state for in-session compaction.*
 ```markdown
-Write a Session State Summary for project {project}. Append to DEVLOG.md in the project root.  Add entry under today's date heading (## YYYYMMDD). If an entry for today already exists, append above it under a new subsection, preserving the reverse chronological order both overall, and within the entries themselves.
+Write a Session State Summary for project {project}. Append to DEVLOG.md in the project root under today's date heading (## YYYYMMDD). If an entry for today exists, append above it preserving reverse chronological order.
 
 Your role is Senior AI.
 
-**If a slice was completed:**
-###### Slice nnn: {Slice Name} — Complete
-Include:
-- Commits made during this slice (short hash + one-line description, table or list)
-- What works: build status, test results, verified functionality
-- What's pending: manual verification, known issues, deferred items
-- Issues logged to maintenance (file reference + brief description)
-- Key implementation decisions or surprises worth noting for future context
+**Entry heading:** `### Slice nnn: {Slice Name} — {Complete|In Progress|Design Complete}`
 
-**If work is in progress (mid-slice or mid-task):**
-###### Slice nnn: {Slice Name} — In Progress
-Include:
-- Current task and subtask (reference the task file and specific item)
-- What's been completed so far in this session
-- Commits made during this session (if any)
-- Blockers or open questions for Project Manager
-- Key decisions made during the session
-- State needed to resume: which task, what file, any important context
-
-**If design or planning work was completed (no implementation):**
-###### Slice nnn: {Slice Name} — Design Complete
-Include:
-- Documents created or updated (file paths)
-- Key design decisions and rationale
-- Scope summary (what the design covers)
-- Notable findings (broken imports, gaps discovered, deferred items)
+**Include (as applicable):**
+- Commits made this session (short hash + one-line)
+- What was completed or delivered (build status, test results, documents created)
+- What's pending or blocking (open questions, manual verification, deferred items)
+- Key decisions or surprises worth noting for future context
+- If in progress: state needed to resume (current task, file, important context)
+- Issues logged to maintenance (file reference + description)
 
 **Guidelines:**
-- Keep it concise — this will be used as input for context assembly on the next session
-- Do not include full code listings or verbose explanations
-- Focus on: state, decisions, and continuation context
-- If tests are relevant, include pass/fail counts and note any failures with brief descriptions
-- Reference file paths for any issues logged to maintenance or other task files
-- Do not include "next steps" or "next slice" — workflow navigation is handled by orchestration, not DEVLOG
-- This is a documentation task, not a coding task
+- Keep concise — this is input for next session's context assembly
+- No full code listings, no "next steps" (orchestration handles that)
 
-**DEVLOG.md format:**
-If DEVLOG.md does not exist, create it at project-root directory with the following structure:
-
-# Development Log
-A lightweight, append-only record of development activity. Newest entries first.
-Format: `## YYYYMMDD` followed by brief notes (1-3 lines per session).
----
-
-## YYYYMMDD
-### Slice nnn: {Slice Name} — {Status}
-- {concise session notes as described above}
+**Update DEVLOG.md**
+- if file does not exist, create it as described in project-guides/templates/devlog-format.md
 ```
 
 ##### Maintenance Task
