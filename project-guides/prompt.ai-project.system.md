@@ -10,7 +10,7 @@ dependsOn:
   - guide.ai-project.process.md
 npmScriptsAiSupport: "!include ../snippets/npm-scripts.ai-support.json"
 dateCreated: 20250724
-dateUpdated: 20260302
+dateUpdated: 20260324
 ---
 ## Prompts
 This document contains prepared prompts useful in applying the `guide.ai-project.process` and performing additional supplemental tasks.
@@ -426,9 +426,6 @@ Your role is Senior AI.
 The following provides context on our current work in project {project}.
 
 Refer to `ai-project-guide/project-guides/guide.ai-project.process` for resource structure and locations.
-
-{{#if fileArch}}Architecture: {fileArch}{{/if}}
-{{#if fileSlicePlan}}Slice Plan: {fileSlicePlan}{{/if}}
 
 Concentrate on the most granular level available (e.g. tasks if present), and use the higher-level files as reference only if needed.
 

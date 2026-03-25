@@ -7,7 +7,7 @@ audience: [human, ai]
 description: Checklist and tips for Phase 5 code reviews (human ↔ AI pair).
 dependsOn:
   - guide.ai-project.process.md
-dateUpdated: 20260216
+dateUpdated: 20260324
 ---
 # Code Review Guidelines
 
