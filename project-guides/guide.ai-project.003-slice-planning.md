@@ -8,7 +8,7 @@ description: Phase 3 playbook for breaking work into manageable vertical slices.
 dependsOn:
   - guide.ai-project.process.md
 dateCreated: 20250101
-dateUpdated: 20260220
+dateUpdated: 20260324
 ---
 
 #### Summary

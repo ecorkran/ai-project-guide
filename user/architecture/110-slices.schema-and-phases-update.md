@@ -4,7 +4,7 @@ parent: user/architecture/110-arch.schema-and-phases-update.md
 project: ai-project-guide
 dateCreated: 20260322
 dateUpdated: 20260324
-status: not_started
+status: complete
 ---
 
 # Slice Plan: Schema and Phases Update
@@ -43,4 +43,4 @@ None — this initiative modifies existing guide and reference documents. No new
 
 ## Integration Work
 
-4. [ ] **(113) Cross-Reference Verification** — Verify all guides, prompts, and file-naming-conventions are internally consistent after slices 110-113. Run cf check. Confirm existing project documents remain valid under updated schemas. Verify phase numbering is consistent across all references. Dependencies: [110, 111, 113]. Effort: 1/5
+4. [x] **(113) Cross-Reference Verification** — Verify all guides, prompts, and file-naming-conventions are internally consistent after slices 110-113. Run cf check. Confirm existing project documents remain valid under updated schemas. Verify phase numbering is consistent across all references. Dependencies: [110, 111, 113]. Effort: 1/5
