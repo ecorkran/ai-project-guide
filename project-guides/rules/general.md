@@ -17,9 +17,15 @@ alwaysApply: true
 ### Code Structure
 
 - Keep source files to ~300 lines, functions to ~50 lines 
-  (excluding whitespace).
+  (excluding whitespace) where practical.
 - Avoid hard-coded constants and duplicated values.
+- Avoid "magic strings" where possible, prefer enums.
+- Never use user-accessible labels as logical structure.  They are fragile.
+- Program to interfaces (contracts).  Maintain clear separation between components.
+- Do not duplicate logic.  Respect DRY (don't repeat yourself).
 - Provide meaningful but concise comments in relevant places.
+
+### Source Control and Builds
 - Keep commits semantic; build after all changes.
 - Git add and commit from project root at least once per task.
 - Confirm your current working directory before file/shell commands.
