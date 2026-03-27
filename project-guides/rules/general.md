@@ -16,14 +16,24 @@ alwaysApply: true
 
 ### Code Structure
 
-- Keep source files to ~300 lines, functions to ~50 lines 
-  (excluding whitespace) where practical.
-- Avoid hard-coded constants and duplicated values.
-- Avoid "magic strings" where possible, prefer enums.
-- Never use user-accessible labels as logical structure.  They are fragile.
+- Keep source files to ~300 lines, functions to ~50 lines (excluding whitespace) where practical.
 - Program to interfaces (contracts).  Maintain clear separation between components.
 - Do not duplicate logic.  Respect DRY (don't repeat yourself).
 - Provide meaningful but concise comments in relevant places.
+
+- Never scatter comparison values across code. If a value is used in 
+  conditionals, switch cases, or lookups, define it once (enum, constant, 
+  or config) and reference that definition everywhere. Changing a value 
+  should require editing exactly one place.
+- Do not hard-code magic defaults.  In the example below, the defaults for model and n are both wrong.  If such defaults are needed they should be centralized at the config level.  This applies in all languages.
+```python
+  async def _model_start(promt:str) -> str {
+    model = self._config.model or "gpt-5.3-codex"
+    n = self._config.index or 1234
+  }
+```
+- NEVER use user-accessible labels as logical structure.  They are fragile.
+
 
 ### Source Control and Builds
 - Keep commits semantic; build after all changes.
