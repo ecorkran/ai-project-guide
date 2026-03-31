@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.14.7] - 2026-03-30
+
+### Changed
+- Rules: Added evidence-first debugging rule to general rules — require actual error before attempting fixes
+
 ## [0.13.20] - 2026-03-20
 
 ### Changed
