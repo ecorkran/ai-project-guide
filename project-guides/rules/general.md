@@ -19,10 +19,7 @@ alwaysApply: true
 - Do not duplicate logic.  Respect DRY (don't repeat yourself).
 - Provide meaningful but concise comments in relevant places.
 
-- Never scatter comparison values across code. If a value is used in 
-  conditionals, switch cases, or lookups, define it once (enum, constant, 
-  or config) and reference that definition everywhere. Changing a value 
-  should require editing exactly one place.
+- Never scatter comparison values across code. If a value is used in conditionals, switch cases, or lookups, define it once (enum, constant, or config) and reference that definition everywhere. Changing a value should require editing exactly one place.
 - Do not hard-code magic defaults.  In the example below, the defaults for model and n are both wrong.  If such defaults are needed they should be centralized at the config level.  This applies in all languages.
 ```python
   async def _model_start(promt:str) -> str {
@@ -40,16 +37,10 @@ alwaysApply: true
 
 ## Parsing & Pattern Matching
 
-- Prefer lenient parsing over strict matching. A regex that silently
-  fails on valid input (e.g. requiring exact whitespace counts or
-  line-ending positions) is a bug. Parse the semantic content, not
-  the formatting.
-- When parsing structured text (YAML, key-value pairs, etc.), handle
-  common format variations (compact vs multi-line, varying indent
-  levels, trailing whitespace) rather than requiring one exact layout.
-- If a parser returns empty/default on bad input, add at least one
-  test using real-world input (e.g. the actual file it will parse)
-  to catch silent failures.
+- Prefer lenient parsing over strict matching. A regex that silently fails on valid input (e.g. requiring exact whitespace counts or line-ending positions) is a bug. Parse the semantic content, not the formatting.
+- When parsing structured text (YAML, key-value pairs, etc.), handle common format variations (compact vs multi-line, varying indent levels, trailing whitespace) rather than requiring one exact layout.
+- When writing a parser, the test fixture must include the actual format that parser will consume in production.  A test that only passes on a format the real data never uses only provides false confidence.
+- If a parser returns empty/default on bad input, add at least one test using real-world input (e.g. the actual file it will parse) to catch silent failures.
   
 ### Project Navigation
 

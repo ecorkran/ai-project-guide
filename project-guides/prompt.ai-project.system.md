@@ -25,7 +25,7 @@ context_profiles:
   initiative-plan-phase-1:           [fileConcept]
   architecture-phase-2:              [fileConcept, fileArch]
   slice-planning-phase-3:            [fileArch, fileSlicePlan]
-  slice-design-phase-4:              [fileArch, fileSlicePlan, fileSlice]
+  slice-design-phase-4:              [fileSlicePlan, fileSlice]
   task-breakdown-phase-5:            [fileSlice, fileTasks]
   implementation-phase-6:            [fileSlice, fileTasks]
   slice-integration-phase-7:         [fileArch, fileSlicePlan, fileSlice, fileTasks]
@@ -431,11 +431,9 @@ The following provides context on our current work in project {project}.
 
 Refer to `ai-project-guide/project-guides/guide.ai-project.process` for resource structure and locations.
 
-Concentrate on the most granular level available (e.g. tasks if present), and use the higher-level files as reference only if needed.
+Concentrate on the most granular input available (i.e. tasks if present), and use the higher-level files as reference only if needed.
 
 If you were previously assigned a role, continue in that role. If not, assume role of Senior AI as defined in the Process Guide.
-
-If tasks file is already present, it should be your primary focus.  Slice design may be used to gain overview or as a source for generating tasks.  Once we have the tasks, we primarily work from those.
 
 If given an instruction similar to "process and stand by", make sure you understand all instructions, what files or architecture components are involved, and alert Project Manager to any missing, incomplete, or vague information preventing you from accurately carrying out your instructions.  Wait for confirmation from Project Manager before proceeding further.
 ```
