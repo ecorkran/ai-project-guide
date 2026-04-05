@@ -1,116 +1,224 @@
 ---
-docType: guide
+docType: tool-guide
 layer: tool-guide
-tool: threejs
-subject: lighting
+platform: threejs
 audience: [human, ai]
-description: Best practices for lighting Three.js scenes
-dateUpdated: 20260121
+purpose: lighting patterns, intensity model, and environment maps
+dateCreated: 20260121
+dateUpdated: 20260405
+status: in_progress
 ---
 
 # Three.js Lighting Guide
 
-To ensure your Three.js scene is properly lit and visible, follow these key steps and best practices.
+## Physically Correct Lighting (r155+)
+
+Three.js uses physically correct lighting by default since r155 (2023). The `useLegacyLights` escape hatch was removed in r165 — there is no way to revert to the old model.
+
+**What this means in practice:**
+
+- `AmbientLight`, `DirectionalLight`, `HemisphereLight` intensities are in **lux (lx)**. A sunny outdoor scene is ~100,000 lux; an indoor scene might be 100–1000 lux.
+- `PointLight` and `SpotLight` intensities are in **candela (cd)**. A domestic bulb is ~800 cd.
+- Pre-r155 tutorials often used intensity values of `0.5` or `1.0` for `DirectionalLight`. These were legacy-mode values. In physical mode, the same appearance requires multiplying by `Math.PI` (~3.14). A legacy `intensity: 1` DirectionalLight becomes `intensity: Math.PI` in physical mode.
+- `ColorManagement.enabled = true` is the default since r152. sRGB-to-linear conversion is automatic — do not manually linearise colours.
+
+**Practical starting values (physical mode):**
+
+| Light type | Typical starting value | Notes |
+|---|---|---|
+| `AmbientLight` | `intensity: 1.5` | Very subtle fill; reduce if using HDR environment |
+| `DirectionalLight` | `intensity: Math.PI` | Approximates pre-r155 `intensity: 1` appearance |
+| `HemisphereLight` | `intensity: 1.5` | Good outdoor sky/ground fill |
+| `PointLight` | `intensity: 100` | Decay is `2` by default (inverse-square) |
+| `SpotLight` | `intensity: 100` | Same decay model as PointLight |
+
+> **If your scene is much darker than expected:** multiply your intensity values by `Math.PI` and tune from there. This is the most common pitfall when following older tutorials.
+
+---
 
 ## Combine Multiple Light Types
 
-- **Ambient Light:** Start with an `AmbientLight` to provide a base level of illumination. This ensures all objects are at least partially visible, as ambient light uniformly brightens the entire scene without casting shadows.
+### Ambient Light
 
-  ```js
-  const ambientLight = new THREE.AmbientLight(0x404040, 1); // Soft white light, intensity 1
-  scene.add(ambientLight);
-  ```
-  Ambient light alone can make your scene visible but may look flat without additional light sources[1][3][6].
-
-- **Directional Light:** Add a `DirectionalLight` to simulate sunlight or strong directional sources. This light casts shadows and creates depth.
-
-  ```js
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-  directionalLight.position.set(0, 10, 10); // Position above and in front
-  scene.add(directionalLight);
-  ```
-  Pairing ambient and directional lights is a common and effective setup for most scenes[1][3][6].
-
-- **Point and Spot Lights:** Use `PointLight` for omnidirectional light from a specific point, or `SpotLight` for focused, cone-shaped beams. These are useful for highlighting objects or creating localized effects.
-
-  ```js
-  const pointLight = new THREE.PointLight(0xffffff, 1, 100);
-  pointLight.position.set(10, 10, 10);
-  scene.add(pointLight);
-  ```
-
-  Adjust the position, intensity, and color of these lights to achieve the desired effect[2][3][5].
-
-## Adjust Light Properties
-
-- **Intensity:** Tune the intensity of each light to avoid over- or underexposure.
-- **Position:** Experiment with light positions to highlight important scene features and avoid flat or unrealistic shading.
-- **Color:** Use subtle color variations for realism, but avoid extreme colors unless stylistically intended[1][3].
-
-## Use Appropriate Materials
-
-- Use materials that respond to lighting, such as `MeshStandardMaterial` or `MeshLambertMaterial`. Materials like `MeshBasicMaterial` do not react to lights and are only useful for debugging or stylized effects[7].
-
-## Add Light Helpers (for Development)
-
-- Use helpers like `THREE.DirectionalLightHelper` or `THREE.PointLightHelper` to visualize light positions and directions during development. This helps diagnose why certain objects may appear too dark or too bright[7].
-
-## Consider Hemisphere Light
-
-- `HemisphereLight` provides a gradient between sky and ground colors, simulating outdoor lighting and adding realism with minimal setup[6].
-
-  ```js
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
-  scene.add(hemiLight);
-  ```
-
-## Common Pitfalls to Avoid
-
-- **Too Few Lights:** Relying on a single light often results in poor visibility or flat shading. Combine different light types for best results[1][3][7].
-- **Incorrect Light Position:** Lights positioned behind or inside objects may not illuminate the scene as expected. Always check and adjust positions[2][5].
-- **Wrong Material:** Using non-light-reactive materials (like `MeshBasicMaterial`) will make objects appear flat regardless of lighting[7].
-
-## Example Minimal Lighting Setup
+Provides uniform base illumination — no shadows, no directionality.
 
 ```js
-const ambientLight = new THREE.AmbientLight(0x404040, 1);
+const ambientLight = new THREE.AmbientLight(0x404040, 1.5);
 scene.add(ambientLight);
+```
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-directionalLight.position.set(0, 10, 10);
+Ambient light alone looks flat. Use it as a fill to prevent objects from being completely black on their unlit sides. When using an HDR environment map (see below), you often don't need ambient light at all.
+
+### Directional Light
+
+Simulates sunlight — parallel rays, casts shadows, creates depth.
+
+```js
+const directionalLight = new THREE.DirectionalLight(0xffffff, Math.PI);
+directionalLight.position.set(5, 10, 7);
+directionalLight.castShadow = true;
 scene.add(directionalLight);
 ```
 
+`castShadow = true` enables shadow maps. Configure the shadow camera frustum to tightly wrap your scene:
+
+```js
+directionalLight.shadow.camera.near = 0.5;
+directionalLight.shadow.camera.far = 50;
+directionalLight.shadow.camera.left = -10;
+directionalLight.shadow.camera.right = 10;
+directionalLight.shadow.camera.top = 10;
+directionalLight.shadow.camera.bottom = -10;
+directionalLight.shadow.mapSize.set(2048, 2048);
+```
+
+### Point and Spot Lights
+
+```js
+// Point light — omnidirectional from a specific position
+const pointLight = new THREE.PointLight(0xffffff, 100, 20); // colour, intensity (cd), distance
+pointLight.position.set(3, 5, 3);
+scene.add(pointLight);
+
+// Spot light — focused cone
+const spotLight = new THREE.SpotLight(0xffffff, 100);
+spotLight.position.set(5, 10, 0);
+spotLight.angle = Math.PI / 8;    // cone half-angle
+spotLight.penumbra = 0.2;         // soft edge
+spotLight.castShadow = true;
+scene.add(spotLight);
+```
+
+### Hemisphere Light
+
+Sky-ground gradient — excellent cheap outdoor fill without needing a sun light for basic scenes.
+
+```js
+const hemiLight = new THREE.HemisphereLight(
+  0x87ceeb, // sky colour (blue-ish)
+  0x444444, // ground colour
+  1.5
+);
+scene.add(hemiLight);
+```
+
+---
+
+## HDR Environment Maps (Recommended for Realistic Scenes)
+
+For physically realistic lighting and reflections, an HDR environment map via `PMREMGenerator` is the standard approach. It provides both diffuse and specular IBL (image-based lighting) and typically replaces or supplements direct lights.
+
+### `RGBELoader` → `HDRLoader` (r179 breaking rename)
+
+`RGBELoader` was renamed to `HDRLoader` in r179. Update all imports:
+
+```js
+// Old (r178 and earlier) — no longer works
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+
+// Current (r179+)
+import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+```
+
+### Setup
+
+```ts
+import * as THREE from 'three/webgpu';
+import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+
+async function setupEnvironment(renderer: THREE.WebGPURenderer, scene: THREE.Scene) {
+  await renderer.init(); // ensure renderer is ready before PMREMGenerator
+
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  pmrem.compileEquirectangularShader();
+
+  const hdrLoader = new HDRLoader();
+  const hdrTexture = await hdrLoader.loadAsync('/assets/env/studio.hdr');
+
+  const envMap = pmrem.fromEquirectangular(hdrTexture).texture;
+  hdrTexture.dispose();
+  pmrem.dispose();
+
+  scene.environment = envMap;   // IBL lighting for all PBR materials
+  scene.background = envMap;    // optional: visible in background
+  scene.backgroundBlurriness = 0.05; // optional: blur the background only
+}
+```
+
+`scene.environment` applies IBL to all `MeshStandardMaterial` and `MeshPhysicalMaterial` meshes automatically. With a good HDR environment you often need only minimal or no direct lights.
+
+### Free HDR Sources
+
+- [Poly Haven](https://polyhaven.com/hdris) — CC0 licensed, production quality
+
+---
+
+## Use Appropriate Materials
+
+- `MeshStandardMaterial` — PBR (physically based), responds to lights and environment maps. Use for most objects.
+- `MeshPhysicalMaterial` — extends Standard with clearcoat, transmission, iridescence, sheen. Use for glass, wet surfaces, fabric.
+- `MeshLambertMaterial` — diffuse only, no specular. Cheaper than Standard for non-metallic, non-reflective objects.
+- `MeshBasicMaterial` — ignores all lights. Use for UI elements, emissive overlays, or lighting debug.
+
+> Do not use `MeshBasicMaterial` for primary scene objects expecting lighting — they will appear flat and unlit regardless of your light setup.
+
+---
+
+## Light Helpers (Development Only)
+
+Visualise light positions and directions during development. Remove before shipping.
+
+```js
+const dirHelper = new THREE.DirectionalLightHelper(directionalLight, 2);
+scene.add(dirHelper);
+
+const pointHelper = new THREE.PointLightHelper(pointLight, 0.5);
+scene.add(pointHelper);
+
+// For directional light shadow camera:
+const shadowHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
+scene.add(shadowHelper);
+```
+
+---
+
+## Minimal Physically Correct Setup
+
+```js
+import * as THREE from 'three/webgpu';
+
+// Hemisphere fill (sky/ground gradient)
+const hemiLight = new THREE.HemisphereLight(0x87ceeb, 0x444444, 1.5);
+scene.add(hemiLight);
+
+// Directional sun
+const sun = new THREE.DirectionalLight(0xffffff, Math.PI);
+sun.position.set(5, 10, 7);
+sun.castShadow = true;
+scene.add(sun);
+
+// Enable shadows on renderer
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+```
+
+---
+
 ## Summary Table
 
-| Light Type         | Purpose                                   | Example Use                   |
-|--------------------|-------------------------------------------|-------------------------------|
-| AmbientLight       | Base illumination, no shadows             | General scene visibility      |
-| DirectionalLight   | Sunlight, strong shadows                  | Outdoor scenes, shadows       |
-| PointLight         | Omnidirectional, localized lighting       | Lamps, bulbs                  |
-| SpotLight          | Focused, cone-shaped lighting             | Spotlights, stage lights      |
-| HemisphereLight    | Sky-ground gradient, soft outdoor effect  | Outdoor, natural lighting     |
+| Light Type | Purpose | Physical Unit | Typical Range |
+|---|---|---|---|
+| `AmbientLight` | Flat fill, no shadows | lux (lx) | 0.5 – 3 |
+| `DirectionalLight` | Sunlight, shadows | lux (lx) | `Math.PI` – 10 |
+| `HemisphereLight` | Sky/ground gradient fill | lux (lx) | 1 – 3 |
+| `PointLight` | Omnidirectional bulb | candela (cd) | 50 – 1000 |
+| `SpotLight` | Focused cone | candela (cd) | 50 – 1000 |
+| HDR environment | IBL: diffuse + specular | — | `scene.environment` |
 
-By thoughtfully combining these techniques and adjusting properties, you can ensure your Three.js scene is well-lit and visually compelling[1][3][6].
+## Common Pitfalls
 
-Sources
-[1] Illuminating Your 3D Scenes: A Guide to Lights in Three.js https://dev.to/cloudysarah/illuminating-your-3d-scenes-a-guide-to-lights-in-threejs-93i
-[2] Lighting - adding lights to your three.js scene https://builderof.neocities.org/Lights
-[3] How to Use Lighting in Three.js:A Step-by-Step Guide - MapToDev https://www.maptodev.com/blog/How-to-Use-Lighting-in-Three.js-A-Step-by-Step-Guide
-[4] Three.js Lighting Tutorial (JavaScript) | Light Types Explained! https://www.youtube.com/watch?v=T6PhV4Hz0u4
-[5] Three.js Lighting Tutorial with Examples - YouTube https://www.youtube.com/watch?v=bsLosbweLNE
-[6] Ambient Lighting: Illumination from Every Direction - Discover three.js! https://discoverthreejs.com/book/first-steps/ambient-lighting/
-[7] Improve lighting in three.js scene - javascript - Stack Overflow https://stackoverflow.com/questions/38020355/improve-lighting-in-three-js-scene
-[8] How can I improve the lighting in my scene? White pieces are either ... https://www.reddit.com/r/threejs/comments/11wdhot/how_can_i_improve_the_lighting_in_my_scene_white/
-[9] Looking for someone to help teach me lighting - three.js forum https://discourse.threejs.org/t/looking-for-someone-to-help-teach-me-lighting/14410
-[10] Material ignoring specific light source? - Questions - three.js forum https://discourse.threejs.org/t/material-ignoring-specific-light-source/43747
-[11] Three.js Realistic Lighting Setup Tutorial - YouTube https://www.youtube.com/watch?v=7GGNzryHfTw
-[12] Rendering Lights in three js - Questions https://discourse.threejs.org/t/rendering-lights-in-three-js/58400
-[13] Light – three.js docs https://threejs.org/docs/api/en/lights/Light.html
-[14] Having problems with lightning - Questions - three.js forum https://discourse.threejs.org/t/having-problems-with-lightning/60606
-[15] Setting up the lights - Questions - three.js forum https://discourse.threejs.org/t/setting-up-the-lights/10470
-[16] Lighting advice - Questions - three.js forum https://discourse.threejs.org/t/lighting-advice/36629
-[17] AmbientLight – three.js docs https://threejs.org/docs/api/en/lights/AmbientLight.html
-[18] ThreeJS Lighting or Color Problems - Questions - three.js forum https://discourse.threejs.org/t/threejs-lighting-or-color-problems/74215
-[19] Talk to me about point lights and performance - three.js forum https://discourse.threejs.org/t/talk-to-me-about-point-lights-and-performance/48258
-[20] Showing a model only in light - Questions - three.js forum https://discourse.threejs.org/t/showing-a-model-only-in-light/26622
+- **Scene too dark:** Likely pre-r155 intensity values — multiply by `Math.PI` and tune.
+- **Wrong material:** `MeshBasicMaterial` ignores lights. Swap to `MeshStandardMaterial` to test lighting.
+- **Light behind objects:** Lights positioned behind or inside objects may not illuminate them. Check with helpers.
+- **`RGBELoader` import error:** Renamed to `HDRLoader` in r179.
+- **Shadows not visible:** Check `renderer.shadowMap.enabled = true`, `light.castShadow = true`, and `mesh.receiveShadow = true` on receiving surfaces.

@@ -1,44 +1,66 @@
 ---
 docType: tool-guide
+layer: tool-guide
 platform: threejs
-audience:
-  - human
-  - ai
+audience: [human, ai]
 purpose: installation & project setup
-dateUpdated: 20250718
+dateCreated: 20250718
+dateUpdated: 20260405
+status: in_progress
 ---
 
 ## Three.js Setup Guide
 
-This guide walks you through scaffolding a modern Three.js project with **Vite**, applying a default background colour, registering a resize handler, and preparing the project for deployment to **GitHub Pages**.
+This guide scaffolds a modern Three.js project using **Vite**, **pnpm**, and **WebGPURenderer** (with automatic WebGL 2 fallback). For the full WebGPU renderer guide including TSL shaders, NodeMaterials, and post-processing, see `guide.webgpu.md`.
 
 ---
 
 ### Prerequisites
-- **Node.js ≥ 18** (ensure `npm`, `pnpm`, or `yarn` is available)
+
+- **Node.js ≥ 20.19** (required by Vite 6+; Node 22 LTS recommended for new projects)
+- **pnpm** (`npm install -g pnpm` if not installed)
 - A GitHub account (for Pages deployment)
-- Basic familiarity with JavaScript & the command line
+- Basic familiarity with TypeScript & the command line
 
 ---
 
 ### 1 · Scaffold with Vite
 
-Create a fresh project folder and initialise Vite (Vanilla TS template recommended):
-
 ```bash
-npm create vite@latest threejs-app -- --template vanilla-ts
+pnpm create vite@latest threejs-app -- --template vanilla-ts
 cd threejs-app
 ```
 
 Install Three.js:
 
 ```bash
-npm i three
+pnpm add three
 ```
 
-#### 1.1 Update `vite.config.js`
+Install types (bundled with Three.js — no separate `@types/three` needed as of r152+, but verify your IDE picks them up):
 
-Ensure the project can be served from a sub-path when hosted on GitHub Pages.  
+```bash
+pnpm add -D vite
+```
+
+#### 1.1 Update `tsconfig.json`
+
+Vite's default `vanilla-ts` template sets `"moduleResolution": "bundler"` — this is required for `three/webgpu` and `three/tsl` subpath imports to resolve correctly. Verify it's present:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true
+  }
+}
+```
+
+#### 1.2 Update `vite.config.js`
+
+Ensure the project can be served from a sub-path when hosted on GitHub Pages.
 Replace `{repo-name}` with your repository name (e.g. `threejs-app`).
 
 ```js
@@ -50,7 +72,7 @@ export default defineConfig({
 });
 ```
 
-> **Tip:** Skip the `base` property if you will serve from the domain root (e.g. `username.github.io`).
+> **Tip:** Omit the `base` property if serving from the domain root (e.g. `username.github.io`).
 
 ---
 
@@ -59,17 +81,21 @@ export default defineConfig({
 ```
 threejs-app/
 ├─ public/
-│  └─ index.html        ← canvas lives here
+│  └─ assets/           ← static assets (HDR files, textures, models)
 ├─ src/
 │  ├─ main.ts           ← entry; creates scene & renderer
 │  └─ styles.css        ← basic stylesheet
+├─ index.html           ← Vite entry point (not in public/)
 ├─ vite.config.js
+├─ tsconfig.json
 └─ package.json
 ```
 
+> **Note:** Vite's `vanilla-ts` template places `index.html` at the project root, not in `public/`. The `<script type="module">` tag inside it is Vite's entry point.
+
 ---
 
-### 3 · HTML Boilerplate (`public/index.html`)
+### 3 · HTML Boilerplate (`index.html`)
 
 ```html
 <!DOCTYPE html>
@@ -91,7 +117,7 @@ threejs-app/
 
 ### 4 · Styling (`src/styles.css`)
 
-Set a visible default background colour on **both** the `body` and the `canvas` so the colour is obvious before Three.js initialises.
+Set the background colour on both `body` and `canvas` so it's visible before Three.js initialises.
 
 ```css
 :root {
@@ -107,7 +133,7 @@ body {
 }
 
 #three-canvas {
-  display: block;        /* removes scrollbars */
+  display: block;
   width: 100%;
   height: 100%;
   background: var(--bg-colour);
@@ -118,19 +144,21 @@ body {
 
 ### 5 · Scene Boilerplate (`src/main.ts`)
 
+Use `three/webgpu` — it provides WebGPU natively and falls back to WebGL 2 automatically when WebGPU is unavailable. No extra detection code is needed.
+
 ```ts
-import * as THREE from 'three';
+import * as THREE from 'three/webgpu';
 
 // Grab canvas element
 const canvas = document.getElementById('three-canvas') as HTMLCanvasElement;
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+// Renderer — WebGPU with automatic WebGL 2 fallback
+const renderer = new THREE.WebGPURenderer({ canvas, antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 
-// *** Default background colour applied to BOTH renderer & scene ***
-const backgroundColour = 0x0e1129; // same colour as CSS var
+// Background colour
+const backgroundColour = 0x0e1129;
 renderer.setClearColor(backgroundColour);
 
 // Scene & Camera
@@ -144,25 +172,23 @@ const camera = new THREE.PerspectiveCamera(
   1000,
 );
 camera.position.set(0, 0, 5);
-scene.add(camera);
 
 // Simple geometry for validation
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshStandardMaterial({ color: 0x55aaff });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
-scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+scene.add(new THREE.AmbientLight(0xffffff, 1.5));
 
-// Render loop
-const tick = () => {
+// Render loop — setAnimationLoop is the WebGPU-idiomatic pattern.
+// It defers the first frame until async GPU init is complete.
+renderer.setAnimationLoop(() => {
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.015;
   renderer.render(scene, camera);
-  requestAnimationFrame(tick);
-};
-requestAnimationFrame(tick);
+});
 
-// *** Resize Handler ***
+// Resize handler
 window.addEventListener('resize', () => {
   const { innerWidth: w, innerHeight: h } = window;
   camera.aspect = w / h;
@@ -171,46 +197,51 @@ window.addEventListener('resize', () => {
 });
 ```
 
+> **`setAnimationLoop` vs `requestAnimationFrame`:** `WebGPURenderer` initialises asynchronously. `setAnimationLoop` defers the first render until init is complete. Using bare `requestAnimationFrame` before the GPU is ready will silently produce nothing. Always use `setAnimationLoop` with `WebGPURenderer`.
+
+> **`Timer` vs `Clock`:** `THREE.Clock` is deprecated as of r183. Use `THREE.Timer` for elapsed/delta time in new projects:
+> ```ts
+> const timer = new THREE.Timer();
+> renderer.setAnimationLoop(() => {
+>   timer.update();
+>   const delta = timer.getDelta();
+>   // ...
+> });
+> ```
+
 ---
 
 ### 6 · Local Development
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Visit the printed localhost URL and verify:
 
-1. The background colour fills the viewport immediately.
-    
-2. The spinning cube renders and keeps the background colour.
-    
-3. Resizing the window maintains aspect and fills the viewport.
-    
+1. Background colour fills the viewport immediately.
+2. The spinning cube renders correctly.
+3. Resizing the window maintains aspect ratio and fills the viewport.
 
 ---
 
 ### 7 · Deploy to GitHub Pages
 
-This guide intentionally keeps deployment details concise; see **`deployment.github-pages.md`** in the same folder for full instructions. Key steps:
+See `guide.deployment.github-pages.md` for the full workflow. Key steps:
 
 1. Commit & push to GitHub.
-    
-2. Add the Pages workflow (sample YAML in `deployment.github-pages.md`).
-    
+2. Add the Pages workflow (sample YAML in the deployment guide).
 3. Ensure `vite.config.js` `base` matches your repo path.
-    
-4. Enable Pages on the _repository_ (or hub-repo) and set the branch to **GitHub Actions**.
-    
+4. Enable Pages on the repository and set the source to **GitHub Actions**.
 
-> **Note:** Because Vite rewrites asset paths during build, never upload un-built source to Pages.
+> **Note:** Always deploy the built `dist/` output, never raw source. Vite rewrites asset paths during build.
 
 ---
 
 ### Further Reading
 
+- `guide.webgpu.md` — WebGPURenderer in depth: TSL shaders, NodeMaterials, RenderPipeline post-processing
+- `guide.lighting.md` — lighting patterns, intensity model, HDR environment maps
 - [Three.js Fundamentals](https://threejsfundamentals.org/)
-    
 - [Discover Three.js](https://discoverthreejs.com/)
-    
-- Vite docs: [https://vitejs.dev/](https://vitejs.dev/)
+- [Vite docs](https://vitejs.dev/)
