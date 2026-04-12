@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.2] - 2026-04-12
+
+### Added
+- File naming conventions: Added IDE-generated output file exemptions from universal frontmatter requirements
+
 ## [0.15.1] - 2026-04-11
 
 ### Changed
