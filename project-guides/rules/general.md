@@ -35,15 +35,30 @@ alwaysApply: true
 - Git add and commit from project root at least once per task.
 - Confirm your current working directory before file/shell commands.
 
-## Parsing & Pattern Matching
-
+### Parsing & Pattern Matching
 - Prefer lenient parsing over strict matching. A regex that silently fails on valid input (e.g. requiring exact whitespace counts or line-ending positions) is a bug. Parse the semantic content, not the formatting.
 - When parsing structured text (YAML, key-value pairs, etc.), handle common format variations (compact vs multi-line, varying indent levels, trailing whitespace) rather than requiring one exact layout.
 - When writing a parser, the test fixture must include the actual format that parser will consume in production.  A test that only passes on a format the real data never uses only provides false confidence.
 - If a parser returns empty/default on bad input, add at least one test using real-world input (e.g. the actual file it will parse) to catch silent failures.
   
-### Project Navigation
+### Hallucination traps in prompts
+If an instruction tells a reader to retrieve a value from some source, and
+that source might return empty, do not place a hardcoded example of an
+acceptable value nearby. When the source is empty, a model will reach for
+the nearest plausible token — and the example is it. This is a
+hallucination trap.
 
+#### Bad
+
+    Print the filename (from stderr, e.g. `squadron-P4.md`).
+
+#### Good
+
+    Print the filename. The CLI emits it on a line prefixed with
+    `Using: ` on stderr. If no such line is present, stop with an error.
+
+
+### Project Navigation
 - Follow `guide.ai-project.process` and its links for workflow.
 - Follow `file-naming-conventions` for all document naming and metadata.
 - Project guides: `project-documents/ai-project-guide/project-guides/`

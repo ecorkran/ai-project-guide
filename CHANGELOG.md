@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.1] - 2026-04-11
+
+### Changed
+- Rules: Add hallucination trap guideline to general rules; fix heading levels in parsing section
+
 ## [0.14.7] - 2026-03-30
 
 ### Changed
