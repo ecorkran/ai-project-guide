@@ -366,7 +366,7 @@ Work carefully and sequentially through the tasks, ensuring that each task is ve
 
 If you encounter a failing test, an ambiguous requirement, or a design decision not covered by the slice design, stop and confer with the Project Manager. Do not make more than three attempts at a failing approach before stopping.
 
-Be sure to check off tasks as they are completed.  If a parent slice plan file contains checklist items, check off parent items after all child items are complete. If a `task-checker` tool|agent is available to you, use it.
+After completing each task, delegate checklist updates to the `task-checker` agent rather than editing task files inline. This keeps your context focused on implementation. If task-checker is unavailable, check off tasks directly.
 
 ###### Completion
 After completing all tasks, perform the following steps:
@@ -382,7 +382,7 @@ After completing all tasks, perform the following steps:
 - if file does not exist, create it as described in project-guides/templates/changelog-format.md
 
 ###### Notes: 
-- Use the task-checker to manage lists if it is available to you.
+- Delegate all checklist updates to the `task-checker` agent. Do not edit task file checkboxes inline.
 - Ignore case sensitivity in all file and directory names.
 - Use the directory-structure and file-naming-conventions guides.
 - If you are missing required information or referenced files, STOP and obtain
@@ -562,7 +562,7 @@ Work through maintenance items one at a time. For each item:
 - Determine if task can reasonably be solved without expansion or creating more detailed tasks.  Keep a list of anything requiring this additional detail and present it to the Project Manager after proceeding through all solvable items.
 - Implement solutions according to our project guidelines.  Ensure that you create unit tests for each solution, and that the tests pass before proceeding to the next item.  Create tests as you work through each item -- do not wait until the end and try to create them all.
 - Run regressions and existing tests to make sure maintenance fixes do not break any existing slices, slice boundaries, dependencies, or interfaces.
-- Update tasks and check off as you go.  Use a task-checker agent if one is configured.
+- Delegate checklist updates to the `task-checker` agent as you complete items. Do not edit task file checkboxes inline.
 
 Current project: {project}
 Active slice work: {slice} (if applicable)

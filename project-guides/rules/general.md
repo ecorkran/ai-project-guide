@@ -70,6 +70,7 @@ hallucination trap.
 
 - All markdown files must include YAML frontmatter as specified in `file-naming-conventions.md`
 - Use checklist format for all task files.  Each item and subitem should have a `[ ]` "checkbox".
-- After completing a task or subtask, make sure it is checked off in the appropriate file(s).  Use the task-check subagent if available.- Preserve sections titled "## User-Provided Concept" exactly as 
+- After completing a task or subtask, delegate checklist updates to the `task-checker` agent rather than editing task files inline. This keeps the main agent's context focused on implementation. If task-checker is unavailable, check off tasks directly.
+- Preserve sections titled "## User-Provided Concept" exactly as 
   written — never modify or remove.
 - Keep success summaries concise and minimal.

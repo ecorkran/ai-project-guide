@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.3] - 2026-04-13
+
+### Changed
+- Prompts: Hardened task-checker delegation language in Phase 6, Maintenance Routine, and Phase 6 Notes — prescriptive instead of optional
+- Rules: Updated general rules to prescribe task-checker delegation for checklist updates
+
 ## [0.15.2] - 2026-04-12
 
 ### Added
