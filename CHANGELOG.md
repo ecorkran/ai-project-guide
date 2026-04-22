@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.4] - 2026-04-19
+
+### Changed
+- Rules: Added exception handling rule to general.md (Python-specific details in python.md)
+- Rules: Python — require ruff/pyright config blocks in pyproject.toml, tighten exception handling, add load-test tier, async blocking rule, and concurrency/shared-state discipline
+
 ## [0.15.3] - 2026-04-13
 
 ### Changed
