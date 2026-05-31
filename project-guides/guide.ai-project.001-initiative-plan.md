@@ -29,7 +29,7 @@ Without the initiative plan, the decomposition from "one project" into "many arc
 **Inputs:**
 * `guide.ai-project.process` (process guide)
 * `guide.ai-project.001-initiative-plan` (this document)
-* Concept document (`user/project-guides/001-concept.{project}.md`) — specifically the Solution Approach section, which should identify capability areas
+* Concept document (`user/project-guides/000-concept.{project}.md`) — specifically the Solution Approach section, which should identify capability areas
 
 **Outputs:**
 * Initiative plan document: `user/project-guides/001-initiative-plan.{project}.md`
@@ -70,7 +70,7 @@ See `file-naming-conventions.md` for the canonical YAML schema reference.
 docType: initiative-plan
 layer: project
 project: {project}
-source: user/project-guides/001-concept.{project}.md
+source: user/project-guides/000-concept.{project}.md
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
 status: not_started
@@ -82,7 +82,7 @@ status: not_started
 # Initiative Plan: {Project}
 
 ## Source
-001-concept.{project}.md
+000-concept.{project}.md
 
 ## Index Convention
 {Describe the index gap chosen for this project and rationale.}

@@ -249,7 +249,7 @@ When creating concept, spec, or architecture documents, use the **living documen
 ```
 
 #### How It Works
-1. **Human creates file**: Add file with numbered prefix (e.g., `001-concept.{project}.md`, `120-arch.{component}.md`)
+1. **Human creates file**: Add file with numbered prefix (e.g., `000-concept.{project}.md`, `120-arch.{component}.md`)
 2. **Human provides concept**: Fill in User-Provided Concept section (can be simple or detailed)
 3. **AI enhances**: AI reads user concept and adds structured technical sections
 4. **Iterative refinement**: Both human and AI continue to evolve the document
@@ -262,7 +262,7 @@ When creating concept, spec, or architecture documents, use the **living documen
 - **Clear ownership**: User Concept vs AI Technical sections are distinct
 
 #### Applies To
-- Concept documents (`001-concept.{project}.md`)
+- Concept documents (`000-concept.{project}.md`)
 - Initiative plans (`001-initiative-plan.{project}.md`)
 - Architecture documents (`nnn-arch.{component}.md`)
 - Slice designs (`nnn-slice.{slice}.md`)

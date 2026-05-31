@@ -39,7 +39,7 @@ project-documents/
     ├── analysis/            # codebase analysis & investigation (940-949)
     ├── architecture/        # high-level designs & system architecture (050-089)
     ├── project-guides/      # project-specific guide customizations (001-009)
-    │   ├── 001-concept.{project}.md # project concept documents
+    │   ├── 000-concept.{project}.md # project concept documents
     │   ├── 002-spec.{project}.md    # project specifications
     │   └── 003-slices.{project}.md  # slice planning
     ├── reviews/             # code review docs & follow-up actions (900-939)

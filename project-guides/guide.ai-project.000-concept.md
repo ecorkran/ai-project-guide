@@ -97,4 +97,4 @@ Not every section needs substantial content. A small utility project might have 
 
 ### Output Location
 
-Save as `001-concept.{project}.md` in the `user/project-guides/` directory.
+Save as `000-concept.{project}.md` in the `user/project-guides/` directory.

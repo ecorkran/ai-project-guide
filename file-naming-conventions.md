@@ -100,7 +100,7 @@ status: not_started
 docType: initiative-plan
 layer: project
 project: {project}
-source: user/project-guides/001-concept.{project}.md
+source: user/project-guides/000-concept.{project}.md
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
 status: not_started
@@ -209,7 +209,7 @@ The filename prefix (`arch.`, `slice.`, `tasks.`, `slices.`) identifies document
 
 - **000-009**: Core AI-project process guides
   - Example: `guide.ai-project.process.md`, `guide.ai-project.000-concept.md`
-  - Matching project files: `user/project-guides/001-concept.{project}.md`
+  - Matching project files: `user/project-guides/000-concept.{project}.md`
 
 - **010-049**: Reserved for future process extensions
   - Available for new methodology guides
@@ -469,7 +469,7 @@ The index structure provides a machine-readable project architecture. This enabl
 **000-009: Foundation** → `user/project-guides/`
 - Project genesis documents (concept, spec, project-level slice plan)
 - Defines project vision and scope
-- Example: `001-concept.trading.md`, `002-spec.trading.md`
+- Example: `000-concept.trading.md`, `002-spec.trading.md`
 
 **050-099: Project-Level Architecture & Guides** → `user/architecture/`
 - Project HLD, project-wide architectural decisions
@@ -505,7 +505,7 @@ This structure enables automated project snapshots:
 ```json
 {
   "project": "trading",
-  "foundation": ["001-concept.trading.md", "002-spec.trading.md"],
+  "foundation": ["000-concept.trading.md", "002-spec.trading.md"],
   "projectArchitecture": ["050-arch.hld-trading.md"],
   "initiatives": {
     "100": {

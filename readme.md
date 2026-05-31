@@ -79,7 +79,7 @@ The methodology breaks development into phases. You don't need to follow all of 
 
 ### The Phases
 
-**Phase 1 — Concept:** Write up what you're building in `project-documents/user/project-guides/001-concept.{project}.md`. AI enhances it with structured analysis.
+**Phase 0 — Concept:** Write up what you're building in `project-documents/user/project-guides/000-concept.{project}.md`. AI enhances it with structured analysis.
 
 **Phase 2 — Specification:** Create `002-spec.{project}.md`. AI fills in requirements, tech stack, architecture decisions.
 

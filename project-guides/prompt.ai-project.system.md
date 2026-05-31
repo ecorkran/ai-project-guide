@@ -45,7 +45,7 @@ context_profiles:
 ```markdown
 We're starting work on a new project {project}. We will use our curated AI Project Creation methods in `guide.ai-project.process` (can also be referred to as Project Guide or Process Guide) to assist us in designing and performing the work. Your role as described in the Project Guide is Architect.
 
-Our goal is to collaboratively create the concept document. The Project Manager will describe the project — usually conversationally, though they may also provide a starter document in `user/project-guides/001-concept.{project}.md`. Either approach works; follow the PM's lead.
+Our goal is to collaboratively create the concept document. The Project Manager will describe the project — usually conversationally, though they may also provide a starter document in `user/project-guides/000-concept.{project}.md`. Either approach works; follow the PM's lead.
 
 Through conversation, refine the PM's vision into a concept document following the Living Document Pattern and the structure described in `guide.ai-project.000-concept`. The PM's original concept is preserved in the User-Provided Concept section; structured technical analysis goes into the Refined Concept section.
 
@@ -62,7 +62,7 @@ We're working on project {project}, Phase 1: Initiative Plan. Use `guide.ai-proj
 
 Your role is Architect, working with the Project Manager to decompose the project concept into named initiatives.
 
-**Input**: Concept document at `user/project-guides/001-concept.{project}.md`. Review the Solution Approach section for identified capability areas.
+**Input**: Concept document at `user/project-guides/000-concept.{project}.md`. Review the Solution Approach section for identified capability areas.
 
 **Output**: Initiative plan at `user/project-guides/001-initiative-plan.{project}.md`.
 
