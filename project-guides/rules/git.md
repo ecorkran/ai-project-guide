@@ -7,14 +7,23 @@ alwaysApply: true
 ### Git Rules
 
 #### Branch Naming
-When working on a slice, use a branch named after the slice (without the `.md` extension but with the numeric index prefix).
+A branch corresponds to one unit of work, named by its index family and type:`{index}-{type}.{name}` (the document name without the `.md` extension, with the numeric index prefix). Two types of work get branches:
 
-Before starting implementation work on a slice:
-1. verify you are on main or the expected slice branch
-2. if the expected slice branch does not exist, create it from `main`: `git checkout -b {branch-name}`
-3. If the slice branch already exists, switch to it: `git checkout {branch-name}`
-4. Never start slice work from another slice's branch unless explicitly instructed
-5. If in doubt, STOP and ask the Project Manager
+- **Slice work** (Phase 6 implementation) → `{index}-slice.{name}`, where `{index}` is the slice's index.
+- **Planning work** (Phases 0–5: concept, initiative plan, architecture, slice plan, slice design, task breakdown, and reviews of those artifacts) → `{index}-planning.{name}`, where `{index}` is:
+  - index 000 for project setup (concept / initiative plan), or
+  - the initiative base index for an initiative's architecture, slice plan, slice designs, and task breakdowns.
+
+`planning` is a branch type only — it has no corresponding document type. It names the branch that carries an index family's planning artifacts before implementation begins. Implementation moves to the slice branch; reviews stay with whatever they review (arch/slice/task reviews on the planning branch, code review on the slice branch).
+
+Before starting work on a slice or planning unit:
+1. verify you are on main or the expected branch
+2. if the expected branch does not exist, create it from `main`: `git checkout -b {branch-name}`
+3. if the branch already exists, switch to it: `git checkout {branch-name}`
+4. never start work from another unit's branch unless explicitly instructed
+5. if in doubt, STOP and ask the Project Manager
+
+A branch merges to `main` when its unit completes — a planning branch when its planning phase is done, a slice branch when its implementation is done.  Do not hold a branch open across units; a planning branch is not a long-lived home for successive initiatives.
 
 #### Commit Messages
 Use semantic commit prefixes. The goal is a readable `git log --oneline`.
