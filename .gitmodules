@@ -1,0 +1,3 @@
+[submodule "project-documents/ai-project-guide"]
+	path = project-documents/ai-project-guide
+	url = https://github.com/ecorkran/ai-project-guide.git
