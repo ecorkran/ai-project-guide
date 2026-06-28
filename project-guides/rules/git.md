@@ -16,12 +16,21 @@ A branch corresponds to one unit of work, named by its index family and type:`{i
 
 `planning` is a branch type only — it has no corresponding document type. It names the branch that carries an index family's planning artifacts before implementation begins. Implementation moves to the slice branch; reviews stay with whatever they review (arch/slice/task reviews on the planning branch, code review on the slice branch).
 
+##### Optional branch root prefix
+A project may configure an **optional** root that is prepended to every work branch name. Read it with `cf config get git.branch_root`. This key is optional and defaults to empty:
+
+- If the value is empty (the default), use the branch name exactly as defined above — no prefix.
+- If the value is non-empty (e.g. `myroot`), prefix it with a slash: the branch becomes `{root}/{index}-{type}.{name}` (e.g. `myroot/910-slice.foo`).
+
+The root affects the **git branch name only**. It does not move documents or change where artifacts resolve — the `project-documents/user/...` layout under the branch is unchanged. The configured value is relative and contained (never absolute, never `..`); `cf` rejects invalid values when the key is set.
+
 Before starting work on a slice or planning unit:
-1. verify you are on main or the expected branch
-2. if the expected branch does not exist, create it from `main`: `git checkout -b {branch-name}`
-3. if the branch already exists, switch to it: `git checkout {branch-name}`
-4. never start work from another unit's branch unless explicitly instructed
-5. if in doubt, STOP and ask the Project Manager
+1. determine the branch name per the rules above, then read `cf config get git.branch_root` and, if non-empty, prefix it as `{root}/{branch-name}`
+2. verify you are on main or the expected branch
+3. if the expected branch does not exist, create it from `main`: `git checkout -b {branch-name}`
+4. if the branch already exists, switch to it: `git checkout {branch-name}`
+5. never start work from another unit's branch unless explicitly instructed
+6. if in doubt, STOP and ask the Project Manager
 
 A branch merges to `main` when its unit completes — a planning branch when its planning phase is done, a slice branch when its implementation is done.  Do not hold a branch open across units; a planning branch is not a long-lived home for successive initiatives.
 

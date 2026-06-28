@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.8] - 2026-06-28
+
+### Added
+- Rules: Optional `git.branch_root` config prefix for work branch names (`cf config get git.branch_root`) — prepends a configured root as `{root}/{branch-name}`; affects the git branch name only, not document layout
+
 ## [0.15.7] - 2026-06-28
 
 ### Added
