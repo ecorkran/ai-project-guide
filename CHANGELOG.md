@@ -12,6 +12,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.7] - 2026-06-28
+
+### Added
+- Rules: Dart language coding standards (`project-guides/rules/dart.md`) and Flutter application standards (`project-guides/rules/flutter.md`)
+- Tool guides: Flutter-on-iOS guide set (`tool-guides/flutter-ios/`) — a path-selecting introduction over a shared `setup/` core (design, build, testing) and a `migration/` path (Android-to-iOS overview, plugin audit), supporting both greenfield iOS apps and Android-to-iOS migrations
+
+## [0.15.6] - 2026-06-28
+
+### Changed
+- Rules: Expanded git branch naming rules to cover planning work (`{index}-planning.{name}`) in addition to slice branches
+
+## [0.15.5] - 2026-06-28
+
+### Changed
+- Docs: Updated `001-concept` references to `000-concept` across prompts, guides, and conventions per phase renumbering
+
 ## [0.15.4] - 2026-04-19
 
 ### Changed
