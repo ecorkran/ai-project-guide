@@ -32,7 +32,7 @@ Before starting work on a slice or planning unit:
 5. never start work from another unit's branch unless explicitly instructed
 6. if in doubt, STOP and ask the Project Manager
 
-A branch merges to `main` when its unit completes — a planning branch when its planning phase is done, a slice branch when its implementation is done.  Do not hold a branch open across units; a planning branch is not a long-lived home for successive initiatives.
+A branch merges to `main` when its unit completes — a planning branch when its planning phase is done, a slice branch when its implementation is done.  Do not hold a branch open across units; a planning branch is not a long-lived home for successive initiatives.  However, do not delete branches unless specifically instructed to do so.
 
 #### Commit Messages
 Use semantic commit prefixes. The goal is a readable `git log --oneline`.

@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.9] - 2026-06-30
+
+### Changed
+- Rules: Git branch lifecycle now instructs not to delete branches unless specifically instructed to
+
 ## [0.15.8] - 2026-06-28
 
 ### Added
