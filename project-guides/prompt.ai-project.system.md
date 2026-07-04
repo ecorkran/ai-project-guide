@@ -375,7 +375,7 @@ After completing all tasks, perform the following steps:
 2. Run workflow_check (preferred) or cf check, if either are available to you, and specify the 'fix' parameter to auto-fix any issues.
 
 3. Maintain the YAML frontmatter including:
-- status: not_started, in_progress, complete
+- status: not_started, in_progress, complete, deferred, deprecated
 - dateUpdated: today's date
 
 4. Update CHANGELOG.md in project root

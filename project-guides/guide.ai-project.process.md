@@ -132,7 +132,7 @@ Slices are grouped under architectural initiatives, each with its own architectu
      projectState: brief description of current state
      dateCreated: YYYYMMDD
      dateUpdated: YYYYMMDD
-     status: not_started | in_progress
+     status: not_started | in_progress | complete | deferred | deprecated
      ---
      
      ## Context Summary
