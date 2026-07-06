@@ -16,3 +16,7 @@ Icon?
 .obsidian/workspace
 .obsidian/workspace.json
 
+# Understand Anything scratch/trash (keep the knowledge graph itself)
+.understand-anything/.trash-*/
+.understand-anything/tmp/
+

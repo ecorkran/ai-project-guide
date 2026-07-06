@@ -1,0 +1,929 @@
+{
+  "name": "ai-project-guide",
+  "description": "AI Project Guide is a structured methodology and set of guides for AI-assisted software development, giving AI coding tools the context, process, and conventions needed to produce consistently good and verifiable results on complex projects. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+  "languages": [
+    "css",
+    "javascript",
+    "json",
+    "markdown",
+    "shell"
+  ],
+  "frameworks": [],
+  "files": [
+    {
+      "path": ".claude/agents/code-review-agent.md",
+      "language": "markdown",
+      "sizeLines": 232,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/agents/task-checker.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/agents/tester.md",
+      "language": "markdown",
+      "sizeLines": 64,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/rules/electron.md",
+      "language": "markdown",
+      "sizeLines": 18,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/rules/python.md",
+      "language": "markdown",
+      "sizeLines": 102,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/rules/react.md",
+      "language": "markdown",
+      "sizeLines": 72,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/rules/sql.md",
+      "language": "markdown",
+      "sizeLines": 97,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/rules/testing.md",
+      "language": "markdown",
+      "sizeLines": 128,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/rules/typescript.md",
+      "language": "markdown",
+      "sizeLines": 256,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".claude/skills/analyze/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 198,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".gitmodules",
+      "language": "unknown",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".obsidian/app.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".obsidian/appearance.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".obsidian/community-plugins.json",
+      "language": "json",
+      "sizeLines": 2,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".obsidian/core-plugins.json",
+      "language": "json",
+      "sizeLines": 32,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".obsidian/plugins/obsidian-excalidraw-plugin/data.json",
+      "language": "json",
+      "sizeLines": 798,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".obsidian/plugins/obsidian-git/data.json",
+      "language": "json",
+      "sizeLines": 56,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".obsidian/plugins/obsidian-git/main.js",
+      "language": "javascript",
+      "sizeLines": 425,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".obsidian/plugins/obsidian-git/manifest.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".obsidian/plugins/obsidian-git/styles.css",
+      "language": "css",
+      "sizeLines": 621,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "language": "markdown",
+      "sizeLines": 602,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 135,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "DEVLOG.md",
+      "language": "markdown",
+      "sizeLines": 157,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "directory-structure.md",
+      "language": "markdown",
+      "sizeLines": 76,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "domain-guides/game-development/guide.game-development.2D.md",
+      "language": "markdown",
+      "sizeLines": 194,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "domain-guides/game-development/guide.game-development.javascript.md",
+      "language": "markdown",
+      "sizeLines": 94,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "domain-guides/guide-development/guide.guide-creation.md",
+      "language": "markdown",
+      "sizeLines": 156,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "domain-guides/introduction.md",
+      "language": "markdown",
+      "sizeLines": 10,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "file-naming-conventions.md",
+      "language": "markdown",
+      "sizeLines": 526,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "framework-guides/astro/introduction.md",
+      "language": "markdown",
+      "sizeLines": 184,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "framework-guides/nextjs/guide.app-router.metadata.md",
+      "language": "markdown",
+      "sizeLines": 138,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "framework-guides/nextjs/guide.markdown.md",
+      "language": "markdown",
+      "sizeLines": 123,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "framework-guides/nextjs/guide.troubleshooting-and-upgrading.md",
+      "language": "markdown",
+      "sizeLines": 235,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "framework-guides/nextjs/introduction.md",
+      "language": "markdown",
+      "sizeLines": 313,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "MIGRATION.md",
+      "language": "markdown",
+      "sizeLines": 17,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/agents/code-review-agent.md",
+      "language": "markdown",
+      "sizeLines": 232,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/agents/code-review-config.json",
+      "language": "json",
+      "sizeLines": 76,
+      "fileCategory": "config"
+    },
+    {
+      "path": "project-guides/agents/task-checker.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/agents/tester.md",
+      "language": "markdown",
+      "sizeLines": 64,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/guide.ai-project.000-concept.md",
+      "language": "markdown",
+      "sizeLines": 100,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/guide.ai-project.001-initiative-plan.md",
+      "language": "markdown",
+      "sizeLines": 138,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/guide.ai-project.003-slice-planning.md",
+      "language": "markdown",
+      "sizeLines": 285,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/guide.ai-project.004-slice-design.md",
+      "language": "markdown",
+      "sizeLines": 326,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/guide.ai-project.005-task-breakdown.md",
+      "language": "markdown",
+      "sizeLines": 171,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/guide.ai-project.090-code-review.md",
+      "language": "markdown",
+      "sizeLines": 319,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/guide.ai-project.process.md",
+      "language": "markdown",
+      "sizeLines": 363,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/guide.ui-development.ai.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/migrations/20251008-migration-private-to-user.md",
+      "language": "markdown",
+      "sizeLines": 121,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/migrations/20260121-migration-guide.md",
+      "language": "markdown",
+      "sizeLines": 165,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/migrations/20260302-migration-v0.13.0.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/migrations/20260323-migration-v0.14.0.md",
+      "language": "markdown",
+      "sizeLines": 97,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/prompt.ai-project.system.md",
+      "language": "markdown",
+      "sizeLines": 583,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/prompt.code-review-crawler.md",
+      "language": "markdown",
+      "sizeLines": 193,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/readme.md",
+      "language": "markdown",
+      "sizeLines": 81,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/dart.md",
+      "language": "markdown",
+      "sizeLines": 156,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/electron.md",
+      "language": "markdown",
+      "sizeLines": 19,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/flutter.md",
+      "language": "markdown",
+      "sizeLines": 160,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/general.md",
+      "language": "markdown",
+      "sizeLines": 78,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/git.md",
+      "language": "markdown",
+      "sizeLines": 72,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/python.md",
+      "language": "markdown",
+      "sizeLines": 103,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/react.md",
+      "language": "markdown",
+      "sizeLines": 73,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/sql.md",
+      "language": "markdown",
+      "sizeLines": 97,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/testing.md",
+      "language": "markdown",
+      "sizeLines": 129,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/rules/typescript.md",
+      "language": "markdown",
+      "sizeLines": 257,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/skills/analyze/SKILL.md",
+      "language": "markdown",
+      "sizeLines": 198,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/skills/review.md",
+      "language": "markdown",
+      "sizeLines": 79,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/skills/ui-development.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/templates/changelog-format.md",
+      "language": "markdown",
+      "sizeLines": 34,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "project-guides/templates/devlog-format.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "readme.md",
+      "language": "markdown",
+      "sizeLines": 173,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "readme.setup-ide.md",
+      "language": "markdown",
+      "sizeLines": 195,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/bootstrap.sh",
+      "language": "shell",
+      "sizeLines": 186,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/migrate-private-to-user.sh",
+      "language": "shell",
+      "sizeLines": 155,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/rename-private-to-user-in-repo.sh",
+      "language": "shell",
+      "sizeLines": 160,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/setup-ide",
+      "language": "unknown",
+      "sizeLines": 897,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/template-stubs/prompt.legacy-migration.md",
+      "language": "markdown",
+      "sizeLines": 185,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/template-stubs/README.md",
+      "language": "markdown",
+      "sizeLines": 73,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/template-stubs/setup-guides.sh",
+      "language": "shell",
+      "sizeLines": 5,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/template-stubs/update-guides.sh",
+      "language": "shell",
+      "sizeLines": 76,
+      "fileCategory": "script"
+    },
+    {
+      "path": "snippets/gitignore.jetbrains-idea.configuration.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "snippets/npm-scripts.ai-support.json.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/electron/00-introduction.md",
+      "language": "markdown",
+      "sizeLines": 313,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/electron/01-architecture.md",
+      "language": "markdown",
+      "sizeLines": 377,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/electron/02-project-structure.md",
+      "language": "markdown",
+      "sizeLines": 381,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/electron/03-electron-vite.md",
+      "language": "markdown",
+      "sizeLines": 306,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/electron/04-testing.md",
+      "language": "markdown",
+      "sizeLines": 387,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/electron/05-decision-guide.md",
+      "language": "markdown",
+      "sizeLines": 149,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/flutter-ios/00-introduction.md",
+      "language": "markdown",
+      "sizeLines": 70,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/flutter-ios/migration/00-android-to-ios.md",
+      "language": "markdown",
+      "sizeLines": 113,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/flutter-ios/migration/01-plugin-audit.md",
+      "language": "markdown",
+      "sizeLines": 135,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/flutter-ios/setup/01-ios-design.md",
+      "language": "markdown",
+      "sizeLines": 210,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/flutter-ios/setup/02-ios-build.md",
+      "language": "markdown",
+      "sizeLines": 209,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/flutter-ios/setup/03-testing.md",
+      "language": "markdown",
+      "sizeLines": 209,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/manta-templates/introduction.md",
+      "language": "markdown",
+      "sizeLines": 228,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/manta-templates/knowledge.md",
+      "language": "markdown",
+      "sizeLines": 762,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/manta-templates/setup.md",
+      "language": "markdown",
+      "sizeLines": 470,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/mcp/01-overview.md",
+      "language": "markdown",
+      "sizeLines": 258,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/r3f/introduction.md",
+      "language": "markdown",
+      "sizeLines": 164,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/radix/introduction.md",
+      "language": "markdown",
+      "sizeLines": 79,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/radix/radix-colors-quick-reference.md",
+      "language": "markdown",
+      "sizeLines": 81,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/radix/radix-theming-guide.md",
+      "language": "markdown",
+      "sizeLines": 390,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/shadcn/introduction.md",
+      "language": "markdown",
+      "sizeLines": 481,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/shadcn/setup.md",
+      "language": "markdown",
+      "sizeLines": 136,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/supabase/guide.auth.md",
+      "language": "markdown",
+      "sizeLines": 368,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/supabase/introduction.md",
+      "language": "markdown",
+      "sizeLines": 11,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/tailwindcss/guide.syntax-highlighting.v4.md",
+      "language": "markdown",
+      "sizeLines": 187,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/tailwindcss/guide.tailwindcss.v4.md",
+      "language": "markdown",
+      "sizeLines": 143,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/tailwindcss/guide.themes.v4.md",
+      "language": "markdown",
+      "sizeLines": 270,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/tailwindcss/introduction.md",
+      "language": "markdown",
+      "sizeLines": 276,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/threejs/guide.deployment.github-pages.md",
+      "language": "markdown",
+      "sizeLines": 131,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/threejs/guide.lighting.md",
+      "language": "markdown",
+      "sizeLines": 224,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/threejs/guide.webgpu.md",
+      "language": "markdown",
+      "sizeLines": 484,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/threejs/introduction.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/threejs/overview.md",
+      "language": "markdown",
+      "sizeLines": 102,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "tool-guides/threejs/setup.md",
+      "language": "markdown",
+      "sizeLines": 247,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/architecture/110-arch.schema-and-phases-update.md",
+      "language": "markdown",
+      "sizeLines": 115,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/architecture/110-slices.schema-and-phases-update.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/slices/100-slice.prompt-optimization-1.md",
+      "language": "markdown",
+      "sizeLines": 421,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/slices/105-slice.project-guide-restructure.md",
+      "language": "markdown",
+      "sizeLines": 220,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/slices/110-slice.yaml-schema-standardization.md",
+      "language": "markdown",
+      "sizeLines": 134,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+      "language": "markdown",
+      "sizeLines": 294,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/slices/112-slice.analysis-skill-extraction.md",
+      "language": "markdown",
+      "sizeLines": 101,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/tasks/100-tasks.prompt-optimization-1.md",
+      "language": "markdown",
+      "sizeLines": 733,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/tasks/105-tasks.project-guide-restructure.md",
+      "language": "markdown",
+      "sizeLines": 322,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/tasks/110-tasks.yaml-schema-standardization.md",
+      "language": "markdown",
+      "sizeLines": 151,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md",
+      "language": "markdown",
+      "sizeLines": 314,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/tasks/112-tasks.analysis-skill-extraction.md",
+      "language": "markdown",
+      "sizeLines": 118,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/tasks/950-tasks.maintenance.md",
+      "language": "markdown",
+      "sizeLines": 41,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/tasks/952-inventory.index-migration.md",
+      "language": "markdown",
+      "sizeLines": 121,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "user/tasks/953-report.index-migration.md",
+      "language": "markdown",
+      "sizeLines": 183,
+      "fileCategory": "docs"
+    }
+  ],
+  "totalFiles": 130,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".claude/agents/code-review-agent.md": [],
+    ".claude/agents/task-checker.md": [],
+    ".claude/agents/tester.md": [],
+    ".claude/rules/electron.md": [],
+    ".claude/rules/python.md": [],
+    ".claude/rules/react.md": [],
+    ".claude/rules/sql.md": [],
+    ".claude/rules/testing.md": [],
+    ".claude/rules/typescript.md": [],
+    ".claude/skills/analyze/SKILL.md": [],
+    ".gitmodules": [],
+    ".obsidian/app.json": [],
+    ".obsidian/appearance.json": [],
+    ".obsidian/community-plugins.json": [],
+    ".obsidian/core-plugins.json": [],
+    ".obsidian/plugins/obsidian-excalidraw-plugin/data.json": [],
+    ".obsidian/plugins/obsidian-git/data.json": [],
+    ".obsidian/plugins/obsidian-git/main.js": [],
+    ".obsidian/plugins/obsidian-git/manifest.json": [],
+    ".obsidian/plugins/obsidian-git/styles.css": [],
+    "CHANGELOG.md": [],
+    "CLAUDE.md": [],
+    "DEVLOG.md": [],
+    "directory-structure.md": [],
+    "domain-guides/game-development/guide.game-development.2D.md": [],
+    "domain-guides/game-development/guide.game-development.javascript.md": [],
+    "domain-guides/guide-development/guide.guide-creation.md": [],
+    "domain-guides/introduction.md": [],
+    "file-naming-conventions.md": [],
+    "framework-guides/astro/introduction.md": [],
+    "framework-guides/nextjs/guide.app-router.metadata.md": [],
+    "framework-guides/nextjs/guide.markdown.md": [],
+    "framework-guides/nextjs/guide.troubleshooting-and-upgrading.md": [],
+    "framework-guides/nextjs/introduction.md": [],
+    "MIGRATION.md": [],
+    "project-guides/agents/code-review-agent.md": [],
+    "project-guides/agents/code-review-config.json": [],
+    "project-guides/agents/task-checker.md": [],
+    "project-guides/agents/tester.md": [],
+    "project-guides/guide.ai-project.000-concept.md": [],
+    "project-guides/guide.ai-project.001-initiative-plan.md": [],
+    "project-guides/guide.ai-project.003-slice-planning.md": [],
+    "project-guides/guide.ai-project.004-slice-design.md": [],
+    "project-guides/guide.ai-project.005-task-breakdown.md": [],
+    "project-guides/guide.ai-project.090-code-review.md": [],
+    "project-guides/guide.ai-project.process.md": [],
+    "project-guides/guide.ui-development.ai.md": [],
+    "project-guides/migrations/20251008-migration-private-to-user.md": [],
+    "project-guides/migrations/20260121-migration-guide.md": [],
+    "project-guides/migrations/20260302-migration-v0.13.0.md": [],
+    "project-guides/migrations/20260323-migration-v0.14.0.md": [],
+    "project-guides/prompt.ai-project.system.md": [],
+    "project-guides/prompt.code-review-crawler.md": [],
+    "project-guides/readme.md": [],
+    "project-guides/rules/dart.md": [],
+    "project-guides/rules/electron.md": [],
+    "project-guides/rules/flutter.md": [],
+    "project-guides/rules/general.md": [],
+    "project-guides/rules/git.md": [],
+    "project-guides/rules/python.md": [],
+    "project-guides/rules/react.md": [],
+    "project-guides/rules/sql.md": [],
+    "project-guides/rules/testing.md": [],
+    "project-guides/rules/typescript.md": [],
+    "project-guides/skills/analyze/SKILL.md": [],
+    "project-guides/skills/review.md": [],
+    "project-guides/skills/ui-development.md": [],
+    "project-guides/templates/changelog-format.md": [],
+    "project-guides/templates/devlog-format.md": [],
+    "readme.md": [],
+    "readme.setup-ide.md": [],
+    "scripts/bootstrap.sh": [],
+    "scripts/migrate-private-to-user.sh": [],
+    "scripts/rename-private-to-user-in-repo.sh": [],
+    "scripts/setup-ide": [],
+    "scripts/template-stubs/prompt.legacy-migration.md": [],
+    "scripts/template-stubs/README.md": [],
+    "scripts/template-stubs/setup-guides.sh": [],
+    "scripts/template-stubs/update-guides.sh": [],
+    "snippets/gitignore.jetbrains-idea.configuration.md": [],
+    "snippets/npm-scripts.ai-support.json.md": [],
+    "tool-guides/electron/00-introduction.md": [],
+    "tool-guides/electron/01-architecture.md": [],
+    "tool-guides/electron/02-project-structure.md": [],
+    "tool-guides/electron/03-electron-vite.md": [],
+    "tool-guides/electron/04-testing.md": [],
+    "tool-guides/electron/05-decision-guide.md": [],
+    "tool-guides/flutter-ios/00-introduction.md": [],
+    "tool-guides/flutter-ios/migration/00-android-to-ios.md": [],
+    "tool-guides/flutter-ios/migration/01-plugin-audit.md": [],
+    "tool-guides/flutter-ios/setup/01-ios-design.md": [],
+    "tool-guides/flutter-ios/setup/02-ios-build.md": [],
+    "tool-guides/flutter-ios/setup/03-testing.md": [],
+    "tool-guides/manta-templates/introduction.md": [],
+    "tool-guides/manta-templates/knowledge.md": [],
+    "tool-guides/manta-templates/setup.md": [],
+    "tool-guides/mcp/01-overview.md": [],
+    "tool-guides/r3f/introduction.md": [],
+    "tool-guides/radix/introduction.md": [],
+    "tool-guides/radix/radix-colors-quick-reference.md": [],
+    "tool-guides/radix/radix-theming-guide.md": [],
+    "tool-guides/shadcn/introduction.md": [],
+    "tool-guides/shadcn/setup.md": [],
+    "tool-guides/supabase/guide.auth.md": [],
+    "tool-guides/supabase/introduction.md": [],
+    "tool-guides/tailwindcss/guide.syntax-highlighting.v4.md": [],
+    "tool-guides/tailwindcss/guide.tailwindcss.v4.md": [],
+    "tool-guides/tailwindcss/guide.themes.v4.md": [],
+    "tool-guides/tailwindcss/introduction.md": [],
+    "tool-guides/threejs/guide.deployment.github-pages.md": [],
+    "tool-guides/threejs/guide.lighting.md": [],
+    "tool-guides/threejs/guide.webgpu.md": [],
+    "tool-guides/threejs/introduction.md": [],
+    "tool-guides/threejs/overview.md": [],
+    "tool-guides/threejs/setup.md": [],
+    "user/architecture/110-arch.schema-and-phases-update.md": [],
+    "user/architecture/110-slices.schema-and-phases-update.md": [],
+    "user/slices/100-slice.prompt-optimization-1.md": [],
+    "user/slices/105-slice.project-guide-restructure.md": [],
+    "user/slices/110-slice.yaml-schema-standardization.md": [],
+    "user/slices/111-slice.phase-renumbering-and-initiative-plan.md": [],
+    "user/slices/112-slice.analysis-skill-extraction.md": [],
+    "user/tasks/100-tasks.prompt-optimization-1.md": [],
+    "user/tasks/105-tasks.project-guide-restructure.md": [],
+    "user/tasks/110-tasks.yaml-schema-standardization.md": [],
+    "user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md": [],
+    "user/tasks/112-tasks.analysis-skill-extraction.md": [],
+    "user/tasks/950-tasks.maintenance.md": [],
+    "user/tasks/952-inventory.index-migration.md": [],
+    "user/tasks/953-report.index-migration.md": []
+  }
+}

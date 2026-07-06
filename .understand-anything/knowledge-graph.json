@@ -1,0 +1,3664 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "ai-project-guide",
+    "languages": [
+      "css",
+      "javascript",
+      "json",
+      "markdown",
+      "shell"
+    ],
+    "frameworks": [],
+    "description": "AI Project Guide is a structured methodology and set of guides for AI-assisted software development, giving AI coding tools the context, process, and conventions needed to produce consistently good and verifiable results on complex projects. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+    "analyzedAt": "2026-07-05T14:28:00Z",
+    "gitCommitHash": "4b253e063cd12e44d86baca31cd0bae1e2e9df27"
+  },
+  "nodes": [
+    {
+      "id": "document:.claude/agents/code-review-agent.md",
+      "type": "document",
+      "name": "code-review-agent.md",
+      "filePath": ".claude/agents/code-review-agent.md",
+      "summary": "Specification for an automated code review agent, detailing project-type detection (NextJS, Python, C++, Rust, generic), a four-step review process, output file organization with YAML headers, review criteria, automation triggers (manual, scheduled, CI/CD), configuration options, and success metrics.",
+      "tags": [
+        "documentation",
+        "agent-definition",
+        "code-review",
+        "automation",
+        "ci-cd"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:.claude/agents/task-checker.md",
+      "type": "document",
+      "name": "task-checker.md",
+      "filePath": ".claude/agents/task-checker.md",
+      "summary": "Claude Code sub-agent definition for a Task Checklist Manager that verifies, updates, and maintains completion status of structured task/checklist files, only marking items complete with explicit confirmation or verifiable evidence.",
+      "tags": [
+        "documentation",
+        "agent-definition",
+        "task-management",
+        "checklist",
+        "automation"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Uses Claude Code sub-agent YAML frontmatter (name, description, model, color) followed by a natural-language system prompt body."
+    },
+    {
+      "id": "document:.claude/agents/tester.md",
+      "type": "document",
+      "name": "tester.md",
+      "filePath": ".claude/agents/tester.md",
+      "summary": "Claude Code sub-agent definition for a Senior Software Engineer in Test persona, covering unit/integration/e2e test strategy, framework-specific practices (Jest, Vitest, React Testing Library, Playwright), and coverage/quality guidance.",
+      "tags": [
+        "documentation",
+        "agent-definition",
+        "testing",
+        "quality-assurance"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Uses Claude Code sub-agent YAML frontmatter (name, description, model, color) followed by a natural-language system prompt body."
+    },
+    {
+      "id": "document:.claude/rules/electron.md",
+      "type": "document",
+      "name": "electron.md",
+      "filePath": ".claude/rules/electron.md",
+      "summary": "Claude Code auto-attached rule file for Electron desktop apps, covering ESM-vs-CJS module loading, main/renderer process boundaries, and secure preload script patterns via contextBridge. Frontmatter targets electron/**, src/preload/**, and Electron build config files. Likely a generated/derived copy of project-guides/rules/electron.md for Claude Code IDE consumption.",
+      "tags": [
+        "documentation",
+        "rules",
+        "electron",
+        "desktop",
+        "ipc"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:.claude/rules/python.md",
+      "type": "document",
+      "name": "python.md",
+      "filePath": ".claude/rules/python.md",
+      "summary": "Claude Code auto-attached rule file defining Python 3.12+ coding standards: typing conventions, ruff/pyright tooling requirements, exception handling discipline, async/concurrency safety rules, and security practices. Frontmatter targets **/*.py, pyproject.toml, and requirements files. Likely a generated/derived copy of project-guides/rules/python.md for Claude Code IDE consumption.",
+      "tags": [
+        "documentation",
+        "rules",
+        "python",
+        "coding-standards",
+        "async"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.claude/rules/react.md",
+      "type": "document",
+      "name": "react.md",
+      "filePath": ".claude/rules/react.md",
+      "summary": "Claude Code auto-attached rule file covering React/Next.js component conventions, state management choices (hooks, Zustand/Jotai, TanStack Query), form handling with react-hook-form/Zod, Tailwind 4 usage, and Radix primitives. Frontmatter targets **/*.tsx, **/*.jsx, and app/**. Likely a generated/derived copy of project-guides/rules/react.md for Claude Code IDE consumption.",
+      "tags": [
+        "documentation",
+        "rules",
+        "react",
+        "nextjs",
+        "frontend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.claude/rules/sql.md",
+      "type": "document",
+      "name": "sql.md",
+      "filePath": ".claude/rules/sql.md",
+      "summary": "Claude Code auto-attached rule file defining SQL/PostgreSQL coding standards covering query formatting, indexing and optimization, naming conventions, security practices, pgvector and TimescaleDB extension-specific patterns, and migration safety. Frontmatter targets **/*.sql and migration files. Likely a generated/derived copy of project-guides/rules/sql.md for Claude Code IDE consumption.",
+      "tags": [
+        "documentation",
+        "rules",
+        "sql",
+        "postgresql",
+        "database"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.claude/rules/testing.md",
+      "type": "document",
+      "name": "testing.md",
+      "filePath": ".claude/rules/testing.md",
+      "summary": "Claude Code auto-attached rule file establishing testing standards across JavaScript/TypeScript (Vitest) and Python (pytest), including test organization, naming conventions, mocking practices, CI integration, and optional Storybook usage. Frontmatter targets test/spec/story files. Likely a generated/derived copy of project-guides/rules/testing.md for Claude Code IDE consumption.",
+      "tags": [
+        "documentation",
+        "rules",
+        "testing",
+        "vitest",
+        "pytest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.claude/rules/typescript.md",
+      "type": "document",
+      "name": "typescript.md",
+      "filePath": ".claude/rules/typescript.md",
+      "summary": "Claude Code auto-attached rule file establishing strict TypeScript conventions: a hard ban on `any`, discriminated unions over string checks, generics, error-handling patterns, naming conventions, and advanced type patterns (conditional, mapped, template literal types). Frontmatter targets **/*.ts and **/*.tsx. Likely a generated/derived copy of project-guides/rules/typescript.md for Claude Code IDE consumption.",
+      "tags": [
+        "documentation",
+        "rules",
+        "typescript",
+        "type-safety",
+        "coding-standards"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Extensively uses TypeScript code samples to contrast GOOD/BAD patterns for discriminated unions, generics, const assertions, and mapped/conditional/template-literal types."
+    },
+    {
+      "id": "config:.obsidian/app.json",
+      "type": "config",
+      "name": "app.json",
+      "filePath": ".obsidian/app.json",
+      "summary": "Obsidian editor application settings file storing local IDE preferences; not part of the project's guide content.",
+      "tags": [
+        "configuration",
+        "editor-settings",
+        "local-state"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.obsidian/appearance.json",
+      "type": "config",
+      "name": "appearance.json",
+      "filePath": ".obsidian/appearance.json",
+      "summary": "Obsidian editor appearance/theme settings file storing local display preferences; not part of the project's guide content.",
+      "tags": [
+        "configuration",
+        "editor-settings",
+        "local-state"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.obsidian/community-plugins.json",
+      "type": "config",
+      "name": "community-plugins.json",
+      "filePath": ".obsidian/community-plugins.json",
+      "summary": "Obsidian editor list of enabled community plugins for the local vault; not part of the project's guide content.",
+      "tags": [
+        "configuration",
+        "editor-settings",
+        "local-state"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.obsidian/core-plugins.json",
+      "type": "config",
+      "name": "core-plugins.json",
+      "filePath": ".obsidian/core-plugins.json",
+      "summary": "Obsidian editor list of enabled/disabled core plugins (file-explorer, search, graph, daily-notes, etc.) for the local vault; not part of the project's guide content.",
+      "tags": [
+        "configuration",
+        "editor-settings",
+        "local-state"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.obsidian/plugins/obsidian-git/data.json",
+      "type": "config",
+      "name": "data.json",
+      "filePath": ".obsidian/plugins/obsidian-git/data.json",
+      "summary": "Persisted user settings for the third-party Obsidian Git plugin, controlling auto-commit/push/pull intervals, commit message format, status bar display, and diff style within the vault's .obsidian directory.",
+      "tags": [
+        "configuration",
+        "vendored",
+        "obsidian-plugin",
+        "git-integration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.obsidian/plugins/obsidian-git/manifest.json",
+      "type": "config",
+      "name": "manifest.json",
+      "filePath": ".obsidian/plugins/obsidian-git/manifest.json",
+      "summary": "Obsidian plugin manifest declaring metadata (id 'obsidian-git', name 'Git', version 2.35.0, author) for the vendored Git integration plugin.",
+      "tags": [
+        "configuration",
+        "vendored",
+        "obsidian-plugin",
+        "manifest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.obsidian/plugins/obsidian-git/styles.css",
+      "type": "file",
+      "name": "styles.css",
+      "filePath": ".obsidian/plugins/obsidian-git/styles.css",
+      "summary": "Bundled stylesheet providing UI styling for the Obsidian Git plugin's source control panel, history view, and status bar elements.",
+      "tags": [
+        "stylesheet",
+        "vendored",
+        "obsidian-plugin",
+        "ui-styling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:CHANGELOG.md",
+      "type": "document",
+      "name": "CHANGELOG.md",
+      "filePath": "CHANGELOG.md",
+      "summary": "Chronological changelog of ai-project-guide releases from early history through v0.15.9, documenting added, changed, fixed, and removed items per version.",
+      "tags": [
+        "documentation",
+        "changelog",
+        "release-history"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:CLAUDE.md",
+      "type": "document",
+      "name": "CLAUDE.md",
+      "filePath": "CLAUDE.md",
+      "summary": "Project-level instructions for Claude Code covering core development principles, code structure standards, exception handling, git branch/commit conventions, and document conventions used throughout ai-project-guide.",
+      "tags": [
+        "documentation",
+        "ai-guidelines",
+        "conventions",
+        "git-workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:DEVLOG.md",
+      "type": "document",
+      "name": "DEVLOG.md",
+      "filePath": "DEVLOG.md",
+      "summary": "Append-only, newest-first development activity log tracking completed work, key decisions, and open issues across project sessions from January to March 2026.",
+      "tags": [
+        "documentation",
+        "devlog",
+        "project-history"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:MIGRATION.md",
+      "type": "document",
+      "name": "MIGRATION.md",
+      "filePath": "MIGRATION.md",
+      "summary": "Short index pointing to migration guides that have moved to project-guides/migrations/, listing available migrations with version and description.",
+      "tags": [
+        "documentation",
+        "migration",
+        "index"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:directory-structure.md",
+      "type": "document",
+      "name": "directory-structure.md",
+      "filePath": "directory-structure.md",
+      "summary": "Canonical contract defining where every guide, snippet, and asset lives in the ai-project-guide project structure, including root files, directory layout, and a zero-ambiguity decision matrix for placing new documents.",
+      "tags": [
+        "documentation",
+        "reference",
+        "conventions",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:file-naming-conventions.md",
+      "type": "document",
+      "name": "file-naming-conventions.md",
+      "filePath": "file-naming-conventions.md",
+      "summary": "Comprehensive specification for YAML frontmatter requirements, per-doctype schemas, directory index ranges, document naming patterns, and file splitting rules used across the ai-project-guide methodology.",
+      "tags": [
+        "documentation",
+        "reference",
+        "conventions",
+        "schema-definition"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:readme.md",
+      "type": "document",
+      "name": "readme.md",
+      "filePath": "readme.md",
+      "summary": "Main public-facing README introducing ai-project-guide's phase-based AI development methodology, installation via bootstrap script, project structure, and integration with Context Forge and Context Visualizer.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "overview",
+        "installation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:readme.setup-ide.md",
+      "type": "document",
+      "name": "readme.setup-ide.md",
+      "filePath": "readme.setup-ide.md",
+      "summary": "IDE setup guide explaining quick and manual configuration of AI coding tool rules (Cursor, Windsurf), frontmatter requirements, troubleshooting, and advanced rule scoping options.",
+      "tags": [
+        "documentation",
+        "setup-guide",
+        "ide-configuration",
+        "troubleshooting"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:framework-guides/nextjs/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "framework-guides/nextjs/introduction.md",
+      "summary": "Quickstart guide for scaffolding a CLI-driven, non-interactive Next.js 14 App Router project with TailwindCSS v4, covering installation modes, project creation, Tailwind setup, common add-ons (ShadCN UI, Prisma, NextAuth), and troubleshooting pointers.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "nextjs",
+        "tailwindcss",
+        "scaffolding"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Structured as a fully scripted, copy-pasteable runbook intended for both human and AI consumption, with explicit CLI one-liners to avoid interactive prompts in CI/agent workflows."
+    },
+    {
+      "id": "document:framework-guides/nextjs/guide.app-router.metadata.md",
+      "type": "document",
+      "name": "guide.app-router.metadata.md",
+      "filePath": "framework-guides/nextjs/guide.app-router.metadata.md",
+      "summary": "Developer guide on managing metadata (SEO tags, Open Graph, metadataBase) in Next.js App Router applications, covering static and dynamic metadata patterns, inheritance/composition, and best practices.",
+      "tags": [
+        "documentation",
+        "nextjs",
+        "app-router",
+        "seo",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:framework-guides/nextjs/guide.markdown.md",
+      "type": "document",
+      "name": "guide.markdown.md",
+      "filePath": "framework-guides/nextjs/guide.markdown.md",
+      "summary": "Simplified guide to rendering markdown content in Next.js using gray-matter for frontmatter parsing and remark/remark-html for HTML conversion, avoiding MDX/React-in-Markdown complexity.",
+      "tags": [
+        "documentation",
+        "nextjs",
+        "markdown",
+        "content-rendering"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:framework-guides/nextjs/guide.troubleshooting-and-upgrading.md",
+      "type": "document",
+      "name": "guide.troubleshooting-and-upgrading.md",
+      "filePath": "framework-guides/nextjs/guide.troubleshooting-and-upgrading.md",
+      "summary": "Troubleshooting reference for common Next.js errors and upgrade issues, including Framer Motion/CSS transform conflicts, async page-prop type incompatibilities from Next.js version upgrades, and codemod-based fixes with before/after code examples.",
+      "tags": [
+        "documentation",
+        "nextjs",
+        "troubleshooting",
+        "migration",
+        "upgrading"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:project-guides/agents/code-review-agent.md",
+      "type": "document",
+      "name": "code-review-agent.md",
+      "filePath": "project-guides/agents/code-review-agent.md",
+      "summary": "Specification for an automated code review agent that scans a project, detects its type (NextJS, Python, C++, Rust, or generic), and produces prioritized review documents and task lists per `.cursor/rules/review.md` guidelines. Defines detection logic, review process steps, output file organization, YAML header conventions, automation triggers, and quality/success metrics.",
+      "tags": [
+        "documentation",
+        "code-review",
+        "automation",
+        "agent-spec"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Markdown spec document with 45 headings organizing a multi-stage agent workflow (detection, review, generation, reporting)."
+    },
+    {
+      "id": "config:project-guides/agents/code-review-config.json",
+      "type": "config",
+      "name": "code-review-config.json",
+      "filePath": "project-guides/agents/code-review-config.json",
+      "summary": "Configuration data backing the automated code review agent: defines per-project-type detection indicators/directories/extensions (NextJS, Python, C++, Rust, generic), file/directory filters, output formats, quality/resource limits, and integration toggles (git, linting, type-checking, build system).",
+      "tags": [
+        "configuration",
+        "code-review",
+        "automation",
+        "project-detection"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/agents/task-checker.md",
+      "type": "document",
+      "name": "task-checker.md",
+      "filePath": "project-guides/agents/task-checker.md",
+      "summary": "Agent definition for a Task Checklist Manager that verifies and updates checklist/task files, marking items complete only on explicit confirmation or verifiable evidence, and preserving formatting, metadata, and task context. Likely the canonical source template mirrored by the corresponding `.claude/agents` task-checker configuration.",
+      "tags": [
+        "documentation",
+        "agent-spec",
+        "task-management",
+        "checklist"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/agents/tester.md",
+      "type": "document",
+      "name": "tester.md",
+      "filePath": "project-guides/agents/tester.md",
+      "summary": "Agent definition for a Senior Software Engineer in Test persona covering unit/integration test strategy, JS/TS testing frameworks (Jest, Vitest, React Testing Library, Playwright), and best practices for maintainable, meaningful test coverage. Likely the canonical source template mirrored by the corresponding `.claude/agents` tester configuration.",
+      "tags": [
+        "documentation",
+        "agent-spec",
+        "testing",
+        "quality-assurance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/guide.ai-project.000-concept.md",
+      "type": "document",
+      "name": "guide.ai-project.000-concept.md",
+      "filePath": "project-guides/guide.ai-project.000-concept.md",
+      "summary": "Phase 0 methodology guide describing how to create the Concept document \u2014 the initial living document capturing problem statement, target users, solution approach, and technology direction before initiative planning begins.",
+      "tags": [
+        "documentation",
+        "methodology",
+        "concept-phase",
+        "phase-0"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/guide.ai-project.001-initiative-plan.md",
+      "type": "document",
+      "name": "guide.ai-project.001-initiative-plan.md",
+      "filePath": "project-guides/guide.ai-project.001-initiative-plan.md",
+      "summary": "Phase 1 methodology guide for decomposing a project concept into named initiatives with base index assignments, dependency declarations, and frontmatter conventions.",
+      "tags": [
+        "documentation",
+        "methodology",
+        "initiative-planning",
+        "phase-1"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/guide.ai-project.003-slice-planning.md",
+      "type": "document",
+      "name": "guide.ai-project.003-slice-planning.md",
+      "filePath": "project-guides/guide.ai-project.003-slice-planning.md",
+      "summary": "Phase 3 methodology guide explaining how to break an architecture document into independently deliverable vertical slices, covering slice types, sizing, planning steps, examples, and common pitfalls.",
+      "tags": [
+        "documentation",
+        "methodology",
+        "slice-planning",
+        "phase-3"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:project-guides/guide.ai-project.004-slice-design.md",
+      "type": "document",
+      "name": "guide.ai-project.004-slice-design.md",
+      "filePath": "project-guides/guide.ai-project.004-slice-design.md",
+      "summary": "Phase 4 methodology guide for producing detailed low-level slice designs, including a document template, design patterns for feature and migration slices, and a design review checklist.",
+      "tags": [
+        "documentation",
+        "methodology",
+        "slice-design",
+        "phase-4"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:project-guides/guide.ai-project.005-task-breakdown.md",
+      "type": "document",
+      "name": "guide.ai-project.005-task-breakdown.md",
+      "filePath": "project-guides/guide.ai-project.005-task-breakdown.md",
+      "summary": "Phase 5 methodology guide describing how to convert a slice design into a granular, checklist-formatted task file, including front matter, test-with-not-test-after strategy, and commit strategy.",
+      "tags": [
+        "documentation",
+        "methodology",
+        "task-breakdown",
+        "phase-5"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/guide.ai-project.090-code-review.md",
+      "type": "document",
+      "name": "guide.ai-project.090-code-review.md",
+      "filePath": "project-guides/guide.ai-project.090-code-review.md",
+      "summary": "Supplemental guide defining the code review process, a 12-point review questionnaire covering bugs, security, performance and accessibility, and templates for review documents and resulting task lists.",
+      "tags": [
+        "documentation",
+        "methodology",
+        "code-review",
+        "quality-assurance"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:project-guides/guide.ai-project.process.md",
+      "type": "document",
+      "name": "guide.ai-project.process.md",
+      "filePath": "project-guides/guide.ai-project.process.md",
+      "summary": "Master process guide describing project roles, the full 0-7 phase workflow, phase approval authority, project resource structure, and the living document pattern that underlies the whole AI Project Guide methodology.",
+      "tags": [
+        "documentation",
+        "methodology",
+        "entry-point",
+        "process-overview"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:project-guides/guide.ui-development.ai.md",
+      "type": "document",
+      "name": "guide.ui-development.ai.md",
+      "filePath": "project-guides/guide.ui-development.ai.md",
+      "summary": "Short supplemental guide with UI/UX specific guidance covering mockups, wireframes, and color/style handling for AI-assisted development.",
+      "tags": [
+        "documentation",
+        "ui-development",
+        "design-guidance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/prompt.ai-project.system.md",
+      "type": "document",
+      "name": "prompt.ai-project.system.md",
+      "filePath": "project-guides/prompt.ai-project.system.md",
+      "summary": "Master library of parameterized prompt templates for each phase (concept, initiative plan, architecture, slice planning, slice design, task breakdown, execution, integration) used to drive the AI Project Guide workflow.",
+      "tags": [
+        "documentation",
+        "prompt-template",
+        "methodology",
+        "phase-prompts"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:project-guides/prompt.code-review-crawler.md",
+      "type": "document",
+      "name": "prompt.code-review-crawler.md",
+      "filePath": "project-guides/prompt.code-review-crawler.md",
+      "summary": "Prompt template for an automated code-review crawler agent that discovers files by filter pattern, applies review guidelines, tracks session progress, and generates task files from findings.",
+      "tags": [
+        "documentation",
+        "prompt-template",
+        "code-review",
+        "automation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/readme.md",
+      "type": "document",
+      "name": "readme.md",
+      "filePath": "project-guides/readme.md",
+      "summary": "Navigation index for the project-guides directory, linking each workflow phase to its primary guide and listing supplemental guides, prompts, agents/rules, and the frontmatter schema for guide authors.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "navigation",
+        "index"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/migrations/20251008-migration-private-to-user.md",
+      "type": "document",
+      "name": "20251008-migration-private-to-user.md",
+      "filePath": "project-guides/migrations/20251008-migration-private-to-user.md",
+      "summary": "Obsolete v0.10.0 migration guide covering the rename of project-documents/private/ to project-documents/user/, including the automated migration script, manual steps, environment variable renaming (ORG_PRIVATE_GUIDES_URL to EXTERNAL_PROJECT_DOC_URL), verification, and rollback instructions.",
+      "tags": [
+        "documentation",
+        "migration-guide",
+        "obsolete",
+        "directory-rename"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/migrations/20260121-migration-guide.md",
+      "type": "document",
+      "name": "20260121-migration-guide.md",
+      "filePath": "project-guides/migrations/20260121-migration-guide.md",
+      "summary": "Migration guide for v0.11.0 project consistency standards, detailing required YAML frontmatter, YYYYMMDD date format standardization, task/slice frontmatter patterns, and the new file-indexing ranges for user/tasks/ files.",
+      "tags": [
+        "documentation",
+        "migration-guide",
+        "frontmatter",
+        "conventions"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/migrations/20260302-migration-v0.13.0.md",
+      "type": "document",
+      "name": "20260302-migration-v0.13.0.md",
+      "filePath": "project-guides/migrations/20260302-migration-v0.13.0.md",
+      "summary": "Migration guide for v0.13.0 describing the Technical Fellow to Architect role rename, removal of the 'feature' project component, renumbering/consolidation of process phases, and the streamlined Concept to Architectural Component to Slice Plan to Slices to Tasks project flow.",
+      "tags": [
+        "documentation",
+        "migration-guide",
+        "process-phases",
+        "restructuring"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/migrations/20260323-migration-v0.14.0.md",
+      "type": "document",
+      "name": "20260323-migration-v0.14.0.md",
+      "filePath": "project-guides/migrations/20260323-migration-v0.14.0.md",
+      "summary": "Migration guide for v0.14.0 introducing the Initiative Plan as new Phase 1, renumbering the concept phase to Phase 0, removing the legacy spec guide, and providing a ready-to-use agent prompt for generating an initiative plan from existing architecture documents.",
+      "tags": [
+        "documentation",
+        "migration-guide",
+        "phase-renumbering",
+        "initiative-plan"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/rules/dart.md",
+      "type": "document",
+      "name": "dart.md",
+      "filePath": "project-guides/rules/dart.md",
+      "summary": "Canonical Dart coding rules covering null safety, static analysis configuration, functions/error handling, modern Dart patterns, async code, and testing conventions, assembled by scripts/setup-ide into tool-specific rules files.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "dart",
+        "style-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/rules/electron.md",
+      "type": "document",
+      "name": "electron.md",
+      "filePath": "project-guides/rules/electron.md",
+      "summary": "Minimal placeholder-style Electron rules stub with a single heading, far shorter than the other per-technology rules files, likely a starting point pending expansion.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "electron",
+        "stub"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/rules/flutter.md",
+      "type": "document",
+      "name": "flutter.md",
+      "filePath": "project-guides/rules/flutter.md",
+      "summary": "Canonical Flutter coding rules covering architecture, widgets, state management, navigation, immutability, performance, error handling, dependency injection, testing, CI/CD, and pub.dev dependency selection.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "flutter",
+        "style-guide"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:project-guides/rules/general.md",
+      "type": "document",
+      "name": "general.md",
+      "filePath": "project-guides/rules/general.md",
+      "summary": "Language-agnostic core development guidelines covering core principles, code structure, exception handling, source control, lenient parsing practices, and avoidance of hallucination traps in prompts; forms the base ruleset combined with per-technology rules.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "general-guidelines",
+        "style-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/rules/git.md",
+      "type": "document",
+      "name": "git.md",
+      "filePath": "project-guides/rules/git.md",
+      "summary": "Canonical Git workflow rules defining branch naming conventions (slice vs planning branches), commit message format with semantic prefixes, and usage guidelines/examples.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "git",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/rules/python.md",
+      "type": "document",
+      "name": "python.md",
+      "filePath": "project-guides/rules/python.md",
+      "summary": "Canonical Python coding rules covering typing/validation, code style and structure, functions and error handling, modern Python patterns, testing and quality, dependency management, async/performance, concurrency, and security best practices.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "python",
+        "style-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/rules/react.md",
+      "type": "document",
+      "name": "react.md",
+      "filePath": "project-guides/rules/react.md",
+      "summary": "Canonical React and Next.js coding rules covering component naming/structure, state management, forms, icons, toast notifications, Tailwind usage, Radix primitives, code style, file naming, testing, and builds.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "react",
+        "style-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/rules/sql.md",
+      "type": "document",
+      "name": "sql.md",
+      "filePath": "project-guides/rules/sql.md",
+      "summary": "Canonical SQL and PostgreSQL development rules covering query style/formatting, query optimization, PostgreSQL best practices, schema naming, security/safety, pgvector and TimescaleDB specifics, performance monitoring, and migrations.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "sql",
+        "postgresql",
+        "style-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/rules/testing.md",
+      "type": "document",
+      "name": "testing.md",
+      "filePath": "project-guides/rules/testing.md",
+      "summary": "Canonical testing rules covering general testing philosophy, JavaScript/TypeScript testing frameworks and organization, Python testing frameworks and assertions, best practices, mocking/stubbing, running tests, CI/CD integration, and optional Storybook usage.",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "testing",
+        "style-guide"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:project-guides/rules/typescript.md",
+      "type": "document",
+      "name": "typescript.md",
+      "filePath": "project-guides/rules/typescript.md",
+      "summary": "Canonical TypeScript coding rules covering strict mode and the ban on `any`, type design patterns (discriminated unions, unknown, index signatures, interfaces vs type aliases, const assertions), function signatures, generics, error handling, project structure conventions, naming, and advanced type patterns (conditional, mapped, template literal types).",
+      "tags": [
+        "documentation",
+        "coding-rules",
+        "typescript",
+        "style-guide"
+      ],
+      "complexity": "complex",
+      "languageNotes": "The most extensive rules file in the set, dedicating substantial space to advanced TypeScript type-system patterns (conditional types, mapped types, template literal types) beyond basic style guidance."
+    },
+    {
+      "id": "file:scripts/bootstrap.sh",
+      "type": "file",
+      "name": "bootstrap.sh",
+      "filePath": "scripts/bootstrap.sh",
+      "summary": "One-line-curlable install script that sets up a consuming project to use ai-project-guide: creates the project-documents/user/ directory structure, optionally overlays external guides, and adds ai-project-guide as a git submodule with an update-guides wrapper.",
+      "tags": [
+        "entry-point",
+        "installer",
+        "shell",
+        "git-submodule",
+        "setup"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Bash script intended to be piped directly from curl; guards each step with command/state checks (git installed, already-set-up, package.json present) before mutating the filesystem."
+    },
+    {
+      "id": "file:scripts/migrate-private-to-user.sh",
+      "type": "file",
+      "name": "migrate-private-to-user.sh",
+      "filePath": "scripts/migrate-private-to-user.sh",
+      "summary": "Idempotent migration script for consumer projects that renames their project-documents/private/ directory to project-documents/user/ and rewrites internal 'private/' path references found in text files.",
+      "tags": [
+        "migration",
+        "shell",
+        "refactor-tooling",
+        "idempotent"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses git mv for the rename plus scoped sed substitutions with .bak/.tmp backups, only keeping changes that actually differ (cmp -s check) before reporting updated files."
+    },
+    {
+      "id": "file:scripts/rename-private-to-user-in-repo.sh",
+      "type": "file",
+      "name": "rename-private-to-user-in-repo.sh",
+      "filePath": "scripts/rename-private-to-user-in-repo.sh",
+      "summary": "Maintenance script for the ai-project-guide repository itself: rewrites a fixed list of documentation/script files to replace 'private/' path references and ORG_PRIVATE_GUIDES_URL with EXTERNAL_PROJECT_DOC_URL, then renames the private/ directory to user/.",
+      "tags": [
+        "migration",
+        "shell",
+        "refactor-tooling",
+        "documentation-maintenance"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Distinguishes itself from migrate-private-to-user.sh by targeting the ai-project-guide repo's own source/docs (a hardcoded FILES_TO_UPDATE list) rather than an arbitrary consumer project's private/ directory; verifies it is running inside the ai-project-guide repo via a guide file sentinel check."
+    },
+    {
+      "id": "document:scripts/template-stubs/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "scripts/template-stubs/README.md",
+      "summary": "Explains the template-stubs directory: two minimal stub scripts (setup-guides.sh, update-guides.sh) meant to be copied into consuming project templates so they can bootstrap and update ai-project-guide without vendoring the full scripts.",
+      "tags": [
+        "documentation",
+        "template-stubs",
+        "bootstrap",
+        "submodule"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:scripts/template-stubs/prompt.legacy-migration.md",
+      "type": "document",
+      "name": "prompt.legacy-migration.md",
+      "filePath": "scripts/template-stubs/prompt.legacy-migration.md",
+      "summary": "AI-facing prompt template that instructs an assistant to update a project's private documentation references after migrating ai-project-guide from a git subtree to a git submodule at project-documents/ai-project-guide/ (version 0.9.0).",
+      "tags": [
+        "documentation",
+        "migration",
+        "prompt-template",
+        "submodule"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Structured as an AI prompt with explicit path-transformation rules, worked examples, and a process checklist rather than human-facing narrative documentation."
+    },
+    {
+      "id": "file:scripts/template-stubs/setup-guides.sh",
+      "type": "file",
+      "name": "setup-guides.sh",
+      "filePath": "scripts/template-stubs/setup-guides.sh",
+      "summary": "One-line stub script for consuming projects that downloads and executes the canonical bootstrap.sh from the ai-project-guide GitHub repository to perform first-time setup.",
+      "tags": [
+        "bootstrap",
+        "script-stub",
+        "setup",
+        "curl-pipe"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/template-stubs/update-guides.sh",
+      "type": "file",
+      "name": "update-guides.sh",
+      "filePath": "scripts/template-stubs/update-guides.sh",
+      "summary": "Stub script copied into consuming projects to update the ai-project-guide git submodule to the latest main branch, refresh optional external guides, and auto-commit the result.",
+      "tags": [
+        "bootstrap",
+        "script-stub",
+        "submodule",
+        "git-automation"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Uses set -e for fail-fast behavior and checks EXTERNAL_PROJECT_DOC_URL as an optional environment-driven extension point."
+    },
+    {
+      "id": "document:tool-guides/electron/00-introduction.md",
+      "type": "document",
+      "name": "00-introduction.md",
+      "filePath": "tool-guides/electron/00-introduction.md",
+      "summary": "Entry point for the Electron tool guide series, routing readers to the correct downstream guide and covering process architecture, security best practices, OAuth/authentication, and packaging basics.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "electron",
+        "tool-guide",
+        "security"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Includes an explicit guide-selection table so AI agents load only the single relevant guide instead of the entire series."
+    },
+    {
+      "id": "document:tool-guides/electron/01-architecture.md",
+      "type": "document",
+      "name": "01-architecture.md",
+      "filePath": "tool-guides/electron/01-architecture.md",
+      "summary": "Architecture guide covering the 'Lichen Pattern', typed IPC contracts, process-agnostic service layers, IPC consolidation patterns, and cross-process state management, plus common anti-patterns.",
+      "tags": [
+        "documentation",
+        "electron",
+        "architecture",
+        "ipc",
+        "tool-guide"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:tool-guides/electron/02-project-structure.md",
+      "type": "document",
+      "name": "02-project-structure.md",
+      "filePath": "tool-guides/electron/02-project-structure.md",
+      "summary": "Defines the canonical Electron project layout, file placement rules, a step-by-step checklist for adding a new IPC-backed capability, and testing strategy per layer.",
+      "tags": [
+        "documentation",
+        "electron",
+        "project-structure",
+        "ipc",
+        "tool-guide"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:tool-guides/electron/03-electron-vite.md",
+      "type": "document",
+      "name": "03-electron-vite.md",
+      "filePath": "tool-guides/electron/03-electron-vite.md",
+      "summary": "Build and toolchain guide for electron-vite, covering multi-target build configuration, dev vs production differences, electron-builder packaging, TypeScript config, and common build issues.",
+      "tags": [
+        "documentation",
+        "electron",
+        "build-system",
+        "tool-guide",
+        "packaging"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:tool-guides/electron/04-testing.md",
+      "type": "document",
+      "name": "04-testing.md",
+      "filePath": "tool-guides/electron/04-testing.md",
+      "summary": "Testing guide for Electron apps describing the testing pyramid, Vitest setup, unit testing services/components/hooks with mocked IPC, optional IPC integration tests, and what not to test.",
+      "tags": [
+        "documentation",
+        "electron",
+        "test",
+        "tool-guide",
+        "vitest"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:tool-guides/electron/05-decision-guide.md",
+      "type": "document",
+      "name": "05-decision-guide.md",
+      "filePath": "tool-guides/electron/05-decision-guide.md",
+      "summary": "Decision framework for choosing Electron versus web-based architectures, including a decision matrix, alternative stacks, a hybrid web-first migration path, and template recommendations.",
+      "tags": [
+        "documentation",
+        "electron",
+        "decision-guide",
+        "architecture",
+        "tool-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/flutter-ios/setup/01-ios-design.md",
+      "type": "document",
+      "name": "01-ios-design.md",
+      "filePath": "tool-guides/flutter-ios/setup/01-ios-design.md",
+      "summary": "Guide to applying Apple Human Interface Guidelines and Cupertino widgets in a Flutter iOS app, covering the adaptive widget strategy, Material-to-Cupertino widget mapping, navigation/safe-area/typography/action-menu conventions, iPad adaptive layout (breakpoints, split view, slide over), and dark mode. Serves as the design step for both greenfield Flutter iOS apps and Android-to-iOS migrations.",
+      "tags": [
+        "documentation",
+        "flutter",
+        "ios",
+        "design-guide",
+        "cupertino"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/flutter-ios/setup/02-ios-build.md",
+      "type": "document",
+      "name": "02-ios-build.md",
+      "filePath": "tool-guides/flutter-ios/setup/02-ios-build.md",
+      "summary": "Step-by-step guide to configuring Xcode and Apple's toolchain for a Flutter iOS app: opening the correct workspace, setting project identity, signing and capabilities, app icons, launch screen, privacy manifest, building development/ad-hoc/App Store IPAs (including CLI upload for CI/CD), and submitting to TestFlight. Applies to both new apps and Android-to-iOS migrations.",
+      "tags": [
+        "documentation",
+        "flutter",
+        "ios",
+        "build-configuration",
+        "xcode",
+        "ci-cd"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/flutter-ios/setup/03-testing.md",
+      "type": "document",
+      "name": "03-testing.md",
+      "filePath": "tool-guides/flutter-ios/setup/03-testing.md",
+      "summary": "Guide to running unit, widget, and integration tests on a physical iPad for a Flutter iOS app, plus manual checks for orientation, split view/slide over, keyboard, safe areas, dark mode, Apple Pencil/pointer input, and networking permissions, followed by TestFlight beta testing and debugging tools. Completes the design-build-test setup sequence for greenfield and migrated Flutter iOS apps.",
+      "tags": [
+        "documentation",
+        "flutter",
+        "ios",
+        "testing",
+        "ipad",
+        "testflight"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/manta-templates/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "tool-guides/manta-templates/introduction.md",
+      "summary": "Introductory overview of the manta-templates component and layout system, covering prerequisites, a quickstart, component architecture, layout systems (BentoLayout, GridLayout), essential cards, responsive breakpoints, and the Tailwind CSS v4 styling system.",
+      "tags": [
+        "documentation",
+        "tool-guide",
+        "overview",
+        "component-system",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/manta-templates/knowledge.md",
+      "type": "document",
+      "name": "knowledge.md",
+      "filePath": "tool-guides/manta-templates/knowledge.md",
+      "summary": "Comprehensive reference for manta-templates covering layout components, card components, container components, hooks, utility functions, theme system, content management, performance tips, troubleshooting, advanced customization, and a migration guide.",
+      "tags": [
+        "documentation",
+        "tool-guide",
+        "api-reference",
+        "component-system",
+        "troubleshooting"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Structured as a component-by-component API reference (49 headings) intended for lookup rather than linear reading, similar to a library's knowledge-base documentation."
+    },
+    {
+      "id": "document:tool-guides/manta-templates/setup.md",
+      "type": "document",
+      "name": "setup.md",
+      "filePath": "tool-guides/manta-templates/setup.md",
+      "summary": "Setup and configuration guide for manta-templates covering installation methods, project structure, environment configuration, package manager setup, Tailwind CSS v4 configuration, component customization, content management, development workflow, deployment platforms, and troubleshooting.",
+      "tags": [
+        "documentation",
+        "tool-guide",
+        "setup",
+        "deployment",
+        "configuration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:tool-guides/radix/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "tool-guides/radix/introduction.md",
+      "summary": "Entry-point guide for the Radix UI tool guide set, introducing Radix Colors and components for accessible theming with Tailwind CSS v4 and ShadCN UI, and pointing readers to the theming guide and quick reference.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "radix-ui",
+        "theming",
+        "overview"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:tool-guides/radix/radix-colors-quick-reference.md",
+      "type": "document",
+      "name": "radix-colors-quick-reference.md",
+      "filePath": "tool-guides/radix/radix-colors-quick-reference.md",
+      "summary": "Condensed cheat sheet of essential Radix semantic color variables, palette-switching syntax, card variant usage, and quick setup steps for adding a new color palette.",
+      "tags": [
+        "documentation",
+        "reference",
+        "radix-ui",
+        "theming",
+        "css"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:tool-guides/radix/radix-theming-guide.md",
+      "type": "document",
+      "name": "radix-theming-guide.md",
+      "filePath": "tool-guides/radix/radix-theming-guide.md",
+      "summary": "Comprehensive guide to Radix Colors dynamic theming with Tailwind CSS v4 and ShadCN UI, covering the 12-step color scale, file structure, palette switching, custom palette creation, accessibility best practices, and troubleshooting.",
+      "tags": [
+        "documentation",
+        "radix-ui",
+        "theming",
+        "css",
+        "accessibility"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Documents a semantic color layering pattern (raw palette variables mapped to semantic role variables mapped to component variants) that decouples component styling from any specific palette, enabling runtime theme switching via CSS custom properties and data attributes."
+    },
+    {
+      "id": "document:tool-guides/tailwindcss/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "tool-guides/tailwindcss/introduction.md",
+      "summary": "Tailwind CSS v4 installation and setup guide covering framework-specific instructions for Next.js, Vite, Astro, and SvelteKit, plus a summary of v4 utility class changes and browser support.",
+      "tags": [
+        "documentation",
+        "tool-guide",
+        "installation",
+        "setup",
+        "tailwindcss"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Structured as an intro-guide with per-framework sections and a summary comparison table, intended for both human and AI audiences per its frontmatter."
+    },
+    {
+      "id": "document:tool-guides/tailwindcss/guide.tailwindcss.v4.md",
+      "type": "document",
+      "name": "guide.tailwindcss.v4.md",
+      "filePath": "tool-guides/tailwindcss/guide.tailwindcss.v4.md",
+      "summary": "Explains the key changes in Tailwind CSS v4, including a minimal CSS config example and a v3-vs-v4 comparison table, to guide migration and setup.",
+      "tags": [
+        "documentation",
+        "tool-guide",
+        "migration",
+        "tailwindcss",
+        "css"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/tailwindcss/guide.themes.v4.md",
+      "type": "document",
+      "name": "guide.themes.v4.md",
+      "filePath": "tool-guides/tailwindcss/guide.themes.v4.md",
+      "summary": "Theming guide for Tailwind CSS v4 covering formatted color tokens via `@theme`, dark mode and custom theme support, a paste-ready `globals.css` example, and a pre-commit migration checklist.",
+      "tags": [
+        "documentation",
+        "tool-guide",
+        "theming",
+        "tailwindcss",
+        "css"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/tailwindcss/guide.syntax-highlighting.v4.md",
+      "type": "document",
+      "name": "guide.syntax-highlighting.v4.md",
+      "filePath": "tool-guides/tailwindcss/guide.syntax-highlighting.v4.md",
+      "summary": "Guide on implementing syntax highlighting in a Tailwind CSS v4 app using Shiki/rehype-shiki and rehype-pretty-code, comparing approaches for MDX and plain Markdown pipelines.",
+      "tags": [
+        "documentation",
+        "tool-guide",
+        "syntax-highlighting",
+        "tailwindcss",
+        "markdown"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/threejs/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "tool-guides/threejs/introduction.md",
+      "summary": "Entry-point introduction to the Three.js tool guide, explaining what Three.js is, who should use the guide, prerequisites, and the layout of the other guides in the folder (setup, overview, WebGPU, lighting, deployment).",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "threejs",
+        "overview",
+        "tool-guide"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:tool-guides/threejs/setup.md",
+      "type": "document",
+      "name": "setup.md",
+      "filePath": "tool-guides/threejs/setup.md",
+      "summary": "Step-by-step setup guide for scaffolding a Three.js project with Vite and pnpm, covering tsconfig/vite.config updates, project structure, HTML/CSS boilerplate, a WebGPURenderer scene boilerplate in main.ts, local development, and a pointer to GitHub Pages deployment.",
+      "tags": [
+        "documentation",
+        "threejs",
+        "setup",
+        "vite",
+        "tool-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/threejs/overview.md",
+      "type": "document",
+      "name": "overview.md",
+      "filePath": "tool-guides/threejs/overview.md",
+      "summary": "Condensed reference of essential Three.js knowledge covering initial setup, rendering and scene management, performance optimization, user interaction/animation, project structure, common pitfalls, and debugging tips.",
+      "tags": [
+        "documentation",
+        "threejs",
+        "best-practices",
+        "reference",
+        "tool-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/threejs/guide.webgpu.md",
+      "type": "document",
+      "name": "guide.webgpu.md",
+      "filePath": "tool-guides/threejs/guide.webgpu.md",
+      "summary": "In-depth guide to Three.js WebGPURenderer covering browser support, import strategy, renderer setup, TSL (Three.js Shading Language) shader authoring, NodeMaterials, RenderPipeline post-processing, compute shaders, performance notes, debugging, and migration from WebGLRenderer.",
+      "tags": [
+        "documentation",
+        "threejs",
+        "webgpu",
+        "shaders",
+        "tool-guide"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:tool-guides/threejs/guide.lighting.md",
+      "type": "document",
+      "name": "guide.lighting.md",
+      "filePath": "tool-guides/threejs/guide.lighting.md",
+      "summary": "Guide to physically correct Three.js lighting (r155+), covering light types (ambient, directional, point/spot, hemisphere), HDR environment maps with the RGBELoader/HDRLoader rename, appropriate material choices, light helpers, a minimal setup recipe, and common pitfalls.",
+      "tags": [
+        "documentation",
+        "threejs",
+        "lighting",
+        "hdr",
+        "tool-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/threejs/guide.deployment.github-pages.md",
+      "type": "document",
+      "name": "guide.deployment.github-pages.md",
+      "filePath": "tool-guides/threejs/guide.deployment.github-pages.md",
+      "summary": "Deployment guide for publishing a Vite-built Three.js project to GitHub Pages, covering hub/project repository setup, Vite base-path configuration, a GitHub Actions workflow for automated deployment, and local preview of the production build.",
+      "tags": [
+        "documentation",
+        "deployment",
+        "ci-cd",
+        "threejs",
+        "tool-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:user/slices/100-slice.prompt-optimization-1.md",
+      "type": "document",
+      "name": "100-slice.prompt-optimization-1.md",
+      "filePath": "user/slices/100-slice.prompt-optimization-1.md",
+      "summary": "Slice design for migrating the ai-project-guide file-naming and indexing system from a 2-digit to a 3-digit index scheme, covering system prompt updates, file naming convention changes, and cross-reference updates across guides. Paired with a matching tasks file in user/tasks/ (not in this batch).",
+      "tags": [
+        "documentation",
+        "slice-design",
+        "file-naming",
+        "migration",
+        "planning"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:user/slices/105-slice.project-guide-restructure.md",
+      "type": "document",
+      "name": "105-slice.project-guide-restructure.md",
+      "filePath": "user/slices/105-slice.project-guide-restructure.md",
+      "summary": "Completed slice design restructuring ai-project-guide from a git subtree to a git submodule architecture, separating framework guides from user project documents so the system works across npm, non-npm, and monorepo projects. Status completed as of version 0.9.0; paired with a matching tasks file in user/tasks/ (not in this batch).",
+      "tags": [
+        "documentation",
+        "slice-design",
+        "restructure",
+        "submodule",
+        "completed"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:user/slices/110-slice.yaml-schema-standardization.md",
+      "type": "document",
+      "name": "110-slice.yaml-schema-standardization.md",
+      "filePath": "user/slices/110-slice.yaml-schema-standardization.md",
+      "summary": "Slice design creating a canonical YAML frontmatter schema reference in file-naming-conventions.md, standardizing required/optional fields and status values across all docTypes, and aligning guide and prompt YAML examples to that canonical source. Depends on slice 111 (phase renumbering) and interfaces with slice 113 (cross-reference verification, not in this batch); status complete.",
+      "tags": [
+        "documentation",
+        "slice-design",
+        "yaml-schema",
+        "standardization",
+        "completed"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+      "type": "document",
+      "name": "111-slice.phase-renumbering-and-initiative-plan.md",
+      "filePath": "user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+      "summary": "Slice design restructuring project phase numbering (concept becomes phase 0, new Initiative Plan becomes phase 1), removing the legacy spec phase and deprecated prompts, and renaming the process guide to drop its numeric index. Interfaces with slice 112 (cross-reference verification, not in this batch); status complete; no prerequisites.",
+      "tags": [
+        "documentation",
+        "slice-design",
+        "phase-renumbering",
+        "initiative-plan",
+        "completed"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:user/slices/112-slice.analysis-skill-extraction.md",
+      "type": "document",
+      "name": "112-slice.analysis-skill-extraction.md",
+      "filePath": "user/slices/112-slice.analysis-skill-extraction.md",
+      "summary": "Slice design extracting five analysis prompts from prompt.ai-project.system.md into a single combined Claude Code skill (/analyze), with deployment wired into the setup-ide script to reduce per-session token cost. Depends on slice 111 (phase renumbering); interfaces with slice 113 (cross-reference verification, not in this batch); status complete.",
+      "tags": [
+        "documentation",
+        "slice-design",
+        "skill-extraction",
+        "tooling",
+        "completed"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:user/tasks/100-tasks.prompt-optimization-1.md",
+      "type": "document",
+      "name": "100-tasks.prompt-optimization-1.md",
+      "filePath": "user/tasks/100-tasks.prompt-optimization-1.md",
+      "summary": "Task breakdown for the prompt-optimization-1 slice, covering a 9-phase migration: file inventory and backup, guide file renaming, system prompt updates, cross-reference updates across guides and supporting files, and final verification/git commit. Corresponds to the slice-planning document 100-slice.prompt-optimization-1.md; status is complete.",
+      "tags": [
+        "task-list",
+        "documentation",
+        "migration",
+        "checklist",
+        "completed"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:user/tasks/105-tasks.project-guide-restructure.md",
+      "type": "document",
+      "name": "105-tasks.project-guide-restructure.md",
+      "filePath": "user/tasks/105-tasks.project-guide-restructure.md",
+      "summary": "Task breakdown for restructuring the ai-project-guide layout: updating npm scripts, path references, README installation instructions, consolidating setup scripts, testing across project types, and a later v0.10.0 terminology rename from private/ to user/. Corresponds to 105-slice.project-guide-restructure.md; status is completed.",
+      "tags": [
+        "task-list",
+        "documentation",
+        "restructure",
+        "checklist",
+        "completed"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:user/tasks/110-tasks.yaml-schema-standardization.md",
+      "type": "document",
+      "name": "110-tasks.yaml-schema-standardization.md",
+      "filePath": "user/tasks/110-tasks.yaml-schema-standardization.md",
+      "summary": "Task breakdown for standardizing YAML frontmatter schemas across guides and prompts: creating a canonical schema section in file-naming-conventions.md, cleaning up redundant sections, aligning guide/prompt YAML examples, and status-value cleanup. Corresponds to 110-slice.yaml-schema-standardization.md; depends on slice 111 and is complete.",
+      "tags": [
+        "task-list",
+        "documentation",
+        "yaml",
+        "checklist",
+        "completed"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md",
+      "type": "document",
+      "name": "111-tasks.phase-renumbering-and-initiative-plan.md",
+      "filePath": "user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md",
+      "summary": "Task breakdown for renumbering process phases and introducing the Initiative Plan guide: renaming the process and concept guides, updating phase references, creating the Initiative Plan guide and prompt, removing the deprecated spec guide, and updating git rules. Corresponds to 111-slice.phase-renumbering-and-initiative-plan.md; status is complete.",
+      "tags": [
+        "task-list",
+        "documentation",
+        "process-guide",
+        "checklist",
+        "completed"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:user/tasks/112-tasks.analysis-skill-extraction.md",
+      "type": "document",
+      "name": "112-tasks.analysis-skill-extraction.md",
+      "filePath": "user/tasks/112-tasks.analysis-skill-extraction.md",
+      "summary": "Task breakdown for extracting a combined analysis skill from the system prompt: creating the skill, updating the setup-ide script to install it, removing analysis prompts from the system prompt file, and final verification. Corresponds to 112-slice.analysis-skill-extraction.md; depends on slice 111 and is complete.",
+      "tags": [
+        "task-list",
+        "documentation",
+        "skill-extraction",
+        "checklist",
+        "completed"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:user/tasks/950-tasks.maintenance.md",
+      "type": "document",
+      "name": "950-tasks.maintenance.md",
+      "filePath": "user/tasks/950-tasks.maintenance.md",
+      "summary": "Centralized, ongoing maintenance and tech-debt tracking checklist for ai-project-guide covering infrastructure, documentation, and code-quality items, with links to the historical index-migration inventory and completion report.",
+      "tags": [
+        "task-list",
+        "maintenance",
+        "tech-debt",
+        "checklist",
+        "documentation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:user/tasks/952-inventory.index-migration.md",
+      "type": "document",
+      "name": "952-inventory.index-migration.md",
+      "filePath": "user/tasks/952-inventory.index-migration.md",
+      "summary": "Inventory document enumerating every file affected by the nn-to-nnn index migration (guide files, project-guides markdown, user/slices, user/tasks) along with cross-reference patterns to update, serving as the input plan for the migration completion report.",
+      "tags": [
+        "inventory",
+        "documentation",
+        "migration",
+        "index-scheme",
+        "completed"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:user/tasks/953-report.index-migration.md",
+      "type": "document",
+      "name": "953-report.index-migration.md",
+      "filePath": "user/tasks/953-report.index-migration.md",
+      "summary": "Completion report for the nn-to-nnn index migration, summarizing statistics (files modified, references updated), the new index range schema, renamed files, verification results, lessons learned, and recommendations for future migrations. Documents execution of the plan captured in 952-inventory.index-migration.md.",
+      "tags": [
+        "report",
+        "documentation",
+        "migration",
+        "index-scheme",
+        "completed"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:.claude/skills/analyze/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": ".claude/skills/analyze/SKILL.md",
+      "summary": "Claude Code skill definition describing a 5-stage codebase analysis workflow: analyze codebase, process analysis, create analysis tasks, produce a low-level design (LLD), and implement analysis tasks.",
+      "tags": [
+        "documentation",
+        "skill-definition",
+        "workflow",
+        "analysis"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:.gitmodules",
+      "type": "config",
+      "name": ".gitmodules",
+      "filePath": ".gitmodules",
+      "summary": "Git submodule configuration registering the `project-documents/ai-project-guide` path as a submodule pointing at the ai-project-guide GitHub repository, supporting the project's bootstrap process.",
+      "tags": [
+        "configuration",
+        "git-submodule",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:.obsidian/plugins/obsidian-excalidraw-plugin/data.json",
+      "type": "config",
+      "name": "data.json",
+      "filePath": ".obsidian/plugins/obsidian-excalidraw-plugin/data.json",
+      "summary": "Vendored settings/state file for the third-party Obsidian Excalidraw plugin, storing user preferences such as folder paths, export options, theming, and pen/canvas defaults. Not authored project content.",
+      "tags": [
+        "configuration",
+        "vendored",
+        "obsidian-plugin",
+        "third-party"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:.obsidian/plugins/obsidian-git/main.js",
+      "type": "file",
+      "name": "main.js",
+      "filePath": ".obsidian/plugins/obsidian-git/main.js",
+      "summary": "Minified/bundled distribution of the third-party Obsidian Git plugin, providing Git integration (commit, push, pull, status) inside Obsidian. Vendored dependency, not authored project code.",
+      "tags": [
+        "vendored",
+        "third-party",
+        "obsidian-plugin",
+        "bundled",
+        "minified"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Bundled/minified via esbuild-style tooling \u2014 identifiers are single/double letters (e.g. `by`, `eI`, `Ot`) with no meaningful structure to extract; treated as an opaque vendored artifact rather than exploded into per-symbol nodes."
+    },
+    {
+      "id": "document:domain-guides/game-development/guide.game-development.2D.md",
+      "type": "document",
+      "name": "guide.game-development.2D.md",
+      "filePath": "domain-guides/game-development/guide.game-development.2D.md",
+      "summary": "Survey of top 2D game development platforms in 2025 (Godot, Unity, Phaser, Cocos2d, GameMaker Studio, Construct 3, RPG Maker) with a comparison table and a focused Godot-vs-Unity recommendation.",
+      "tags": [
+        "documentation",
+        "game-development",
+        "domain-guide",
+        "comparison"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:domain-guides/game-development/guide.game-development.javascript.md",
+      "type": "document",
+      "name": "guide.game-development.javascript.md",
+      "filePath": "domain-guides/game-development/guide.game-development.javascript.md",
+      "summary": "Overview of JavaScript 2D game libraries and frameworks with performance insights, a summary comparison table, and recommendations for choosing a library.",
+      "tags": [
+        "documentation",
+        "game-development",
+        "javascript",
+        "domain-guide"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:domain-guides/guide-development/guide.guide-creation.md",
+      "type": "document",
+      "name": "guide.guide-creation.md",
+      "filePath": "domain-guides/guide-development/guide.guide-creation.md",
+      "summary": "Meta-guide (\"Guide-on-Guides\") specifying the required file set, front-matter schema, section templates, writing style checklist, code-snippet conventions, and naming/placement rules for authoring new domain/tool guides in this repository.",
+      "tags": [
+        "documentation",
+        "meta-guide",
+        "conventions",
+        "guide-authoring"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:domain-guides/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "domain-guides/introduction.md",
+      "summary": "Short landing page introducing the domain-guides section of the repository.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "domain-guide",
+        "overview"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:framework-guides/astro/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "framework-guides/astro/introduction.md",
+      "summary": "Introductory guide to Astro covering project creation (CLI wizard and manual install), React + ShadCN UI integration, Tailwind CSS setup, directory structure conventions, and island hydration modes.",
+      "tags": [
+        "documentation",
+        "astro",
+        "framework-guide",
+        "setup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/skills/analyze/SKILL.md",
+      "type": "document",
+      "name": "SKILL.md",
+      "filePath": "project-guides/skills/analyze/SKILL.md",
+      "summary": "Project-guides copy of the codebase analysis skill definition, describing the same 5-stage workflow (analyze, process, task creation, LLD, implementation) as the `.claude/skills` version. Content is effectively identical to `.claude/skills/analyze/SKILL.md`, consistent with the project's source/generated-copy pattern.",
+      "tags": [
+        "documentation",
+        "skill-definition",
+        "workflow",
+        "analysis"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:project-guides/skills/review.md",
+      "type": "document",
+      "name": "review.md",
+      "filePath": "project-guides/skills/review.md",
+      "summary": "Condensed code review rules covering file naming, review checklist categories, a quick process outline, and YAML frontmatter requirements, with a pointer to detailed review guidance elsewhere.",
+      "tags": [
+        "documentation",
+        "code-review",
+        "conventions",
+        "quick-reference"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/skills/ui-development.md",
+      "type": "document",
+      "name": "ui-development.md",
+      "filePath": "project-guides/skills/ui-development.md",
+      "summary": "Short rule set for UI development tasks covering mockups, theming/style conventions, and accessibility requirements.",
+      "tags": [
+        "documentation",
+        "ui-development",
+        "conventions",
+        "accessibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/templates/changelog-format.md",
+      "type": "document",
+      "name": "changelog-format.md",
+      "filePath": "project-guides/templates/changelog-format.md",
+      "summary": "Template defining the standard changelog structure (Added/Changed/Fixed sections per version) used across project changelogs.",
+      "tags": [
+        "documentation",
+        "template",
+        "changelog",
+        "conventions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:project-guides/templates/devlog-format.md",
+      "type": "document",
+      "name": "devlog-format.md",
+      "filePath": "project-guides/templates/devlog-format.md",
+      "summary": "Template defining the standard development log structure, organized by date and by slice name/status entries.",
+      "tags": [
+        "documentation",
+        "template",
+        "devlog",
+        "conventions"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/setup-ide",
+      "type": "file",
+      "name": "setup-ide",
+      "filePath": "scripts/setup-ide",
+      "summary": "Bash script that installs the AI Project Guide's rules and skills into a developer's IDE configuration (Cursor, Claude Code, GitHub Copilot), including frontmatter validation, path-to-glob conversion, rule compilation, and per-tool file emission.",
+      "tags": [
+        "shell-script",
+        "ide-setup",
+        "automation",
+        "entry-point",
+        "tooling"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Bash script with 20 top-level functions; uses `set -e`, ANSI color codes for status output, and directory-tree walking to auto-detect the project root."
+    },
+    {
+      "id": "function:scripts/setup-ide:find_project_root",
+      "type": "function",
+      "name": "find_project_root",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        21,
+        61
+      ],
+      "summary": "Walks up the directory tree from the current working directory to locate the project root by finding a `project-documents` directory, falling back to the ai-project-guide source repo location or the current directory.",
+      "tags": [
+        "utility",
+        "path-resolution",
+        "bootstrap"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:check_directory",
+      "type": "function",
+      "name": "check_directory",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        62,
+        76
+      ],
+      "summary": "Validates that the resolved project directory structure is suitable before proceeding with IDE setup.",
+      "tags": [
+        "validation",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/setup-ide:show_usage",
+      "type": "function",
+      "name": "show_usage",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        77,
+        94
+      ],
+      "summary": "Prints command-line usage instructions for the setup-ide script.",
+      "tags": [
+        "cli",
+        "help",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/setup-ide:validate_frontmatter",
+      "type": "function",
+      "name": "validate_frontmatter",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        102,
+        124
+      ],
+      "summary": "Validates that a rule/guide file's YAML frontmatter conforms to the expected schema before it is compiled or copied.",
+      "tags": [
+        "validation",
+        "frontmatter",
+        "yaml"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:has_always_apply",
+      "type": "function",
+      "name": "has_always_apply",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        125,
+        139
+      ],
+      "summary": "Checks whether a rule file's frontmatter marks it as always-apply, controlling how it is emitted for tools like Copilot.",
+      "tags": [
+        "frontmatter",
+        "utility",
+        "predicate"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/setup-ide:convert_paths_to_globs",
+      "type": "function",
+      "name": "convert_paths_to_globs",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        140,
+        194
+      ],
+      "summary": "Converts rule frontmatter path specifications into glob patterns usable by IDE-specific rule matching (e.g., Cursor's applyTo globs).",
+      "tags": [
+        "path-resolution",
+        "glob",
+        "conversion"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:copy_files",
+      "type": "function",
+      "name": "copy_files",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        195,
+        228
+      ],
+      "summary": "Copies rule/guide files from the source repository into the target IDE configuration directory.",
+      "tags": [
+        "file-copy",
+        "ide-setup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:copy_skills",
+      "type": "function",
+      "name": "copy_skills",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        229,
+        258
+      ],
+      "summary": "Copies Claude Code skill definitions into the appropriate IDE/tool skills directory.",
+      "tags": [
+        "file-copy",
+        "skills",
+        "ide-setup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:copy_cursor_rules",
+      "type": "function",
+      "name": "copy_cursor_rules",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        259,
+        298
+      ],
+      "summary": "Copies and adapts project rule files into Cursor's rule directory format.",
+      "tags": [
+        "file-copy",
+        "cursor",
+        "ide-setup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:compile_claude_rules",
+      "type": "function",
+      "name": "compile_claude_rules",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        299,
+        391
+      ],
+      "summary": "Compiles project rule files into Claude Code's expected rules format, handling frontmatter and content merging across multiple source rule files.",
+      "tags": [
+        "compilation",
+        "claude-code",
+        "ide-setup"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/setup-ide:strip_name_field",
+      "type": "function",
+      "name": "strip_name_field",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        392,
+        411
+      ],
+      "summary": "Removes the `name` field from a rule file's YAML frontmatter prior to compilation, avoiding duplicate/conflicting name metadata.",
+      "tags": [
+        "frontmatter",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:scripts/setup-ide:copy_claude_modular_rules",
+      "type": "function",
+      "name": "copy_claude_modular_rules",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        412,
+        446
+      ],
+      "summary": "Copies modular rule files individually into the Claude Code configuration directory rather than compiling them into a single file.",
+      "tags": [
+        "file-copy",
+        "claude-code",
+        "ide-setup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:get_apply_to",
+      "type": "function",
+      "name": "get_apply_to",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        447,
+        485
+      ],
+      "summary": "Extracts the `applyTo`/path-scope field from a rule file's frontmatter for use in IDE-specific rule targeting.",
+      "tags": [
+        "frontmatter",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:get_frontmatter_field",
+      "type": "function",
+      "name": "get_frontmatter_field",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        486,
+        508
+      ],
+      "summary": "Generic helper that reads a named field's value out of a file's YAML frontmatter block.",
+      "tags": [
+        "frontmatter",
+        "utility",
+        "parsing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:compile_copilot_always_on",
+      "type": "function",
+      "name": "compile_copilot_always_on",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        509,
+        585
+      ],
+      "summary": "Compiles the subset of rules marked always-apply into GitHub Copilot's always-on instructions file.",
+      "tags": [
+        "compilation",
+        "copilot",
+        "ide-setup"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/setup-ide:emit_copilot_instruction_files",
+      "type": "function",
+      "name": "emit_copilot_instruction_files",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        586,
+        647
+      ],
+      "summary": "Generates individual Copilot instruction files from project rules, applying path-scoped glob targeting.",
+      "tags": [
+        "compilation",
+        "copilot",
+        "ide-setup"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/setup-ide:emit_copilot_prompt_files",
+      "type": "function",
+      "name": "emit_copilot_prompt_files",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        648,
+        720
+      ],
+      "summary": "Generates Copilot prompt files from project guide/skill content for use as reusable Copilot prompts.",
+      "tags": [
+        "compilation",
+        "copilot",
+        "ide-setup"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/setup-ide:setup_copilot",
+      "type": "function",
+      "name": "setup_copilot",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        721,
+        759
+      ],
+      "summary": "Orchestrates the full GitHub Copilot setup sequence, invoking the always-on compilation and instruction/prompt file emission steps.",
+      "tags": [
+        "orchestration",
+        "copilot",
+        "ide-setup"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/setup-ide:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/setup-ide",
+      "lineRange": [
+        760,
+        897
+      ],
+      "summary": "Entry point that parses CLI arguments, determines target IDE(s), and dispatches to the appropriate copy/compile functions for Cursor, Claude Code, and/or Copilot setup.",
+      "tags": [
+        "entry-point",
+        "cli",
+        "orchestration"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:snippets/gitignore.jetbrains-idea.configuration.md",
+      "type": "document",
+      "name": "gitignore.jetbrains-idea.configuration.md",
+      "filePath": "snippets/gitignore.jetbrains-idea.configuration.md",
+      "summary": "Reusable .gitignore snippet for JetBrains IDEs (IntelliJ IDEA and family), including rules to explicitly ignore user-specific noise files.",
+      "tags": [
+        "documentation",
+        "snippet",
+        "gitignore",
+        "jetbrains"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:snippets/npm-scripts.ai-support.json.md",
+      "type": "document",
+      "name": "npm-scripts.ai-support.json.md",
+      "filePath": "snippets/npm-scripts.ai-support.json.md",
+      "summary": "Reusable snippet documenting recommended npm scripts to support AI-assisted development workflows in a project's package.json.",
+      "tags": [
+        "documentation",
+        "snippet",
+        "npm",
+        "tooling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:tool-guides/flutter-ios/00-introduction.md",
+      "type": "document",
+      "name": "00-introduction.md",
+      "filePath": "tool-guides/flutter-ios/00-introduction.md",
+      "summary": "Path-selector introduction for the Flutter-on-iOS guide series, directing readers to either the new-setup path or the Android-to-iOS migration path, with a directory map and guidance for AI agents on which guide to load.",
+      "tags": [
+        "documentation",
+        "flutter",
+        "ios",
+        "entry-point",
+        "tool-guide"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:tool-guides/flutter-ios/migration/00-android-to-ios.md",
+      "type": "document",
+      "name": "00-android-to-ios.md",
+      "filePath": "tool-guides/flutter-ios/migration/00-android-to-ios.md",
+      "summary": "Overview of the Flutter Android-to-iOS migration path, covering cross-platform code preservation philosophy, migration phases, prerequisites, and common pitfalls, with guidance on which subsequent guide to load.",
+      "tags": [
+        "documentation",
+        "flutter",
+        "ios",
+        "migration",
+        "tool-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/flutter-ios/migration/01-plugin-audit.md",
+      "type": "document",
+      "name": "01-plugin-audit.md",
+      "filePath": "tool-guides/flutter-ios/migration/01-plugin-audit.md",
+      "summary": "Step-by-step guide for auditing Flutter plugins and platform channels for iOS support during Android-to-iOS migration, covering diagnostic commands, plugin checks, the `_plus` plugin family, platform channel stubs, and full build verification.",
+      "tags": [
+        "documentation",
+        "flutter",
+        "ios",
+        "migration",
+        "tool-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/mcp/01-overview.md",
+      "type": "document",
+      "name": "01-overview.md",
+      "filePath": "tool-guides/mcp/01-overview.md",
+      "summary": "Comprehensive Model Context Protocol (MCP) guide synthesized from Anthropic's documentation covering architecture and primitives, transport methods, Python (FastMCP) and TypeScript/Node SDKs, tool annotations, testing, and best practices.",
+      "tags": [
+        "documentation",
+        "mcp",
+        "tool-guide",
+        "anthropic"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:tool-guides/r3f/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "tool-guides/r3f/introduction.md",
+      "summary": "Introduction to React Three Fiber (R3F) covering core installation, Next.js-specific configuration (package transpilation, dynamic import/SSR handling, asset pipeline), scene composition patterns, deployment considerations, and performance optimization.",
+      "tags": [
+        "documentation",
+        "react-three-fiber",
+        "tool-guide",
+        "nextjs"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/shadcn/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "tool-guides/shadcn/introduction.md",
+      "summary": "Extensive ShadCN UI developer guide covering component architecture, resource/template recommendations, bento grid layouts, animation with Framer Motion, Preact as a lightweight alternative, theming/customization, Radix UI primitives, and performance optimization strategies.",
+      "tags": [
+        "documentation",
+        "shadcn",
+        "ui-development",
+        "tool-guide"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:tool-guides/shadcn/setup.md",
+      "type": "document",
+      "name": "setup.md",
+      "filePath": "tool-guides/shadcn/setup.md",
+      "summary": "Step-by-step ShadCN UI setup guide covering prerequisites, repository bootstrap, project baseline configuration, starter content/pages, and testing.",
+      "tags": [
+        "documentation",
+        "shadcn",
+        "setup",
+        "tool-guide"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:tool-guides/supabase/introduction.md",
+      "type": "document",
+      "name": "introduction.md",
+      "filePath": "tool-guides/supabase/introduction.md",
+      "summary": "Short intro document pointing readers to the Supabase tool guides directory, including a pointer to the authentication guide.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "tool-guide",
+        "supabase"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:user/architecture/110-arch.schema-and-phases-update.md",
+      "type": "document",
+      "name": "110-arch.schema-and-phases-update.md",
+      "filePath": "user/architecture/110-arch.schema-and-phases-update.md",
+      "summary": "Architecture document for initiative 110, proposing canonical YAML frontmatter schemas across all document types and a restructuring of early project phases (adding an Initiatives phase and refining the Concept phase). Covers current schema/phase pain points, design goals, envisioned state, technical considerations, and anticipated slices 110-112.",
+      "tags": [
+        "architecture",
+        "documentation",
+        "yaml-schema",
+        "process-guide",
+        "planning"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:user/architecture/110-slices.schema-and-phases-update.md",
+      "type": "document",
+      "name": "110-slices.schema-and-phases-update.md",
+      "filePath": "user/architecture/110-slices.schema-and-phases-update.md",
+      "summary": "Slice plan for the Schema and Phases Update initiative (parent: 110-arch.schema-and-phases-update.md), breaking the work into feature slices (111 phase renumbering/initiative plan, 112 analysis skill extraction, 110 YAML schema standardization) plus integration verification (113).",
+      "tags": [
+        "slice-plan",
+        "documentation",
+        "yaml-schema",
+        "process-guide",
+        "planning"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:.obsidian/plugins/obsidian-git/manifest.json",
+      "target": "config:.obsidian/plugins/obsidian-git/data.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:.obsidian/plugins/obsidian-git/manifest.json",
+      "target": "file:.obsidian/plugins/obsidian-git/styles.css",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:readme.md",
+      "target": "document:directory-structure.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:readme.md",
+      "target": "document:file-naming-conventions.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:readme.md",
+      "target": "document:readme.setup-ide.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:MIGRATION.md",
+      "target": "document:file-naming-conventions.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:directory-structure.md",
+      "target": "document:file-naming-conventions.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:directory-structure.md",
+      "target": "document:DEVLOG.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:directory-structure.md",
+      "target": "document:CLAUDE.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:CLAUDE.md",
+      "target": "document:file-naming-conventions.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:CHANGELOG.md",
+      "target": "document:readme.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:framework-guides/nextjs/introduction.md",
+      "target": "document:framework-guides/nextjs/guide.app-router.metadata.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:framework-guides/nextjs/introduction.md",
+      "target": "document:framework-guides/nextjs/guide.markdown.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:framework-guides/nextjs/introduction.md",
+      "target": "document:framework-guides/nextjs/guide.troubleshooting-and-upgrading.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/agents/code-review-agent.md",
+      "target": "config:project-guides/agents/code-review-config.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:project-guides/agents/code-review-config.json",
+      "target": "document:project-guides/agents/code-review-agent.md",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/guide.ai-project.process.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/guide.ai-project.000-concept.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/guide.ai-project.001-initiative-plan.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/guide.ai-project.003-slice-planning.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/guide.ai-project.004-slice-design.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/guide.ai-project.005-task-breakdown.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/guide.ai-project.090-code-review.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/prompt.ai-project.system.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/guide.ui-development.ai.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/readme.md",
+      "target": "document:project-guides/prompt.code-review-crawler.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/guide.ai-project.process.md",
+      "target": "document:project-guides/guide.ai-project.000-concept.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/guide.ai-project.process.md",
+      "target": "document:project-guides/guide.ai-project.001-initiative-plan.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/guide.ai-project.process.md",
+      "target": "document:project-guides/guide.ai-project.003-slice-planning.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/guide.ai-project.process.md",
+      "target": "document:project-guides/guide.ai-project.004-slice-design.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/guide.ai-project.process.md",
+      "target": "document:project-guides/guide.ai-project.005-task-breakdown.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/guide.ai-project.process.md",
+      "target": "document:project-guides/guide.ai-project.090-code-review.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/guide.ai-project.process.md",
+      "target": "document:project-guides/guide.ui-development.ai.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/guide.ai-project.process.md",
+      "target": "document:project-guides/prompt.ai-project.system.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/prompt.ai-project.system.md",
+      "target": "document:project-guides/guide.ai-project.process.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/prompt.ai-project.system.md",
+      "target": "document:project-guides/guide.ai-project.000-concept.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/prompt.ai-project.system.md",
+      "target": "document:project-guides/guide.ai-project.001-initiative-plan.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/prompt.ai-project.system.md",
+      "target": "document:project-guides/guide.ai-project.003-slice-planning.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/prompt.ai-project.system.md",
+      "target": "document:project-guides/guide.ai-project.004-slice-design.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/prompt.ai-project.system.md",
+      "target": "document:project-guides/guide.ai-project.005-task-breakdown.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:project-guides/prompt.code-review-crawler.md",
+      "target": "document:project-guides/guide.ai-project.090-code-review.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/migrations/20251008-migration-private-to-user.md",
+      "target": "document:project-guides/migrations/20260121-migration-guide.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/migrations/20260121-migration-guide.md",
+      "target": "document:project-guides/migrations/20260302-migration-v0.13.0.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/migrations/20260302-migration-v0.13.0.md",
+      "target": "document:project-guides/migrations/20260323-migration-v0.14.0.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/dart.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/electron.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/flutter.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/git.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/python.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/react.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/sql.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/testing.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/general.md",
+      "target": "document:project-guides/rules/typescript.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/react.md",
+      "target": "document:project-guides/rules/typescript.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/react.md",
+      "target": "document:project-guides/rules/testing.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/flutter.md",
+      "target": "document:project-guides/rules/dart.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/python.md",
+      "target": "document:project-guides/rules/testing.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:project-guides/rules/sql.md",
+      "target": "document:project-guides/rules/python.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:scripts/rename-private-to-user-in-repo.sh",
+      "target": "file:scripts/bootstrap.sh",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:scripts/rename-private-to-user-in-repo.sh",
+      "target": "file:scripts/migrate-private-to-user.sh",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:scripts/template-stubs/README.md",
+      "target": "file:scripts/template-stubs/setup-guides.sh",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:scripts/template-stubs/README.md",
+      "target": "file:scripts/template-stubs/update-guides.sh",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:scripts/template-stubs/prompt.legacy-migration.md",
+      "target": "document:scripts/template-stubs/README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/00-introduction.md",
+      "target": "document:tool-guides/electron/01-architecture.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/00-introduction.md",
+      "target": "document:tool-guides/electron/02-project-structure.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/00-introduction.md",
+      "target": "document:tool-guides/electron/03-electron-vite.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/00-introduction.md",
+      "target": "document:tool-guides/electron/04-testing.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/00-introduction.md",
+      "target": "document:tool-guides/electron/05-decision-guide.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/01-architecture.md",
+      "target": "document:tool-guides/electron/02-project-structure.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/02-project-structure.md",
+      "target": "document:tool-guides/electron/03-electron-vite.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/03-electron-vite.md",
+      "target": "document:tool-guides/electron/04-testing.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/04-testing.md",
+      "target": "document:tool-guides/electron/05-decision-guide.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/05-decision-guide.md",
+      "target": "document:tool-guides/electron/00-introduction.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/electron/05-decision-guide.md",
+      "target": "document:tool-guides/electron/01-architecture.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/flutter-ios/setup/01-ios-design.md",
+      "target": "document:tool-guides/flutter-ios/setup/02-ios-build.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/flutter-ios/setup/02-ios-build.md",
+      "target": "document:tool-guides/flutter-ios/setup/03-testing.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/manta-templates/introduction.md",
+      "target": "document:tool-guides/manta-templates/knowledge.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/manta-templates/introduction.md",
+      "target": "document:tool-guides/manta-templates/setup.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/manta-templates/setup.md",
+      "target": "document:tool-guides/manta-templates/knowledge.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/radix/introduction.md",
+      "target": "document:tool-guides/radix/radix-theming-guide.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/radix/introduction.md",
+      "target": "document:tool-guides/radix/radix-colors-quick-reference.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/radix/radix-colors-quick-reference.md",
+      "target": "document:tool-guides/radix/radix-theming-guide.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/tailwindcss/introduction.md",
+      "target": "document:tool-guides/tailwindcss/guide.tailwindcss.v4.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/tailwindcss/introduction.md",
+      "target": "document:tool-guides/tailwindcss/guide.themes.v4.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/tailwindcss/guide.tailwindcss.v4.md",
+      "target": "document:tool-guides/tailwindcss/guide.themes.v4.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/tailwindcss/guide.tailwindcss.v4.md",
+      "target": "document:tool-guides/tailwindcss/guide.syntax-highlighting.v4.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/tailwindcss/guide.themes.v4.md",
+      "target": "document:tool-guides/tailwindcss/guide.syntax-highlighting.v4.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/threejs/introduction.md",
+      "target": "document:tool-guides/threejs/setup.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/threejs/introduction.md",
+      "target": "document:tool-guides/threejs/overview.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/threejs/introduction.md",
+      "target": "document:tool-guides/threejs/guide.webgpu.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/threejs/introduction.md",
+      "target": "document:tool-guides/threejs/guide.lighting.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/threejs/introduction.md",
+      "target": "document:tool-guides/threejs/guide.deployment.github-pages.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/threejs/setup.md",
+      "target": "document:tool-guides/threejs/guide.webgpu.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/threejs/setup.md",
+      "target": "document:tool-guides/threejs/guide.lighting.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/threejs/setup.md",
+      "target": "document:tool-guides/threejs/guide.deployment.github-pages.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:user/slices/110-slice.yaml-schema-standardization.md",
+      "target": "document:user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:user/slices/112-slice.analysis-skill-extraction.md",
+      "target": "document:user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:user/slices/110-slice.yaml-schema-standardization.md",
+      "target": "document:user/slices/112-slice.analysis-skill-extraction.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:user/tasks/950-tasks.maintenance.md",
+      "target": "document:user/tasks/952-inventory.index-migration.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:user/tasks/950-tasks.maintenance.md",
+      "target": "document:user/tasks/953-report.index-migration.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:user/tasks/953-report.index-migration.md",
+      "target": "document:user/tasks/952-inventory.index-migration.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:find_project_root",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:check_directory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:show_usage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:validate_frontmatter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:has_always_apply",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:convert_paths_to_globs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:copy_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:copy_skills",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:copy_cursor_rules",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:compile_claude_rules",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:strip_name_field",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:copy_claude_modular_rules",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:get_apply_to",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:get_frontmatter_field",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:compile_copilot_always_on",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:emit_copilot_instruction_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:emit_copilot_prompt_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:setup_copilot",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:scripts/setup-ide",
+      "target": "function:scripts/setup-ide:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:find_project_root",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:check_directory",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:show_usage",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:copy_files",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:copy_skills",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:copy_cursor_rules",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:compile_claude_rules",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:copy_claude_modular_rules",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:main",
+      "target": "function:scripts/setup-ide:setup_copilot",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:setup_copilot",
+      "target": "function:scripts/setup-ide:compile_copilot_always_on",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:setup_copilot",
+      "target": "function:scripts/setup-ide:emit_copilot_instruction_files",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:setup_copilot",
+      "target": "function:scripts/setup-ide:emit_copilot_prompt_files",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:compile_claude_rules",
+      "target": "function:scripts/setup-ide:validate_frontmatter",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:compile_claude_rules",
+      "target": "function:scripts/setup-ide:strip_name_field",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:compile_claude_rules",
+      "target": "function:scripts/setup-ide:get_frontmatter_field",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:compile_copilot_always_on",
+      "target": "function:scripts/setup-ide:has_always_apply",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:compile_copilot_always_on",
+      "target": "function:scripts/setup-ide:get_frontmatter_field",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:emit_copilot_instruction_files",
+      "target": "function:scripts/setup-ide:get_apply_to",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:emit_copilot_instruction_files",
+      "target": "function:scripts/setup-ide:convert_paths_to_globs",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:scripts/setup-ide:get_apply_to",
+      "target": "function:scripts/setup-ide:get_frontmatter_field",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:.claude/skills/analyze/SKILL.md",
+      "target": "document:project-guides/skills/analyze/SKILL.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:tool-guides/flutter-ios/migration/00-android-to-ios.md",
+      "target": "document:tool-guides/flutter-ios/00-introduction.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/flutter-ios/migration/01-plugin-audit.md",
+      "target": "document:tool-guides/flutter-ios/00-introduction.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:tool-guides/flutter-ios/migration/01-plugin-audit.md",
+      "target": "document:tool-guides/flutter-ios/migration/00-android-to-ios.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:tool-guides/shadcn/introduction.md",
+      "target": "document:tool-guides/shadcn/setup.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:framework-guides/astro/introduction.md",
+      "target": "document:tool-guides/shadcn/introduction.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.4
+    },
+    {
+      "source": "document:user/architecture/110-slices.schema-and-phases-update.md",
+      "target": "document:user/architecture/110-arch.schema-and-phases-update.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:.claude/rules/electron.md",
+      "target": "document:project-guides/rules/electron.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:.claude/rules/python.md",
+      "target": "document:project-guides/rules/python.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:.claude/rules/react.md",
+      "target": "document:project-guides/rules/react.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:.claude/rules/sql.md",
+      "target": "document:project-guides/rules/sql.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:.claude/rules/testing.md",
+      "target": "document:project-guides/rules/testing.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:.claude/rules/typescript.md",
+      "target": "document:project-guides/rules/typescript.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:.claude/agents/code-review-agent.md",
+      "target": "document:project-guides/agents/code-review-agent.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:.claude/agents/task-checker.md",
+      "target": "document:project-guides/agents/task-checker.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:.claude/agents/tester.md",
+      "target": "document:project-guides/agents/tester.md",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:user/slices/100-slice.prompt-optimization-1.md",
+      "target": "document:user/tasks/100-tasks.prompt-optimization-1.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:user/slices/105-slice.project-guide-restructure.md",
+      "target": "document:user/tasks/105-tasks.project-guide-restructure.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:user/slices/110-slice.yaml-schema-standardization.md",
+      "target": "document:user/tasks/110-tasks.yaml-schema-standardization.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+      "target": "document:user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:user/slices/112-slice.analysis-skill-extraction.md",
+      "target": "document:user/tasks/112-tasks.analysis-skill-extraction.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:user/architecture/110-arch.schema-and-phases-update.md",
+      "target": "document:user/slices/110-slice.yaml-schema-standardization.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "document:user/architecture/110-slices.schema-and-phases-update.md",
+      "target": "document:user/slices/110-slice.yaml-schema-standardization.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:core-methodology",
+      "name": "Core Methodology",
+      "description": "The canonical phase-based AI development process: workflow guides (concept through code review), per-technology coding rules, sub-agent definitions, reusable skills, document templates, and dated migration guides that together define how AI-assisted projects are run.",
+      "nodeIds": [
+        "document:project-guides/agents/code-review-agent.md",
+        "config:project-guides/agents/code-review-config.json",
+        "document:project-guides/agents/task-checker.md",
+        "document:project-guides/agents/tester.md",
+        "document:project-guides/guide.ai-project.000-concept.md",
+        "document:project-guides/guide.ai-project.001-initiative-plan.md",
+        "document:project-guides/guide.ai-project.003-slice-planning.md",
+        "document:project-guides/guide.ai-project.004-slice-design.md",
+        "document:project-guides/guide.ai-project.005-task-breakdown.md",
+        "document:project-guides/guide.ai-project.090-code-review.md",
+        "document:project-guides/guide.ai-project.process.md",
+        "document:project-guides/guide.ui-development.ai.md",
+        "document:project-guides/prompt.ai-project.system.md",
+        "document:project-guides/prompt.code-review-crawler.md",
+        "document:project-guides/readme.md",
+        "document:project-guides/migrations/20251008-migration-private-to-user.md",
+        "document:project-guides/migrations/20260121-migration-guide.md",
+        "document:project-guides/migrations/20260302-migration-v0.13.0.md",
+        "document:project-guides/migrations/20260323-migration-v0.14.0.md",
+        "document:project-guides/rules/dart.md",
+        "document:project-guides/rules/electron.md",
+        "document:project-guides/rules/flutter.md",
+        "document:project-guides/rules/general.md",
+        "document:project-guides/rules/git.md",
+        "document:project-guides/rules/python.md",
+        "document:project-guides/rules/react.md",
+        "document:project-guides/rules/sql.md",
+        "document:project-guides/rules/testing.md",
+        "document:project-guides/rules/typescript.md",
+        "document:project-guides/skills/analyze/SKILL.md",
+        "document:project-guides/skills/review.md",
+        "document:project-guides/skills/ui-development.md",
+        "document:project-guides/templates/changelog-format.md",
+        "document:project-guides/templates/devlog-format.md"
+      ]
+    },
+    {
+      "id": "layer:tool-framework-guides",
+      "name": "Tool, Framework, and Domain Guides",
+      "description": "Per-tool and per-framework developer guides (Electron, Flutter-iOS, Next.js, Astro, Radix, Tailwind, Three.js, MCP, R3F, ShadCN, Supabase, manta-templates) plus domain-specific guidance (game development, guide-on-guides) and small reusable config/doc snippets.",
+      "nodeIds": [
+        "document:tool-guides/electron/00-introduction.md",
+        "document:tool-guides/electron/01-architecture.md",
+        "document:tool-guides/electron/02-project-structure.md",
+        "document:tool-guides/electron/03-electron-vite.md",
+        "document:tool-guides/electron/04-testing.md",
+        "document:tool-guides/electron/05-decision-guide.md",
+        "document:tool-guides/flutter-ios/setup/01-ios-design.md",
+        "document:tool-guides/flutter-ios/setup/02-ios-build.md",
+        "document:tool-guides/flutter-ios/setup/03-testing.md",
+        "document:tool-guides/manta-templates/introduction.md",
+        "document:tool-guides/manta-templates/knowledge.md",
+        "document:tool-guides/manta-templates/setup.md",
+        "document:tool-guides/radix/introduction.md",
+        "document:tool-guides/radix/radix-colors-quick-reference.md",
+        "document:tool-guides/radix/radix-theming-guide.md",
+        "document:tool-guides/tailwindcss/introduction.md",
+        "document:tool-guides/tailwindcss/guide.tailwindcss.v4.md",
+        "document:tool-guides/tailwindcss/guide.themes.v4.md",
+        "document:tool-guides/tailwindcss/guide.syntax-highlighting.v4.md",
+        "document:tool-guides/threejs/introduction.md",
+        "document:tool-guides/threejs/setup.md",
+        "document:tool-guides/threejs/overview.md",
+        "document:tool-guides/threejs/guide.webgpu.md",
+        "document:tool-guides/threejs/guide.lighting.md",
+        "document:tool-guides/threejs/guide.deployment.github-pages.md",
+        "document:tool-guides/flutter-ios/00-introduction.md",
+        "document:tool-guides/flutter-ios/migration/00-android-to-ios.md",
+        "document:tool-guides/flutter-ios/migration/01-plugin-audit.md",
+        "document:tool-guides/mcp/01-overview.md",
+        "document:tool-guides/r3f/introduction.md",
+        "document:tool-guides/shadcn/introduction.md",
+        "document:tool-guides/shadcn/setup.md",
+        "document:tool-guides/supabase/introduction.md",
+        "document:framework-guides/nextjs/introduction.md",
+        "document:framework-guides/nextjs/guide.app-router.metadata.md",
+        "document:framework-guides/nextjs/guide.markdown.md",
+        "document:framework-guides/nextjs/guide.troubleshooting-and-upgrading.md",
+        "document:framework-guides/astro/introduction.md",
+        "document:domain-guides/game-development/guide.game-development.2D.md",
+        "document:domain-guides/game-development/guide.game-development.javascript.md",
+        "document:domain-guides/guide-development/guide.guide-creation.md",
+        "document:domain-guides/introduction.md",
+        "document:snippets/gitignore.jetbrains-idea.configuration.md",
+        "document:snippets/npm-scripts.ai-support.json.md"
+      ]
+    },
+    {
+      "id": "layer:ide-integration",
+      "name": "IDE Integration",
+      "description": "Claude Code-specific derived copies of rules, agent definitions, and skills, generated from project-guides by scripts/setup-ide for direct consumption inside the Claude Code IDE.",
+      "nodeIds": [
+        "document:.claude/agents/code-review-agent.md",
+        "document:.claude/agents/task-checker.md",
+        "document:.claude/agents/tester.md",
+        "document:.claude/rules/electron.md",
+        "document:.claude/rules/python.md",
+        "document:.claude/rules/react.md",
+        "document:.claude/rules/sql.md",
+        "document:.claude/rules/testing.md",
+        "document:.claude/rules/typescript.md",
+        "document:.claude/skills/analyze/SKILL.md"
+      ]
+    },
+    {
+      "id": "layer:bootstrap-tooling",
+      "name": "Bootstrap and Install Tooling",
+      "description": "Shell scripts that install, migrate, and update a consuming project onto the ai-project-guide methodology, including the IDE-rule compiler and stub scripts copied into consumer project templates.",
+      "nodeIds": [
+        "file:scripts/bootstrap.sh",
+        "file:scripts/migrate-private-to-user.sh",
+        "file:scripts/rename-private-to-user-in-repo.sh",
+        "document:scripts/template-stubs/README.md",
+        "document:scripts/template-stubs/prompt.legacy-migration.md",
+        "file:scripts/template-stubs/setup-guides.sh",
+        "file:scripts/template-stubs/update-guides.sh",
+        "file:scripts/setup-ide"
+      ]
+    },
+    {
+      "id": "layer:self-hosted-project-data",
+      "name": "Self-Hosted Project Data",
+      "description": "This repository's own use of its methodology to manage its maintenance work: architecture documents, slice designs, and task breakdowns tracked under user/.",
+      "nodeIds": [
+        "document:user/slices/100-slice.prompt-optimization-1.md",
+        "document:user/slices/105-slice.project-guide-restructure.md",
+        "document:user/slices/110-slice.yaml-schema-standardization.md",
+        "document:user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+        "document:user/slices/112-slice.analysis-skill-extraction.md",
+        "document:user/tasks/100-tasks.prompt-optimization-1.md",
+        "document:user/tasks/105-tasks.project-guide-restructure.md",
+        "document:user/tasks/110-tasks.yaml-schema-standardization.md",
+        "document:user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md",
+        "document:user/tasks/112-tasks.analysis-skill-extraction.md",
+        "document:user/tasks/950-tasks.maintenance.md",
+        "document:user/tasks/952-inventory.index-migration.md",
+        "document:user/tasks/953-report.index-migration.md",
+        "document:user/architecture/110-arch.schema-and-phases-update.md",
+        "document:user/architecture/110-slices.schema-and-phases-update.md"
+      ]
+    },
+    {
+      "id": "layer:root-documentation",
+      "name": "Root Documentation",
+      "description": "Top-level entry-point documents and repository-wide references: README variants, CHANGELOG, DEVLOG, MIGRATION index, directory-structure contract, file-naming-conventions spec, Claude project instructions, and the git submodule config.",
+      "nodeIds": [
+        "document:CHANGELOG.md",
+        "document:CLAUDE.md",
+        "document:DEVLOG.md",
+        "document:MIGRATION.md",
+        "document:directory-structure.md",
+        "document:file-naming-conventions.md",
+        "document:readme.md",
+        "document:readme.setup-ide.md",
+        "config:.gitmodules"
+      ]
+    },
+    {
+      "id": "layer:editor-config-vendored",
+      "name": "Editor Config and Vendored Plugins",
+      "description": "Local Obsidian editor state and vendored third-party plugin bundles (obsidian-git, obsidian-excalidraw-plugin) checked into .obsidian/; not authored project content.",
+      "nodeIds": [
+        "config:.obsidian/app.json",
+        "config:.obsidian/appearance.json",
+        "config:.obsidian/community-plugins.json",
+        "config:.obsidian/core-plugins.json",
+        "config:.obsidian/plugins/obsidian-git/data.json",
+        "config:.obsidian/plugins/obsidian-git/manifest.json",
+        "file:.obsidian/plugins/obsidian-git/styles.css",
+        "config:.obsidian/plugins/obsidian-excalidraw-plugin/data.json",
+        "file:.obsidian/plugins/obsidian-git/main.js"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Project Overview",
+      "description": "Start with readme.md, the public front door of the repository. It introduces ai-project-guide as a phase-based methodology that gives AI coding tools the context, process, and conventions they need to work reliably on complex projects. The README also previews the installation model (a bootstrap script plus a git submodule) and points to Context Forge as the MCP server that makes the methodology transparent to use \u2014 everything else in this tour fills in the details it sketches.",
+      "nodeIds": [
+        "document:readme.md"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "The Contracts Behind the README",
+      "description": "Two root documents turn the README's promises into enforceable rules. directory-structure.md is the canonical contract for where every guide, snippet, and asset must live, including a decision matrix for placing new documents. file-naming-conventions.md defines the YAML frontmatter every document must carry and the per-doctype schemas referenced throughout the rest of the repository \u2014 it has the highest fan-in of any node in the graph, meaning nearly everything downstream depends on its definitions.",
+      "nodeIds": [
+        "document:directory-structure.md",
+        "document:file-naming-conventions.md"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "The Master Process Guide",
+      "description": "project-guides/readme.md is the navigation index for the methodology's core: it links every workflow phase to its primary guide and lists supplemental guides, prompts, agents, and rules. From there, guide.ai-project.process.md is the master document describing project roles, the full 0-7 phase workflow, phase approval authority, and the 'living document' pattern that underlies the entire system. This is the conceptual heart of ai-project-guide \u2014 everything else exists to support this process.",
+      "nodeIds": [
+        "document:project-guides/readme.md",
+        "document:project-guides/guide.ai-project.process.md"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Walking the Phases: Concept to Slices",
+      "description": "The process guide fans out into individual phase guides, each owning one step of the pipeline: guide.ai-project.000-concept.md captures the initial problem statement and solution direction, guide.ai-project.001-initiative-plan.md decomposes a concept into named initiatives, and guide.ai-project.003-slice-planning.md breaks an architecture into independently deliverable vertical slices. These three guides form a tightly coupled cluster in the dependency graph \u2014 they cross-reference each other constantly because each phase's output is the next phase's input.",
+      "nodeIds": [
+        "document:project-guides/guide.ai-project.000-concept.md",
+        "document:project-guides/guide.ai-project.001-initiative-plan.md",
+        "document:project-guides/guide.ai-project.003-slice-planning.md"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Design, Tasks, and Prompts to Drive Them",
+      "description": "guide.ai-project.004-slice-design.md turns a slice into a detailed low-level design, and guide.ai-project.005-task-breakdown.md converts that design into a granular, checklist-formatted task file ready for implementation. prompt.ai-project.system.md is the master library of parameterized prompt templates that actually drives an AI agent through every one of these phases \u2014 it has one of the highest fan-out counts in the graph because it links back to nearly every phase guide it operationalizes.",
+      "nodeIds": [
+        "document:project-guides/guide.ai-project.004-slice-design.md",
+        "document:project-guides/guide.ai-project.005-task-breakdown.md",
+        "document:project-guides/prompt.ai-project.system.md"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Per-Technology Rules and Sub-Agents",
+      "description": "Below the phase workflow sits project-guides/rules/general.md, a language-agnostic base ruleset covering core principles, code structure, and exception handling. It fans out to per-technology rule files (Python, React, TypeScript, SQL, testing, git, Dart, Flutter) that layer technology-specific conventions on top. Alongside the rules, project-guides/agents/code-review-agent.md defines an automated review sub-agent, paired with its own JSON configuration describing per-project-type detection logic \u2014 together they show how the methodology extends from documentation into agent behavior.",
+      "nodeIds": [
+        "document:project-guides/rules/general.md",
+        "document:project-guides/rules/typescript.md",
+        "document:project-guides/agents/code-review-agent.md",
+        "config:project-guides/agents/code-review-config.json"
+      ],
+      "languageLesson": "This repository practices what it teaches: general.md is the DRY base, and each technology file only adds what's different, mirroring the 'don't duplicate logic' principle it documents for actual codebases."
+    },
+    {
+      "order": 7,
+      "title": "From Canonical Rules to IDE Rules",
+      "description": "scripts/setup-ide is the highest fan-out node in the entire graph \u2014 it reads every rules, agent, and skill file under project-guides/ and compiles them into the format each AI coding tool expects (Cursor, Claude Code, GitHub Copilot). The .claude/rules/typescript.md file is a generated-from copy of project-guides/rules/typescript.md, produced by this exact script. This is the mechanism that makes the methodology 'mostly transparent,' as the README puts it: authors write once in project-guides/, and setup-ide propagates it to whichever IDE a developer uses.",
+      "nodeIds": [
+        "file:scripts/setup-ide",
+        "document:.claude/rules/typescript.md",
+        "document:project-guides/rules/typescript.md"
+      ],
+      "languageLesson": "Bash scripts like this one define single-purpose functions (find_project_root, validate_frontmatter, compile_claude_rules) and chain them from one main() dispatcher \u2014 a pattern worth recognizing when reading any nontrivial shell tooling."
+    },
+    {
+      "order": 8,
+      "title": "Bootstrapping a Consumer Project",
+      "description": "scripts/bootstrap.sh is the install-time counterpart to setup-ide: it is the one-line-curlable script that sets up a brand-new consuming project, creating the project-documents/user/ directory structure and adding ai-project-guide as a git submodule. The .gitmodules config is what that submodule registration actually produces \u2014 pointing project-documents/ai-project-guide/ at this repository on GitHub. Together they explain how a project pulls this methodology in without vendoring or copying it wholesale.",
+      "nodeIds": [
+        "file:scripts/bootstrap.sh",
+        "config:.gitmodules"
+      ],
+      "languageLesson": "Git submodules pin a consuming project to a specific commit of an external repository, letting update-guides.sh later fast-forward that pin independently of the host project's own history."
+    },
+    {
+      "order": 9,
+      "title": "Tool and Framework Guides",
+      "description": "Beyond the core methodology, the repository ships an entire library of per-tool developer guides. The Electron guide series is the graph's most tightly-coupled cluster: 00-introduction.md routes readers to 01-architecture.md (covering typed IPC contracts and process boundaries), 02-project-structure.md, 03-electron-vite.md, and 04-testing.md, each linking forward to the next in sequence. This 'introduction routes to numbered guides' pattern repeats across Three.js, Flutter-iOS, Radix, and Tailwind \u2014 it's the standard shape for any multi-document tool guide in this repository.",
+      "nodeIds": [
+        "document:tool-guides/electron/00-introduction.md",
+        "document:tool-guides/electron/01-architecture.md",
+        "document:tool-guides/electron/02-project-structure.md",
+        "document:tool-guides/electron/04-testing.md"
+      ]
+    },
+    {
+      "order": 10,
+      "title": "Domain Guides and the Guide-on-Guides",
+      "description": "domain-guides/introduction.md anchors a smaller section covering cross-cutting domain knowledge like 2D game development platform choice. More importantly, domain-guides/guide-development/guide.guide-creation.md is the meta-guide that specifies the required file set, frontmatter schema, and writing-style checklist for authoring any new tool or domain guide in this repository \u2014 it is effectively the constitution that produced every guide seen in Step 9.",
+      "nodeIds": [
+        "document:domain-guides/introduction.md",
+        "document:domain-guides/guide-development/guide.guide-creation.md"
+      ]
+    },
+    {
+      "order": 11,
+      "title": "Self-Hosted: The Methodology Used on Itself",
+      "description": "The user/ directory is where this repository applies its own methodology to manage its maintenance work \u2014 the layer the script analysis calls 'self-hosted project data.' user/architecture/110-arch.schema-and-phases-update.md is a real architecture document proposing canonical YAML schemas and phase restructuring, which decomposes into user/architecture/110-slices.schema-and-phases-update.md, a slice plan covering three concrete slices. This is the exact Concept-to-Architecture-to-Slice-Plan flow from Steps 3-5, now visible as lived history rather than abstract instruction.",
+      "nodeIds": [
+        "document:user/architecture/110-arch.schema-and-phases-update.md",
+        "document:user/architecture/110-slices.schema-and-phases-update.md"
+      ]
+    },
+    {
+      "order": 12,
+      "title": "From Slice to Tasks: Closing the Loop",
+      "description": "user/slices/111-slice.phase-renumbering-and-initiative-plan.md is one of the concrete slices spawned by Step 11's slice plan, restructuring phase numbering and introducing the Initiative Plan phase you saw in Step 4. It references user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md, the granular checklist-formatted task breakdown that actually implemented it \u2014 the same slice-to-task relationship guide.ai-project.005-task-breakdown.md (Step 5) describes in the abstract, now completed and marked done.",
+      "nodeIds": [
+        "document:user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+        "document:user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md"
+      ]
+    },
+    {
+      "order": 13,
+      "title": "Ongoing Maintenance and Change History",
+      "description": "user/tasks/950-tasks.maintenance.md is the repository's living, centralized tech-debt and maintenance checklist, referencing historical migration inventories and completion reports. At the root level, CHANGELOG.md and DEVLOG.md provide the project-wide chronological record: the changelog tracks released versions, while the append-only devlog captures day-to-day decisions and open issues. Together they show how this project tracks its own evolution using the same document conventions it prescribes for consumers.",
+      "nodeIds": [
+        "document:user/tasks/950-tasks.maintenance.md",
+        "document:CHANGELOG.md",
+        "document:DEVLOG.md"
+      ]
+    }
+  ]
+}

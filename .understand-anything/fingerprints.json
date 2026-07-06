@@ -1,0 +1,6659 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "4b253e063cd12e44d86baca31cd0bae1e2e9df27",
+  "generatedAt": "2026-07-05T14:29:42.191Z",
+  "files": {
+    ".claude/agents/code-review-agent.md": {
+      "filePath": ".claude/agents/code-review-agent.md",
+      "contentHash": "a4ed9750dbc4ac0ac04498e060865a259ecb0fc1e26c4563fad479e24916f7ff",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 233,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/agents/task-checker.md": {
+      "filePath": ".claude/agents/task-checker.md",
+      "contentHash": "36e44c27e892e9c11386250e6db2bdd2663384336416faf7968562321298d832",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/agents/tester.md": {
+      "filePath": ".claude/agents/tester.md",
+      "contentHash": "b021aec330875f58dd100d8823b685ce85484fc3e8938442bc677befa72e839e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/rules/electron.md": {
+      "filePath": ".claude/rules/electron.md",
+      "contentHash": "b34ee5e18e9231b35640c7c229ddb2896be583dbce2096a545fd388dbed7b693",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 19,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/rules/python.md": {
+      "filePath": ".claude/rules/python.md",
+      "contentHash": "de9f273911ae65bb4272d65f8874308e44743b9d4411a3b2040983c505e326e6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 103,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/rules/react.md": {
+      "filePath": ".claude/rules/react.md",
+      "contentHash": "925be30ba95d13e50907ebbffecac790606008ebd76fc555acad713a971f7b2e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 73,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/rules/sql.md": {
+      "filePath": ".claude/rules/sql.md",
+      "contentHash": "da5902cd21dcdeb45cc12f1be6d4b99cd0091cfa4df0e6799940ddbd83c68081",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 98,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/rules/testing.md": {
+      "filePath": ".claude/rules/testing.md",
+      "contentHash": "9e67ef0ed024eb7f7a622545c0378b298184313ff55ac6bfa7eaebdcc031c725",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 129,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/rules/typescript.md": {
+      "filePath": ".claude/rules/typescript.md",
+      "contentHash": "9d170aec5008dd06127da288b9962a315d6528ef4641b6a043a796406b7a1588",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 257,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/skills/analyze/SKILL.md": {
+      "filePath": ".claude/skills/analyze/SKILL.md",
+      "contentHash": "ea74f12473a11dcb294cd5c36a8cd73b6fe68b097dee0d4eda157a113c87fe1a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 199,
+      "hasStructuralAnalysis": true
+    },
+    ".gitmodules": {
+      "filePath": ".gitmodules",
+      "contentHash": "d886f4cf499f346dde1e0be1c23bf31cff6a88c0de0bb119f62612f8e1ee31a9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": false
+    },
+    ".obsidian/app.json": {
+      "filePath": ".obsidian/app.json",
+      "contentHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    ".obsidian/appearance.json": {
+      "filePath": ".obsidian/appearance.json",
+      "contentHash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    ".obsidian/community-plugins.json": {
+      "filePath": ".obsidian/community-plugins.json",
+      "contentHash": "92d757d7d7ee44ca48f1103236c7657d836dd098140114e37696856ae29d205a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 3,
+      "hasStructuralAnalysis": true
+    },
+    ".obsidian/core-plugins.json": {
+      "filePath": ".obsidian/core-plugins.json",
+      "contentHash": "06b9bc62b01cc0511d5d98c048a72e492da0b0a81afe83db20b136251e2b8b54",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    ".obsidian/plugins/obsidian-excalidraw-plugin/data.json": {
+      "filePath": ".obsidian/plugins/obsidian-excalidraw-plugin/data.json",
+      "contentHash": "2fb5f9bbdb0c20ac64c0c68d9939732affbc86b68fe3270b57185991de22a682",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 799,
+      "hasStructuralAnalysis": true
+    },
+    ".obsidian/plugins/obsidian-git/data.json": {
+      "filePath": ".obsidian/plugins/obsidian-git/data.json",
+      "contentHash": "5080aae085f3730a36858dffa27628ad6f2ff5e1c8d652a0487fc53c4035d2c4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 57,
+      "hasStructuralAnalysis": true
+    },
+    ".obsidian/plugins/obsidian-git/main.js": {
+      "filePath": ".obsidian/plugins/obsidian-git/main.js",
+      "contentHash": "4d853a345e959c9bb07f9137aa4c37d18a672eaf54505414489cb05fa6a455a9",
+      "functions": [
+        {
+          "name": "by",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "eI",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "tI",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "M",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rI",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "_y",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ot",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nI",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vt",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wp",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ue",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yt",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "It",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "di",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "W",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hL",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ft",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pL",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "it",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "mL",
+          "params": [
+            "...t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Kf",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ME",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "uA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "fA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dA",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ja",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gc",
+          "params": [],
+          "exported": false,
+          "lineCount": 2
+        },
+        {
+          "name": "Bg",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Hg",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Me",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "mA",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nd",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Vn",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "He",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dc",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hc",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yA",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ag",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kg",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Wn",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Tg",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ad",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "SA",
+          "params": [
+            "...t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Gg",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vr",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "bL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zg",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "at",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Pg",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wr",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "SL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "TA",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "CA",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "EL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "AL",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$A",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yr",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rr",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "FA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "DA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "LA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "TL",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "NA",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "CL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "PL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "RL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ML",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "OL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "IL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$L",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "FL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wg",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "LL",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jL",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "NL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "BL",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "HL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "UL",
+          "params": [
+            "...t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "GL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zL",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "VL",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "WL",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "KA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qL",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "IE",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "YL",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Kg",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Za",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "KL",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$E",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "QL",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ej",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "FE",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "_g",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "aj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "sj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "lj",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "uj",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "fj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "mj",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vj",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wj",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "bj",
+          "params": [
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Jg",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "xj",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ck",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ej",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dk",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Aj",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ld",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kj",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Tj",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gk",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Cj",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Pj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Sg",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "NE",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "_k",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ij",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qE",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Dj",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jj",
+          "params": [
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "a0",
+          "params": [
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Nj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ZE",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Or",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Eg",
+          "params": [
+            "t",
+            "...e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Uj",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zj",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ed",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Wj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qj",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Yj",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Jj",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "eN",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "tN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Uk",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zk",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qk",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "sN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oN",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "lN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "cN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Zk",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "mN",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vN",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "bN",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "xN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "EN",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kN",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "CN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "PN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nT",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "MN",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ON",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "IN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$N",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "FN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "LN",
+          "params": [
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "NN",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "BN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ud",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "HN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "GN",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oT",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Vf",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "WN",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "YN",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "JN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "QN",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "eB",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "tB",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rB",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nB",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "iB",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "sB",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "sA",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oB",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "lB",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "cB",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "uB",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oA",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dB",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hB",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pB",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "mB",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gB",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yB",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gT",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ud",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ic",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pv",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vn",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Xn",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pa",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "mv",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "n3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "i3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "a3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "s3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$c",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "o3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "l3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gv",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ki",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Kn",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "c3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "LH",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Io",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vv",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$o",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "u3",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Fc",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jH",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "NH",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "BH",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "HH",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yv",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "d3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "h3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yn",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "g3",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "E3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "v3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "y3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Sv",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ev",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Lc",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Gd",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "w3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "GH",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "b3",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "k3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "_3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "x3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Vd",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qH",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "YH",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Av",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "XH",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "xv",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "KH",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ZH",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "JH",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kv",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "QH",
+          "params": [],
+          "exported": false,
+          "lineCount": 2
+        },
+        {
+          "name": "Tv",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "S3",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a",
+            "s"
+          ],
+          "exported": false,
+          "lineCount": 2
+        },
+        {
+          "name": "Pv",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "eU",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a",
+            "s"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Yd",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "tU",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "iU",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Rv",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Zd",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "C3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "R3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oU",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Qd",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "M3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "eh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "lU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$3",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nh",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "F3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "D3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "L3",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "j3",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "N3",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "uU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "H3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "fU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$v",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "U3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dU",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Mv",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oh",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Fv",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hU",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "G3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "z3",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ns",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jv",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Nv",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "bU",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Y3",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "_U",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "xU",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "SU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "X3",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rM",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "iM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oM",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "fM",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Hv",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dM",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ga",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "TU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gM",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "PU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Uo",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Go",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Gv",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "MU",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "OU",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zo",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Vo",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "IU",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "va",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "en",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "os",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Wo",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qo",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wh",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "SM",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "us",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zU",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "VU",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a",
+            "s",
+            "o"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "VM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "o1",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "l1",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "r1",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a",
+            "s",
+            "o"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "WM",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "TM",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "WU",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qU",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "YM",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "XM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "KM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "CM",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "PM",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "RM",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "MM",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "JM",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "QM",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ko",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "YU",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "eO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "tO",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "OM",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "IM",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rO",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$M",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "FM",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "DM",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ZU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "JU",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rG",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "NM",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "BM",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nG",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "iG",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "HM",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "sG",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "GM",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "h1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ir",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Jc",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "tu",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "mO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "p1",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gO",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "vO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "yO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "bO",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "_O",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "xO",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "SO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "EO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "AO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "TO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "CO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "PO",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "RO",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "ms",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "MO",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "$h",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "OO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "Yt",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "et",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Xt",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "H",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "il",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gs",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Fh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Dh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Lh",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ei",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "sn",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Nh",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ba",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Bh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nu",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "tt",
+          "params": [
+            "t",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rt",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "on",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "y1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "al",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "uG",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "FO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "DO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "fG",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Lr",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "LO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Uh",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "S1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vs",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "E1",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ct",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ys",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Gh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dG",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "lu",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "A1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "qh",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hG",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Vh",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "BO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "fl",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "C1",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pG",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "NO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ii",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "x1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "UO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jr",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Pe",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ss",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ie",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ri",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "I1",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "su",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "GO",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ne",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Es",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ep",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vG",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "VO",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "tp",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Bt",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ht",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jt",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "G",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ar",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "te",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "dl",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hl",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "KO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yG",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "si",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Hr",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Zt",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "g1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "L1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ZO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kr",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Kt",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$e",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "xr",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Et",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "j1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "N1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "JO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "At",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "QO",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "M1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ni",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "B1",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "rp",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "As",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "e5",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "P1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "D1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kt",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Nt",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Wh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zO",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "cu",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Aa",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "n5",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zh",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wG",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yu",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Fi",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "R",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "i5",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ue",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "mt",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "H1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "U1",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ks",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "G1",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "s5",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Gr",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gt",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pl",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "o5",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "sp",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oi",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "fe",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Li",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ae",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "c5",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Be",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ta",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "W1",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "u5",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ji",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "q1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "d5",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "MG",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "m5",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "be",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zr",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "DG",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Vr",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "LG",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a",
+            "s",
+            "o",
+            "l"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "v5",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "X1",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a",
+            "s",
+            "o",
+            "l",
+            "c",
+            "u"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Y1",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "li",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Tn",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "b5",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ot",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ve",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "XG",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "KG",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ZG",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "K1",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "x5",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "JG",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "S5",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "E5",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "up",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "nz",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "A5",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "iz",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Pn",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Z1",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ey",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "J1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Q1",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "k5",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ze",
+          "params": [
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ry",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "cn",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "T5",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "iy",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "wz",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ts",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "bz",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ui",
+          "params": [
+            "t"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "_u",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Az",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "xu",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Rz",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oy",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "Lz",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "jz",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "cy",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Cs",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Gz",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "zz",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Vz",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "ku",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Yz",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Tu",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Kz",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Zz",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Cu",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Ps",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "iV",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "aV",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "oV",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "lV",
+          "params": [
+            "t",
+            "e",
+            "r"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "Rs",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "hV",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i",
+            "a"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "I5",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "$5",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n",
+            "i"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "pV",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "mV",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "gV",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "vV",
+          "params": [
+            "t",
+            "e",
+            "r",
+            "n"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "yV",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "bV",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "SV",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "kV",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "fy",
+          "params": [
+            "t",
+            "e"
+          ],
+          "exported": false,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 426,
+      "hasStructuralAnalysis": true
+    },
+    ".obsidian/plugins/obsidian-git/manifest.json": {
+      "filePath": ".obsidian/plugins/obsidian-git/manifest.json",
+      "contentHash": "f7238cfc9fcae95e31fb217ae0a3f34b4337dfc3164f4646f23e5c5a347317e4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    ".obsidian/plugins/obsidian-git/styles.css": {
+      "filePath": ".obsidian/plugins/obsidian-git/styles.css",
+      "contentHash": "a88b197418a1236367dae311098ec2e2382b6ef09a1af98157f8655236d8faa5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 622,
+      "hasStructuralAnalysis": false
+    },
+    "CHANGELOG.md": {
+      "filePath": "CHANGELOG.md",
+      "contentHash": "13389df02aea5723141f7471a37a93270d72344ef9b673164a48a0f7d1b8efd7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 603,
+      "hasStructuralAnalysis": true
+    },
+    "CLAUDE.md": {
+      "filePath": "CLAUDE.md",
+      "contentHash": "a8e2a1abb745c05b51017db6a77823ef52f44613ad6d9c9fdf56bf13ee96b49a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 136,
+      "hasStructuralAnalysis": true
+    },
+    "DEVLOG.md": {
+      "filePath": "DEVLOG.md",
+      "contentHash": "a4dfc014d60007ee0c120690f6ccfa065ef2a086426fdcb56fb4b4688c884bb3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 158,
+      "hasStructuralAnalysis": true
+    },
+    "directory-structure.md": {
+      "filePath": "directory-structure.md",
+      "contentHash": "67732205e73d3b7c3d877461a373e5998490654946fa091047b3fdee675b77aa",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 77,
+      "hasStructuralAnalysis": true
+    },
+    "domain-guides/game-development/guide.game-development.2D.md": {
+      "filePath": "domain-guides/game-development/guide.game-development.2D.md",
+      "contentHash": "703c9e7255d634dd5be47f8767994ba42b206cbf9f852d64393c9d417d9d20d1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 195,
+      "hasStructuralAnalysis": true
+    },
+    "domain-guides/game-development/guide.game-development.javascript.md": {
+      "filePath": "domain-guides/game-development/guide.game-development.javascript.md",
+      "contentHash": "60aa25a00915e7519e11366b42923901d038e62730edb914786b0bd35c1f5628",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 95,
+      "hasStructuralAnalysis": true
+    },
+    "domain-guides/guide-development/guide.guide-creation.md": {
+      "filePath": "domain-guides/guide-development/guide.guide-creation.md",
+      "contentHash": "bf5df412a6000c75ae9005d4088f1a17ee74b47efbc8511cdf9c8d6bf05bf6e6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 157,
+      "hasStructuralAnalysis": true
+    },
+    "domain-guides/introduction.md": {
+      "filePath": "domain-guides/introduction.md",
+      "contentHash": "25249f66a819a687e0d8abcd95e442b073ce3fb082bf7b80f3c9cd7c234cbb6c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "file-naming-conventions.md": {
+      "filePath": "file-naming-conventions.md",
+      "contentHash": "d5c484b461ebad69108492bfce5f38d62c34399a9f3f2efd91d4b30ed1ecabe5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 527,
+      "hasStructuralAnalysis": true
+    },
+    "framework-guides/astro/introduction.md": {
+      "filePath": "framework-guides/astro/introduction.md",
+      "contentHash": "3784eeb560e38cd900ea0b593609ad39da08abdff4055d055f301dda80c21ca8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 185,
+      "hasStructuralAnalysis": true
+    },
+    "framework-guides/nextjs/guide.app-router.metadata.md": {
+      "filePath": "framework-guides/nextjs/guide.app-router.metadata.md",
+      "contentHash": "fc043f834c30b52273af1e33658703b32cada18ac69c51db5a00627389dbd66d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 139,
+      "hasStructuralAnalysis": true
+    },
+    "framework-guides/nextjs/guide.markdown.md": {
+      "filePath": "framework-guides/nextjs/guide.markdown.md",
+      "contentHash": "7e35a6ddd2b1038d1aa8abda77abe7ba4c9a81afa224f02331fae1b37bf2cb75",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 124,
+      "hasStructuralAnalysis": true
+    },
+    "framework-guides/nextjs/guide.troubleshooting-and-upgrading.md": {
+      "filePath": "framework-guides/nextjs/guide.troubleshooting-and-upgrading.md",
+      "contentHash": "df60146cae9b859235335c90e2c943cc361d0647d7888a644c790b99e137d7f2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 236,
+      "hasStructuralAnalysis": true
+    },
+    "framework-guides/nextjs/introduction.md": {
+      "filePath": "framework-guides/nextjs/introduction.md",
+      "contentHash": "eb265a58f1cf6c3fd081113bbd06577fb203e616dc71932af99a1ffd701ce0a7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 314,
+      "hasStructuralAnalysis": true
+    },
+    "MIGRATION.md": {
+      "filePath": "MIGRATION.md",
+      "contentHash": "a39897005abb2d65dd4a3bc48eb2efb306f9309a2d762f758a6ba3a9fa516b51",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 18,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/agents/code-review-agent.md": {
+      "filePath": "project-guides/agents/code-review-agent.md",
+      "contentHash": "a4ed9750dbc4ac0ac04498e060865a259ecb0fc1e26c4563fad479e24916f7ff",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 233,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/agents/code-review-config.json": {
+      "filePath": "project-guides/agents/code-review-config.json",
+      "contentHash": "d5d6d8581769802baa919a155ae6047c125f5b3965c23a43ae32a1b5c95a2fbc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 77,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/agents/task-checker.md": {
+      "filePath": "project-guides/agents/task-checker.md",
+      "contentHash": "36e44c27e892e9c11386250e6db2bdd2663384336416faf7968562321298d832",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/agents/tester.md": {
+      "filePath": "project-guides/agents/tester.md",
+      "contentHash": "b021aec330875f58dd100d8823b685ce85484fc3e8938442bc677befa72e839e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 65,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/guide.ai-project.000-concept.md": {
+      "filePath": "project-guides/guide.ai-project.000-concept.md",
+      "contentHash": "26f926ac7d8cc26d290b02a7bdfabfa03d301232ade367d8fe65b1a3a7d2dbd8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 101,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/guide.ai-project.001-initiative-plan.md": {
+      "filePath": "project-guides/guide.ai-project.001-initiative-plan.md",
+      "contentHash": "cda17c6b21bd76dd181be2db4b7180fd4d33ee16af4cbd3f7311a188e638c65c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 139,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/guide.ai-project.003-slice-planning.md": {
+      "filePath": "project-guides/guide.ai-project.003-slice-planning.md",
+      "contentHash": "153e5bfa1fc4fb56200eae06ba5b629bdb69ff2a21fe5fbe774fc2b2383064cd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 286,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/guide.ai-project.004-slice-design.md": {
+      "filePath": "project-guides/guide.ai-project.004-slice-design.md",
+      "contentHash": "3374141e1a4b671d19753c214d12a2e2a90be66a70beac74779ef1ad13a48e85",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 327,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/guide.ai-project.005-task-breakdown.md": {
+      "filePath": "project-guides/guide.ai-project.005-task-breakdown.md",
+      "contentHash": "dccaa0ec7f0e73ea1900f327cfd5cdd5c1537c8057bcaf1aef6c65dfcd278dd1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 172,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/guide.ai-project.090-code-review.md": {
+      "filePath": "project-guides/guide.ai-project.090-code-review.md",
+      "contentHash": "999147ad752f8f98a08d3fdd1647f2bf8ec9ecce85b16dc3519c51d36239e624",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 320,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/guide.ai-project.process.md": {
+      "filePath": "project-guides/guide.ai-project.process.md",
+      "contentHash": "d16e34cc7c9d5d7ebcecbf44f867a68a2aacac97ea64c1322fca48b7a30e2745",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 364,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/guide.ui-development.ai.md": {
+      "filePath": "project-guides/guide.ui-development.ai.md",
+      "contentHash": "5a77f17b8fbfd4a7fdd6ab2a1b518958f4682289e0b6fac2dee9fbebd36ba419",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 47,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/migrations/20251008-migration-private-to-user.md": {
+      "filePath": "project-guides/migrations/20251008-migration-private-to-user.md",
+      "contentHash": "a24fb1535ee28041c3d6100587fe4e88e829190822e0ccee61fc7774fa97d841",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 122,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/migrations/20260121-migration-guide.md": {
+      "filePath": "project-guides/migrations/20260121-migration-guide.md",
+      "contentHash": "c7de7a9bd8e698773f23407ef695414587b09054f9f1137bb1e06ec1b7f4097c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 166,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/migrations/20260302-migration-v0.13.0.md": {
+      "filePath": "project-guides/migrations/20260302-migration-v0.13.0.md",
+      "contentHash": "28ddc84ba0f9bfccc3a9f1443b291387a855b591ad61098368304b23614444e2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 45,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/migrations/20260323-migration-v0.14.0.md": {
+      "filePath": "project-guides/migrations/20260323-migration-v0.14.0.md",
+      "contentHash": "e9e02ad63ee55004309b28520ccbbaba24755a578183f83a14ab9f27c56a7c86",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 98,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/prompt.ai-project.system.md": {
+      "filePath": "project-guides/prompt.ai-project.system.md",
+      "contentHash": "bd2139170685110b3f8f18852964cc11f5c975f1b4d39c3531c19f24d28a534b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 584,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/prompt.code-review-crawler.md": {
+      "filePath": "project-guides/prompt.code-review-crawler.md",
+      "contentHash": "c82a131434b57838c7e1b2751cead1c847e8b29bed55c1aabe2bc68dad43ec4c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 194,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/readme.md": {
+      "filePath": "project-guides/readme.md",
+      "contentHash": "137b235c82eaf10e7cdea21df59d4450e3f11c4628371bbe11e2c41d92be7ac0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 82,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/dart.md": {
+      "filePath": "project-guides/rules/dart.md",
+      "contentHash": "f2fcd4e10c7aae412dcbc1db3004436f0bd0e0a8f8bcdac0af19e3fcce44314d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 157,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/electron.md": {
+      "filePath": "project-guides/rules/electron.md",
+      "contentHash": "bb469492113240cd6bd90a226618af16f23f59bbcef7e76706fd5d70da275af4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 20,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/flutter.md": {
+      "filePath": "project-guides/rules/flutter.md",
+      "contentHash": "f2fb500ea7e7b42b8934416d6da535971820c848529eac02be4757ee9ccfd7e7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 161,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/general.md": {
+      "filePath": "project-guides/rules/general.md",
+      "contentHash": "5a62ed2cd705eb1a5cb1c5daf156ec1667fb9acfea17018dcdb85cb45120e962",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 79,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/git.md": {
+      "filePath": "project-guides/rules/git.md",
+      "contentHash": "ff1362da20b69b429ea54d14d9059637c53f6668ffa5919cc4e76e8d26948626",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 73,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/python.md": {
+      "filePath": "project-guides/rules/python.md",
+      "contentHash": "9b2620d54221ac581382d7b65d6abedf4e23d53ea7c5eca5ecba4b7f4161fcf1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 104,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/react.md": {
+      "filePath": "project-guides/rules/react.md",
+      "contentHash": "7b011ccc3c96fcf62622cb94e2d4d16908b73505d3d7315dfad7b6fe1216e618",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 74,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/sql.md": {
+      "filePath": "project-guides/rules/sql.md",
+      "contentHash": "8738998884fff2028eb8b7b8ac5b27408d41d9127a836deedac5f705faf922f2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 98,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/testing.md": {
+      "filePath": "project-guides/rules/testing.md",
+      "contentHash": "199fbe42077aa7ebb6ce966c89b68603dc3aaa47d3b5af5dc5bddfe28c0286f4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 130,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/rules/typescript.md": {
+      "filePath": "project-guides/rules/typescript.md",
+      "contentHash": "d268addaa82fb108a6fe702514ee3ae5da660f22e587aa9267ac2ca5590ca79e",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 258,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/skills/analyze/SKILL.md": {
+      "filePath": "project-guides/skills/analyze/SKILL.md",
+      "contentHash": "ea74f12473a11dcb294cd5c36a8cd73b6fe68b097dee0d4eda157a113c87fe1a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 199,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/skills/review.md": {
+      "filePath": "project-guides/skills/review.md",
+      "contentHash": "5543a4d0b4d525e6cfd453ea643beb50b83c6778ea5e78fb4ad132e943eacb61",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/skills/ui-development.md": {
+      "filePath": "project-guides/skills/ui-development.md",
+      "contentHash": "cdb1b43eff627f82ab87641c0bb07f68b451657ffc745a03eef3e480a28e03e2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/templates/changelog-format.md": {
+      "filePath": "project-guides/templates/changelog-format.md",
+      "contentHash": "6aa67b7ec9c78cecfe8a4812214c092d2a050dc525b51e452e252b7ef1d7cb5b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 35,
+      "hasStructuralAnalysis": true
+    },
+    "project-guides/templates/devlog-format.md": {
+      "filePath": "project-guides/templates/devlog-format.md",
+      "contentHash": "478a63f9a3bd1b04b35c0eb1ce94de32e72eedc6756d6e5c7616b4972f175b23",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "readme.md": {
+      "filePath": "readme.md",
+      "contentHash": "7fc60dca61c6bec497fec50e51a6897f07d1d4e0a9f802719cfd43723aca4cae",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 174,
+      "hasStructuralAnalysis": true
+    },
+    "readme.setup-ide.md": {
+      "filePath": "readme.setup-ide.md",
+      "contentHash": "93894d990e4802338f69d28bb77076a6a9f820732efc348a8463ee1d9847f4c8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 196,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/bootstrap.sh": {
+      "filePath": "scripts/bootstrap.sh",
+      "contentHash": "a5d8b4d6742df3b85be755f80724676221f83e34b3fb61bf79ccfd1bd86967b0",
+      "functions": [
+        {
+          "name": "print_status",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "print_error",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "print_success",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "print_info",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "print_warning",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 187,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/migrate-private-to-user.sh": {
+      "filePath": "scripts/migrate-private-to-user.sh",
+      "contentHash": "fb20f93c987aa63b24f9f86d1359df0903ea328a0ce0760c4be27de43d8d9947",
+      "functions": [
+        {
+          "name": "print_status",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "print_error",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "print_success",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "print_info",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "print_warning",
+          "params": [],
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 156,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/rename-private-to-user-in-repo.sh": {
+      "filePath": "scripts/rename-private-to-user-in-repo.sh",
+      "contentHash": "0d6fbc9c3d0fc3c3db24f2a3a2fa2af1f7cc16ccd44fd6d4e8de9390410f3723",
+      "functions": [
+        {
+          "name": "print_status",
+          "params": [],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "print_error",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "print_success",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "print_info",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "print_warning",
+          "params": [],
+          "exported": false,
+          "lineCount": 1
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 161,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/setup-ide": {
+      "filePath": "scripts/setup-ide",
+      "contentHash": "4f93cf64141073836c9669e750faf59d65c31ddc75b49e9bfb4acbd278d8a1f6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 898,
+      "hasStructuralAnalysis": false
+    },
+    "scripts/template-stubs/prompt.legacy-migration.md": {
+      "filePath": "scripts/template-stubs/prompt.legacy-migration.md",
+      "contentHash": "c4a97c512f17cae8cfbf1e5e7f4c17390f14ea369de6fa45f6eaa54c26f0d924",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 186,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/template-stubs/README.md": {
+      "filePath": "scripts/template-stubs/README.md",
+      "contentHash": "393871a152bf614551bda7199379cad2ce1c8601f23579e25c087a4d52dfe448",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 74,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/template-stubs/setup-guides.sh": {
+      "filePath": "scripts/template-stubs/setup-guides.sh",
+      "contentHash": "fa6d95af24bd3ed306e9f1ec1ef4c99a2b3a9f514c9f6f3311dc5a16ac5d6000",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/template-stubs/update-guides.sh": {
+      "filePath": "scripts/template-stubs/update-guides.sh",
+      "contentHash": "abd53550c47dbaed3ac8fdaf06317c160e8afea858d9e0c9dab44e45e867d3f6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 77,
+      "hasStructuralAnalysis": true
+    },
+    "snippets/gitignore.jetbrains-idea.configuration.md": {
+      "filePath": "snippets/gitignore.jetbrains-idea.configuration.md",
+      "contentHash": "94d769ce5e3fde68214f7541ac0e5e094bd49bdaf45c894d39b55a54dbe92158",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "snippets/npm-scripts.ai-support.json.md": {
+      "filePath": "snippets/npm-scripts.ai-support.json.md",
+      "contentHash": "f4e1defd6ea7a2478ef8328f461c2dc5b338fb59c1b65ceac78533ae6e1ab1b4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/electron/00-introduction.md": {
+      "filePath": "tool-guides/electron/00-introduction.md",
+      "contentHash": "1d67befd84eac3b2a7dd5f6551a4d7d9676a6077e75be9426e3be7158940bf0c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 314,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/electron/01-architecture.md": {
+      "filePath": "tool-guides/electron/01-architecture.md",
+      "contentHash": "0279c94395bfd8fd4bec584e91c2608d3e4e2e51b78e0937e1243e4779fa8b83",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 378,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/electron/02-project-structure.md": {
+      "filePath": "tool-guides/electron/02-project-structure.md",
+      "contentHash": "1eb3a43f70c68115c2f6b7ace7d11279454553d0c12398f71a01f187172561e9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 382,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/electron/03-electron-vite.md": {
+      "filePath": "tool-guides/electron/03-electron-vite.md",
+      "contentHash": "8f201adad3bad0934c0f4a9a15fb9797981a807d4a83830774b1e8b6206f85bd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 307,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/electron/04-testing.md": {
+      "filePath": "tool-guides/electron/04-testing.md",
+      "contentHash": "354b8aa9eee4e3dd7f79119d3a0cb2df3d088d129fc2c680221ec7136e3abb3c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 388,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/electron/05-decision-guide.md": {
+      "filePath": "tool-guides/electron/05-decision-guide.md",
+      "contentHash": "d15176b8b8c1ff63890b64d5413c2d147a5bb2b1f4bd778adb9422add5155f95",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 150,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/flutter-ios/00-introduction.md": {
+      "filePath": "tool-guides/flutter-ios/00-introduction.md",
+      "contentHash": "907c785e6c4c5343ba6a6b4eccfa8592c775a0effba3c81632687b09c274671d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 71,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/flutter-ios/migration/00-android-to-ios.md": {
+      "filePath": "tool-guides/flutter-ios/migration/00-android-to-ios.md",
+      "contentHash": "1d73f54276bbdefa4237ca0fc3d7ea9e6cc80b4fb627d58090dc8eee61afefee",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 114,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/flutter-ios/migration/01-plugin-audit.md": {
+      "filePath": "tool-guides/flutter-ios/migration/01-plugin-audit.md",
+      "contentHash": "36990aea29391387bc98692b833bc2c15935733a3757c9cdaffff4afa85aa1f9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 136,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/flutter-ios/setup/01-ios-design.md": {
+      "filePath": "tool-guides/flutter-ios/setup/01-ios-design.md",
+      "contentHash": "bb45f4b2c2a84b6beaa1e6ff14a4b2998be94cb2d6faf68044342d460b191587",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 211,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/flutter-ios/setup/02-ios-build.md": {
+      "filePath": "tool-guides/flutter-ios/setup/02-ios-build.md",
+      "contentHash": "d4602ffa6dbbe0869a46eba4e3ff1a47f10ab2b2042f831d1dac7ddbbca92e47",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 210,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/flutter-ios/setup/03-testing.md": {
+      "filePath": "tool-guides/flutter-ios/setup/03-testing.md",
+      "contentHash": "76c18978cae5b24c851448352e23d864c8e630fdec8139e98307f923c12f6f02",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 210,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/manta-templates/introduction.md": {
+      "filePath": "tool-guides/manta-templates/introduction.md",
+      "contentHash": "8cbf09f237c98553ebc4ccd5dd434308803fa1afccc58fc26b3a4fac78d080f9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 229,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/manta-templates/knowledge.md": {
+      "filePath": "tool-guides/manta-templates/knowledge.md",
+      "contentHash": "b5e9e86355fd419a9ef79f7c208c991d8ec27e9184dd528ffc448a095ad3e32c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 763,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/manta-templates/setup.md": {
+      "filePath": "tool-guides/manta-templates/setup.md",
+      "contentHash": "fc0955bee3a4551c9c520782b7091f98dcc331892edaf76562337075d437b23d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 471,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/mcp/01-overview.md": {
+      "filePath": "tool-guides/mcp/01-overview.md",
+      "contentHash": "95e1ff2bfead076a1761d33b361bceb97470c336c25e4fcd8f5dad2a7fcc68c7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 259,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/r3f/introduction.md": {
+      "filePath": "tool-guides/r3f/introduction.md",
+      "contentHash": "4bf2b0ed7e5c7f58db82351b1b0c2a5c4c3fab137c3404743f0e0df637856c53",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 165,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/radix/introduction.md": {
+      "filePath": "tool-guides/radix/introduction.md",
+      "contentHash": "c8b7eaa2da6f8f7539b694d49b358f51dfcd01ad1890c3238a1652312102760c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/radix/radix-colors-quick-reference.md": {
+      "filePath": "tool-guides/radix/radix-colors-quick-reference.md",
+      "contentHash": "f6ed30aed8f2a9fa3e46985c38f15abbe6635c0ce5b81cb4c768e1932345c904",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 82,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/radix/radix-theming-guide.md": {
+      "filePath": "tool-guides/radix/radix-theming-guide.md",
+      "contentHash": "8c17a20242a2661559397b28359405a945a952faecf508d99c49c60fa7c2bf17",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 391,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/shadcn/introduction.md": {
+      "filePath": "tool-guides/shadcn/introduction.md",
+      "contentHash": "d87d2bfce9f99301e8a7950464217baca3f8d91f6b2b8448ff674790a80d69e5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 482,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/shadcn/setup.md": {
+      "filePath": "tool-guides/shadcn/setup.md",
+      "contentHash": "60f4376b34d84fa018a1c62862bbbacdc364b437188825579fa14dbdaac1d498",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 137,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/supabase/guide.auth.md": {
+      "filePath": "tool-guides/supabase/guide.auth.md",
+      "contentHash": "63fefd19e8f474206547abf7e92b09960f9ff91059ae8f3f0d0f8616731ca321",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 369,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/supabase/introduction.md": {
+      "filePath": "tool-guides/supabase/introduction.md",
+      "contentHash": "f0826c4d849cf7c01a28a7071d70065aeca953867eae3bb3e9bf6fd86a6bd578",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/tailwindcss/guide.syntax-highlighting.v4.md": {
+      "filePath": "tool-guides/tailwindcss/guide.syntax-highlighting.v4.md",
+      "contentHash": "4e827d4ea3547689ede7522f4b2878874b710554ea5799f1c1882d5e56b2cb0d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 188,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/tailwindcss/guide.tailwindcss.v4.md": {
+      "filePath": "tool-guides/tailwindcss/guide.tailwindcss.v4.md",
+      "contentHash": "141edb217f67ba8e84df5c60206373f7c6a8ab2159696fea65fc7644f53c6d98",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 144,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/tailwindcss/guide.themes.v4.md": {
+      "filePath": "tool-guides/tailwindcss/guide.themes.v4.md",
+      "contentHash": "e56c3f4908d63fc9474e3efff4228d8987aae904ae4901f55f9b22fb9fc09f8d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 271,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/tailwindcss/introduction.md": {
+      "filePath": "tool-guides/tailwindcss/introduction.md",
+      "contentHash": "9b5732b067a2bc30465d9a4b25dd9ebffdee4b80d9701ccecb2206506c7437f0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 277,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/threejs/guide.deployment.github-pages.md": {
+      "filePath": "tool-guides/threejs/guide.deployment.github-pages.md",
+      "contentHash": "db2dd49913544e68d0e32069905024c3ef344822a4240320562d85739c5d6995",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 132,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/threejs/guide.lighting.md": {
+      "filePath": "tool-guides/threejs/guide.lighting.md",
+      "contentHash": "20c50d3ccde32bb5123ca12089b8cf5c8e1e41a363e619b059cce3d99720cd1f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 225,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/threejs/guide.webgpu.md": {
+      "filePath": "tool-guides/threejs/guide.webgpu.md",
+      "contentHash": "c0479f8e229f42855b841b053fe675ce125243e6bb59b1d12d4d4ae7ea6ca2cc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 485,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/threejs/introduction.md": {
+      "filePath": "tool-guides/threejs/introduction.md",
+      "contentHash": "f762b492428f522e364076066c4a067edb06872aa97a153a6d78141bbdc54477",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 49,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/threejs/overview.md": {
+      "filePath": "tool-guides/threejs/overview.md",
+      "contentHash": "6ae0e7fa04daef6b13881488ca1c719c9dfccd33068a00de67ba9df9f83bed8f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 103,
+      "hasStructuralAnalysis": true
+    },
+    "tool-guides/threejs/setup.md": {
+      "filePath": "tool-guides/threejs/setup.md",
+      "contentHash": "9b83354f09f0f70dfd4c41a64d126b8ba451b6caf98953cf1f50506d9cf46fde",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 248,
+      "hasStructuralAnalysis": true
+    },
+    "user/architecture/110-arch.schema-and-phases-update.md": {
+      "filePath": "user/architecture/110-arch.schema-and-phases-update.md",
+      "contentHash": "a6128b2d34e89d06072a9cc5694f9cc383df17f2d770b58facdb7ddad26c0afb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 116,
+      "hasStructuralAnalysis": true
+    },
+    "user/architecture/110-slices.schema-and-phases-update.md": {
+      "filePath": "user/architecture/110-slices.schema-and-phases-update.md",
+      "contentHash": "337a982e620508c53bcdd06ae4aab62773362fd729179a6a20e235771d0cfe78",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 47,
+      "hasStructuralAnalysis": true
+    },
+    "user/slices/100-slice.prompt-optimization-1.md": {
+      "filePath": "user/slices/100-slice.prompt-optimization-1.md",
+      "contentHash": "0d4a77dc4f095cbd3dfbb26df7e73930df79fffab7fa850833d874354373adb9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 422,
+      "hasStructuralAnalysis": true
+    },
+    "user/slices/105-slice.project-guide-restructure.md": {
+      "filePath": "user/slices/105-slice.project-guide-restructure.md",
+      "contentHash": "0151b3db0c0ccaef653e75324f1b21783a438fe25f1ae8dcdfe3a115a294ad9b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 221,
+      "hasStructuralAnalysis": true
+    },
+    "user/slices/110-slice.yaml-schema-standardization.md": {
+      "filePath": "user/slices/110-slice.yaml-schema-standardization.md",
+      "contentHash": "dfb4814233eda57f95d58543fed021285e4e85a5001a073f219c7c935f6f6033",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 135,
+      "hasStructuralAnalysis": true
+    },
+    "user/slices/111-slice.phase-renumbering-and-initiative-plan.md": {
+      "filePath": "user/slices/111-slice.phase-renumbering-and-initiative-plan.md",
+      "contentHash": "daa40c9701c6ef400bf7091ddc78673b5d794e26ccb28c07d3ef6e50e9cbf8c3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 295,
+      "hasStructuralAnalysis": true
+    },
+    "user/slices/112-slice.analysis-skill-extraction.md": {
+      "filePath": "user/slices/112-slice.analysis-skill-extraction.md",
+      "contentHash": "c0e54d0ee7590186eb069ab63d83623cc71af569ec6bb32d0b448310464c7221",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 102,
+      "hasStructuralAnalysis": true
+    },
+    "user/tasks/100-tasks.prompt-optimization-1.md": {
+      "filePath": "user/tasks/100-tasks.prompt-optimization-1.md",
+      "contentHash": "474507911802e24406ddf55339f88aac9d0c952bc45e3acb621b5fa78d8b59c7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 734,
+      "hasStructuralAnalysis": true
+    },
+    "user/tasks/105-tasks.project-guide-restructure.md": {
+      "filePath": "user/tasks/105-tasks.project-guide-restructure.md",
+      "contentHash": "069a0a2b9c9f72055d014cb72ebcdfd247117ffe592592cdeaae08bd2aa55c62",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 323,
+      "hasStructuralAnalysis": true
+    },
+    "user/tasks/110-tasks.yaml-schema-standardization.md": {
+      "filePath": "user/tasks/110-tasks.yaml-schema-standardization.md",
+      "contentHash": "6ee97c0e18410e8afe31898927371619b352d9fa22c2f4d566105e56e1660189",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 152,
+      "hasStructuralAnalysis": true
+    },
+    "user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md": {
+      "filePath": "user/tasks/111-tasks.phase-renumbering-and-initiative-plan.md",
+      "contentHash": "4c8246aa8bb08f2d093985f5fec190ffacb35f37260324588e677938336552bd",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 315,
+      "hasStructuralAnalysis": true
+    },
+    "user/tasks/112-tasks.analysis-skill-extraction.md": {
+      "filePath": "user/tasks/112-tasks.analysis-skill-extraction.md",
+      "contentHash": "433dc5a3d31c8e8dcac66053968c6a7db20ebdf59ad54d5dc9bd1b4aa802e493",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 119,
+      "hasStructuralAnalysis": true
+    },
+    "user/tasks/950-tasks.maintenance.md": {
+      "filePath": "user/tasks/950-tasks.maintenance.md",
+      "contentHash": "87bd5f8c6289cdc2d471964871081bd72c0f86b9dea25ac42d2ee176eb9f1099",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 42,
+      "hasStructuralAnalysis": true
+    },
+    "user/tasks/952-inventory.index-migration.md": {
+      "filePath": "user/tasks/952-inventory.index-migration.md",
+      "contentHash": "3dd9902c1273c9b973a42017bac2dfc5b3e53dbf8de44423ea4c9c6b83f5f474",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 122,
+      "hasStructuralAnalysis": true
+    },
+    "user/tasks/953-report.index-migration.md": {
+      "filePath": "user/tasks/953-report.index-migration.md",
+      "contentHash": "175455e1520910d98a7515bc60788a6b3a774b547af73b05e9cc132e7d09f8ef",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 184,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.10] - 2026-07-05
+
+### Changed
+- Guides: aligned slice status enum in `prompt.ai-project.system.md` and `guide.ai-project.process.md` with the canonical definition in `file-naming-conventions.md`
+- Repo: added `.understand-anything/` knowledge graph artifacts and `.gitignore` rules to exclude its scratch/trash directories
+
 ## [0.15.9] - 2026-06-30
 
 ### Changed
