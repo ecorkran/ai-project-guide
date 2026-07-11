@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.11] - 2026-07-11
+
+### Changed
+- Rules: replaced `git.branch_root` with `git.integration_branch` in Branch Naming — the new key changes fork/merge topology (work forks from and merges into the integration branch, not `main`), not just the branch name prefix
+- Rules: removed the `{index}-planning.{name}` branch type; planning work (Phases 0–5) now commits directly to the current integration target instead of a dedicated planning branch
+- Repo: synced the root `CLAUDE.md` Branch Naming section with `project-guides/rules/git.md` to eliminate drift
+
 ## [0.15.10] - 2026-07-05
 
 ### Changed
