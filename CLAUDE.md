@@ -87,16 +87,16 @@ A project may configure an **optional** integration branch that work forks from 
 
 - **Unset (default):** no change from plain historical behavior. Work branches fork from `main` and merge into `main`, named exactly `{index}-{type}.{name}` — no prefix.
 - **Set** (e.g. `dev/erik`):
-  - Work branches are named `{integration_branch}/{index}-{type}.{name}` (e.g. `dev/erik/910-slice.foo`).
+  - Work branches are named the same as when unset — `{index}-{type}.{name}` (e.g. `910-slice.foo`), with no prefix.
   - Work branches fork **from** `{integration_branch}`, not `main`.
   - Work branches merge **into** `{integration_branch}`, not `main`.
   - **Hard rule: never merge to `main` when `integration_branch` is set.** Syncing `{integration_branch}` from `main`, and eventually merging `{integration_branch}` into `main`, are PM-only actions outside automation scope — never perform either as part of normal slice/planning workflow, only if the Project Manager explicitly instructs it as a standalone action.
 
-The integration branch affects the **git branch name and topology only**. It does not move documents or change where artifacts resolve — the `project-documents/user/...` layout under the branch is unchanged. The configured value is relative and contained (never absolute, never `..`, no trailing slash, no Windows drive/`\`); `cf` rejects invalid values when the key is set.
+The integration branch affects **git topology only** (fork point and merge target) — not the branch name. It does not move documents or change where artifacts resolve — the `project-documents/user/...` layout under the branch is unchanged. The configured value is relative and contained (never absolute, never `..`, no trailing slash, no Windows drive/`\`); `cf` rejects invalid values when the key is set.
 
 Before starting work on a slice, or before committing planning work:
 1. read `cf config get git.integration_branch`; call its value (or `main` if empty) the **target**
-2. for slice work, determine the branch name per the rules above, prefixed with `{integration_branch}/` if set
+2. for slice work, determine the branch name per the rules above (no prefix, regardless of target)
 3. verify you are on the target or the expected slice branch
 4. if the expected slice branch does not exist, create it from the target: `git checkout -b {branch-name} {target}`
 5. if the branch already exists, switch to it: `git checkout {branch-name}`
