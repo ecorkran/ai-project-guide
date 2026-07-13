@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.12] - 2026-07-13
+
+### Fixed
+- Rules: `git.integration_branch` no longer prefixes work branch names — branch names stay `{index}-{type}.{name}` regardless of whether the integration branch is set; only the fork point and merge target change
+- Repo: synced root `CLAUDE.md` and the submodule's own `CLAUDE.md`/`git.md` copies with the corrected Branch Naming rules, eliminating drift across the four copies
+
 ## [0.15.11] - 2026-07-11
 
 ### Changed

@@ -10,6 +10,24 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260713
+
+**Session**: Replace `git.branch_root` with `git.integration_branch` (v0.15.11)
+
+### Completed
+- Replaced `git.branch_root` (pure name-prefix) with `git.integration_branch` in `project-guides/rules/git.md` — the new key changes fork/merge topology (work forks from and merges into the integration branch, not `main`) rather than just prefixing the branch name
+- Removed the `{index}-planning.{name}` branch type entirely; planning work (Phases 0–5) now commits directly to the current integration target instead of a dedicated planning branch
+- Fixed a bullet that leaked the old prefix-naming behavior into the new rule (branch names never carry the `{integration_branch}/` prefix — only fork/merge targets change) across `project-guides/rules/git.md`, root `CLAUDE.md`, and the submodule's own copies of both
+- Synced root `CLAUDE.md` and the submodule's `project-documents/ai-project-guide/{git.md,CLAUDE.md}` to eliminate drift between the four copies
+
+### Key decisions
+- `integration_branch` is a full replacement for `branch_root`, not additive — only one config key exists going forward
+- Agents must never merge to `main` when `integration_branch` is set; syncing the integration branch from `main`, or merging it into `main`, is PM-only and outside automation scope
+- Submodule commits: since this repo is both the standalone project and (via its own submodule reference) the vendored copy consumed by other projects, fixes land as a commit in the submodule first, then a pointer-bump commit in the outer repo — kept as separate commits per PM preference
+- A submodule checkout left in detached HEAD (from a prior fetch) was reattached to `main` (`git checkout -B main`) before committing, since `origin/main` was already an ancestor of the detached commit — avoids stranding commits unreachable from any branch
+
+---
+
 ## 20260309
 
 **Session**: Slice design and implementation prompt improvements
