@@ -23,9 +23,14 @@ A project may configure an **optional** integration branch that work forks from 
 
 The integration branch affects **git topology only** (fork point and merge target) — not the branch name. It does not move documents or change where artifacts resolve — the `project-documents/user/...` layout under the branch is unchanged. The configured value is relative and contained (never absolute, never `..`, no trailing slash, no Windows drive/`\`); `cf` rejects invalid values when the key is set.
 
-Before starting work on a slice, or before committing planning work:
+Before starting work:
 1. read `cf config get git.integration_branch`; call its value (or `main` if empty) the **target**
-2. for slice work, determine the branch name per the rules above (no prefix, regardless of target)
+
+**If committing planning work (Phases 0–5):**
+2. ensure you are on the target. Do not create or switch to a work branch. Commit directly.
+
+**If starting slice implementation (Phase 6):**
+2. determine the branch name per the rules above (no prefix, regardless of target)
 3. verify you are on the target or the expected slice branch
 4. if the expected slice branch does not exist, create it from the target: `git checkout -b {branch-name} {target}`
 5. if the branch already exists, switch to it: `git checkout {branch-name}`
