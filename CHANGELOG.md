@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.13] - 2026-07-22
+
+### Fixed
+- Rules: split the "before starting work" checklist into two clearly labeled paths (planning: commit directly to the target; slice: full branch-management steps) — the merged numbering had led an agent to conclude slice-branch steps might also apply to planning work
+
+### Added
+- Tool guides: TimescaleDB guide set (overview, chunk sizing, restructuring, continuous aggregates, query discipline)
+
 ## [0.15.12] - 2026-07-13
 
 ### Fixed
