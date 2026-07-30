@@ -57,12 +57,14 @@ Use the `setup-ide` script to copy rules to your IDE:
 
 ```bash
 # From project root
-./project-documents/ai-project-guide/scripts/setup-ide cursor
-./project-documents/ai-project-guide/scripts/setup-ide windsurf
 ./project-documents/ai-project-guide/scripts/setup-ide claude
+./project-documents/ai-project-guide/scripts/setup-ide cursor
+./project-documents/ai-project-guide/scripts/setup-ide copilot
+./project-documents/ai-project-guide/scripts/setup-ide agents   # AGENTS.md only
 ```
 
-This copies `agents/` and `rules/` to your IDE's configuration directory.
+This compiles `rules/`, `agents/`, and `skills/` into the format your tool
+expects. See [readme.setup-ide.md](../readme.setup-ide.md) for details.
 
 ## For Guide Authors
 

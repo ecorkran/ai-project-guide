@@ -11,7 +11,7 @@ AI Project Guide is a structured methodology and set of guides for AI-assisted s
 - Includes guides for frameworks, tools, and coding conventions
 - Ships with rules files for Claude Code, Cursor, and other AI coding tools
 
-**Works with:** Claude Code, Cursor, Windsurf, and any AI coding tool that reads project files.
+**Works with:** Claude Code, Cursor, GitHub Copilot, OpenAI Codex, and any AI coding tool that reads project files.
 
 ## How to Use
 
@@ -50,12 +50,15 @@ After installing, generate rules files for your AI coding tool:
 
 ```bash
 # From project root
-./project-documents/ai-project-guide/scripts/setup-ide claude     # generates CLAUDE.md
-./project-documents/ai-project-guide/scripts/setup-ide cursor     # generates .cursor/ rules
-./project-documents/ai-project-guide/scripts/setup-ide windsurf   # generates .windsurf/ rules
+./project-documents/ai-project-guide/scripts/setup-ide claude    # CLAUDE.md + .claude/{rules,agents,skills}/
+./project-documents/ai-project-guide/scripts/setup-ide cursor    # .cursor/{rules,agents}/ as .mdc
+./project-documents/ai-project-guide/scripts/setup-ide copilot   # .github/ + AGENTS.md
+./project-documents/ai-project-guide/scripts/setup-ide agents    # AGENTS.md only (aliases: openai, codex)
 ```
 
-This assembles the rules from `project-guides/rules/` into the format your IDE expects. You can customize the generated files afterward — they're yours.
+This assembles the rules from `project-guides/rules/` into the format your tool expects. Always-on rules are inlined; language- and tool-specific rules stay scoped by file pattern, so a React project isn't handed the Python rules. You can customize the generated files afterward — they're yours.
+
+See [readme.setup-ide.md](readme.setup-ide.md) for what each target writes and the frontmatter contract.
 
 ### For npm/pnpm Projects
 

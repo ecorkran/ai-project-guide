@@ -12,7 +12,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.15.14] - 2026-07-29
+## [0.15.15] - 2026-07-30
+
+### Added
+- `setup-ide agents` target: writes `AGENTS.md` and nothing else — no `.github/` tree, no vendor-specific files. Aliases `openai` and `codex` normalize to it, since `AGENTS.md` is a vendor-neutral format and the target is named after the format rather than one vendor (#7)
+- `AGENTS.md` now indexes the scoped (non-`alwaysApply`) rules by path instead of omitting them. The format has no `applyTo`/`paths` scoping mechanism, so inlining them would put Python rules in front of a React project; the index points at the paths they already occupy in the consuming repo, for the agent to read on demand
+- `AGENTS.md` now opens with a `# Project Guidelines` heading, matching `CLAUDE.md`'s structure
+
+### Changed
+- Extracted `compile_copilot_always_on` into a vendor-neutral `compile_always_on_rules`, now shared by the `copilot` and `agents` targets. `.github/copilot-instructions.md` output is byte-identical to before; `AGENTS.md` is no longer a blind `cp` of it
+
+### Fixed
+- Docs: removed the `windsurf` target from `readme.md`, `project-guides/readme.md`, and `snippets/npm-scripts.ai-support.json.md`. The target was removed from the script some time ago, so all three were documenting a command that exits non-zero
+- Docs: rewrote `readme.setup-ide.md`, which documented only `cursor`/`windsurf`, described the frontmatter contract as `globs:` (sources use `paths:`), and listed a stale rules inventory. Now covers all four targets, what each writes, and the real frontmatter translation per target
 
 ### Fixed
 - `scripts/setup-ide`: replaced all nine `((var++))` increments with `var=$((var + 1))`. Under `set -e`, `((var++))` exits non-zero when the pre-increment value is `0`, so the script aborted silently on the first counted file — modular rule copying stopped after `dart.md` (the first non-`alwaysApply` rule alphabetically), and agents, skills, and the completion notes were skipped entirely. `cf setup-ide` surfaced this only as a bare non-zero exit with no output. Affected every project running `cf init` (squadron issue #46)

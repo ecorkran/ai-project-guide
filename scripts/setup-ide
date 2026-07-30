@@ -77,15 +77,18 @@ check_directory() {
 show_usage() {
     echo "Usage: $0 <ide>"
     echo ""
-    echo "Supported IDEs:"
+    echo "Supported targets:"
     echo "  cursor    - Copy rules to .cursor/rules/ (renames .md to .mdc, converts paths to globs)"
     echo "  claude    - Embed alwaysApply rules in CLAUDE.md, copy others to .claude/rules/"
-    echo "  copilot   - Compile rules/skills to .github/ for VS Code Copilot"
+    echo "  copilot   - Compile rules/skills to .github/ for VS Code Copilot (also writes AGENTS.md)"
+    echo "  agents    - Write AGENTS.md only, with no vendor-specific files"
+    echo "              aliases: openai, codex"
     echo ""
     echo "Examples:"
     echo "  $0 cursor"
     echo "  $0 claude"
     echo "  $0 copilot"
+    echo "  $0 agents"
     echo ""
     echo "This script copies AI project rules from project-guides/ to your IDE's"
     echo "configuration directory and validates frontmatter requirements."
@@ -512,23 +515,29 @@ get_frontmatter_field() {
     ' "$file"
 }
 
-# Compile alwaysApply rules into .github/copilot-instructions.md and AGENTS.md.
-compile_copilot_always_on() {
+# Compile alwaysApply rules into a single always-on instructions file.
+# Vendor-neutral: used for both .github/copilot-instructions.md and AGENTS.md.
+# Args: source_dir, out_file, artifact_label, [h1_title]
+# Emits an "# <h1_title>" heading only when h1_title is non-empty.
+compile_always_on_rules() {
     local source_dir=$1
-    local target_root=$2
+    local out_file=$2
+    local artifact_label=$3
+    local h1_title=$4
 
     if [ ! -d "$source_dir" ]; then
         print_status $RED "❌ Source directory not found: $source_dir"
         return 1
     fi
 
-    local out_file="$target_root/.github/copilot-instructions.md"
-    local agents_file="$target_root/AGENTS.md"
+    mkdir -p "$(dirname "$out_file")"
 
-    mkdir -p "$target_root/.github"
-
-    # Write managed marker + compiled alwaysApply content
+    # Write optional H1 + managed marker, then compiled alwaysApply content
     {
+        if [ -n "$h1_title" ]; then
+            echo "# $h1_title"
+            echo ""
+        fi
         echo "$COPILOT_MANAGED_MARKER"
         echo ""
     } > "$out_file"
@@ -579,14 +588,96 @@ compile_copilot_always_on() {
         ' "$file" >> "$out_file"
 
         echo "" >> "$out_file"
-        print_status $GREEN "✅ Embedded $(basename "$filename" .md) in copilot-instructions.md"
+        print_status $GREEN "✅ Embedded $(basename "$filename" .md) in $artifact_label"
         compiled_count=$((compiled_count + 1))
     done
 
-    # Mirror to AGENTS.md
-    cp "$out_file" "$agents_file"
+    print_status $BLUE "📋 Compiled $compiled_count alwaysApply rules → $artifact_label"
+}
 
-    print_status $BLUE "📋 Compiled $compiled_count alwaysApply rules → .github/copilot-instructions.md + AGENTS.md"
+# Path to the rules directory, relative to the project root when it lives under
+# it (the normal submodule layout); absolute otherwise. Used for AGENTS.md links.
+rules_dir_display_path() {
+    local abs
+    abs="$(cd "$RULES_SOURCE_DIR" && pwd)"
+    printf '%s\n' "${abs#"$TARGET_ROOT"/}"
+}
+
+# Emit AGENTS.md: always-on rules inline, plus an index of the scoped rules.
+#
+# Scoped rules are NOT inlined. There is no applyTo/paths mechanism in the
+# AGENTS.md format to scope them back down, so inlining would put Python rules
+# in front of a React project. They are instead listed with the paths they
+# already occupy in the consuming repo, for the agent to read on demand.
+emit_agents_md() {
+    local source_dir=$1
+    local target_root=$2
+
+    local out_file="$target_root/AGENTS.md"
+
+    compile_always_on_rules "$source_dir" "$out_file" "AGENTS.md" "Project Guidelines" || return 1
+
+    local rules_path
+    rules_path=$(rules_dir_display_path)
+
+    local scoped_count=0
+    local index_body=""
+
+    for file in "$source_dir"/*.md; do
+        [ -f "$file" ] || continue
+        has_always_apply "$file" && continue
+
+        local filename
+        filename=$(basename "$file")
+
+        local description
+        description=$(get_frontmatter_field "$file" "description")
+
+        local apply_to
+        apply_to=$(get_apply_to "$file")
+
+        index_body+="- \`$rules_path/$filename\`"
+        [ -n "$description" ] && index_body+=" — $description"
+        index_body+=$'\n'
+        index_body+="  Applies to: \`$apply_to\`"$'\n'
+
+        scoped_count=$((scoped_count + 1))
+    done
+
+    if [ $scoped_count -gt 0 ]; then
+        {
+            echo "## Additional Rules"
+            echo ""
+            echo "The rules above always apply. The following are scoped to specific"
+            echo "languages and tools and are deliberately not inlined here — read the"
+            echo "relevant file when working in that area:"
+            echo ""
+            printf '%s' "$index_body"
+        } >> "$out_file"
+        print_status $GREEN "✅ Indexed $scoped_count scoped rules in AGENTS.md"
+    fi
+}
+
+# Run AGENTS.md-only setup (OpenAI Codex and other AGENTS.md consumers).
+setup_agents() {
+    print_status $BLUE "🚀 Setting up AGENTS.md..."
+    echo ""
+
+    if [ ! -d "$RULES_SOURCE_DIR" ]; then
+        print_status $RED "❌ Error: Rules source directory not found: $RULES_SOURCE_DIR"
+        print_status $YELLOW "💡 Make sure you're running this from a project that includes ai-project-guide"
+        exit 1
+    fi
+
+    emit_agents_md "$RULES_SOURCE_DIR" "$TARGET_ROOT"
+    echo ""
+
+    print_status $GREEN "✅ Setup complete for AGENTS.md!"
+    echo ""
+    print_status $BLUE "💡 AGENTS.md setup notes:"
+    echo "   • AGENTS.md contains always-on rules, read by Codex and other AGENTS.md tools"
+    echo "   • Scoped language/tool rules are indexed by path, not inlined"
+    echo "   • No vendor-specific files were created"
 }
 
 # Emit scoped (non-alwaysApply) rules as .github/instructions/*.instructions.md.
@@ -735,8 +826,13 @@ setup_copilot() {
         exit 1
     fi
 
-    # Always-on rules → .github/copilot-instructions.md + AGENTS.md
-    compile_copilot_always_on "$RULES_SOURCE_DIR" "$TARGET_ROOT"
+    # Always-on rules → .github/copilot-instructions.md
+    compile_always_on_rules "$RULES_SOURCE_DIR" \
+        "$TARGET_ROOT/.github/copilot-instructions.md" "copilot-instructions.md" ""
+    echo ""
+
+    # AGENTS.md for cross-tool compatibility (same artifact the agents target emits)
+    emit_agents_md "$RULES_SOURCE_DIR" "$TARGET_ROOT"
     echo ""
 
     # Scoped rules → .github/instructions/
@@ -778,17 +874,31 @@ main() {
     # Check if we're in the right directory
     check_directory "$1"
     
-    # Validate IDE parameter
+    # Normalize aliases: AGENTS.md is a vendor-neutral format, so the vendor
+    # names are aliases of the format-named target rather than targets of their own.
     case "$ide" in
-        cursor|claude|copilot)
+        openai|codex)
+            ide="agents"
+            ;;
+    esac
+
+    # Validate target parameter
+    case "$ide" in
+        cursor|claude|copilot|agents)
             ;;
         *)
-            print_status $RED "❌ Error: Unsupported IDE '$1'"
+            print_status $RED "❌ Error: Unsupported target '$1'"
             echo ""
             show_usage
             exit 1
             ;;
     esac
+
+    # Handle AGENTS.md-only
+    if [ "$ide" = "agents" ]; then
+        setup_agents
+        return 0
+    fi
 
     # Handle Copilot
     if [ "$ide" = "copilot" ]; then

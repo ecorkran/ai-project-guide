@@ -1,196 +1,127 @@
 ---
 docType: guide
 scope: project-wide
-audience: [human]
-description: IDE setup instructions for Cursor, Windsurf, and Claude Code
+audience: [human, ai]
+description: setup-ide reference — supported targets, what each writes, and how to run it
 ---
 
-# IDE Setup Guide
+# setup-ide
 
-This guide explains how to set up AI project rules in your IDE (Cursor or Windsurf) for enhanced AI assistance.
+`setup-ide` compiles the rules in `project-guides/rules/` into whatever format
+your AI tool reads. One source of rules, several output formats.
 
-**Path Convention:** In this guide, `ai-project-guide/` refers to `{project-root}/project-documents/ai-project-guide/`.
+**Path convention:** `ai-project-guide/` below means
+`{project-root}/project-documents/ai-project-guide/`.
 
-## Quick Setup (Recommended)
+## Install and run
 
-Use the automated setup script from your project root:
+Requires ai-project-guide present at `project-documents/ai-project-guide`
+(normally a git submodule). Run from your project root:
 
 ```bash
-# For Cursor IDE
-./project-documents/ai-project-guide/scripts/setup-ide cursor
-
-# For Windsurf IDE
-./project-documents/ai-project-guide/scripts/setup-ide windsurf
+./project-documents/ai-project-guide/scripts/setup-ide <target>
 ```
 
-The script will:
-- Copy all rule files to the appropriate IDE directory
-- Rename `.md` files to `.mdc` for Cursor compatibility
-- Validate frontmatter requirements
-- Provide setup confirmation and next steps
+If you use context-forge, `cf setup-ide <target>` wraps this and adds
+CLAUDE.md backup handling and worktree propagation.
 
-## Manual Setup (Alternative)
+Output paths are always resolved from the **project root** — the directory
+containing `project-documents/` — so running from a subdirectory is safe.
 
-If you prefer manual setup or need to troubleshoot the automated process:
+## Supported targets
 
-### For Cursor IDE
+| Target | Writes | Use for |
+|---|---|---|
+| `claude` | `CLAUDE.md`, `.claude/rules/`, `.claude/agents/`, `.claude/skills/` | Claude Code |
+| `cursor` | `.cursor/rules/*.mdc`, `.cursor/agents/*.mdc` | Cursor |
+| `copilot` | `.github/copilot-instructions.md`, `.github/instructions/`, `.github/prompts/`, `AGENTS.md` | VS Code Copilot |
+| `agents` | `AGENTS.md` only | Codex and other AGENTS.md readers |
 
-1. **Create the rules directory:**
-   ```bash
-   mkdir -p .cursor/rules
-   ```
+`openai` and `codex` are aliases for `agents`. `AGENTS.md` is a vendor-neutral
+format, so the target is named after the format rather than after one vendor.
 
-2. **Copy rule files:**
-   ```bash
-   cp project-documents/ai-project-guide/project-guides/rules/*.md .cursor/rules/
-   cp project-documents/ai-project-guide/project-guides/agents/*.md .cursor/rules/
-   ```
+Any other value exits non-zero with usage. **`windsurf` is no longer
+supported** — it was removed from the script but lingered in this document.
 
-3. **Rename files to .mdc extension:**
-   ```bash
-   cd .cursor/rules
-   for file in *.md; do
-       mv "$file" "${file%.md}.mdc"
-   done
-   ```
+## What each target does
 
-4. **Verify frontmatter** (required for Cursor):
-   Each `.mdc` file must start with YAML frontmatter:
-   ```yaml
-   ---
-   description: Brief description of what this rule does
-   globs: ["**/*.ext", "pattern/**/*"]
-   alwaysApply: false
-   ---
-   ```
+**`claude`** — splits rules by `alwaysApply`. Rules with `alwaysApply: true`
+(`general`, `git`) are inlined into `CLAUDE.md`; the other eight are copied to
+`.claude/rules/` retaining their `paths:` frontmatter. Agents are copied
+verbatim. Skills in directory form (`skill-name/SKILL.md`) are copied to
+`.claude/skills/`.
 
-5. **Restart Cursor** to load the new rules.
+**`cursor`** — copies every rule to `.cursor/rules/` renamed `.md` → `.mdc`,
+translating `paths:` to Cursor's comma-separated `globs:`. `alwaysApply: true`
+passes through unchanged; Cursor honors it natively. Agents go to
+`.cursor/agents/` as `.mdc`.
 
-### For Windsurf IDE
+**`copilot`** — always-on rules compile to `.github/copilot-instructions.md`.
+Scoped rules become `.github/instructions/*.instructions.md` with `paths:`
+translated to `applyTo:`. Skills become `.github/prompts/*.prompt.md`. Also
+writes `AGENTS.md`.
 
-1. **Create the rules directory:**
-   ```bash
-   mkdir -p .windsurf/rules
-   ```
+**`agents`** — writes `AGENTS.md` and nothing else: no `.github/`, no
+vendor-specific files. Always-on rules are inlined. Scoped rules are **not**
+inlined — the AGENTS.md format has no path-scoping mechanism, so inlining would
+put Python rules in front of a React project. They are instead indexed by path,
+for the agent to read on demand.
 
-2. **Copy rule files** (keep .md extension):
-   ```bash
-   cp project-documents/ai-project-guide/project-guides/rules/*.md .windsurf/rules/
-   cp project-documents/ai-project-guide/project-guides/agents/*.md .windsurf/rules/
-   ```
+## Rules inventory
 
-3. **Verify frontmatter** (recommended):
-   Each `.md` file should have YAML frontmatter for best compatibility:
-   ```yaml
-   ---
-   description: Brief description of what this rule does
-   globs: ["**/*.ext", "pattern/**/*"]
-   alwaysApply: false
-   ---
-   ```
+`project-guides/rules/` — always-on rules apply everywhere; scoped rules attach
+by file pattern.
 
-4. **Restart Windsurf** to load the new rules.
+| Rule | Scope |
+|---|---|
+| `general.md` | **always on** — core conventions |
+| `git.md` | **always on** — commits, branches, integration branch |
+| `dart.md` | `**/*.dart`, `**/pubspec.yaml` |
+| `electron.md` | `electron/**`, `src/preload/**`, build configs |
+| `flutter.md` | `**/*.dart`, `**/pubspec.yaml`, `android/**`, `ios/**` |
+| `python.md` | `**/*.py`, `**/pyproject.toml`, `**/requirements*.txt` |
+| `react.md` | React/JSX sources |
+| `sql.md` | SQL, PostgreSQL, pgvector, TimescaleDB |
+| `testing.md` | test sources |
+| `typescript.md` | TypeScript sources |
 
-## Available Rules
+Agents: `code-review-agent.md`, `task-checker.md`, `tester.md`.
+Skills: `analyze/`, `review.md`, `ui-development.md`.
 
-### Core Rules (`ai-project-guide/project-guides/rules/`)
-- **general.md** - General coding rules and project structure guidelines
-- **electron.md** - Electron UI rules
-- **git.md** - rules for working with git
-- **react.md** - React and Next.js component rules and best practices
-- **typescript.md** - TypeScript syntax rules and typing standards
-- **python.md** - Python development rules and best practices
-- **sql.md** - SQL and PostgreSQL development rules (including pgvector, TimescaleDB)
-- **testing.md** - Testing guidelines and development tools
-- **review.md** - Comprehensive code review guidelines
+## Frontmatter contract
 
-### Agent Configurations (`project-guides/agents/`)
-- **code-review-agent.md** - Automated code review agent configuration
+Source rules use `paths:` as a YAML list. Each target translates it — you do
+not hand-write per-vendor frontmatter.
 
-## Frontmatter Requirements
-
-All rule files include YAML frontmatter with three key fields:
-
-- **description**: Brief explanation of when/how to use this rule
-- **globs**: Array of file patterns that trigger this rule
-- **alwaysApply**: Boolean (usually `false` for selective application)
-
-### Example Frontmatter:
 ```yaml
 ---
-description: React and Next.js component rules, naming conventions, and best practices
-globs: ["**/*.tsx", "**/*.jsx", "**/*.ts", "**/*.js", "src/components/**/*", "app/**/*"]
+name: python-rules
+description: When to apply this rule.
+paths:
+  - "**/*.py"
+  - "**/pyproject.toml"
 alwaysApply: false
 ---
 ```
 
-## IDE-Specific Notes
+- `description` — when to apply the rule; carried into every target
+- `paths` — becomes Cursor `globs:`, Copilot `applyTo:`, retained as-is for Claude
+- `alwaysApply` — `true` means inline into the always-on file (`CLAUDE.md`,
+  `copilot-instructions.md`, `AGENTS.md`) rather than emit a scoped file
+- `name` — stripped from Claude and Cursor output; used as Copilot `name:`
 
-### Cursor IDE
-- Requires `.mdc` file extension for project rules
-- Frontmatter is mandatory for proper rule loading
-- Rules appear in the Agent sidebar when active
-- Access via Settings → Rules to manage rule types
-
-### Windsurf IDE
-- Uses `.md` file extension
-- Frontmatter recommended but not strictly required
-- Rules integrate with Windsurf's AI assistance features
+Generated always-on files carry `[//]: # (context-forge:managed)` so tooling can
+recognize them as regenerable. Re-running a target overwrites its own outputs.
 
 ## Troubleshooting
 
-### Rules Not Loading
-1. **Check file location**: Ensure files are in `.cursor/rules/` or `.windsurf/rules/`
-2. **Verify extensions**: `.mdc` for Cursor, `.md` for Windsurf
-3. **Validate frontmatter**: Ensure proper YAML syntax
-4. **Restart IDE**: Rules are loaded at startup
-
-### Frontmatter Validation Errors
-```yaml
-# ❌ Invalid (missing quotes around globs)
-globs: [**/*.ts]
-
-# ✅ Valid (properly quoted)
-globs: ["**/*.ts"]
-```
-
-### Script Permission Issues
+**Permission denied**
 ```bash
-# Make script executable
 chmod +x project-documents/ai-project-guide/scripts/setup-ide
 ```
 
-## Advanced Configuration
+**Rules not loading** — restart the IDE; rules load at startup. For Cursor,
+confirm files are `.mdc` in `.cursor/rules/` with intact frontmatter.
 
-### Custom Rule Types (Cursor)
-Rules can be configured as:
-- **Always**: Always included in context
-- **Auto Attached**: Triggered by file patterns
-- **Agent Requested**: AI decides when to include
-- **Manual**: Only when explicitly referenced
-
-### Rule Scoping
-Use glob patterns to target specific files:
-```yaml
-# Target React components
-globs: ["src/components/**/*.tsx"]
-
-# Target test files
-globs: ["**/*.test.*", "**/*.spec.*"]
-
-# Target everything
-globs: ["**/*"]
-```
-
-## Integration with AI Project Methodology
-
-These rules are designed to work with the 6-phase AI project methodology:
-
-1. **Concept** - General and review rules provide structure
-2. **Specification** - TypeScript and React rules ensure consistency  
-3. **Task Breakdown** - All rules help AI understand project patterns
-4. **Task Expansion** - Specific rules guide detailed implementation
-5. **Execution** - Rules provide real-time guidance during coding
-6. **Iteration** - Review rules support continuous improvement
-
-For more information, see the main project guides in `project-guides/`. 
+**Wrong output location** — the script walks up for `project-documents/`. If it
+reports an unexpected project root, you are outside the intended tree.
