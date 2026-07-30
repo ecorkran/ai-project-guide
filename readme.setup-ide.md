@@ -86,7 +86,11 @@ by file pattern.
 | `typescript.md` | TypeScript sources |
 
 Agents: `code-review-agent.md`, `task-checker.md`, `tester.md`.
-Skills: `analyze/`, `review.md`, `ui-development.md`.
+
+Skills: `analyze/`. A skill must be a **directory containing `SKILL.md`** —
+Claude Code will not load a flat `.md` file, so `setup-ide claude` warns and
+skips one rather than dropping it silently. The `cursor` target does not install
+skills; Cursor has no equivalent concept.
 
 ## Frontmatter contract
 

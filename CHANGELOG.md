@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.16] - 2026-07-30
+
+### Removed
+- `project-guides/skills/review.md`: its 12 checklist categories duplicated the Code Review Questionnaire in `guide.ai-project.090-code-review.md` verbatim, and its file-naming section had drifted from the canonical spec — it taught `nnn-review.{name}.md` where `file-naming-conventions.md` defines `nnn-review.{template}.{slice-name}.md`. Had zero inbound references, and was frontmattered `name: review-rules` (a rules file misfiled as a skill). Structured review now lives in squadron and in Claude Code's built-in review commands
+- `project-guides/skills/ui-development.md`: a lossy 29-line restatement of `guide.ui-development.ai.md`, which is the copy actually referenced from the process guide. Zero inbound references, and frontmattered `layer: rules` — also misfiled as a skill. Its accessibility guidance was grafted into the guide first, since the guide lacked it
+
+### Fixed
+- `copy_skills` now warns when it encounters a flat `.md` in `skills/`. Claude Code requires `<name>/SKILL.md`, so the directory-only glob silently dropped flat files from Claude installs — `review.md` and `ui-development.md` reached Copilot as prompts but never reached Claude, with no indication either was skipped
+- `guide.ui-development.ai.md`: replaced Obsidian `![[...]]` embeds with standard markdown image links, so the two mockup figures render on GitHub and in any markdown viewer rather than only in Obsidian. Renamed the images from `Pasted image <timestamp>.png` to descriptive names and added substantive alt text
+
 ## [0.15.15] - 2026-07-30
 
 ### Added
@@ -25,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Docs: removed the `windsurf` target from `readme.md`, `project-guides/readme.md`, and `snippets/npm-scripts.ai-support.json.md`. The target was removed from the script some time ago, so all three were documenting a command that exits non-zero
 - Docs: rewrote `readme.setup-ide.md`, which documented only `cursor`/`windsurf`, described the frontmatter contract as `globs:` (sources use `paths:`), and listed a stale rules inventory. Now covers all four targets, what each writes, and the real frontmatter translation per target
+
+## [0.15.14] - 2026-07-29
 
 ### Fixed
 - `scripts/setup-ide`: replaced all nine `((var++))` increments with `var=$((var + 1))`. Under `set -e`, `((var++))` exits non-zero when the pre-increment value is `0`, so the script aborted silently on the first counted file — modular rule copying stopped after `dart.md` (the first non-`alwaysApply` rule alphabetically), and agents, skills, and the completion notes were skipped entirely. `cf setup-ide` surfaced this only as a bare non-zero exit with no output. Affected every project running `cf init` (squadron issue #46)

@@ -260,6 +260,14 @@ copy_skills() {
         copied_count=$((copied_count + 1))
     done
 
+    # Claude Code requires each skill to be a directory containing SKILL.md, so
+    # the loop above only matches directories. Warn about any flat .md file
+    # rather than letting it vanish from the Claude install without a trace.
+    for stray in "$source_dir"/*.md; do
+        [ -f "$stray" ] || continue
+        print_status $YELLOW "⚠️  Not a Claude skill: $(basename "$stray") — skills must be a directory containing SKILL.md"
+    done
+
     if [ $copied_count -gt 0 ]; then
         print_status $BLUE "📋 Copied $copied_count skill(s) to .claude/skills/"
     fi
