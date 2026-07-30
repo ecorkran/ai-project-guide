@@ -115,7 +115,7 @@ for file in "${FILES_TO_UPDATE[@]}"; do
     # Check if file actually changed
     if ! cmp -s "$file" "$file.bak"; then
         print_success "Updated: $file"
-        ((UPDATED_COUNT++))
+        UPDATED_COUNT=$((UPDATED_COUNT + 1))
     fi
 
     # Remove backup

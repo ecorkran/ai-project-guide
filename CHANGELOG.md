@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.14] - 2026-07-29
+
+### Fixed
+- `scripts/setup-ide`: replaced all nine `((var++))` increments with `var=$((var + 1))`. Under `set -e`, `((var++))` exits non-zero when the pre-increment value is `0`, so the script aborted silently on the first counted file — modular rule copying stopped after `dart.md` (the first non-`alwaysApply` rule alphabetically), and agents, skills, and the completion notes were skipped entirely. `cf setup-ide` surfaced this only as a bare non-zero exit with no output. Affected every project running `cf init` (squadron issue #46)
+- `scripts/setup-ide`: `copy_skills` now uses `cp -R` and skips empty skill directories explicitly, instead of a `2>/dev/null`-suppressed `cp` that would abort the script under `set -e` for an empty skill directory or any skill containing a subdirectory
+- `scripts/rename-private-to-user-in-repo.sh`: same `((UPDATED_COUNT++))` / `set -e` abort on the first updated file
+
 ## [0.15.13] - 2026-07-22
 
 ### Fixed

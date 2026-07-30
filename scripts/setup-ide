@@ -219,7 +219,7 @@ copy_files() {
 
         cp "$file" "$target_dir/$target_filename"
         print_status $GREEN "✅ Copied $filename → $target_filename"
-        ((copied_count++))
+        copied_count=$((copied_count + 1))
     done
 
     print_status $BLUE "📋 Copied $copied_count $file_type files"
@@ -244,10 +244,17 @@ copy_skills() {
         local skill_name=$(basename "$skill_dir")
         local target_skill_dir="$target_dir/$skill_name"
 
+        # Skip empty skill dirs explicitly: an unmatched glob would reach cp,
+        # fail, and abort the whole script under set -e.
+        if ! compgen -G "$skill_dir*" > /dev/null; then
+            print_status $YELLOW "⚠️  Skipping empty skill directory: $skill_name"
+            continue
+        fi
+
         mkdir -p "$target_skill_dir"
-        cp "$skill_dir"* "$target_skill_dir/" 2>/dev/null
+        cp -R "$skill_dir"* "$target_skill_dir/"
         print_status $GREEN "✅ Copied skill: $skill_name"
-        ((copied_count++))
+        copied_count=$((copied_count + 1))
     done
 
     if [ $copied_count -gt 0 ]; then
@@ -282,10 +289,10 @@ copy_cursor_rules() {
         print_status $GREEN "✅ Converted $filename → $target_filename"
 
         if ! validate_frontmatter "$target_path"; then
-            ((warning_count++))
+            warning_count=$((warning_count + 1))
         fi
 
-        ((copied_count++))
+        copied_count=$((copied_count + 1))
     done
 
     print_status $BLUE "📋 Converted $copied_count rule files for Cursor"
@@ -381,7 +388,7 @@ EOF
 
         echo "" >> "$target_file"
         print_status $GREEN "✅ Embedded $(basename "$filename" .md) rules in CLAUDE.md"
-        ((compiled_count++))
+        compiled_count=$((compiled_count + 1))
     done
 
     print_status $BLUE "📋 Embedded $compiled_count alwaysApply rules in CLAUDE.md"
@@ -434,7 +441,7 @@ copy_claude_modular_rules() {
         local filename=$(basename "$file")
         strip_name_field "$file" "$target_dir/$filename"
         print_status $GREEN "✅ Copied $filename → .claude/rules/$filename"
-        ((copied_count++))
+        copied_count=$((copied_count + 1))
     done
 
     print_status $BLUE "📋 Copied $copied_count modular rules to .claude/rules/"
@@ -573,7 +580,7 @@ compile_copilot_always_on() {
 
         echo "" >> "$out_file"
         print_status $GREEN "✅ Embedded $(basename "$filename" .md) in copilot-instructions.md"
-        ((compiled_count++))
+        compiled_count=$((compiled_count + 1))
     done
 
     # Mirror to AGENTS.md
@@ -638,7 +645,7 @@ emit_copilot_instruction_files() {
         } > "$out_file"
 
         print_status $GREEN "✅ $filename → .github/instructions/${stem}.instructions.md (applyTo: $apply_to)"
-        ((copied_count++))
+        copied_count=$((copied_count + 1))
     done
 
     print_status $BLUE "📋 Emitted $copied_count scoped rule files to .github/instructions/"
@@ -709,7 +716,7 @@ emit_copilot_prompt_files() {
         } > "$out_file"
 
         print_status $GREEN "✅ $stem → .github/prompts/${stem}.prompt.md"
-        ((copied_count++))
+        copied_count=$((copied_count + 1))
     done
 
     if [ $copied_count -gt 0 ]; then
