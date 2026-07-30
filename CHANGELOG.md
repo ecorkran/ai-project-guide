@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.16.1] - 2026-07-30
+
+### Fixed
+- Rules: `general.md` Project Navigation now points modular rules at `project-documents/ai-project-guide/project-guides/rules/`, the path that resolves in an installed project. The bare `project-guides/rules/` resolved only inside this repository, so every consumer carried a broken cross-reference — while the two neighboring lines in the same section already used the installed path. No functional impact: every target delivers scoped rules through a mechanism that does not consult this line (`.claude/rules/`, `.github/instructions/` with `applyTo:`, the `AGENTS.md` index, or Cursor `globs:`), so the line was a redundant cross-reference rather than a load path
+
+### Added
+- `readme.md`: "Working inside this repository" section for contributors. Guide paths are written for the installed layout, so working in this repo directly requires stripping the `project-documents/ai-project-guide/` prefix; includes a mapping table and a reminder that rules are edited at `project-guides/rules/` while `setup-ide` compiles the generated artifacts
+
 ## [0.16.0] - 2026-07-30
 
 Official OpenAI Codex support via a vendor-neutral `AGENTS.md` target, plus a

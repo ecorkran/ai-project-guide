@@ -170,6 +170,18 @@ Issues and pull requests are welcome at [github.com/ecorkran/ai-project-guide](h
 
 If you're using ai-project-guide and found it useful enough to contribute or report an issue, thank you.
 
+### Working inside this repository
+
+Paths written *inside* the guides assume the installed layout — the guide living at `project-documents/ai-project-guide/` of a consuming project, which is how nearly all usage happens. When working in this repository directly those paths are shifted up:
+
+| Written in the guides | Here in this repo |
+|---|---|
+| `project-documents/ai-project-guide/project-guides/` | `project-guides/` |
+| `project-documents/ai-project-guide/project-guides/rules/` | `project-guides/rules/` |
+| `project-documents/ai-project-guide/tool-guides/` | `tool-guides/` |
+
+Strip the `project-documents/ai-project-guide/` prefix and the path resolves. Rules are edited at `project-guides/rules/`; `setup-ide` compiles them into the generated artifacts (`CLAUDE.md`, `AGENTS.md`, `.claude/rules/`, etc.), so edit the source, never the generated copy.
+
 
 ## License
 

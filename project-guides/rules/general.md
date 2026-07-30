@@ -66,7 +66,7 @@ hallucination trap.
 - Project guides: `project-documents/ai-project-guide/project-guides/`
 - Tool guides: `project-documents/ai-project-guide/tool-guides/`
 - Modular rules for specific technologies may exist in 
-  `project-guides/rules/`.
+  `project-documents/ai-project-guide/project-guides/rules/`.
 
 ### Document Conventions
 
