@@ -260,16 +260,17 @@ copy_skills() {
         copied_count=$((copied_count + 1))
     done
 
-    # Claude Code requires each skill to be a directory containing SKILL.md, so
-    # the loop above only matches directories. Warn about any flat .md file
-    # rather than letting it vanish from the Claude install without a trace.
+    # The skills standard requires each skill to be a directory containing
+    # SKILL.md, so the loop above only matches directories. Warn about any flat
+    # .md file rather than letting it vanish from the install without a trace.
     for stray in "$source_dir"/*.md; do
         [ -f "$stray" ] || continue
-        print_status $YELLOW "⚠️  Not a Claude skill: $(basename "$stray") — skills must be a directory containing SKILL.md"
+        print_status $YELLOW "⚠️  Not a skill: $(basename "$stray") — skills must be a directory containing SKILL.md"
     done
 
     if [ $copied_count -gt 0 ]; then
-        print_status $BLUE "📋 Copied $copied_count skill(s) to .claude/skills/"
+        local display_dir="${target_dir#"$TARGET_ROOT"/}"
+        print_status $BLUE "📋 Copied $copied_count skill(s) to $display_dir/"
     fi
 }
 
@@ -680,12 +681,26 @@ setup_agents() {
     emit_agents_md "$RULES_SOURCE_DIR" "$TARGET_ROOT"
     echo ""
 
+    # Copy skills if directory exists — the source layout (<name>/SKILL.md)
+    # matches the destination, so copy_skills needs no translation here.
+    if [ -d "$SKILLS_SOURCE_DIR" ]; then
+        local agents_skills_dir="$TARGET_ROOT/.agents/skills"
+        mkdir -p "$agents_skills_dir"
+        print_status $BLUE "⚡ Copying skill files..."
+        copy_skills "$SKILLS_SOURCE_DIR" "$agents_skills_dir"
+        echo ""
+    fi
+
     print_status $GREEN "✅ Setup complete for AGENTS.md!"
     echo ""
     print_status $BLUE "💡 AGENTS.md setup notes:"
     echo "   • AGENTS.md contains always-on rules, read by Codex and other AGENTS.md tools"
     echo "   • Scoped language/tool rules are indexed by path, not inlined"
-    echo "   • No vendor-specific files were created"
+    if [ -d "$SKILLS_SOURCE_DIR" ]; then
+        echo "   • Skills copied to .agents/skills/"
+    else
+        echo "   • No vendor-specific files were created"
+    fi
 }
 
 # Emit scoped (non-alwaysApply) rules as .github/instructions/*.instructions.md.
