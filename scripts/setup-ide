@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 
 # Script configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-COPILOT_MANAGED_MARKER='[//]: # (context-forge:managed)'
+MANAGED_MARKER='[//]: # (context-forge:managed)'
 
 # Find the actual project root by looking for project-documents directory
 find_project_root() {
@@ -547,7 +547,7 @@ compile_always_on_rules() {
             echo "# $h1_title"
             echo ""
         fi
-        echo "$COPILOT_MANAGED_MARKER"
+        echo "$MANAGED_MARKER"
         echo ""
     } > "$out_file"
 
@@ -612,19 +612,31 @@ rules_dir_display_path() {
     printf '%s\n' "${abs#"$TARGET_ROOT"/}"
 }
 
-# Emit AGENTS.md: always-on rules inline, plus an index of the scoped rules.
+# Emit AGENTS.md: always-on rules inline, plus — when include_scoped_index is
+# "true" — an index of the scoped rules.
 #
-# Scoped rules are NOT inlined. There is no applyTo/paths mechanism in the
-# AGENTS.md format to scope them back down, so inlining would put Python rules
-# in front of a React project. They are instead listed with the paths they
-# already occupy in the consuming repo, for the agent to read on demand.
+# The index exists because there is no applyTo/paths mechanism in the AGENTS.md
+# format to scope rules back down, so inlining them would put Python rules in
+# front of a React project; they are instead listed with the paths they already
+# occupy, for the agent to read on demand. That reasoning only holds for a
+# target with no scoped-rule surface of its own. copilot (.github/instructions/
+# *.instructions.md, applyTo) and cursor (.cursor/rules/*.mdc, globs) already
+# deliver scoped rules with working scoping, so they pass include_scoped_index
+# false — a third, weaker copy pointing at source paths would add nothing.
+#
+# Args: source_dir, target_root, include_scoped_index ("true" or "false")
 emit_agents_md() {
     local source_dir=$1
     local target_root=$2
+    local include_scoped_index=$3
 
     local out_file="$target_root/AGENTS.md"
 
     compile_always_on_rules "$source_dir" "$out_file" "AGENTS.md" "Project Guidelines" || return 1
+
+    if [ "$include_scoped_index" != "true" ]; then
+        return 0
+    fi
 
     local rules_path
     rules_path=$(rules_dir_display_path)
@@ -678,7 +690,9 @@ setup_agents() {
         exit 1
     fi
 
-    emit_agents_md "$RULES_SOURCE_DIR" "$TARGET_ROOT"
+    # true: the agents target emits no scoped-rule files of its own, so the
+    # scoped index in AGENTS.md is the only place those rules are discoverable.
+    emit_agents_md "$RULES_SOURCE_DIR" "$TARGET_ROOT" true
     echo ""
 
     # Copy skills if directory exists — the source layout (<name>/SKILL.md)
@@ -744,7 +758,7 @@ emit_copilot_instruction_files() {
             [ -n "$description" ] && echo "description: $description"
             echo "applyTo: \"$apply_to\""
             echo "---"
-            echo "$COPILOT_MANAGED_MARKER"
+            echo "$MANAGED_MARKER"
             echo ""
             # Extract body after frontmatter
             awk '
@@ -816,7 +830,7 @@ emit_copilot_prompt_files() {
             echo "name: $name"
             [ -n "$description" ] && echo "description: $description"
             echo "---"
-            echo "$COPILOT_MANAGED_MARKER"
+            echo "$MANAGED_MARKER"
             echo ""
             awk '
             BEGIN { in_fm = 0; past_fm = 0 }
@@ -854,8 +868,10 @@ setup_copilot() {
         "$TARGET_ROOT/.github/copilot-instructions.md" "copilot-instructions.md" ""
     echo ""
 
-    # AGENTS.md for cross-tool compatibility (same artifact the agents target emits)
-    emit_agents_md "$RULES_SOURCE_DIR" "$TARGET_ROOT"
+    # AGENTS.md for cross-tool compatibility (same artifact the agents target emits).
+    # false: .github/instructions/*.instructions.md already carry applyTo, so the
+    # scoped index in AGENTS.md would be a third, weaker copy pointing at source paths.
+    emit_agents_md "$RULES_SOURCE_DIR" "$TARGET_ROOT" false
     echo ""
 
     # Scoped rules → .github/instructions/
@@ -874,7 +890,9 @@ setup_copilot() {
     echo ""
     print_status $BLUE "💡 Copilot setup notes:"
     echo "   • .github/copilot-instructions.md contains always-on rules (workspace-wide)"
-    echo "   • AGENTS.md mirrors copilot-instructions.md (cross-tool compatibility)"
+    echo "   • AGENTS.md mirrors copilot-instructions.md for cross-tool compatibility —"
+    echo "     enabling VS Code's experimental chat.useAgentsMdFile setting loads the"
+    echo "     same always-on rules twice"
     echo "   • .github/instructions/ contains scoped rules (per-language/per-path)"
     if [ -d "$SKILLS_SOURCE_DIR" ]; then
         echo "   • .github/prompts/ contains skill prompt files"
