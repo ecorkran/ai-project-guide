@@ -78,10 +78,10 @@ show_usage() {
     echo "Usage: $0 <ide>"
     echo ""
     echo "Supported targets:"
-    echo "  cursor    - Copy rules to .cursor/rules/ (renames .md to .mdc, converts paths to globs)"
+    echo "  cursor    - Always-on rules → AGENTS.md; scoped rules → .cursor/rules/ (paths→globs)"
     echo "  claude    - Embed alwaysApply rules in CLAUDE.md, copy others to .claude/rules/"
     echo "  copilot   - Compile rules/skills to .github/ for VS Code Copilot (also writes AGENTS.md)"
-    echo "  agents    - Write AGENTS.md only, with no vendor-specific files"
+    echo "  agents    - Write AGENTS.md, plus skills to .agents/skills/ if present"
     echo "              aliases: openai, codex"
     echo ""
     echo "Examples:"
@@ -274,7 +274,10 @@ copy_skills() {
     fi
 }
 
-# Copy rules for Cursor: rename .md→.mdc and convert paths→globs in frontmatter
+# Copy SCOPED rules for Cursor: rename .md→.mdc and convert paths→globs in
+# frontmatter. Always-on (alwaysApply) rules are skipped here — they go in
+# AGENTS.md instead, since .cursor/rules/*.mdc already carries its own scoping
+# via globs and doesn't need a second copy of the always-on content.
 copy_cursor_rules() {
     local source_dir=$1
     local target_dir=$2
@@ -292,6 +295,8 @@ copy_cursor_rules() {
             continue
         fi
 
+        has_always_apply "$file" && continue
+
         local filename=$(basename "$file")
         local target_filename="${filename%.md}.mdc"
         local target_path="$target_dir/$target_filename"
@@ -307,7 +312,7 @@ copy_cursor_rules() {
         copied_count=$((copied_count + 1))
     done
 
-    print_status $BLUE "📋 Converted $copied_count rule files for Cursor"
+    print_status $BLUE "📋 Converted $copied_count scoped rule files for Cursor"
     if [ $warning_count -gt 0 ]; then
         print_status $YELLOW "⚠️  $warning_count files have frontmatter issues"
     fi
@@ -1011,7 +1016,6 @@ main() {
     
     # Cursor setup
     local rules_target_dir="$TARGET_ROOT/.cursor/rules"
-    local agents_target_dir="$TARGET_ROOT/.cursor/agents"
 
     print_status $BLUE "🚀 Setting up Cursor IDE rules..."
     echo ""
@@ -1023,32 +1027,51 @@ main() {
         exit 1
     fi
 
-    # Create target directories
     mkdir -p "$rules_target_dir"
     print_status $GREEN "📁 Created directory: $rules_target_dir"
 
-    # Copy rules with paths→globs conversion
-    print_status $BLUE "📄 Converting and copying rules files..."
+    # Always-on rules → AGENTS.md. false: .cursor/rules/*.mdc already carries
+    # its own scoping via globs, so the scoped index would be a third, weaker copy.
+    emit_agents_md "$RULES_SOURCE_DIR" "$TARGET_ROOT" false
+    echo ""
+
+    # Migration: remove .mdc files a prior run of this script wrote for rules
+    # that are alwaysApply — those rules now live in AGENTS.md instead of
+    # .cursor/rules/. The stem is derived from the source filename, so this only
+    # ever removes exactly what a previous run wrote from those same sources;
+    # it never touches a .mdc whose stem doesn't match a current always-on rule.
+    for file in "$RULES_SOURCE_DIR"/*.md; do
+        [ -f "$file" ] || continue
+        has_always_apply "$file" || continue
+
+        local stem
+        stem="$(basename "$file" .md)"
+        local superseded="$rules_target_dir/${stem}.mdc"
+
+        if [ -f "$superseded" ]; then
+            rm -f "$superseded"
+            print_status $YELLOW "🗑️  Removed superseded always-on rule: .cursor/rules/${stem}.mdc"
+        fi
+    done
+
+    # Scoped rules → .cursor/rules/ (paths→globs conversion)
+    print_status $BLUE "📄 Converting and copying scoped rules files..."
     copy_cursor_rules "$RULES_SOURCE_DIR" "$rules_target_dir"
 
     echo ""
 
-    # Copy agents if directory exists
-    if [ -d "$AGENTS_SOURCE_DIR" ]; then
-        mkdir -p "$agents_target_dir"
-        print_status $GREEN "📁 Created directory: $agents_target_dir"
-        print_status $BLUE "🤖 Copying agent files..."
-        copy_files "$AGENTS_SOURCE_DIR" "$agents_target_dir" true "agent"
-    else
-        print_status $YELLOW "⚠️  Agents directory not found, skipping"
+    # .cursor/agents/ is no longer written. It is not deleted: those files carry
+    # no managed marker, so this script cannot distinguish its own past output
+    # from user content.
+    if [ -d "$TARGET_ROOT/.cursor/agents" ]; then
+        print_status $YELLOW "⚠️  .cursor/agents/ is no longer managed by this script — remove it by hand if no longer needed"
     fi
 
-    echo ""
     print_status $GREEN "✅ Setup complete for Cursor!"
     echo ""
     print_status $BLUE "💡 Cursor setup notes:"
-    echo "   • Rules converted to .cursor/rules/ as .mdc files (paths→globs)"
-    echo "   • Agents copied to .cursor/agents/ as .mdc files"
+    echo "   • AGENTS.md contains always-on rules (no scoped index — .cursor/rules/ has its own)"
+    echo "   • Scoped rules converted to .cursor/rules/ as .mdc files (paths→globs)"
     echo "   • Restart Cursor to ensure rules are loaded"
 }
 
