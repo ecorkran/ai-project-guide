@@ -12,6 +12,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.0] - 2026-08-04
+
+Always-on rules converge on `AGENTS.md` across targets, and the scoped-rule
+index is emitted only where nothing else scopes rules.
+
+### Added
+- `setup-ide agents` now copies skills to `.agents/skills/` when a skills source is present. The source layout (`<name>/SKILL.md`) already matches the destination, so the copy needs no translation
+
+### Changed
+- `setup-ide cursor`: always-on rules are written to `AGENTS.md` instead of `.cursor/rules/`; `.cursor/rules/*.mdc` now carries only the scoped rules. A `.mdc` written by a prior run for a rule that is now always-on is removed, matched by source filename stem so the cleanup can only remove what a previous run wrote from that same source
+- `setup-ide cursor` no longer writes `.cursor/agents/`. An existing directory is left in place with a warning rather than deleted — those files carry no managed marker, so the script cannot tell its own past output from user content
+- The scoped-rule index in `AGENTS.md` is now emitted only by the `agents` target. The index exists because the `AGENTS.md` format has no `applyTo`/`globs` mechanism; `copilot` (`.github/instructions/` with `applyTo`) and `cursor` (`.cursor/rules/` with `globs`) already deliver scoped rules with working scoping, so a third copy pointing at source paths added nothing
+- Copilot setup notes now state that `AGENTS.md` mirrors `copilot-instructions.md`, so enabling VS Code's experimental `chat.useAgentsMdFile` setting loads the same always-on rules twice
+
+### Fixed
+- `copy_skills` reported `.claude/skills/` as the destination regardless of where it actually copied. Harmless while only the `claude` target called it, wrong once the `agents` target did too; it now reports the real target directory. Its "not a skill" warning is likewise no longer worded as Claude-specific
+
 ## [0.16.1] - 2026-07-30
 
 ### Fixed
