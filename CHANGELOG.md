@@ -12,6 +12,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Production database protection rules, distilled from a real incident (a test
+  fixture handed production credentials truncated prod tables while its suite
+  reported green). Full rule set in `rules/sql.md` ("Production Database
+  Protection"); test-facing subset in `rules/testing.md` ("Database Safety in
+  Tests"); always-on summary line in `rules/general.md` so the protection
+  applies even when no SQL or test file is in scope.
+
+### Removed
+
+- The legacy code-review cluster, superseded by squadron and Claude Code's
+  built-in review commands:
+  - `project-guides/guide.ai-project.090-code-review.md`
+  - `project-guides/prompt.code-review-crawler.md` (dangling since 0.16.0 —
+    its questionnaire source `rules/review.md` was removed then)
+  - `project-guides/agents/code-review-agent.md` and
+    `code-review-config.json` (both pointed at the deleted
+    `.cursor/rules/review.md`, and the config still wrote to the pre-rename
+    `project-documents/our-project/` path)
+  - `.claude/agents/code-review-agent.md` (installed copy)
+  - References cleaned from `project-guides/readme.md`,
+    `guide.ai-project.process.md`, `file-naming-conventions.md`,
+    `readme.setup-ide.md`, `scripts/rename-private-to-user-in-repo.sh`, and
+    `scripts/template-stubs/prompt.legacy-migration.md`. The 090-099
+    specialized-guide range in `file-naming-conventions.md` is unchanged;
+    its example is now `091-legacy-task-migration`.
+
 ## [0.17.0] - 2026-08-04
 
 Always-on rules converge on `AGENTS.md` across targets, and the scoped-rule

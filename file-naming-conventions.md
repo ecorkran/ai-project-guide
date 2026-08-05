@@ -220,7 +220,7 @@ The filename prefix (`arch.`, `slice.`, `tasks.`, `slices.`) identifies document
   - These documents describe the project as a whole, not a specific initiative
   - Documents here may generate architecture-level initiatives in the working range
   - Example: `050-arch.hld-{project}.md`
-  - Example: `guide.ai-project.090-code-review.md` (090-099: specialized guides)
+  - Example: `guide.ai-project.091-legacy-task-migration.md` (090-099: specialized guides)
 
 - **800-899**: Reserved for future use
 

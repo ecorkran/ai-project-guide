@@ -58,9 +58,6 @@ Common file references to update:
 project-guides/guide.ai-project.process.md
   → ai-project-guide/project-guides/guide.ai-project.process.md
 
-project-guides/guide.ai-project.090-code-review.md
-  → ai-project-guide/project-guides/guide.ai-project.090-code-review.md
-
 tool-guides/{tool}/introduction.md
   → ai-project-guide/tool-guides/{tool}/introduction.md
 

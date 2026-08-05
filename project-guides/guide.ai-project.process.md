@@ -289,8 +289,6 @@ These files, shared by all of our projects, are contained in {project-root}/proj
   into granular task lists.  
 * guide.ai-project.006-task-expansion (aka: AI Task Expansion Guide): specific
   guidance on task expansion for slice-based development.  Optional, rarely needed.
-* guide.ai-project.090-code-review (aka: AI Code Review Guide): specific guidance for 
-  performing and responding to code reviews.
 * guide.ai-project.091-legacy-task-migration: guidance for migrating legacy projects
   to the slice-based methodology.
 * guide.ui-development.ai (aka: AI Development Guide - UI): specific guidance 
@@ -298,7 +296,6 @@ These files, shared by all of our projects, are contained in {project-root}/proj
 * prompt.ai-project.system (aka: AI Project Prompt Templates): parameterized 
   prompts to assist in creating and completing projects using the AI Project 
   Guide. Usable by humans or AIs.
-* prompt.code-review-crawler: prompt for automated code review crawling.
 * notes.ai-project.onboarding: onboarding notes primarily for human developers.
 * rules/: modular code rules organized by platform/technology.  Copy to 
   IDE-specific directories (.cursor/rules/, etc) as needed.  

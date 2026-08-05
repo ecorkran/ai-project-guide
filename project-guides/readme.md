@@ -31,7 +31,6 @@ Quick reference and navigation for AI Project Guide methodology files.
 
 | Guide                    | Purpose                                  | Quick link                                                                   |
 | ------------------------ | ---------------------------------------- | ---------------------------------------------------------------------------- |
-| Code Review              | Systematic code review processes         | [guide.ai-project.090-code-review.md](guide.ai-project.090-code-review.md)           |
 | Legacy Task Migration    | Migrate old projects to current structure | [guide.ai-project.091-legacy-task-migration.md](guide.ai-project.091-legacy-task-migration.md) |
 
 ## Additional Resources
@@ -41,7 +40,6 @@ Quick reference and navigation for AI Project Guide methodology files.
 | System Prompts           | Parameterized prompt templates           | [prompt.ai-project.system.md](prompt.ai-project.system.md)                         |
 | UI Development           | UI/UX specific guidance                  | [guide.ui-development.ai.md](guide.ui-development.ai.md)                           |
 | Onboarding Notes         | Human developer onboarding               | [notes.ai-project.onboarding.md](notes.ai-project.onboarding.md)                   |
-| Code Review Crawler      | Automated code review prompt             | [prompt.code-review-crawler.md](prompt.code-review-crawler.md)                     |
 | Migration Guides         | Version-specific migration instructions  | [migrations/](migrations/)                                                         |
 
 ## Agents & Rules
