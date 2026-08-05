@@ -1,11 +1,14 @@
 ---
-name: testing-rules
-description: Testing standards and best practices. Use when writing, modifying, or reviewing tests. Covers test structure, naming, mocking patterns, assertion style, and coverage expectations.
+description: Testing standards and best practices. Use when writing, modifying, or reviewing tests. Covers test structure, naming, mocking patterns, assertion style, coverage expectations, and database safety in tests.
 paths: 
   - "**/*.test.*"
   - "**/*.spec.*"
   - "**/*.stories.*"
   - "src/stories/**/*"
+  - "**/test_*.py"
+  - "**/test/**/*.py"
+  - "**/tests/**/*.py"
+  - "**/conftest.py"
 ---
 
 ### Testing Rules
@@ -81,6 +84,32 @@ project/
 - Use pytest assertions: `assert result == expected`
 - Use pytest-parametrize for multiple test cases
 - Mock external dependencies at boundaries
+
+#### Database Safety in Tests
+
+Distilled from a real production incident: a test fixture handed production
+credentials truncated six prod tables while its suite reported green. The full
+rule set lives in `sql.md` ("Production Database Protection"); these are the
+test-facing rules:
+
+- **Tests never read the production DB URL variable.** Test code uses a
+  dedicated test variable (admin URL for creating throwaway databases) and
+  fixtures that create their own database. A fixture that issues
+  TRUNCATE/DROP/ALTER/DELETE may only target a database it created itself.
+- **"Unit" is a directory name, not a property.** Nothing stops a file under
+  `test/unit/` from opening a database connection — DB-safety rules apply to
+  every tier, and a scoped `DELETE` in a "unit" fixture can empty a production
+  table while the suite passes.
+- **Every tier gets a mechanical prod-URL guard test** that scans the tier's
+  files for reads of the production variable and fails on offenders (shrink-only
+  allowlist if legacy readers exist). The scan must be multiline-aware —
+  `os.environ.get(\n "VAR")` defeats a per-line grep. The absence of a guard in
+  a tier is not evidence of safety.
+- **Never inject a whole `.env` into a test process.** Pass an explicit list of
+  named variables; a runner that injects everything hands destructive fixtures
+  credentials they were never meant to have.
+- **Before running an unfamiliar test tier, read its conftest** for which URL
+  its fixtures connect to and what they mutate.
 
 #### Best Practices
 

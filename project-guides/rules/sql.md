@@ -1,11 +1,13 @@
 ---
-name: sql-rules
-description: SQL coding standards for PostgreSQL, pgvector, and TimescaleDB. Use when writing queries, migrations, schema definitions, or database functions. Covers naming, indexing, query optimization, and extension-specific patterns.
+description: SQL coding standards for PostgreSQL, pgvector, and TimescaleDB. Use when writing queries, migrations, schema definitions, database functions, or any code that connects to a database — including test fixtures and runners. Covers naming, indexing, query optimization, extension-specific patterns, and production-database protection.
 paths: 
   - "**/*.sql"
   - "**/*.psql"
-  - "**/migrations/*.sql"
+  - "**/migrations/**"
   - "**/schema.sql"
+  - "**/test/**/*.py"
+  - "**/tests/**/*.py"
+  - "**/conftest.py"
 ---
 
 ### SQL and PostgreSQL Development Rules
@@ -58,6 +60,51 @@ paths:
 - Prepared statements for repeated queries
 - Connection pooling with appropriate limits
 - Set statement_timeout for long-running queries
+
+#### Production Database Protection
+
+Distilled from a real production incident (test fixture truncated prod metadata)
+and its recovery. These are deterministic-first: prefer a control the server or a
+test can enforce over a rule someone must remember.
+
+- **Split connection roles.** The application role gets DML only — no TRUNCATE
+  (a separate grantable privilege), no DDL, no ownership, read-only on the
+  migration ledger. Migrations and maintenance use a separate role/URL supplied
+  only when doing that work. With this split, a test that leaks production
+  credentials dies on `permission denied` instead of destroying tables.
+- **Tests never read the production URL variable.** Test tiers use a dedicated
+  test variable and throwaway databases created by the fixture itself. A fixture
+  that issues TRUNCATE/DROP/ALTER/DELETE may only target a database it created.
+  "Unit" is a directory name, not a property — nothing stops a file under
+  `test/unit/` from opening a connection.
+- **Enforce it mechanically, per tier.** A guard test scans every test file for
+  reads of the production variable and fails on offenders (ratchet with a
+  shrink-only allowlist if legacy readers exist). The scan must be
+  multiline-aware — `os.environ.get(\n "VAR")` defeats a per-line grep.
+  The absence of a guard in a tier is not evidence of safety.
+- **Never inject a whole `.env` into a child process.** Pass an explicit list of
+  named variables. A runner built to fix a parsing problem must not widen
+  credential scope as a side effect.
+- **`TRUNCATE ... CASCADE` destroys the FK closure, not the named tables.**
+  Enumerate the closure before any CASCADE against a shared database.
+- **Restore-by-replay heals the ledger, not the catalog.** Objects dropped while
+  their creating migration is still recorded are invisible to replay. A restore
+  tool must diff the live catalog against expectations; and after any incident,
+  verify derived objects (matviews, continuous aggregates) by **content parity
+  against source**, never by catalog presence — an object created or interrupted
+  mid-incident is presumed damaged, and for an empty derived object,
+  drop-and-recreate from its migration beats in-place repair.
+- **Size backup priority by what cannot be re-derived** from providers or raw
+  data, not by the last incident's blast radius.
+- **Protect the host from runaway sessions:** `vm.overcommit_memory=2` on
+  dedicated Postgres hosts so allocation failure hits the statement, not the
+  OOM killer hitting the postmaster. For bulk rebuilds, run a watchdog that
+  `pg_cancel_backend`s the working backend when free memory crosses a floor —
+  cancellation releases memory instantly; the OOM killer takes the cluster.
+  Note `work_mem` does not bound extension-internal allocations (e.g.
+  TimescaleDB cagg materialization).
+- **After a client-side timeout, `pg_cancel_backend` the server side** before
+  running anything else; client disconnect does not cancel the backend.
 
 #### pgvector Specific
 
