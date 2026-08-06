@@ -12,6 +12,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.2] - 2026-08-05
+
+Two rule additions, both distilled from real failures where a tool read
+configuration from the wrong universe.
+
+### Added
+
+- `rules/python.md` — "one value, one source" configuration rule: `os.environ`
+  and the pydantic settings object are different sources of truth, and `.env`
+  values loaded by settings are not visible to `os.environ.get()`. Code that
+  reads configuration must go through the settings object, or it silently
+  reads an empty universe and fails without error.
+- `rules/sql.md` — destructive and maintenance tooling (restore, rechunk,
+  repair) must take its DB URL from an explicit caller argument, never from
+  ambient environment inside the tool, and must refuse to run when the target
+  does not match the expected database signature. A restore aimed by an unset
+  variable is the same failure mode the tool exists to repair.
+
 ## [0.17.1] - 2026-08-05
 
 Production database protection rules land, and the legacy code-review

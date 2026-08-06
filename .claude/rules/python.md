@@ -1,4 +1,5 @@
 ---
+name: python-rules
 description: Python coding standards and conventions. Use when writing, modifying, or reviewing .py files, pyproject.toml, or requirements files.
 paths:
  - "**/*.py"
@@ -100,3 +101,8 @@ paths:
 - Input: Validate everything entering the system via Pydantic.
 - SQL: Always use parameterized queries (never f-string SQL).
 - Randomness: Use `secrets` module for security tokens, `random` only for simulations.
+- One value, one source: `os.environ` and the pydantic settings object are
+  different sources of truth — `.env` values loaded by settings are NOT in
+  `os.environ`. Code that reads configuration must go through the settings
+  object; a raw `os.environ.get()` beside a settings-based app silently reads
+  a different (often empty) universe and fails without error.

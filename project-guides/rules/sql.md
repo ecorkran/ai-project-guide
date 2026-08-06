@@ -87,6 +87,11 @@ test can enforce over a rule someone must remember.
   credential scope as a side effect.
 - **`TRUNCATE ... CASCADE` destroys the FK closure, not the named tables.**
   Enumerate the closure before any CASCADE against a shared database.
+- **Destructive and maintenance tooling** (restore, rechunk, repair) takes its
+  DB URL from an explicit caller argument — never from ambient environment
+  inside the tool. A restore aimed by an unset variable is the same failure
+  mode the tool exists to repair. Refuse to run when the target does not look
+  like the database the operation expects (verify signature tables/rows first).
 - **Restore-by-replay heals the ledger, not the catalog.** Objects dropped while
   their creating migration is still recorded are invisible to replay. A restore
   tool must diff the live catalog against expectations; and after any incident,
