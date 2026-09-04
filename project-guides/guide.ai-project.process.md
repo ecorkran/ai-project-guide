@@ -6,7 +6,7 @@ audience: [human, ai]
 description: Master process guide describing roles and the slice-based workflow.
 dependsOn: []
 dateCreated: 20250101
-dateUpdated: 20260323
+dateUpdated: 20260904
 ---
 
 #### Overview
@@ -47,8 +47,9 @@ Slices are grouped under architectural initiatives, each with its own architectu
    - Collaborate with the Architect to refine the vision, identify challenges, and define the core product concept.
    - Include initial tech stack identification and key constraints where known.
    - If the project involves multiple capability areas or components, identify them in the Solution Approach section. These are not yet initiatives — just the named pieces that Phase 1 will formalize.
+   - Before finalizing, the Architect researches prior art and/or runs small spikes rather than relying only on Q&A with the PM — do not just go with what the model already assumes it knows.
    - Use `guide.ai-project.000-concept` for detailed guidance.
-   - Outcome: _A short doc describing the problem, target users, overall solution approach (including identified capability areas), and initial technology direction._
+   - Outcome: _A short doc describing the problem, target users, overall solution approach (including identified capability areas), initial technology direction, and any research findings/open questions._
 
 1. **Phase 1: Initiative Plan**
    - Decompose the concept into named initiatives, each representing a cohesive body of work that will produce an architecture document and slice plan.

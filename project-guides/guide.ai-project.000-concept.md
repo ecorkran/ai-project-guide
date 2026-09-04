@@ -6,7 +6,7 @@ guideRole: primary
 audience: [human, ai]
 description: How to create a Phase 0 Concept document.
 dependsOn: [guide.ai-project.process.md]
-dateUpdated: 20260323
+dateUpdated: 20260904
 ---
 
 This guide covers creating a Phase 0 Concept document as described in `guide.ai-project.process`. If you do not have access to the process guide, stop and request it from the Project Manager.
@@ -23,8 +23,9 @@ Concept documents follow the **Living Document Pattern** described in the proces
 
 1. **PM describes the project** — usually conversationally, sometimes as a starter document. Either works.
 2. **AI asks clarifying questions** — do not assume or guess. This is especially important at the concept stage where ambiguity is highest and early misunderstandings compound through later phases.
-3. **Together they produce the concept document** — the PM's original vision is preserved in the User-Provided Concept section; the AI adds structured analysis as the Refined Concept.
-4. **Iterative refinement** — both continue to evolve the document as understanding develops.
+3. **AI researches and/or runs small experiments before finalizing the Refined Concept** — do not rely solely on Q&A with the PM, and do not settle for what the model already assumes it knows. When the concept touches a domain with established techniques, standards, or prior art (e.g. color-contrast models, auth approaches, data-sync strategies), look them up and/or prototype a quick spike before writing the Refined Concept. Genuinely reconsider the concept in light of what's found — bring back concrete options with tradeoffs instead of picking one silently, rubber-stamping an assumption, or leaving it unexamined. This is proactive — do it even if the PM didn't ask for it.
+4. **Together they produce the concept document** — the PM's original vision is preserved in the User-Provided Concept section; the AI adds structured analysis as the Refined Concept.
+5. **Iterative refinement** — both continue to evolve the document as understanding develops.
 
 ### Document Structure
 
@@ -84,6 +85,13 @@ not committal; detailed stack decisions belong in Phase 2.
 ### Development Approach
 Methodology preferences (TDD, DDD, etc.), quality vs. speed
 tradeoffs, any known constraints on how we'll work.
+
+### Open Questions / Research Needed
+Unresolved technical questions the concept surfaced, what was
+learned from any research/spikes done during this phase, and
+what's left to validate in Phase 2. Name specific candidate
+approaches (not just "needs research") wherever something concrete
+was found.
 ```
 
 Not every section needs substantial content. A small utility project might have a one-liner for Target Users and nothing for Development Approach. Scale to fit.
@@ -93,6 +101,7 @@ Not every section needs substantial content. A small utility project might have 
 - **Keep it high-level.** Architecture, component boundaries, and API design belong in Phase 2. If you're drawing system diagrams, you've gone too far.
 - **Capture decisions and constraints, not solutions.** "Must run on GCP" is concept-level. "Use Cloud Run with a Redis sidecar" is architecture-level.
 - **Flag unknowns explicitly.** It's better to say "platform TBD pending cost analysis" than to leave it out.
+- **Do independent research before finalizing, not just Q&A.** If the concept depends on a technique or standard that already has established prior art, look it up — or run a tiny experiment — rather than asking the PM to supply the answer or silently assuming one. Surface what you found as named options in Open Questions / Research Needed, even if the PM never explicitly asked for research.
 - In general, favor simplicity and avoid over-engineering. Use industry-standard solutions where practical and available.
 
 ### Output Location
