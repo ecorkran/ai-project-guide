@@ -12,6 +12,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.4] - 2026-09-09
+
+### Added
+
+- Guidance that `review: none` in slice-design frontmatter is a Project
+  Manager decision only. It is Context Forge's review-exempt declaration and
+  clears every slice-scoped review gate (slice, tasks, code) for that slice.
+  Agents must not add it, must not run `cf check --set-review-none`, and must
+  not carry it over when using an earlier slice design as a format template.
+  When `cf next` reports a required review, the correct action is to stop and
+  tell the Project Manager or run the review via the project's review process,
+  never to edit frontmatter. Added to `guide.ai-project.004-slice-design.md`
+  (frontmatter template), `file-naming-conventions.md` (slice-design schema),
+  and `guide.ai-project.process.md` (Phase Approval). Motivated by two
+  real failures in context-forge where an agent set the field to bypass a
+  review gate and a later design inherited it by copying frontmatter.
+
 ## [0.17.3] - 2026-09-09
 
 ### Added

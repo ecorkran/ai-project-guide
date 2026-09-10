@@ -9,7 +9,7 @@ dependsOn:
   - guide.ai-project.process.md
   - guide.ai-project.003-slice-planning.md
 dateCreated: 20250101
-dateUpdated: 20260324
+dateUpdated: 20260909
 ---
 
 #### Summary
@@ -92,6 +92,9 @@ dateUpdated: YYYYMMDD
 status: not_started
 ---
 ```
+
+**`review: none` is a Project Manager decision, never an agent's.** Context Forge treats `review: none` in slice-design frontmatter as a review-exempt declaration: it unconditionally clears every slice-scoped review gate (slice review, task review, code review) for that slice. Agents must not add this field, must not run `cf check --set-review-none`, and must not carry it over when using an earlier slice design as a format reference. Write frontmatter from the template above, not by copying a sibling document. If `cf next` reports that a review is required before proceeding, stop and tell the Project Manager, or run the review through the project's established review process. Never edit frontmatter to clear a gate.
+
 ```markdown
 # Slice Design: {Slice Name}
 

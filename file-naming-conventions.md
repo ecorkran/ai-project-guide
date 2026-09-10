@@ -150,6 +150,8 @@ status: not_started
 ---
 ```
 
+Optional field, **Project Manager only**: `review: none` declares the slice review-exempt. When present, Context Forge clears every slice-scoped review gate (slice, tasks, code) for that slice. Agents must not add it, must not run `cf check --set-review-none`, and must not copy it from another slice design used as a format reference. See `guide.ai-project.004-slice-design`.
+
 #### tasks
 ```yaml
 ---

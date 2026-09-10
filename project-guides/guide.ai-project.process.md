@@ -6,7 +6,7 @@ audience: [human, ai]
 description: Master process guide describing roles and the slice-based workflow.
 dependsOn: []
 dateCreated: 20250101
-dateUpdated: 20260323
+dateUpdated: 20260909
 ---
 
 #### Overview
@@ -32,6 +32,8 @@ Each phase has an approval authority that must sign off before proceeding to the
 - **Phases 3–5** (design and planning execution): May be approved by an AI Architect when operating under established patterns and clear architectural direction.
 - **Phase 6** (execution): May self-validate via tests and CI when automation pipelines are in place.
 - **Phase 7** (integration): Normally requires PM approval; may self-validate for routine integrations.
+
+**Review gates.** When `cf next` or any workflow check reports that a slice, task, or code review is required before proceeding, that is the approval mechanism above in action. The correct response is to stop and report to the Project Manager, or to run the review through the project's established review process (for example squadron) if that is the workflow. Never edit frontmatter to clear the gate. In particular, `review: none` in a slice-design's frontmatter is a Project Manager declaration that exempts the slice from all slice-scoped reviews; agents must not add it, must not run `cf check --set-review-none`, and must not carry it over from another document used as a template.
 
 When working on project phases, ensure you have all required information first. If in doubt, request and obtain the required information from the Project Manager before proceeding. Do not guess or make assumptions.
 
