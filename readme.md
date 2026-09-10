@@ -13,6 +13,10 @@ AI Project Guide is a structured methodology and set of guides for AI-assisted s
 
 **Works with:** Claude Code, Cursor, GitHub Copilot, OpenAI Codex, and any AI coding tool that reads project files.
 
+> **Installed into a project?** If you're reading this inside `project-documents/ai-project-guide/`, this directory is installed and managed by [Context Forge](https://github.com/ecorkran/context-forge) (`cf`). It is overwritten on `cf guides update`; any edits made here will be lost. Put project-specific customizations, including new subdirectories as needed, under `project-documents/user/` instead.
+>
+> If your project's CI checks out this repo as a git submodule, add `submodules: recursive` to your checkout step (e.g. `actions/checkout`) or the guide content will be missing in CI.
+
 ## How to Use
 
 ### Context Forge
