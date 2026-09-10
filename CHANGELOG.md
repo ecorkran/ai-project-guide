@@ -12,6 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.3] - 2026-09-09
+
+### Added
+
+- Root `readme.md` now carries a callout stating that, once installed into a
+  consuming project, `project-documents/ai-project-guide/` is managed by
+  Context Forge (`cf`) and overwritten on `cf guides update` — customizations
+  belong under `project-documents/user/` instead. Also notes that projects
+  whose CI checks out this repo as a submodule need `submodules: recursive`
+  on their checkout step. Closes #19.
+
 ## [0.17.2] - 2026-08-05
 
 Two rule additions, both distilled from real failures where a tool read
