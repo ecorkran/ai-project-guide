@@ -12,6 +12,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.6] - 2026-09-15
+
+### Added
+
+- `tool-guides/docker/`: a new Docker/container tool guide following the
+  `tool-guides/electron/` numbered-file convention — `00-introduction.md`,
+  `01-image-and-build.md`, `02-entrypoint-and-process-model.md`,
+  `03-compose-and-orchestration.md`, `04-decision-guide.md`. Covers
+  containerization decisions that build and start successfully but fail
+  quietly: multi-mode entrypoint dispatch (reject unknown modes rather than
+  defaulting), PID 1 zombie reaping and signal forwarding, loopback binds
+  not surviving containerization, gitignored env files under `set -e`,
+  build-time vs. runtime work, pinning for reproducibility, `depends_on`
+  vs. real health gating, graceful stop windows, and porting an existing
+  systemd unit's tuning into a container. Closes #20.
+
 ## [0.17.5] - 2026-09-14
 
 The Phase 4 slice-design template becomes a file and a schema, and gains a

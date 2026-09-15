@@ -10,6 +10,29 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260915
+
+**Session**: Docker/container tool guide (v0.17.6)
+
+### Completed
+- Added `tool-guides/docker/` per issue #20: `00-introduction.md` (vocabulary,
+  pitfall quick-reference table), `01-image-and-build.md` (build-time vs
+  runtime work, pinning by digest/checksum, generated-vs-hand-maintained
+  config), `02-entrypoint-and-process-model.md` (multi-mode dispatch that
+  rejects unknown modes, PID 1/exec/tini, loopback-vs-0.0.0.0 binds,
+  gitignored env files under `set -e`, graceful stop windows),
+  `03-compose-and-orchestration.md` (`depends_on` vs `condition:
+  service_healthy`, writing meaningful healthchecks), `04-decision-guide.md`
+  (porting an existing systemd unit's resource limits/restart policy/env
+  into a container without silently reverting to defaults)
+
+### Key decisions
+- Followed the `tool-guides/electron/` numbered-file convention (introduction
+  + topic guides + decision guide) exactly, per the issue's suggested shape
+- Used `layer: tool-guide` / `docType: introduction|guide` frontmatter
+  (electron's schema) rather than the numbered-index project-document
+  frontmatter — this is tool-guide content, not initiative/slice work
+
 ## 20260914
 
 **Session**: Mechanically enforceable slice-design template (v0.17.5); review-gate guidance (v0.17.4)
