@@ -10,6 +10,28 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260914
+
+**Session**: Mechanically enforceable slice-design template (v0.17.5); review-gate guidance (v0.17.4)
+
+### Completed
+- Extracted the Phase 4 slice-design template out of guide prose into `project-guides/templates/slice-design.md` with `<!-- required -->` / `<!-- optional: ... -->` heading markers; the template is the single source for both the agent-facing skeleton and the section schema
+- Added `scripts/validate-slice-design` (bash 3.2): derives required headings from the template markers, checks level-2 sections plus the level-3 Verification Walkthrough, skips fenced code, prefix-matches headings carrying a `{placeholder}`; verified PASS on the template and on amoeba's `101-slice.store-foundation-and-node-model.md`, FAIL on a copy with two headings removed
+- Rewired `guide.ai-project.004-slice-design.md`, the P4 system prompt, the process guide, `file-naming-conventions.md`, and both readmes to the template and validator
+- v0.17.4 (earlier, same push): `review: none` in slice-design frontmatter documented as a PM-only review-exempt declaration; agents must not add it, run `cf check --set-review-none`, or copy it from a sibling design; "review required" from `cf next` means stop and report
+
+### Key decisions
+- Enforce at level 2 only, plus Verification Walkthrough. The conforming reference design renames or replaces most level-3 headings (custom decision titles, "Storage Schema", "API Contract"), so level-3 enforcement would fail good documents
+- Markers live in the template rather than a sidecar manifest: one file to edit, grep-parseable in bash, one regex for Context Forge if it reads them natively
+- Implementation Details and Risk Assessment are the only optional level-2 sections; everything else the guide's own review checklist already treats as mandatory
+- Validator is a guide script (same pattern as `setup-ide`). Invoking it from `cf` is a context-forge change and was flagged, not assumed
+
+### Open Issues
+- Context Forge: `cf check` / `cf validate` do not read design bodies. Options flagged to the cf side: exec `scripts/validate-slice-design` (setup-ide precedent) or parse the template markers natively
+- Issue #18 (package distribution) evaluated this session; recommendation is to re-scope to "npm as a fetch source" after context-forge slice 925. Not yet posted to the issue
+
+---
+
 ## 20260713
 
 **Session**: Replace `git.branch_root` with `git.integration_branch` (v0.15.11)

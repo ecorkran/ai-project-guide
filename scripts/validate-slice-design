@@ -1,0 +1,168 @@
+#!/bin/bash
+
+# AI Project Guide - Slice Design Validator
+# Checks that a Phase 4 slice-design document contains every section the
+# canonical template marks as required. Optional sections are never checked,
+# so legitimate omission stays legal (see "Template Stuffing" in
+# guide.ai-project.004-slice-design).
+#
+# Section schema source of truth: project-guides/templates/slice-design.md.
+# A heading there is required when the next line is exactly `<!-- required -->`.
+#
+# Usage: validate-slice-design <slice-design.md> [more files...]
+# Exit:  0 all files pass, 1 at least one file fails, 2 usage or template error.
+#
+# Written for bash 3.2 (macOS default): no associative arrays, no mapfile.
+
+set -e
+set -u
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TEMPLATE="${SLICE_DESIGN_TEMPLATE:-$SCRIPT_DIR/../project-guides/templates/slice-design.md}"
+REQUIRED_MARKER='<!-- required -->'
+DOCTYPE_LINE='docType: slice-design'
+
+usage() {
+    echo "Usage: $(basename "$0") <slice-design.md> [more files...]" >&2
+    echo "Checks each file for the sections marked required in:" >&2
+    echo "  $TEMPLATE" >&2
+}
+
+# Normalize a heading line to "level|key" for comparison.
+# key: heading text lowercased, HTML comments removed, any parenthetical
+# suffix removed, text after a {placeholder} truncated (prefix match),
+# surrounding whitespace trimmed. Lenient by design: exact whitespace or
+# capitalization differences must not fail a valid document.
+heading_key() {
+    local line="$1"
+    local hashes="${line%% *}"
+    local text="${line#* }"
+    local level="${#hashes}"
+    text="$(printf '%s' "$text" \
+        | sed -E 's/<!--.*-->//g; s/\([^)]*\)//g; s/\{.*$//; s/[[:space:]]+$//; s/^[[:space:]]+//' \
+        | tr '[:upper:]' '[:lower:]')"
+    printf '%s|%s\n' "$level" "$text"
+}
+
+is_heading() {
+    case "$1" in
+        '#'*' '*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# Emit "level|key<TAB>original heading" for each required heading in the template.
+required_headings() {
+    local prev="" line
+    while IFS= read -r line || [ -n "$line" ]; do
+        if [ "$line" = "$REQUIRED_MARKER" ] && is_heading "$prev"; then
+            printf '%s\t%s\n' "$(heading_key "$prev")" "$prev"
+        fi
+        prev="$line"
+    done < "$TEMPLATE"
+}
+
+# Emit "level|key" for every heading in a document, skipping fenced code blocks.
+document_headings() {
+    local in_fence=0 line
+    while IFS= read -r line || [ -n "$line" ]; do
+        case "$line" in
+            '```'*) if [ "$in_fence" -eq 0 ]; then in_fence=1; else in_fence=0; fi; continue ;;
+        esac
+        [ "$in_fence" -eq 1 ] && continue
+        if is_heading "$line"; then
+            heading_key "$line"
+        fi
+    done < "$1"
+}
+
+has_doctype() {
+    # Frontmatter is the block between the first two `---` lines.
+    awk -v want="$DOCTYPE_LINE" '
+        NR == 1 && $0 != "---" { exit 1 }
+        NR > 1 && $0 == "---" { exit found ? 0 : 1 }
+        NR > 1 { sub(/[[:space:]]+$/, ""); if ($0 == want) found = 1 }
+        END { exit found ? 0 : 1 }
+    ' "$1"
+}
+
+# Match on the prefix when the template heading carries a placeholder, so
+# "# Slice Design: {slice-name}" matches "# Slice Design: Store Foundation".
+key_matches() {
+    local want="$1" have="$2"
+    local want_level="${want%%|*}" have_level="${have%%|*}"
+    local want_text="${want#*|}" have_text="${have#*|}"
+    [ "$want_level" = "$have_level" ] || return 1
+    case "$have_text" in
+        "$want_text"*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+validate_file() {
+    local file="$1"
+    local missing=0 want heading found have
+
+    if ! has_doctype "$file"; then
+        echo "FAIL $file"
+        echo "  frontmatter must declare '$DOCTYPE_LINE' (see file-naming-conventions.md)"
+        return 1
+    fi
+
+    local doc_keys
+    doc_keys="$(document_headings "$file")"
+
+    while IFS=$'\t' read -r want heading; do
+        [ -n "$want" ] || continue
+        found=0
+        while IFS= read -r have; do
+            [ -n "$have" ] || continue
+            if key_matches "$want" "$have"; then found=1; break; fi
+        done <<EOF
+$doc_keys
+EOF
+        if [ "$found" -eq 0 ]; then
+            if [ "$missing" -eq 0 ]; then echo "FAIL $file"; fi
+            echo "  missing: $heading"
+            missing=$((missing + 1))
+        fi
+    done <<EOF
+$(required_headings)
+EOF
+
+    if [ "$missing" -eq 0 ]; then
+        echo "PASS $file"
+        return 0
+    fi
+    return 1
+}
+
+main() {
+    if [ "$#" -eq 0 ]; then
+        usage
+        exit 2
+    fi
+    if [ ! -f "$TEMPLATE" ]; then
+        echo "Error: template not found at $TEMPLATE" >&2
+        exit 2
+    fi
+    if [ -z "$(required_headings)" ]; then
+        echo "Error: template declares no '$REQUIRED_MARKER' headings: $TEMPLATE" >&2
+        exit 2
+    fi
+
+    local failures=0 file
+    for file in "$@"; do
+        if [ ! -f "$file" ]; then
+            echo "Error: no such file: $file" >&2
+            exit 2
+        fi
+        if ! validate_file "$file"; then
+            failures=$((failures + 1))
+        fi
+    done
+
+    [ "$failures" -eq 0 ]
+}
+
+main "$@"

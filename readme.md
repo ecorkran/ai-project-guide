@@ -64,6 +64,16 @@ This assembles the rules from `project-guides/rules/` into the format your tool 
 
 See [readme.setup-ide.md](readme.setup-ide.md) for what each target writes and the frontmatter contract.
 
+### Validating Slice Designs
+
+Phase 4 slice designs are written from `project-guides/templates/slice-design.md`. The template doubles as the section schema, and a validator enforces it:
+
+```bash
+./project-documents/ai-project-guide/scripts/validate-slice-design project-documents/user/slices/101-slice.example.md
+```
+
+It prints `PASS`, or `FAIL` with the missing required headings, and exits non-zero on failure. Optional sections are never checked, so omitting what doesn't apply stays legal.
+
 ### For npm/pnpm Projects
 
 You can add convenience scripts to `package.json`:

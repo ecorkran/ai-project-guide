@@ -9,7 +9,7 @@ dependsOn:
   - guide.ai-project.process.md
   - guide.ai-project.003-slice-planning.md
 dateCreated: 20250101
-dateUpdated: 20260909
+dateUpdated: 20260914
 ---
 
 #### Summary
@@ -77,155 +77,25 @@ The design should bridge the gap between high-level architecture and concrete ta
 
 ##### Document Template
 
-See `file-naming-conventions.md` for the canonical YAML schema reference.
+The canonical template is a file, not this prose:
+`project-documents/ai-project-guide/project-guides/templates/slice-design.md`.
+Copy it to `user/slices/nnn-slice.{slice-name}.md`, substitute every `{placeholder}`, and delete the marker comments. See `file-naming-conventions.md` for the YAML schema.
 
-```yaml
----
-docType: slice-design
-slice: {slice-name}
-project: {project}
-parent: {path to the slice plan this slice comes from}
-dependencies: [list-of-prerequisite-slices]
-interfaces: [list-of-slices-that-depend-on-this]
-dateCreated: YYYYMMDD
-dateUpdated: YYYYMMDD
-status: not_started
----
+The template is also the section schema, and `scripts/validate-slice-design` enforces it:
+
+- A heading followed by `<!-- required -->` must appear in the finished document at the same level with the same text. The template is the only place that decides which sections these are.
+- A heading followed by `<!-- optional: ... -->` may be omitted entirely when its stated condition applies. Omit it; do not fill it with boilerplate.
+- Unmarked level-3 headings are guidance. Rename, replace, or drop them as the design needs. Extra sections are allowed.
+
+Run the validator before declaring Phase 4 complete:
+
+```bash
+./project-documents/ai-project-guide/scripts/validate-slice-design user/slices/nnn-slice.{slice-name}.md
 ```
 
-**`review: none` is a Project Manager decision, never an agent's.** Context Forge treats `review: none` in slice-design frontmatter as a review-exempt declaration: it unconditionally clears every slice-scoped review gate (slice review, task review, code review) for that slice. Agents must not add this field, must not run `cf check --set-review-none`, and must not carry it over when using an earlier slice design as a format reference. Write frontmatter from the template above, not by copying a sibling document. If `cf next` reports that a review is required before proceeding, stop and tell the Project Manager, or run the review through the project's established review process. Never edit frontmatter to clear a gate.
+It prints `PASS` or `FAIL` with the missing headings and exits non-zero on failure. It checks structure only; content quality is still the Design Review Checklist below.
 
-```markdown
-# Slice Design: {Slice Name}
-
-## Overview
-Brief description of what this slice delivers and why it matters.
-
-## Value
-What does this slice deliver? This may be user-facing functionality, developer-facing improvements (testability, reduced complexity), or architectural enablement (unblocking subsequent slices). Describe how the target audience benefits.
-
-## Technical Scope
-What components, features, and functionality are included in this slice? What is explicitly excluded?
-
-## Dependencies
-### Prerequisites
-- Foundation work or other slices that must be complete
-- External services, APIs, or packages required
-
-### Interfaces Required
-- What this slice needs from other parts of the system
-- Data contracts and API dependencies
-- Shared components or utilities needed
-
-## Architecture
-### Component Structure
-- Main components or modules in this slice
-- How they interact with each other
-- Where they fit in the overall system
-
-### Data Flow
-- How data moves through this slice
-- Input sources and output destinations
-- Data transformations and processing
-
-### State Management (if applicable)
-- What state this slice manages
-- How state is persisted or shared
-- State update patterns and flows
-
-## Technical Decisions
-### Technology Choices (if applicable)
-- Specific libraries, frameworks, or tools
-- Rationale for technical choices
-- Alternatives considered and rejected
-
-### Patterns and Conventions
-- Code organization patterns
-- Naming conventions specific to this slice
-- Error handling approaches
-
-## Implementation Details
-
-### Migration Plan (for migration/refactoring slices)
-- What is being moved, extracted, or restructured
-- Source and destination locations
-- Consumers that must be updated
-- Data migration strategy (if state/storage is affected)
-- Verification that behavior is preserved
-
-### API Contracts (if applicable)
-- Endpoints or tool interfaces this slice provides
-- Request/response formats
-- Authentication and authorization
-
-### Database / Storage Schema (if applicable)
-- Tables, collections, or storage structures this slice requires
-- Relationships to existing data
-- Migration considerations
-
-### UI Specifications (if applicable)
-- Component hierarchy and layout
-- Interaction patterns and user flows
-- Accessibility requirements
-- Responsive design considerations
-
-## Integration Points
-### Provides to Other Slices
-- What interfaces this slice exposes
-- What functionality other slices can use
-- Data or services this slice makes available
-
-### Consumes from Other Slices
-- What this slice expects from dependencies
-- How failures or changes in dependencies are handled
-- Fallback or degraded functionality approaches
-
-## Success Criteria
-### Functional Requirements
-- Specific features or behaviors that must work
-- Workflows that must be complete
-- For migration slices: the system continues to work identically from a user perspective
-
-### Technical Requirements
-- Code quality standards
-- Test coverage expectations
-- Documentation requirements
-
-### Integration Requirements (if applicable)
-- What other slices can successfully integrate after this is complete
-- System-wide functionality that works correctly
-- End-to-end workflows that function
-
-### Verification Walkthrough
-This section bridges the gap between abstract success criteria and concrete proof of delivery. It should read like a short tutorial, not a test plan.
-
-- What commands can be run? (with example invocations and expected output)
-- What workflows become possible or testable end-to-end?
-- How does the user confirm it works? (a step-by-step "demo script")
-
-If a command doesn't exist yet, say so. If a workflow requires manual steps, list them.
-
-## Risk Assessment (if applicable)
-Include only if there are genuine, non-trivial risks. Omit for low-risk slices.
-
-### Technical Risks
-- Complex implementations or unknown territory
-- External dependencies that might cause issues
-
-### Mitigation Strategies
-- How to reduce or manage identified risks
-- Fallback plans for high-risk elements
-
-## Implementation Notes
-### Development Approach
-- Suggested implementation order within this slice
-- Testing strategy for this slice
-
-### Special Considerations (if applicable)
-- Unusual requirements or constraints
-- Performance-critical sections
-- Security considerations specific to this slice
-```
+**`review: none` is a Project Manager decision, never an agent's.** Context Forge treats `review: none` in slice-design frontmatter as a review-exempt declaration: it unconditionally clears every slice-scoped review gate (slice review, task review, code review) for that slice. Agents must not add this field, must not run `cf check --set-review-none`, and must not carry it over when using an earlier slice design as a format reference. Write frontmatter from the template, not by copying a sibling document. If `cf next` reports that a review is required before proceeding, stop and tell the Project Manager, or run the review through the project's established review process. Never edit frontmatter to clear a gate.
 
 #### Slice Design Patterns
 
@@ -304,6 +174,7 @@ Before approving a slice design:
 - [ ] Integration points are clearly defined
 - [ ] Migration slices explicitly ensure the system remains working
 - [ ] Irrelevant template sections are omitted rather than filled with boilerplate
+- [ ] `scripts/validate-slice-design` prints PASS for the document
 - [ ] Project Manager approves the design
 
 ##### Common Issues to Avoid
@@ -317,7 +188,7 @@ Before approving a slice design:
 
 #### Success Criteria
 Phase 4 is complete when:
-- [ ] Slice design document exists with proper frontmatter
+- [ ] Slice design document exists with proper frontmatter and passes `scripts/validate-slice-design`
 - [ ] Technical approach is detailed enough for task creation
 - [ ] Dependencies and integration points are clearly defined
 - [ ] Relevant specifications are included (UI, API, migration plan, etc.)

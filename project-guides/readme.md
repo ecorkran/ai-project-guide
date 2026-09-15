@@ -3,7 +3,7 @@ docType: index
 layer: process
 audience: [human, ai]
 description: Quick reference and navigation for AI Project Guide methodology files
-dateUpdated: 20260214
+dateUpdated: 20260914
 ---
 
 # Project Guides Index
@@ -41,6 +41,7 @@ Quick reference and navigation for AI Project Guide methodology files.
 | UI Development           | UI/UX specific guidance                  | [guide.ui-development.ai.md](guide.ui-development.ai.md)                           |
 | Onboarding Notes         | Human developer onboarding               | [notes.ai-project.onboarding.md](notes.ai-project.onboarding.md)                   |
 | Migration Guides         | Version-specific migration instructions  | [migrations/](migrations/)                                                         |
+| Templates                | Document templates (slice design, changelog, devlog) | [templates/](templates/)                                                     |
 
 ## Agents & Rules
 

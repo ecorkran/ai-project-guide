@@ -12,6 +12,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.5] - 2026-09-14
+
+The Phase 4 slice-design template becomes a file and a schema, and gains a
+validator, so body structure is enforced mechanically rather than by prose.
+
+### Added
+
+- `project-guides/templates/slice-design.md`: the canonical slice-design
+  template as a real file with `{placeholder}` substitution points. Each
+  heading carries a marker: `<!-- required -->` (must appear at the same level
+  with the same text) or `<!-- optional: ... -->` (omit when the stated
+  condition applies). Unmarked level-3 headings are guidance and may be
+  renamed or dropped, so legitimate omission stays legal and "Template
+  Stuffing" remains an anti-pattern.
+- `scripts/validate-slice-design`: checks one or more slice-design documents
+  for every heading the template marks required. Prints `PASS` or `FAIL` with
+  the missing headings; exit 0 pass, 1 fail, 2 usage or template error.
+  Lenient matching (case, whitespace, parenthetical suffixes, fenced blocks
+  skipped); requires `docType: slice-design` in frontmatter. Bash 3.2
+  compatible. The template itself and a real conforming design both pass.
+
+### Changed
+
+- `guide.ai-project.004-slice-design.md`: the inline template blocks are
+  replaced by a pointer to the template file and the required/optional
+  contract; the Design Review Checklist and Phase 4 Success Criteria now
+  require a passing validator run.
+- `prompt.ai-project.system.md` (Phase 4): instructs writing from the
+  template file and running the validator before finishing.
+- `guide.ai-project.process.md` (Phase 4), `file-naming-conventions.md`
+  (slice-design schema), `project-guides/readme.md`, and root `readme.md`
+  point at the template and validator.
+
+Context Forge boundary: `cf validate frontmatter` still checks YAML only and
+`cf check` only that a design exists. Invoking this validator from `cf`, or
+reading the `<!-- required -->` markers natively, is context-forge work.
+
 ## [0.17.4] - 2026-09-09
 
 ### Added

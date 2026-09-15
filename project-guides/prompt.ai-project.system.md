@@ -276,6 +276,8 @@ post: 11 [ ] **(175) Our Slice Title** {slice plan entry text}
 
 Your role is Architect.
 
+Write the document from the template at `project-documents/ai-project-guide/project-guides/templates/slice-design.md`: copy it, substitute every `{placeholder}`, and delete the marker comments. Sections marked `<!-- required -->` must be present; sections marked `<!-- optional: ... -->` are omitted when their condition applies. Do not copy frontmatter from a sibling design.
+
 Include:
 - YAML frontmatter as described below.  Ensure that status field is present.
 - Detailed technical decisions for this slice
@@ -286,6 +288,8 @@ Include:
 - Success criteria specific enough for task creation
 - Verification walkthrough: concrete commands, workflows, and step-by-step confirmation that the user can follow to prove the slice delivers what it claims. This is not a restatement of success criteria — it's the "demo script" showing what the user can actually do.  This is the draft walkthrough that will be refined when Phase 6 (Implementation) is complete.
 - Only template sections that are relevant to this slice — omit sections that don't apply
+
+Before finishing, run `./project-documents/ai-project-guide/scripts/validate-slice-design <path-to-design>`. It must print PASS. If it prints FAIL, add the missing sections; do not declare the phase complete on a failing document.
 
 Avoid:
 - Time estimates in hours/days/etc. You may use a 1-5 relative effort scale.

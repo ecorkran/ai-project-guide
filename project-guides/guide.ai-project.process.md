@@ -6,7 +6,7 @@ audience: [human, ai]
 description: Master process guide describing roles and the slice-based workflow.
 dependsOn: []
 dateCreated: 20250101
-dateUpdated: 20260909
+dateUpdated: 20260914
 ---
 
 #### Overview
@@ -115,6 +115,7 @@ Slices are grouped under architectural initiatives, each with its own architectu
    - Identify any cross-slice dependencies or conflicts.
    - Create mockups or detailed specifications for UI components (if applicable).
    - Save as `user/slices/nnn-slice.{slice-name}.md` where `nnn` follows initiative-based indexing per `file-naming-conventions.md`.
+   - Write from `project-guides/templates/slice-design.md` and confirm `scripts/validate-slice-design` prints PASS before the phase is complete.
    - Outcome: _Detailed design document for implementing this slice._
 
 5. **Phase 5: Slice Task Breakdown**
