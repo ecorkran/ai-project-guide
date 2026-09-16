@@ -12,6 +12,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.7] - 2026-09-16
+
+### Added
+
+- `file-naming-conventions.md`: documents the pull-request review filename
+  convention, `{host}-{owner}-{repository}-{number}-review.{reviewType}.md`
+  (e.g. `github.com-ecorkran-squadron-42-review.code.md`), as a third
+  sibling to Slice-Lineage and Operational Reviews under "Review Files".
+  Adds the `targetKind` (`slice`|`arch`|`step`|`pr`, defaults to `slice`)
+  and `rulesSource` (`flag`|`config`|`project`|`user`|`template`|`none`)
+  optional frontmatter keys, and the `pr:` mapping (`host`, `owner`,
+  `repository`, `number`, `url`) that replaces `slice:` for PR reviews.
+  Notes that `reviewedSha` is the PR's head sha, not the reviewing
+  machine's `HEAD`. Ports a convention already shipped in squadron
+  (`383-slice.pr-keyed-review-persistence`).
+
 ## [0.17.6] - 2026-09-15
 
 ### Added

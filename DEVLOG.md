@@ -10,6 +10,33 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260916
+
+**Session**: Pull-request review filename convention (v0.17.7)
+
+### Completed
+- Added "Pull-Request Reviews" subsection to `file-naming-conventions.md`'s
+  Review Files section: `{host}-{owner}-{repository}-{number}-review.{reviewType}.md`,
+  the `targetKind`/`rulesSource` optional frontmatter keys, and the `pr:`
+  mapping that replaces `slice:` for PR reviews
+- Source: another Claude session (sq-issues) flagged an uncommitted,
+  orphaned edit to this same file sitting in the ai-project-guide submodule
+  checkout inside the squadron-pr worktree (detached HEAD at e11dcd4, never
+  committed anywhere) — the convention it documented was already shipped in
+  squadron (`383-slice.pr-keyed-review-persistence`, commits `ae334e8b`,
+  `b4129c53`). Rewrote it as a proper commit here instead of leaving it
+  hand-edited in a consumer's submodule checkout
+
+### Key decisions
+- Placed the new subsection under "## Review Files" as a sibling to
+  Slice-Lineage and Operational Reviews, not inside the `#### review`
+  frontmatter schema block where the orphaned draft had put it — the schema
+  block only gets a pointer to the new subsection plus a one-line summary
+  of the new keys
+- Ground rule going forward (per Erik, relayed via the peer session): the
+  ai-project-guide submodule is only ever edited from this repo, never by
+  hand inside a consumer repo's submodule checkout
+
 ## 20260915
 
 **Session**: Docker/container tool guide (v0.17.6)
