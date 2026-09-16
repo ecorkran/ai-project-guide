@@ -184,6 +184,8 @@ status: not_started
 ---
 ```
 
+Optional keys `targetKind` (`slice`|`arch`|`step`|`pr`, defaults to `slice` when absent) and `rulesSource` (`flag`|`config`|`project`|`user`|`template`|`none`) refine what a review is about and where its rules came from. A pull-request review replaces `slice` with a `pr` mapping (`host`, `owner`, `repository`, `number`, `url`) and sets `reviewedSha` to the PR's head sha, not the reviewing machine's `HEAD`. See **Pull-Request Reviews** below.
+
 #### analysis
 ```yaml
 ---
@@ -435,6 +437,53 @@ Examples:
 - `900-review.auth-module.md` (ad-hoc audit of the auth module)
 - `901-review.dependency-security.md` (one-off security review)
 
+### Pull-Request Reviews
+
+A review of a pull request has no slice index and no slice name, so it uses a different filename form:
+
+```
+{host}-{owner}-{repository}-{number}-review.{reviewType}.md
+```
+
+Example: `github.com-ecorkran-squadron-42-review.code.md`
+
+Directory: `user/reviews/`
+
+The prefix is the PR's identity with path-hostile characters flattened — `github.com/ecorkran/squadron#42` cannot be a filename. The name is never derived from the PR title, which would produce an identifier that changes whenever someone edits the title.
+
+**The non-numeric prefix is load-bearing.** Consumers that locate a review by slice index build their glob from an integer, so a PR review cannot match one by construction rather than by convention. A PR review of PR 42 and a slice review of slice 42 can sit in the same directory without colliding.
+
+Two optional frontmatter keys distinguish reviews that the filename alone no longer can:
+
+- `targetKind`: `slice` | `arch` | `step` | `pr` — what the review is *about*. Consumers that enumerate every review file classify by reading this, never by parsing the filename. **Absence means `slice`**, so review documents written before the key existed keep parsing.
+- `rulesSource`: `flag` | `config` | `project` | `user` | `template` | `none` — which source produced the rules directory the reviewer was given. Optional; its absence is never inferred as any particular source.
+
+A PR review carries a `pr` mapping in place of `slice`:
+
+```yaml
+---
+docType: review
+layer: project
+reviewType: code
+pr:
+  host: github.com
+  owner: ecorkran
+  repository: squadron
+  number: 42
+  url: https://github.com/ecorkran/squadron/pull/42
+targetKind: pr
+rulesSource: project
+project: {project}
+sourceDocument: {pull request url}
+aiModel: {model-identifier}
+reviewedSha: {the pull request's head sha}
+status: complete
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
+---
+```
+
+`reviewedSha` is the **pull request's** head, not the reviewing machine's `HEAD` — those are different trees, and a sha from the wrong one still looks plausible.
 
 ## File Size Limits and Splitting
 
