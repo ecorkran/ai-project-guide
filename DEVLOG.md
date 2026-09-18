@@ -10,6 +10,29 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260918
+
+**Session**: Remove self-referential submodule (v0.17.8)
+
+### Completed
+- Removed the gitlink at `project-documents/ai-project-guide` (pointing at
+  this repo's own URL) and `.gitmodules`, both introduced by `4714fbd`
+  ("docs: install ai-project-guide v0.15.6") — the result of running
+  `cf guides install` inside a checkout of the guide itself
+- Source: another Claude session (context-forge) filed #21 after the v0.17.5
+  tarball confirmed both artifacts ship to every consumer install (tarball,
+  submodule, clone)
+- context-forge is adding a defensive extract filter on its own side in
+  parallel; this fix is the upstream side so new installs stop carrying it
+
+### Key decisions
+- Tagged v0.17.8, not the v0.17.6 the issue suggested — v0.17.7 had already
+  shipped (PR review filename convention) since the issue was filed
+- Left `.idea/` and `.obsidian/` alone — flagged in the issue as separate,
+  non-blocking hygiene, not part of this fix
+- Left the emptied `project-documents/` directory in place untracked (git
+  doesn't track empty dirs); no further action needed
+
 ## 20260916
 
 **Session**: Pull-request review filename convention (v0.17.7)

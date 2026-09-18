@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.8] - 2026-09-18
+
+### Fixed
+
+- Removed a self-referential submodule: `project-documents/ai-project-guide`
+  (a gitlink pointing at this repo's own URL) and `.gitmodules`, both
+  introduced by commit `4714fbd` from running `cf guides install` inside a
+  checkout of the guide itself. Every consumer install (tarball, submodule,
+  clone) was carrying both artifacts. Fixes #21.
+
 ## [0.17.7] - 2026-09-16
 
 ### Added
