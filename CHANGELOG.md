@@ -12,6 +12,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.9] - 2026-09-19
+
+### Added
+
+- `rules/git.md`: "Worktrees" subsection. The target is a property of the
+  config, never of the checkout; a registered worktree's
+  `git.integration_branch` is its own long-lived branch, giving `main` ←
+  integration branch ← worktree branch ← slice branch. Agents merge exactly
+  one level (slice into target); everything above is PM-only. Unregistered
+  worktrees and a target checked out elsewhere are STOP conditions. Fixes #15.
+- `rules/git.md`: explicit merge steps replace the one-line "merges into the
+  target" sentence — re-read the target, check it out, merge, STOP on failure.
+- `rules/git.md`: "Branch Protection" section. A 404 from the classic
+  protection endpoint does not mean a branch is unprotected; agents must also
+  check `rules/branches/{branch}` (rulesets) before reporting either way.
+
 ## [0.17.8] - 2026-09-18
 
 ### Fixed

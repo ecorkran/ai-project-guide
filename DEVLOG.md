@@ -10,6 +10,37 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260919
+
+**Session**: Worktree handling and branch protection check in git rules (v0.17.9)
+
+### Completed
+- `rules/git.md`: added "Worktrees" subsection and explicit merge steps (#15)
+- `rules/git.md`: added "Branch Protection" section — agents were reporting
+  "no protection on the default branch" after checking only the classic
+  endpoint; reproduced on this repo (classic returns 404, `rules/branches/main`
+  returns three active ruleset rules)
+- Filed #22 (begin/end managed markers + merge in `setup-ide`) and #23 (rules
+  exclude list), counterparts to context-forge #94 and #95
+
+### Key decisions
+- Worktree target = the worktree's own branch, set per worktree via
+  `git.integration_branch`. Replaced an earlier design (planning on the
+  worktree branch, merges run from the target's tree via `git -C`) that needed
+  cross-tree operations and a "land planning first" sequence
+- No resolution logic in the guide. context-forge confirmed the key is
+  personal-scope and stored per checkout directory, so registered worktrees
+  already resolve their own value; surfacing the resolved target in built
+  context stays with context-forge #70
+- Branch protection check went into the always-on git rules rather than a
+  customizable per-project rules file — it is a correctness fact for any
+  GitHub/GHE repo, not an org preference
+- Discussed but deferred: a project-owned rules directory (e.g. a `culture.md`
+  compiled alongside `general.md`/`git.md`) and a config key for the git host.
+  Nothing filed
+- Root `CLAUDE.md` (generated copy of these rules) not regenerated in this
+  release
+
 ## 20260918
 
 **Session**: Remove self-referential submodule (v0.17.8)
