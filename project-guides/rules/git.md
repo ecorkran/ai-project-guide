@@ -53,6 +53,11 @@ When slice implementation is done, merge the slice branch into the target:
 
 Do not hold a branch open across units. Do not delete branches unless specifically instructed to do so.
 
+#### Branch Protection
+GitHub has two independent mechanisms: classic branch protection and rulesets. A 404 from `repos/{owner}/{repo}/branches/{branch}/protection` means only that no *classic* rule exists.
+- Before stating that a branch is or is not protected, also check `gh api repos/{owner}/{repo}/rules/branches/{branch}` — it lists every active rule on the branch, including ones inherited from organization rulesets.
+- Report "unprotected" only when both come back empty. If either call fails for a reason other than "not found" (permissions, auth), say so instead of concluding anything.
+
 #### Commit Messages
 Use semantic commit prefixes. The goal is a readable `git log --oneline`.
 
