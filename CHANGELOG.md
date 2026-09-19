@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.10] - 2026-09-19
+
 ### Changed
 
 - Added `.gitattributes` with `export-ignore` for paths used only to develop

@@ -41,7 +41,7 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 - Root `CLAUDE.md` (generated copy of these rules) not regenerated in this
   release
 
-**Session**: Keep guide-development files out of tarball installs (unreleased)
+**Session**: Keep guide-development files out of tarball installs (v0.17.10)
 
 ### Completed
 - Added `.gitattributes` with `export-ignore` for `user/`, `.claude/`,
