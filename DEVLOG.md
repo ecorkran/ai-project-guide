@@ -41,6 +41,28 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 - Root `CLAUDE.md` (generated copy of these rules) not regenerated in this
   release
 
+**Session**: Keep guide-development files out of tarball installs (unreleased)
+
+### Completed
+- Added `.gitattributes` with `export-ignore` for `user/`, `.claude/`,
+  `.idea/`, `.obsidian/`, `.understand-anything/`, `DEVLOG.md`, `CLAUDE.md`,
+  and `.gitattributes` itself
+- Verified with `git archive --worktree-attributes HEAD`: the archive contains
+  only guide content, scripts, snippets, `z-attachments/`, and the top-level
+  docs. Not yet verified against a real GitHub tag tarball
+
+### Key decisions
+- Chose `export-ignore` over moving the guide's own project files to another
+  repo or branch: the files stay tracked and carried along here, and no
+  tooling is involved
+- Scope is the tarball (`manual`) strategy only, which is the one producing PR
+  clutter and is expected to become the default. Submodule is acceptable as is
+- `.claude/` at the repo root is generated output for this repo; `setup-ide`
+  builds a consumer's `.claude/` from `project-guides/`, never from the root
+  copy, so excluding it breaks nothing
+- Left `z-attachments/` in the archive: guides reference it, and whether they
+  link the actual images was not checked
+
 ## 20260918
 
 **Session**: Remove self-referential submodule (v0.17.8)

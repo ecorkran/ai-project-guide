@@ -1,0 +1,11 @@
+# Paths used only for developing the guide itself. They stay tracked here but
+# are left out of `git archive` output and GitHub release tarballs, so tarball
+# installs into a consumer project do not carry them.
+user/                 export-ignore
+.claude/              export-ignore
+.idea/                export-ignore
+.obsidian/            export-ignore
+.understand-anything/ export-ignore
+DEVLOG.md             export-ignore
+CLAUDE.md             export-ignore
+.gitattributes        export-ignore

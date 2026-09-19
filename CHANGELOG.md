@@ -12,6 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Added `.gitattributes` with `export-ignore` for paths used only to develop
+  the guide itself: `user/`, `.claude/`, `.idea/`, `.obsidian/`,
+  `.understand-anything/`, `DEVLOG.md`, `CLAUDE.md`, and `.gitattributes`.
+  They remain tracked here but are left out of `git archive` output, so
+  tarball installs no longer carry them into consumer projects (where the
+  guide's `user/` sat beside the project's own `project-documents/user/` and
+  showed up in PR diffs on every guide update). Submodule and clone installs
+  are unchanged.
+
 ## [0.17.9] - 2026-09-19
 
 ### Added
