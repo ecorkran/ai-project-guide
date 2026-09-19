@@ -29,7 +29,7 @@ The target is a property of the config, never of the checkout. The branch you ha
 `git.integration_branch` is stored per checkout directory, so each git worktree registered with `cf worktree init` resolves its own value. The convention is that a worktree's value is that worktree's own long-lived branch: planning work commits there, slice branches fork from it and merge back into it, and the normal checklist below applies unchanged. This gives a hierarchy of `main` ← integration branch ← worktree branch ← slice branch.
 
 - **Agents merge exactly one level:** a slice branch into its target. Merging a worktree's branch into a wider integration branch or into `main`, and refreshing it from either, are PM-only actions, same as the hard rule above.
-- **Unregistered worktree:** if you are in a git worktree and `cf worktree list` shows no entry for your path, the value `cf` returns belongs to the primary checkout, not to this worktree. STOP and ask the Project Manager.
+- **Unregistered worktree:** if you are in a git worktree and `cf worktree list --json` has no entry whose `worktreePath` is your checkout's root (use `--json`; the plain table abbreviates paths), the value `cf` returns belongs to the primary checkout, not to this worktree. STOP and ask the Project Manager.
 - **Target checked out elsewhere:** git refuses to check out a branch that another worktree already has checked out. If that happens for the target, STOP and ask the Project Manager. Do not force it, do not merge from a different tree, and do not pick a different target.
 
 Before starting work:
