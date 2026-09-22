@@ -15,7 +15,190 @@ NC='\033[0m' # No Color
 
 # Script configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Managed-section markers. The compiled composites (CLAUDE.md, AGENTS.md,
+# copilot-instructions.md) wrap their generated content in a BEGIN/END pair so
+# re-runs replace only that span and leave hand-written content alone.
+#
+# The HTML-comment form is deliberate: the older link-reference form
+# ([//]: # (...)) depends on renderers discarding unused link reference
+# definitions, which lightweight non-CommonMark parsers get wrong — it leaks as
+# visible text. It also matches the shape Next.js uses for its generated
+# AGENTS.md block, so it reads as a familiar convention rather than a custom one.
+MANAGED_BEGIN='<!-- BEGIN:context-forge -->'
+MANAGED_END='<!-- END:context-forge -->'
+
+# Pre-merge marker. Files stamped with this have generated content running from
+# the marker to EOF (nothing was ever written after it), which is what lets
+# migration find the span without parsing content. Still emitted by the
+# single-file artifacts under .github/, where it is a provenance tag rather than
+# a region delimiter.
 MANAGED_MARKER='[//]: # (context-forge:managed)'
+
+# Provenance stamp for the single-file artifacts under .github/. Those are
+# generated wholesale from one source rule each — there is no user-authored
+# region to protect — so they carry a standalone marker rather than a pair.
+# Shares the HTML-comment form so a project never contains two marker syntaxes.
+GENERATED_MARKER='<!-- context-forge:generated -->'
+
+# Suffix for the one-time backup taken when converting or adopting a file that
+# was not previously managed. Deliberately distinct from cf's own ".bak" slot so
+# the two never contend for the same path.
+PREMANAGED_BACKUP_SUFFIX='.pre-context-forge'
+
+# Comma-separated globs of scoped rule files to leave uninstalled, matched
+# against the basename (e.g. 'dart.md,swift*.md'). Empty means install
+# everything, which is the default.
+#
+# Read from cf's `rules.exclude` config when cf is on PATH, since that is where
+# the value belongs — it describes the project, not the invocation. The env var
+# is the fallback for the standalone case: this script is plain bash that can be
+# run directly, with no cf present, so config alone would leave direct callers
+# no way to set it at all.
+#
+# Skip-only by design: a newly added exclusion stops future copies but never
+# deletes a file an earlier run installed, since a project may have come to
+# depend on it. alwaysApply rules are deliberately not excludable — they are
+# compiled into the managed block rather than copied, so excluding one would
+# silently drop general.md or git.md.
+#
+# Which tier supplied the active value, reported when exclusions are in effect:
+# an env var left set in a shell would otherwise shadow the project's config
+# invisibly, and the only symptom would be a rule quietly missing.
+RULES_EXCLUDE_SOURCE=""
+
+# Assigns RULES_EXCLUDE and RULES_EXCLUDE_SOURCE directly rather than printing,
+# so both survive — a command substitution would run this in a subshell and
+# discard the source.
+read_rules_exclude() {
+    RULES_EXCLUDE=""
+    RULES_EXCLUDE_SOURCE=""
+
+    # An explicit env var wins, so a one-off run can override project config.
+    if [ -n "${CONTEXT_FORGE_RULES_EXCLUDE:-}" ]; then
+        RULES_EXCLUDE="$CONTEXT_FORGE_RULES_EXCLUDE"
+        RULES_EXCLUDE_SOURCE="CONTEXT_FORGE_RULES_EXCLUDE"
+        return 0
+    fi
+
+    command -v cf >/dev/null 2>&1 || return 0
+
+    # A non-zero exit means the key is unknown (a cf predating this feature) or
+    # cf could not answer. Either way: no exclusions, never a hard error, so the
+    # script works on both sides of that cf release.
+    local output
+    output=$(cf config get rules.exclude 2>/dev/null) || return 0
+
+    # `cf config get` prints a labeled block, not a bare value:
+    #   Key:     rules.exclude
+    #   Value:   dart.md,swift.md
+    #   Source:  project
+    # Take the Value line and strip its label and surrounding whitespace.
+    RULES_EXCLUDE=$(printf '%s' "$output" | awk '
+        /^Value:/ {
+            sub(/^Value:[[:space:]]*/, "")
+            sub(/[[:space:]]+$/, "")
+            print
+            exit
+        }
+    ')
+
+    [ -n "$RULES_EXCLUDE" ] && RULES_EXCLUDE_SOURCE="cf config rules.exclude"
+    return 0
+}
+
+read_rules_exclude
+
+# Patterns that matched at least one file, used to warn about typos.
+RULES_EXCLUDE_MATCHED=""
+
+# True when a scoped rule file should be skipped. Args: filename (basename)
+rule_is_excluded() {
+    local filename=$1
+
+    [ -n "$RULES_EXCLUDE" ] || return 1
+
+    local pattern
+    local old_ifs=$IFS
+    IFS=','
+    for pattern in $RULES_EXCLUDE; do
+        # Tolerate spaces after commas rather than silently failing to match.
+        pattern="${pattern#"${pattern%%[![:space:]]*}"}"
+        pattern="${pattern%"${pattern##*[![:space:]]}"}"
+        [ -n "$pattern" ] || continue
+
+        case "$filename" in
+            $pattern)
+                IFS=$old_ifs
+                case ",$RULES_EXCLUDE_MATCHED," in
+                    *",$pattern,"*) ;;
+                    *) RULES_EXCLUDE_MATCHED="$RULES_EXCLUDE_MATCHED,$pattern" ;;
+                esac
+                return 0
+                ;;
+        esac
+    done
+    IFS=$old_ifs
+    return 1
+}
+
+# Warn about exclusion patterns that skipped nothing — almost always a typo,
+# and otherwise invisible: the user just sees the rule still installed.
+#
+# Distinguishes a pattern that matched no file at all from one that named an
+# alwaysApply rule, which exists but cannot be excluded. Reporting the latter as
+# "matched nothing" would send the user hunting for a typo that isn't there.
+warn_unmatched_exclusions() {
+    [ -n "$RULES_EXCLUDE" ] || return 0
+
+    # Name the source: an env var left set in a shell shadows project config,
+    # and the only other symptom is a rule quietly missing.
+    print_status $BLUE "ℹ️  Rule exclusions active from $RULES_EXCLUDE_SOURCE: $RULES_EXCLUDE" >&2
+
+    local pattern
+    local old_ifs=$IFS
+    IFS=','
+    for pattern in $RULES_EXCLUDE; do
+        pattern="${pattern#"${pattern%%[![:space:]]*}"}"
+        pattern="${pattern%"${pattern##*[![:space:]]}"}"
+        [ -n "$pattern" ] || continue
+
+        case ",$RULES_EXCLUDE_MATCHED," in
+            *",$pattern,"*) continue ;;
+        esac
+
+        IFS=$old_ifs
+        if always_apply_rule_matches "$pattern"; then
+            print_status $YELLOW "⚠️  warning: rules.exclude pattern '$pattern' names an always-on rule and was ignored" >&2
+            print_status $YELLOW "   Always-on rules are compiled into the managed block, not installed as files." >&2
+        else
+            print_status $YELLOW "⚠️  warning: rules.exclude pattern '$pattern' matched no rule files" >&2
+        fi
+        IFS=','
+    done
+    IFS=$old_ifs
+}
+
+# True when a pattern matches an alwaysApply rule — i.e. one deliberately beyond
+# the reach of exclusions. Args: pattern
+always_apply_rule_matches() {
+    local pattern=$1
+
+    [ -d "$RULES_SOURCE_DIR" ] || return 1
+
+    local file
+    for file in "$RULES_SOURCE_DIR"/*.md; do
+        [ -f "$file" ] || continue
+        has_always_apply "$file" || continue
+
+        local filename
+        filename=$(basename "$file")
+        case "$filename" in
+            $pattern) return 0 ;;
+        esac
+    done
+    return 1
+}
 
 # Find the actual project root by looking for project-documents directory
 find_project_root() {
@@ -298,6 +481,12 @@ copy_cursor_rules() {
         has_always_apply "$file" && continue
 
         local filename=$(basename "$file")
+
+        if rule_is_excluded "$filename"; then
+            print_status $YELLOW "⊘ Skipped $filename (excluded)"
+            continue
+        fi
+
         local target_filename="${filename%.md}.mdc"
         local target_path="$target_dir/$target_filename"
 
@@ -331,11 +520,11 @@ compile_claude_rules() {
 
     print_status $BLUE "📄 Compiling alwaysApply rules into CLAUDE.md..."
 
-    # Create CLAUDE.md file
-    cat > "$target_file" << 'EOF'
+    # Compile into a scratch file, then merge into the target's managed block so
+    # hand-written content in CLAUDE.md survives the run.
+    local content_file="${target_file}.context-forge.content"
+    cat > "$content_file" << 'EOF'
 # Project Guidelines for Claude
-
-[//]: # (context-forge:managed)
 
 EOF
 
@@ -375,10 +564,10 @@ EOF
 
         # Add section heading
         if [ -n "$section_title" ]; then
-            echo "## $section_title" >> "$target_file"
+            echo "## $section_title" >> "$content_file"
         else
             local fallback_title=$(echo "$filename" | sed 's/\.md$//' | sed 's/\b\w/\U&/g' | sed 's/-/ /g')
-            echo "## $fallback_title Rules" >> "$target_file"
+            echo "## $fallback_title Rules" >> "$content_file"
         fi
 
         # Extract content after frontmatter and heading, promoting heading levels
@@ -401,12 +590,18 @@ EOF
             }
             print
         }
-        ' "$file" >> "$target_file"
+        ' "$file" >> "$content_file"
 
-        echo "" >> "$target_file"
+        echo "" >> "$content_file"
         print_status $GREEN "✅ Embedded $(basename "$filename" .md) rules in CLAUDE.md"
         compiled_count=$((compiled_count + 1))
     done
+
+    if ! write_managed_section "$target_file" "$content_file" "CLAUDE.md"; then
+        rm -f "$content_file"
+        return 1
+    fi
+    rm -f "$content_file"
 
     print_status $BLUE "📋 Embedded $compiled_count alwaysApply rules in CLAUDE.md"
     return 0
@@ -456,6 +651,12 @@ copy_claude_modular_rules() {
         fi
 
         local filename=$(basename "$file")
+
+        if rule_is_excluded "$filename"; then
+            print_status $YELLOW "⊘ Skipped $filename (excluded)"
+            continue
+        fi
+
         strip_name_field "$file" "$target_dir/$filename"
         print_status $GREEN "✅ Copied $filename → .claude/rules/$filename"
         copied_count=$((copied_count + 1))
@@ -531,13 +732,17 @@ get_frontmatter_field() {
 
 # Compile alwaysApply rules into a single always-on instructions file.
 # Vendor-neutral: used for both .github/copilot-instructions.md and AGENTS.md.
-# Args: source_dir, out_file, artifact_label, [h1_title]
+# Args: source_dir, out_file, artifact_label, [h1_title], [trailing_content]
 # Emits an "# <h1_title>" heading only when h1_title is non-empty.
+# trailing_content is appended inside the managed block, after the compiled
+# rules — callers pass generated sections here rather than appending them to the
+# file afterwards, which would strand them outside the block.
 compile_always_on_rules() {
     local source_dir=$1
     local out_file=$2
     local artifact_label=$3
     local h1_title=$4
+    local trailing_content=$5
 
     if [ ! -d "$source_dir" ]; then
         print_status $RED "❌ Source directory not found: $source_dir"
@@ -546,15 +751,18 @@ compile_always_on_rules() {
 
     mkdir -p "$(dirname "$out_file")"
 
-    # Write optional H1 + managed marker, then compiled alwaysApply content
-    {
-        if [ -n "$h1_title" ]; then
+    # Compile into a scratch file, then merge it into the managed block of the
+    # real target. The H1 lives inside the block: it is generated content, and a
+    # project that wants its own heading can put one above the block.
+    local out_file_content="${out_file}.context-forge.content"
+    : > "$out_file_content"
+
+    if [ -n "$h1_title" ]; then
+        {
             echo "# $h1_title"
             echo ""
-        fi
-        echo "$MANAGED_MARKER"
-        echo ""
-    } > "$out_file"
+        } >> "$out_file_content"
+    fi
 
     local compiled_count=0
 
@@ -577,11 +785,11 @@ compile_always_on_rules() {
         ' "$file")
 
         if [ -n "$section_title" ]; then
-            echo "## $section_title" >> "$out_file"
+            echo "## $section_title" >> "$out_file_content"
         else
             local fallback_title
             fallback_title=$(echo "$filename" | sed 's/\.md$//' | sed 's/-/ /g')
-            echo "## $fallback_title" >> "$out_file"
+            echo "## $fallback_title" >> "$out_file_content"
         fi
 
         # Append content (strip frontmatter and first heading, promote heading levels)
@@ -599,14 +807,181 @@ compile_always_on_rules() {
             if (/^#{2,6} /) sub(/^#/, "")
             print
         }
-        ' "$file" >> "$out_file"
+        ' "$file" >> "$out_file_content"
 
-        echo "" >> "$out_file"
+        echo "" >> "$out_file_content"
         print_status $GREEN "✅ Embedded $(basename "$filename" .md) in $artifact_label"
         compiled_count=$((compiled_count + 1))
     done
 
+    if [ -n "$trailing_content" ]; then
+        printf '%s' "$trailing_content" >> "$out_file_content"
+    fi
+
+    if ! write_managed_section "$out_file" "$out_file_content" "$artifact_label"; then
+        rm -f "$out_file_content"
+        return 1
+    fi
+    rm -f "$out_file_content"
+
     print_status $BLUE "📋 Compiled $compiled_count alwaysApply rules → $artifact_label"
+}
+
+# ─── Managed-section merge ────────────────────────────────────────────────────
+
+# Classify a target file's managed-section state. Prints one of:
+#   absent   — no file
+#   unmanaged — a file we have never written to
+#   legacy   — carries the pre-merge single marker
+#   managed  — carries a well-formed BEGIN/END pair
+#   broken   — markers present but unusable (unpaired, out of order, duplicated)
+managed_state() {
+    local file=$1
+
+    [ -f "$file" ] || { echo "absent"; return 0; }
+
+    local begin_count end_count
+    begin_count=$(grep -cFx "$MANAGED_BEGIN" "$file" || true)
+    end_count=$(grep -cFx "$MANAGED_END" "$file" || true)
+
+    if [ "$begin_count" -eq 0 ] && [ "$end_count" -eq 0 ]; then
+        if grep -qFx "$MANAGED_MARKER" "$file"; then
+            echo "legacy"
+        else
+            echo "unmanaged"
+        fi
+        return 0
+    fi
+
+    # Exactly one of each, in the right order, is the only usable shape.
+    if [ "$begin_count" -ne 1 ] || [ "$end_count" -ne 1 ]; then
+        echo "broken"
+        return 0
+    fi
+
+    local begin_line end_line
+    begin_line=$(grep -nFx "$MANAGED_BEGIN" "$file" | head -1 | cut -d: -f1)
+    end_line=$(grep -nFx "$MANAGED_END" "$file" | head -1 | cut -d: -f1)
+
+    if [ "$begin_line" -ge "$end_line" ]; then
+        echo "broken"
+    else
+        echo "managed"
+    fi
+}
+
+# Take a one-time backup before we first touch a file we did not write.
+# Skipped when a backup already exists, so the true original always survives —
+# a second run must not overwrite the first run's copy.
+backup_premanaged_file() {
+    local file=$1
+    local backup="${file}${PREMANAGED_BACKUP_SUFFIX}"
+
+    [ -f "$backup" ] && return 0
+
+    cp "$file" "$backup"
+    print_status $YELLOW "💾 Backed up existing $(basename "$file") → $(basename "$backup")"
+}
+
+# Merge compiled content into a target file, preserving anything outside the
+# managed block. Args: target_file, content_file, artifact_label
+#
+# Bytes outside the managed block are passed through untouched — line endings
+# and a missing trailing newline included — so this stays safe on files the
+# project also edits by hand.
+write_managed_section() {
+    local target_file=$1
+    local content_file=$2
+    local artifact_label=$3
+
+    local state
+    state=$(managed_state "$target_file")
+
+    if [ "$state" = "broken" ]; then
+        print_status $RED "❌ $artifact_label has unbalanced context-forge markers"
+        print_status $YELLOW "   Expected exactly one $MANAGED_BEGIN and one $MANAGED_END, in that order."
+        print_status $YELLOW "   Left unchanged — fix the markers by hand, then re-run."
+        return 1
+    fi
+
+    mkdir -p "$(dirname "$target_file")"
+
+    local tmp_file="${target_file}.context-forge.tmp"
+
+    case "$state" in
+        absent)
+            {
+                printf '%s\n' "$MANAGED_BEGIN"
+                cat "$content_file"
+                printf '%s\n' "$MANAGED_END"
+            } > "$tmp_file"
+            ;;
+
+        unmanaged)
+            # Never written by us: the whole file is the project's. Keep it and
+            # append our block, rather than destroying hand-written guidance.
+            backup_premanaged_file "$target_file"
+            {
+                cat "$target_file"
+                # Guarantee separation even if the file lacks a trailing newline.
+                printf '\n'
+                printf '%s\n' "$MANAGED_BEGIN"
+                cat "$content_file"
+                printf '%s\n' "$MANAGED_END"
+            } > "$tmp_file"
+            print_status $YELLOW "📎 Preserved existing $artifact_label; appended managed block"
+            ;;
+
+        legacy)
+            # Generated content ran from the marker to EOF, so everything above
+            # the marker is the project's and everything below it is ours.
+            #
+            # The H1 above the marker was also ours (we emitted it), and the
+            # compiled content carries its own copy — so drop a leading heading
+            # that the new block is about to restate, rather than leaving the
+            # title duplicated.
+            backup_premanaged_file "$target_file"
+            local generated_h1=""
+            generated_h1=$(head -1 "$content_file")
+            case "$generated_h1" in
+                '# '*) ;;            # a heading the block will re-emit
+                *) generated_h1="" ;; # anything else: leave the file's first line alone
+            esac
+            {
+                awk -v marker="$MANAGED_MARKER" -v h1="$generated_h1" '
+                    $0 == marker { exit }
+                    # Only the first line, and only when it is exactly the
+                    # heading the managed block re-emits.
+                    NR == 1 && h1 != "" && $0 == h1 { skipped_h1 = 1; next }
+                    # Swallow the blank line that followed that heading.
+                    NR == 2 && skipped_h1 && $0 == "" { next }
+                    { print }
+                ' "$target_file"
+                printf '%s\n' "$MANAGED_BEGIN"
+                cat "$content_file"
+                printf '%s\n' "$MANAGED_END"
+            } > "$tmp_file"
+            print_status $YELLOW "🔄 Migrated $artifact_label to BEGIN/END markers"
+            print_status $YELLOW "   Content below the old marker was generated and has been replaced."
+            ;;
+
+        managed)
+            awk -v begin="$MANAGED_BEGIN" -v end="$MANAGED_END" -v content="$content_file" '
+                $0 == begin {
+                    print
+                    while ((getline line < content) > 0) print line
+                    close(content)
+                    in_block = 1
+                    next
+                }
+                $0 == end { in_block = 0; print; next }
+                !in_block { print }
+            ' "$target_file" > "$tmp_file"
+            ;;
+    esac
+
+    mv "$tmp_file" "$target_file"
+    return 0
 }
 
 # Path to the rules directory, relative to the project root when it lives under
@@ -637,12 +1012,15 @@ emit_agents_md() {
 
     local out_file="$target_root/AGENTS.md"
 
-    compile_always_on_rules "$source_dir" "$out_file" "AGENTS.md" "Project Guidelines" || return 1
-
     if [ "$include_scoped_index" != "true" ]; then
+        compile_always_on_rules "$source_dir" "$out_file" "AGENTS.md" "Project Guidelines" || return 1
         return 0
     fi
 
+    # Build the index before compiling: it is generated content, so it has to go
+    # inside the managed block along with everything else. Appending it after the
+    # merge would strand it below the END marker, where the next run would not
+    # replace it and duplicate copies would accumulate.
     local rules_path
     rules_path=$(rules_dir_display_path)
 
@@ -655,6 +1033,10 @@ emit_agents_md() {
 
         local filename
         filename=$(basename "$file")
+
+        # An excluded rule is not installed, so listing it here would point the
+        # agent at a file the project deliberately left out.
+        rule_is_excluded "$filename" && continue
 
         local description
         description=$(get_frontmatter_field "$file" "description")
@@ -670,16 +1052,18 @@ emit_agents_md() {
         scoped_count=$((scoped_count + 1))
     done
 
+    local trailing=""
     if [ $scoped_count -gt 0 ]; then
-        {
-            echo "## Additional Rules"
-            echo ""
-            echo "The rules above always apply. The following are scoped to specific"
-            echo "languages and tools and are deliberately not inlined here — read the"
-            echo "relevant file when working in that area:"
-            echo ""
-            printf '%s' "$index_body"
-        } >> "$out_file"
+        trailing+="## Additional Rules"$'\n\n'
+        trailing+="The rules above always apply. The following are scoped to specific"$'\n'
+        trailing+="languages and tools and are deliberately not inlined here — read the"$'\n'
+        trailing+="relevant file when working in that area:"$'\n\n'
+        trailing+="$index_body"
+    fi
+
+    compile_always_on_rules "$source_dir" "$out_file" "AGENTS.md" "Project Guidelines" "$trailing" || return 1
+
+    if [ $scoped_count -gt 0 ]; then
         print_status $GREEN "✅ Indexed $scoped_count scoped rules in AGENTS.md"
     fi
 }
@@ -742,6 +1126,12 @@ emit_copilot_instruction_files() {
 
         local filename
         filename=$(basename "$file")
+
+        if rule_is_excluded "$filename"; then
+            print_status $YELLOW "⊘ Skipped $filename (excluded)"
+            continue
+        fi
+
         local stem="${filename%.md}"
 
         local name
@@ -763,7 +1153,7 @@ emit_copilot_instruction_files() {
             [ -n "$description" ] && echo "description: $description"
             echo "applyTo: \"$apply_to\""
             echo "---"
-            echo "$MANAGED_MARKER"
+            echo "$GENERATED_MARKER"
             echo ""
             # Extract body after frontmatter
             awk '
@@ -835,7 +1225,7 @@ emit_copilot_prompt_files() {
             echo "name: $name"
             [ -n "$description" ] && echo "description: $description"
             echo "---"
-            echo "$MANAGED_MARKER"
+            echo "$GENERATED_MARKER"
             echo ""
             awk '
             BEGIN { in_fm = 0; past_fm = 0 }
@@ -906,7 +1296,9 @@ setup_copilot() {
 
 # ─── Main ────────────────────────────────────────────────────────────────────
 
-main() {
+# Dispatch to the per-target setup. Wrapped by main(), which reports on the
+# exclusion list afterwards — one call site rather than one per target exit.
+run_target_setup() {
     # Check parameters
     if [ $# -eq 0 ]; then
         print_status $RED "❌ Error: IDE parameter required"
@@ -1073,6 +1465,13 @@ main() {
     echo "   • AGENTS.md contains always-on rules (no scoped index — .cursor/rules/ has its own)"
     echo "   • Scoped rules converted to .cursor/rules/ as .mdc files (paths→globs)"
     echo "   • Restart Cursor to ensure rules are loaded"
+}
+
+main() {
+    run_target_setup "$@"
+    local status=$?
+    warn_unmatched_exclusions
+    return $status
 }
 
 # Run main function with all arguments
