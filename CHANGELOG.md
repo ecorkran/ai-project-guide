@@ -12,6 +12,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.18.0] - 2026-09-22
+
+Requires context-forge >= 0.17.0. Older versions recognize only the previous
+marker, so they would read every managed file as unmanaged — prompting on each
+run and creating backups for files that already have one.
+
+### Changed
+
+- `setup-ide` now merges its generated content into `CLAUDE.md`, `AGENTS.md`
+  and `.github/copilot-instructions.md` instead of overwriting them. Generated
+  content is wrapped in `<!-- BEGIN:context-forge -->` / `<!-- END:context-forge -->`
+  and only that span is replaced, so hand-written content in those files
+  survives a re-run.
+
+  A file that was never managed is now preserved and the block appended, with a
+  one-time `.pre-context-forge` backup. Previously such a file was destroyed:
+  a project that already had a `CLAUDE.md` before adopting context-forge lost
+  it on first run, with nothing recoverable outside git.
+
+  Files carrying the old `[//]: # (context-forge:managed)` marker migrate
+  automatically — generated content always ran from that marker to end of file,
+  so the span is known without parsing content.
+
+  A file with unbalanced markers is left untouched and the run exits non-zero
+  rather than guessing at the boundary.
+
+- Marker syntax moved from `[//]: # (...)` to HTML comments. The link-reference
+  form depends on renderers discarding unused link reference definitions, which
+  lightweight non-CommonMark parsers get wrong — it leaks as visible text. The
+  generated single-file artifacts under `.github/` carry a standalone
+  `<!-- context-forge:generated -->` tag rather than a pair, since they have no
+  user-authored region to protect.
+
+### Added
+
+- `rules.exclude` — comma-separated basename globs (e.g. `dart.md,swift*.md`)
+  naming scoped rules to leave uninstalled, for rules irrelevant to a project.
+  Read from the `CONTEXT_FORGE_RULES_EXCLUDE` environment variable as a one-off
+  override, otherwise from `cf config`. Unset means every rule is installed, as
+  before.
+
+  Skip-only: a new exclusion stops future copies but never deletes a file an
+  earlier run installed. Always-on rules cannot be excluded, since they compile
+  into the managed block rather than being installed as files.
+
+  A pattern matching nothing warns on stderr without failing the run, naming
+  whether it was a typo or a valid always-on rule that cannot be excluded.
+
 ## [0.17.10] - 2026-09-19
 
 ### Changed

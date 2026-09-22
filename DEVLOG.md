@@ -10,6 +10,58 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260922
+
+**Session**: Managed-section merge and rule exclusions (v0.18.0)
+
+### Completed
+- `setup-ide` merges generated content into `CLAUDE.md`, `AGENTS.md` and
+  `.github/copilot-instructions.md` via `<!-- BEGIN:context-forge -->` /
+  `<!-- END:context-forge -->` instead of overwriting whole files (#22)
+- `rules.exclude` support: comma-separated basename globs, read from
+  `CONTEXT_FORGE_RULES_EXCLUDE` then `cf config`, skip-only (#23)
+- Filed #24: `.github/prompts/*.prompt.md` is deprecated upstream in favour of
+  Agent Skills. No action taken; recorded so it is not rediscovered
+
+### Key decisions
+- HTML-comment markers over `[//]: # (...)`. The link-reference form relies on
+  renderers discarding unused link reference definitions, which lightweight
+  parsers get wrong — it renders as visible text. Next.js already ships the
+  same BEGIN/END comment shape for its generated `AGENTS.md`, so this follows
+  an existing convention rather than inventing one
+- A file with no marker is preserved and the block appended, not overwritten.
+  The old behavior destroyed a pre-existing hand-written `CLAUDE.md` on first
+  adoption. cf's `.bak` was the only thing standing behind it, and only when
+  cf was the entry point — `setup-ide` runs standalone too
+- Legacy migration needs no content parsing: generated content always ran from
+  the marker to end of file, so that span is known. A duplicate leading H1 is
+  dropped only when it is line 1 and exactly matches what the block re-emits —
+  absorbing more would risk deleting user content
+- Unbalanced markers leave the file untouched and exit non-zero. Guessing at
+  the boundary is worse than refusing
+- Kept the env-var path alongside `cf config`. cf argued for config-only on the
+  grounds that `setup-ide` already shells out to cf; it does not, and never
+  has, so config-only would leave direct callers no way to set exclusions
+- Always-on rules are unexcludable by construction rather than by
+  documentation. Silently dropping `general.md` or `git.md` has no visible
+  symptom until something downstream misbehaves
+
+### Notes
+- Sequenced behind context-forge#98 (marker recognition) and their
+  `rules.exclude` key, both in cf 0.17.0. Held for the merge to main rather
+  than the branch commit — the regression window is keyed to what consumers
+  actually run
+- The AGENTS.md scoped index was being appended after the compile. Left as-is
+  it would have landed below `END` and accumulated a duplicate copy on every
+  run. Caught by reading the call site, not the function
+- Research corrected two widely-repeated claims: Aider does not read
+  `AGENTS.md` at all, and Gemini CLI reads it only via opt-in config. Vendor
+  docs contradict the aggregator posts
+- Root `CLAUDE.md` (generated copy of these rules) not regenerated in this
+  release
+
+---
+
 ## 20260919
 
 **Session**: Worktree handling and branch protection check in git rules (v0.17.9)
