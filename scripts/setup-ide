@@ -30,14 +30,13 @@ MANAGED_END='<!-- END:context-forge -->'
 
 # Pre-merge marker. Files stamped with this have generated content running from
 # the marker to EOF (nothing was ever written after it), which is what lets
-# migration find the span without parsing content. Still emitted by the
-# single-file artifacts under .github/, where it is a provenance tag rather than
-# a region delimiter.
+# migration find the span without parsing content. Detection only; never emitted.
 MANAGED_MARKER='[//]: # (context-forge:managed)'
 
-# Provenance stamp for the single-file artifacts under .github/. Those are
+# Provenance stamp for .github/instructions/*.instructions.md. Those are
 # generated wholesale from one source rule each — there is no user-authored
 # region to protect — so they carry a standalone marker rather than a pair.
+# Also identifies legacy .github/prompts/ files that are safe to remove.
 # Shares the HTML-comment form so a project never contains two marker syntaxes.
 GENERATED_MARKER='<!-- context-forge:generated -->'
 
@@ -1174,76 +1173,27 @@ emit_copilot_instruction_files() {
     print_status $BLUE "📋 Emitted $copied_count scoped rule files to .github/instructions/"
 }
 
-# Emit skill files as .github/prompts/*.prompt.md.
-emit_copilot_prompt_files() {
-    local source_dir=$1
-    local target_root=$2
+# Remove .github/prompts/*.prompt.md files emitted by earlier versions, which
+# translated skills into the now-deprecated prompt-file format. Skills now ship
+# as Agent Skills, so leftovers would list each skill twice. Only files carrying
+# GENERATED_MARKER are ours; anything else in the directory is user-authored.
+remove_generated_prompt_files() {
+    local target_root=$1
+    local prompts_dir="$target_root/.github/prompts"
 
-    if [ ! -d "$source_dir" ]; then
-        return 0
-    fi
+    [ -d "$prompts_dir" ] || return 0
 
-    local target_dir="$target_root/.github/prompts"
-    mkdir -p "$target_dir"
-
-    local copied_count=0
-
-    # Skills may be flat .md files or skill_name/SKILL.md directories
-    for entry in "$source_dir"/*; do
-        local skill_file=""
-
-        if [ -f "$entry" ] && [[ "$entry" == *.md ]]; then
-            skill_file="$entry"
-        elif [ -d "$entry" ]; then
-            # Find first .md file inside (e.g. SKILL.md or skill-name.md)
-            local first_md
-            first_md=$(find "$entry" -maxdepth 1 -name "*.md" | head -1)
-            [ -n "$first_md" ] && skill_file="$first_md"
-        fi
-
-        [ -n "$skill_file" ] || continue
-
-        local filename
-        filename=$(basename "$skill_file")
-        local stem="${filename%.md}"
-        # Use directory name as stem for nested skills
-        if [ -d "$entry" ]; then
-            stem=$(basename "$entry")
-        fi
-
-        local name
-        name=$(get_frontmatter_field "$skill_file" "name")
-        [ -z "$name" ] && name="$stem"
-
-        local description
-        description=$(get_frontmatter_field "$skill_file" "description")
-
-        local out_file="$target_dir/${stem}.prompt.md"
-
-        {
-            echo "---"
-            echo "name: $name"
-            [ -n "$description" ] && echo "description: $description"
-            echo "---"
-            echo "$GENERATED_MARKER"
-            echo ""
-            awk '
-            BEGIN { in_fm = 0; past_fm = 0 }
-            /^---$/ {
-                if (!past_fm) { in_fm = !in_fm; if (!in_fm) past_fm = 1 }
-                next
-            }
-            in_fm { next }
-            past_fm { print }
-            ' "$skill_file"
-        } > "$out_file"
-
-        print_status $GREEN "✅ $stem → .github/prompts/${stem}.prompt.md"
-        copied_count=$((copied_count + 1))
+    local removed_count=0
+    for prompt_file in "$prompts_dir"/*.prompt.md; do
+        [ -f "$prompt_file" ] || continue
+        grep -qF "$GENERATED_MARKER" "$prompt_file" || continue
+        rm "$prompt_file"
+        print_status $GREEN "🧹 Removed superseded prompt file: .github/prompts/$(basename "$prompt_file")"
+        removed_count=$((removed_count + 1))
     done
 
-    if [ $copied_count -gt 0 ]; then
-        print_status $BLUE "📋 Emitted $copied_count skill(s) to .github/prompts/"
+    if [ $removed_count -gt 0 ] && [ -z "$(ls -A "$prompts_dir")" ]; then
+        rmdir "$prompts_dir"
     fi
 }
 
@@ -1274,12 +1224,17 @@ setup_copilot() {
     emit_copilot_instruction_files "$RULES_SOURCE_DIR" "$TARGET_ROOT"
     echo ""
 
-    # Skills → .github/prompts/
+    # Skills → .agents/skills/, the same directory the agents target writes.
+    # Copilot reads Agent Skills from there in the IDE, cloud agent, code review
+    # and CLI, so one copy serves Copilot, Codex and Cursor alike.
     if [ -d "$SKILLS_SOURCE_DIR" ]; then
-        print_status $BLUE "⚡ Emitting prompt files from skills..."
-        emit_copilot_prompt_files "$SKILLS_SOURCE_DIR" "$TARGET_ROOT"
+        local agents_skills_dir="$TARGET_ROOT/.agents/skills"
+        mkdir -p "$agents_skills_dir"
+        print_status $BLUE "⚡ Copying skill files..."
+        copy_skills "$SKILLS_SOURCE_DIR" "$agents_skills_dir"
         echo ""
     fi
+    remove_generated_prompt_files "$TARGET_ROOT"
 
     print_status $GREEN "✅ Setup complete for VS Code Copilot!"
     echo ""
@@ -1290,7 +1245,7 @@ setup_copilot() {
     echo "     same always-on rules twice"
     echo "   • .github/instructions/ contains scoped rules (per-language/per-path)"
     if [ -d "$SKILLS_SOURCE_DIR" ]; then
-        echo "   • .github/prompts/ contains skill prompt files"
+        echo "   • Skills copied to .agents/skills/ (Agent Skills format)"
     fi
 }
 

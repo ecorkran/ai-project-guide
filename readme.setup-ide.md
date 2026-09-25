@@ -34,8 +34,8 @@ containing `project-documents/` — so running from a subdirectory is safe.
 |---|---|---|
 | `claude` | `CLAUDE.md`, `.claude/rules/`, `.claude/agents/`, `.claude/skills/` | Claude Code |
 | `cursor` | `.cursor/rules/*.mdc`, `.cursor/agents/*.mdc` | Cursor |
-| `copilot` | `.github/copilot-instructions.md`, `.github/instructions/`, `.github/prompts/`, `AGENTS.md` | VS Code Copilot |
-| `agents` | `AGENTS.md` only | Codex and other AGENTS.md readers |
+| `copilot` | `.github/copilot-instructions.md`, `.github/instructions/`, `.agents/skills/`, `AGENTS.md` | VS Code Copilot |
+| `agents` | `AGENTS.md`, `.agents/skills/` | Codex and other AGENTS.md readers |
 
 `openai` and `codex` are aliases for `agents`. `AGENTS.md` is a vendor-neutral
 format, so the target is named after the format rather than after one vendor.
@@ -58,11 +58,15 @@ passes through unchanged; Cursor honors it natively. Agents go to
 
 **`copilot`** — always-on rules compile to `.github/copilot-instructions.md`.
 Scoped rules become `.github/instructions/*.instructions.md` with `paths:`
-translated to `applyTo:`. Skills become `.github/prompts/*.prompt.md`. Also
-writes `AGENTS.md`.
+translated to `applyTo:`. Skills are copied to `.agents/skills/` in Agent
+Skills format, which Copilot reads in the IDE, cloud agent, code review and CLI.
+Also writes `AGENTS.md`. Earlier versions emitted skills as
+`.github/prompts/*.prompt.md`, a format VS Code has deprecated; re-running
+removes those generated prompt files and leaves any hand-written ones alone.
 
-**`agents`** — writes `AGENTS.md` and nothing else: no `.github/`, no
-vendor-specific files. Always-on rules are inlined. Scoped rules are **not**
+**`agents`** — writes `AGENTS.md`, plus skills to `.agents/skills/` when the
+guide ships any: no `.github/`, no vendor-specific files. Always-on rules are
+inlined. Scoped rules are **not**
 inlined — the AGENTS.md format has no path-scoping mechanism, so inlining would
 put Python rules in front of a React project. They are instead indexed by path,
 for the agent to read on demand.
