@@ -12,6 +12,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.18.1] - 2026-09-25
+
+### Changed
+
+- The `copilot` target of `setup-ide` now copies skills to `.agents/skills/` as
+  Agent Skills (`<name>/SKILL.md`) instead of translating them into
+  `.github/prompts/*.prompt.md`. VS Code has deprecated prompt files, and they
+  only worked in the IDE; Copilot reads Agent Skills in the IDE, cloud agent,
+  code review and CLI. `.agents/skills/` is the directory the `agents` target
+  already writes, so one copy serves Copilot, Codex and Cursor (#24).
+
+  Re-running removes `.github/prompts/*.prompt.md` files that an earlier version
+  generated (identified by the `<!-- context-forge:generated -->` stamp), so no
+  skill is listed twice. Hand-written prompt files are left alone, and the
+  directory is removed only if nothing else is in it.
+
+### Removed
+
+- The `analyze` skill (`project-guides/skills/analyze/`), which is obsolete.
+  It was the only shipped skill, so `setup-ide` currently installs no skills on
+  any target. Projects that already installed it keep their copy until they
+  delete it, because `setup-ide` does not remove files the guide has dropped.
+
+### Fixed
+
+- `readme.setup-ide.md` said the `agents` target writes only `AGENTS.md`. It also
+  copies skills to `.agents/skills/`.
+- `file-naming-conventions.md` described the pre-0.18.0 managed-file marker. It
+  now describes the BEGIN/END region and the `context-forge:generated` stamp.
+
 ## [0.18.0] - 2026-09-22
 
 Requires context-forge >= 0.17.0. Older versions recognize only the previous

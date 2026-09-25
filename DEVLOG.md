@@ -10,6 +10,34 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260925
+
+**Session**: Copilot skills as Agent Skills, analyze skill removal (v0.18.1)
+
+### Completed
+- Copilot target copies skills to `.agents/skills/` instead of emitting
+  `.github/prompts/*.prompt.md`; re-runs remove our generated prompt files (#24)
+- Removed the obsolete `analyze` skill, the only one the guide shipped
+- Filed context-forge#102: cf's copilot worktree propagation needs
+  `.agents/skills` added. Either side can land first
+
+### Key decisions
+- `.agents/skills/` over `.github/skills/`: both are read by Copilot, but the
+  agents target already writes `.agents/skills/`, so one directory covers
+  Copilot, Codex and Cursor
+- Skill sources were already `<name>/SKILL.md`, so no translation was needed —
+  the copilot target now calls the same `copy_skills` as the other targets
+- Cleanup keys on the `context-forge:generated` stamp so hand-written prompt
+  files survive. The directory is removed only when truly empty (`ls -A`), since
+  a `.gitkeep` would otherwise make `rmdir` abort the run under `set -e`
+
+### Known gap (deferred by PM)
+- `setup-ide` never removes installed files the guide later drops. Squadron
+  carried a v0.11.3 `code-review-agent.md` through to v0.18.0 this way. Fixing
+  it needs a record of what was installed; not an issue yet
+
+---
+
 ## 20260922
 
 **Session**: Managed-section merge and rule exclusions (v0.18.0)
