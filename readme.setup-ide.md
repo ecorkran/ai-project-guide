@@ -51,10 +51,9 @@ supported** — it was removed from the script but lingered in this document.
 verbatim. Skills in directory form (`skill-name/SKILL.md`) are copied to
 `.claude/skills/`.
 
-**`cursor`** — copies every rule to `.cursor/rules/` renamed `.md` → `.mdc`,
-translating `paths:` to Cursor's comma-separated `globs:`. `alwaysApply: true`
-passes through unchanged; Cursor honors it natively. Agents go to
-`.cursor/agents/` as `.mdc`.
+**`cursor`** — always-on rules compile to `AGENTS.md`. Scoped rules are copied
+to `.cursor/rules/` renamed `.md` → `.mdc`, translating `paths:` to Cursor's
+comma-separated `globs:`. Agents are not installed.
 
 **`copilot`** — always-on rules compile to `.github/copilot-instructions.md`.
 Scoped rules become `.github/instructions/*.instructions.md` with `paths:`
@@ -70,6 +69,22 @@ inlined. Scoped rules are **not**
 inlined — the AGENTS.md format has no path-scoping mechanism, so inlining would
 put Python rules in front of a React project. They are instead indexed by path,
 for the agent to read on demand.
+
+## Install manifest and cleanup
+
+Each run records the files it wrote in `.context-forge/<target>.manifest`, one
+line per file: checksum, size, and path. Commit it along with the installed
+files.
+
+On the next run, a file the old manifest lists but the new run no longer writes
+is deleted. That covers a rule, agent or skill the guide dropped, and a rule
+newly added to `rules.exclude`. A file edited since it was installed is kept,
+with a warning. `CLAUDE.md`, `AGENTS.md` and `copilot-instructions.md` are never
+listed, because they hold your own content outside the managed block.
+
+Installs from before the manifest existed are cleaned up too. Files the guide
+used to ship (the `analyze` skill, `code-review-agent.md`) are deleted when
+their content matches a version the guide shipped.
 
 ## Rules inventory
 

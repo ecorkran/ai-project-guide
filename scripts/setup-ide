@@ -55,9 +55,8 @@ PREMANAGED_BACKUP_SUFFIX='.pre-context-forge'
 # run directly, with no cf present, so config alone would leave direct callers
 # no way to set it at all.
 #
-# Skip-only by design: a newly added exclusion stops future copies but never
-# deletes a file an earlier run installed, since a project may have come to
-# depend on it. alwaysApply rules are deliberately not excludable — they are
+# A newly excluded rule that an earlier run installed is removed by the install
+# manifest prune, unless it was edited since. alwaysApply rules are deliberately not excludable — they are
 # compiled into the managed block rather than copied, so excluding one would
 # silently drop general.md or git.md.
 #
@@ -197,6 +196,102 @@ always_apply_rule_matches() {
         esac
     done
     return 1
+}
+
+# ─── Install manifest ─────────────────────────────────────────────────────────
+#
+# Each target records the files it writes wholesale in
+# .context-forge/<target>.manifest, one "<crc> <size> <path>" line per file:
+# cksum output plus the path relative to the project root. The next run deletes
+# any file the old manifest lists that the new run no longer writes — a rule,
+# agent or skill the guide dropped, or a rule newly excluded — but only while
+# its checksum still matches what was written. An edited file is kept.
+#
+# The merged composites (CLAUDE.md, AGENTS.md, copilot-instructions.md) are
+# never listed: they hold user content outside the managed block.
+MANIFEST_DIR_NAME='.context-forge'
+
+# Scratch list of the files the current run wrote; set by begin_manifest.
+NEW_MANIFEST=""
+
+# Files earlier guide versions installed and later dropped, before the manifest
+# existed. Same line format as a manifest, one line per shipped version. Read on
+# every run, so installs that predate the manifest are cleaned up too.
+legacy_manifest_entries() {
+    case "$1" in
+        claude)
+            cat << 'EOF'
+4163870229 9896 .claude/skills/analyze/SKILL.md
+1743996119 8781 .claude/agents/code-review-agent.md
+2426632181 8646 .claude/agents/code-review-agent.md
+2637584951 8780 .claude/agents/code-review-agent.md
+2820575936 8638 .claude/agents/code-review-agent.md
+3243458359 8774 .claude/agents/code-review-agent.md
+EOF
+            ;;
+        agents|copilot)
+            echo '4163870229 9896 .agents/skills/analyze/SKILL.md'
+            ;;
+    esac
+}
+
+begin_manifest() {
+    NEW_MANIFEST=$(mktemp)
+}
+
+# Record a file this run wrote. Args: absolute path under TARGET_ROOT
+record_installed_file() {
+    local file=$1
+    echo "$(cksum < "$file") ${file#"$TARGET_ROOT"/}" >> "$NEW_MANIFEST"
+}
+
+# Delete stale files, then replace the target's manifest with this run's.
+# Args: target
+finish_manifest() {
+    local target=$1
+    local manifest_dir="$TARGET_ROOT/$MANIFEST_DIR_NAME"
+    local manifest="$manifest_dir/$target.manifest"
+
+    local old_entries new_paths stale_paths
+    old_entries=$(mktemp)
+    new_paths=$(mktemp)
+    stale_paths=$(mktemp)
+
+    { [ -f "$manifest" ] && cat "$manifest"; legacy_manifest_entries "$target"; } > "$old_entries"
+    cut -d' ' -f3- "$NEW_MANIFEST" > "$new_paths"
+    # grep exits 1 when nothing is stale, which is the normal case.
+    cut -d' ' -f3- "$old_entries" | sort -u | grep -vxFf "$new_paths" > "$stale_paths" || true
+
+    local rel
+    while IFS= read -r rel; do
+        local file="$TARGET_ROOT/$rel"
+        [ -f "$file" ] || continue
+
+        # A legacy path has one entry per shipped version, so match any of them.
+        if grep -qxF "$(cksum < "$file") $rel" "$old_entries"; then
+            rm "$file"
+            remove_empty_install_dirs "$rel"
+            print_status $GREEN "🧹 Removed $rel (no longer installed by the guide)"
+        else
+            print_status $YELLOW "⚠️  Kept $rel: no longer installed by the guide, but edited since — remove it by hand if unneeded"
+        fi
+    done < "$stale_paths"
+
+    mkdir -p "$manifest_dir"
+    sort -k3 "$NEW_MANIFEST" > "$manifest"
+    rm -f "$old_entries" "$new_paths" "$stale_paths" "$NEW_MANIFEST"
+}
+
+# Remove directories emptied by a deletion, e.g. a skill's own folder. Stops at
+# two levels deep so install roots like .claude/skills are never removed.
+# Args: path of the deleted file, relative to TARGET_ROOT
+remove_empty_install_dirs() {
+    local dir
+    dir=$(dirname "$1")
+    while [[ "$dir" == */*/* ]] && [ -d "$TARGET_ROOT/$dir" ] && [ -z "$(ls -A "$TARGET_ROOT/$dir")" ]; do
+        rmdir "$TARGET_ROOT/$dir"
+        dir=$(dirname "$dir")
+    done
 }
 
 # Find the actual project root by looking for project-documents directory
@@ -403,6 +498,7 @@ copy_files() {
         fi
 
         cp "$file" "$target_dir/$target_filename"
+        record_installed_file "$target_dir/$target_filename"
         print_status $GREEN "✅ Copied $filename → $target_filename"
         copied_count=$((copied_count + 1))
     done
@@ -438,6 +534,10 @@ copy_skills() {
 
         mkdir -p "$target_skill_dir"
         cp -R "$skill_dir"* "$target_skill_dir/"
+        local skill_file
+        while IFS= read -r skill_file; do
+            record_installed_file "$target_skill_dir/${skill_file#"$skill_dir"}"
+        done < <(find "$skill_dir" -type f)
         print_status $GREEN "✅ Copied skill: $skill_name"
         copied_count=$((copied_count + 1))
     done
@@ -491,6 +591,7 @@ copy_cursor_rules() {
 
         # Convert paths to globs format for Cursor
         convert_paths_to_globs "$file" "$target_path"
+        record_installed_file "$target_path"
         print_status $GREEN "✅ Converted $filename → $target_filename"
 
         if ! validate_frontmatter "$target_path"; then
@@ -657,6 +758,7 @@ copy_claude_modular_rules() {
         fi
 
         strip_name_field "$file" "$target_dir/$filename"
+        record_installed_file "$target_dir/$filename"
         print_status $GREEN "✅ Copied $filename → .claude/rules/$filename"
         copied_count=$((copied_count + 1))
     done
@@ -1165,6 +1267,7 @@ emit_copilot_instruction_files() {
             past_fm { print }
             ' "$file"
         } > "$out_file"
+        record_installed_file "$out_file"
 
         print_status $GREEN "✅ $filename → .github/instructions/${stem}.instructions.md (applyTo: $apply_to)"
         copied_count=$((copied_count + 1))
@@ -1287,81 +1390,76 @@ run_target_setup() {
             ;;
     esac
 
-    # Handle AGENTS.md-only
-    if [ "$ide" = "agents" ]; then
-        setup_agents
-        return 0
+    begin_manifest
+    case "$ide" in
+        agents) setup_agents ;;
+        copilot) setup_copilot ;;
+        claude) setup_claude ;;
+        cursor) setup_cursor ;;
+    esac
+    finish_manifest "$ide"
+}
+
+# Run full Claude Code setup.
+setup_claude() {
+    print_status $BLUE "🚀 Setting up Claude Code rules..."
+    echo ""
+
+    if [ ! -d "$RULES_SOURCE_DIR" ]; then
+        print_status $RED "❌ Error: Rules source directory not found: $RULES_SOURCE_DIR"
+        print_status $YELLOW "💡 Make sure you're running this from a project that includes ai-project-guide"
+        exit 1
     fi
 
-    # Handle Copilot
-    if [ "$ide" = "copilot" ]; then
-        setup_copilot
-        return 0
-    fi
+    local claude_file="$TARGET_ROOT/CLAUDE.md"
+    local claude_rules_dir="$TARGET_ROOT/.claude/rules"
+    local claude_agents_dir="$TARGET_ROOT/.claude/agents"
 
-    # Handle Claude separately
-    if [ "$ide" = "claude" ]; then
-        print_status $BLUE "🚀 Setting up Claude Code rules..."
+    # Compile alwaysApply rules into CLAUDE.md
+    if ! compile_claude_rules "$RULES_SOURCE_DIR" "$claude_file"; then
+        print_status $RED "❌ Failed to compile CLAUDE.md"
+        exit 1
+    fi
+    echo ""
+
+    # Copy modular rules to .claude/rules/
+    print_status $BLUE "📄 Copying modular rules..."
+    copy_claude_modular_rules "$RULES_SOURCE_DIR" "$claude_rules_dir"
+    echo ""
+
+    # Copy agents if directory exists
+    if [ -d "$AGENTS_SOURCE_DIR" ]; then
+        mkdir -p "$claude_agents_dir"
+        print_status $GREEN "📁 Created directory: $claude_agents_dir"
+        print_status $BLUE "🤖 Copying agent files..."
+        copy_files "$AGENTS_SOURCE_DIR" "$claude_agents_dir" false "agent"
         echo ""
-        
-        # Validate source directory exists
-        if [ ! -d "$RULES_SOURCE_DIR" ]; then
-            print_status $RED "❌ Error: Rules source directory not found: $RULES_SOURCE_DIR"
-            print_status $YELLOW "💡 Make sure you're running this from a project that includes ai-project-guide"
-            exit 1
-        fi
-        
-        local claude_file="$TARGET_ROOT/CLAUDE.md"
-        local claude_rules_dir="$TARGET_ROOT/.claude/rules"
-        local claude_agents_dir="$TARGET_ROOT/.claude/agents"
-
-        # Compile alwaysApply rules into CLAUDE.md
-        if compile_claude_rules "$RULES_SOURCE_DIR" "$claude_file"; then
-            echo ""
-
-            # Copy modular rules to .claude/rules/
-            print_status $BLUE "📄 Copying modular rules..."
-            copy_claude_modular_rules "$RULES_SOURCE_DIR" "$claude_rules_dir"
-            echo ""
-
-            # Copy agents if directory exists
-            if [ -d "$AGENTS_SOURCE_DIR" ]; then
-                mkdir -p "$claude_agents_dir"
-                print_status $GREEN "📁 Created directory: $claude_agents_dir"
-                print_status $BLUE "🤖 Copying agent files..."
-                copy_files "$AGENTS_SOURCE_DIR" "$claude_agents_dir" false "agent"
-                echo ""
-            fi
-
-            # Copy skills if directory exists
-            if [ -d "$SKILLS_SOURCE_DIR" ]; then
-                local claude_skills_dir="$TARGET_ROOT/.claude/skills"
-                mkdir -p "$claude_skills_dir"
-                print_status $BLUE "⚡ Copying skill files..."
-                copy_skills "$SKILLS_SOURCE_DIR" "$claude_skills_dir"
-                echo ""
-            fi
-
-            print_status $GREEN "✅ Setup complete for Claude Code!"
-            echo ""
-            print_status $BLUE "💡 Claude Code setup notes:"
-            echo "   • CLAUDE.md contains alwaysApply rules (general, git)"
-            echo "   • Modular rules copied to .claude/rules/"
-            if [ -d "$AGENTS_SOURCE_DIR" ]; then
-                echo "   • Agents copied to .claude/agents/"
-            fi
-            if [ -d "$SKILLS_SOURCE_DIR" ]; then
-                echo "   • Skills copied to .claude/skills/"
-            fi
-        else
-            print_status $RED "❌ Failed to compile CLAUDE.md"
-            exit 1
-        fi
-        
-        return 0
     fi
-    
-    # Cursor setup
+
+    # Copy skills if directory exists
+    if [ -d "$SKILLS_SOURCE_DIR" ]; then
+        local claude_skills_dir="$TARGET_ROOT/.claude/skills"
+        mkdir -p "$claude_skills_dir"
+        print_status $BLUE "⚡ Copying skill files..."
+        copy_skills "$SKILLS_SOURCE_DIR" "$claude_skills_dir"
+        echo ""
+    fi
+
+    print_status $GREEN "✅ Setup complete for Claude Code!"
+    echo ""
+    print_status $BLUE "💡 Claude Code setup notes:"
+    echo "   • CLAUDE.md contains alwaysApply rules (general, git)"
+    echo "   • Modular rules copied to .claude/rules/"
+    if [ -d "$AGENTS_SOURCE_DIR" ]; then
+        echo "   • Agents copied to .claude/agents/"
+    fi
+    if [ -d "$SKILLS_SOURCE_DIR" ]; then
+        echo "   • Skills copied to .claude/skills/"
+    fi
+}
+
+# Run full Cursor setup.
+setup_cursor() {
     local rules_target_dir="$TARGET_ROOT/.cursor/rules"
 
     print_status $BLUE "🚀 Setting up Cursor IDE rules..."
