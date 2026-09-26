@@ -1,5 +1,4 @@
 ---
-name: python-rules
 description: Python coding standards and conventions. Use when writing, modifying, or reviewing .py files, pyproject.toml, or requirements files.
 paths:
  - "**/*.py"

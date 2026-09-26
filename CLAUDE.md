@@ -1,6 +1,5 @@
+<!-- BEGIN:context-forge -->
 # Project Guidelines for Claude
-
-[//]: # (context-forge:managed)
 
 ## Core Principles
 
@@ -95,6 +94,15 @@ A project may configure an **optional** integration branch that work forks from 
 
 The integration branch affects **git topology only** (fork point and merge target) — not the branch name. It does not move documents or change where artifacts resolve — the `project-documents/user/...` layout under the branch is unchanged. The configured value is relative and contained (never absolute, never `..`, no trailing slash, no Windows drive/`\`); `cf` rejects invalid values when the key is set.
 
+#### Worktrees
+The target is a property of the config, never of the checkout. The branch you happen to be on is not evidence of the target — always read it (step 1 below), in the primary tree and in every git worktree.
+
+`git.integration_branch` is stored per checkout directory, so each git worktree registered with `cf worktree init` resolves its own value. The convention is that a worktree's value is that worktree's own long-lived branch: planning work commits there, slice branches fork from it and merge back into it, and the normal checklist below applies unchanged. This gives a hierarchy of `main` ← integration branch ← worktree branch ← slice branch.
+
+- **Agents merge exactly one level:** a slice branch into its target. Merging a worktree's branch into a wider integration branch or into `main`, and refreshing it from either, are PM-only actions, same as the hard rule above.
+- **Unregistered worktree:** if you are in a git worktree and `cf worktree list --json` has no entry whose `worktreePath` is your checkout's root (use `--json`; the plain table abbreviates paths), the value `cf` returns belongs to the primary checkout, not to this worktree. STOP and ask the Project Manager.
+- **Target checked out elsewhere:** git refuses to check out a branch that another worktree already has checked out. If that happens for the target, STOP and ask the Project Manager. Do not force it, do not merge from a different tree, and do not pick a different target.
+
 Before starting work:
 1. read `cf config get git.integration_branch`; call its value (or `main` if empty) the **target**
 
@@ -109,7 +117,17 @@ Before starting work:
 6. never start work from another unit's branch unless explicitly instructed
 7. if in doubt, STOP and ask the Project Manager
 
-A slice branch merges into the target when its implementation is done. Do not hold a branch open across units. Do not delete branches unless specifically instructed to do so.
+When slice implementation is done, merge the slice branch into the target:
+1. re-read the target (step 1 above) — do not infer it from the current branch or from memory
+2. `git checkout {target}`, then `git merge {branch-name}`
+3. if either command fails, STOP and ask the Project Manager
+
+Do not hold a branch open across units. Do not delete branches unless specifically instructed to do so.
+
+### Branch Protection
+GitHub has two independent mechanisms: classic branch protection and rulesets. A 404 from `repos/{owner}/{repo}/branches/{branch}/protection` means only that no *classic* rule exists.
+- Before stating that a branch is or is not protected, also check `gh api repos/{owner}/{repo}/rules/branches/{branch}` — it lists every active rule on the branch, including ones inherited from organization rulesets.
+- Report "unprotected" only when both come back empty. If either call fails for a reason other than "not found" (permissions, auth), say so instead of concluding anything.
 
 ### Commit Messages
 Use semantic commit prefixes. The goal is a readable `git log --oneline`.
@@ -148,3 +166,4 @@ docs: add MCP server installation instructions to README
 test: add unit tests for prompt_list tool handler
 chore: update @modelcontextprotocol/server to v2.1
 
+<!-- END:context-forge -->
