@@ -10,6 +10,32 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260926
+
+**Session**: flutter.md glob over-attachment fix (v0.19.1)
+
+### Completed
+- Narrowed `flutter.md`'s `paths:` to `android/**`, `ios/**` only, removing
+  the overlap with `dart.md`'s `**/*.dart`, `**/pubspec.yaml`,
+  `**/analysis_options.yaml` (#13)
+- Updated `flutter.md`'s description to state it supplements `dart.md`
+- Fixed the stale scope table entry for `flutter.md` in `readme.setup-ide.md`
+
+### Key decisions (PM-approved)
+- Went with the fully deterministic option: platform folders only exist in
+  `flutter create` projects, so this has zero false positives on plain Dart.
+  Tradeoff accepted: editing a `lib/` widget file alone, without touching
+  `android/**`/`ios/**` in the same operation, no longer attaches Flutter
+  rules — glob frontmatter can't check `pubspec.yaml` for a `flutter:` key,
+  so there's no pattern that's both deterministic and fires on widget-only
+  edits
+- Did not commit this repo's own `.claude/` install refresh beyond
+  `flutter.md` — running `setup-ide claude` also picked up unrelated drift
+  in `CLAUDE.md`, `python.md`, `testing.md` that predates this fix and is
+  out of scope here
+
+---
+
 ## 20260925
 
 **Session**: Install manifest pruning, status value discoverability (v0.19.0)

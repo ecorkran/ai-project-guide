@@ -12,6 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.1] - 2026-09-26
+
+### Fixed
+
+- `flutter.md` no longer claims `**/*.dart`, `**/pubspec.yaml` and
+  `**/analysis_options.yaml` — the same paths `dart.md` already owns. Every
+  `.dart` file in a plain Dart project (no Flutter) was attaching Flutter
+  widget/navigation/build guidance that didn't apply. `flutter.md` now
+  attaches only on `android/**` and `ios/**`, the platform folders unique to
+  `flutter create` projects (#13).
+
 ## [0.19.0] - 2026-09-25
 
 ### Added

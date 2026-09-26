@@ -97,7 +97,7 @@ by file pattern.
 | `git.md` | **always on** — commits, branches, integration branch |
 | `dart.md` | `**/*.dart`, `**/pubspec.yaml` |
 | `electron.md` | `electron/**`, `src/preload/**`, build configs |
-| `flutter.md` | `**/*.dart`, `**/pubspec.yaml`, `android/**`, `ios/**` |
+| `flutter.md` | `android/**`, `ios/**` (supplements `dart.md`) |
 | `python.md` | `**/*.py`, `**/pyproject.toml`, `**/requirements*.txt` |
 | `react.md` | React/JSX sources |
 | `sql.md` | SQL, PostgreSQL, pgvector, TimescaleDB |

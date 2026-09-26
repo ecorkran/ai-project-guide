@@ -1,9 +1,6 @@
 ---
-description: Flutter application development standards and conventions. Use when writing, modifying, or reviewing Flutter widget files, state management code, navigation, or build configuration.
+description: Flutter application development standards and conventions. Supplements dart.md; applies to Flutter projects (those with android/ or ios/ platform folders) — covers widget files, state management, navigation, and build configuration.
 paths:
-  - "**/*.dart"
-  - "**/pubspec.yaml"
-  - "**/analysis_options.yaml"
   - "android/**"
   - "ios/**"
 ---
