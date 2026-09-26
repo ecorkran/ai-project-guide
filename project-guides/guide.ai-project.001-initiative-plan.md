@@ -94,6 +94,8 @@ Default: 20-based (100, 120, 140). Adjust based on expected initiative breadth.
 2. [ ] **(120) {Initiative Name}** — {Scope description}. Dependencies: [100]. Status: not_started
 3. [ ] **(140) {Initiative Name}** — {Scope description}. Dependencies: [100, 120]. Status: not_started
 
+<!-- Status takes only: not_started | in_progress | complete | deferred | deprecated -->
+
 ## Cross-Initiative Dependencies
 - 120 depends on 100: {reason — e.g., "needs stable agent interfaces from behavior engine"}
 - 140 depends on 120: {reason}

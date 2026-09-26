@@ -52,6 +52,8 @@ These files are managed by Context Forge and should not have project frontmatter
 
 ### Valid Status Values
 
+These five values are the only valid values for `status`, in frontmatter and in the inline `Status:` field on initiative and slice plan entries. Do not invent others. If none fits, ask the Project Manager.
+
 - `not_started` — work has not begun
 - `in_progress` — actively being worked on
 - `complete` — all work finished
@@ -76,6 +78,8 @@ This format:
 ### Per-DocType Schemas
 
 The following are the canonical schemas for each document type. Guides and prompts may include inline YAML examples for self-containedness, but they must agree with these definitions.
+
+Each schema shows `status: not_started`, the value for a new document. As work progresses, `status` may only take a value from **Valid Status Values** above: `not_started | in_progress | complete | deferred | deprecated`.
 
 #### concept
 ```yaml

@@ -76,6 +76,7 @@ Work with the Project Manager to:
 3. Declare cross-initiative dependencies — which initiatives need stable interfaces from others before architecture design can begin.
 4. List initiatives in checklist format matching slice plan convention:
    `1. [ ] **(nnn) {Initiative Name}** — {scope}. Dependencies: {list}. Status: not_started`
+   `Status` takes only `not_started | in_progress | complete | deferred | deprecated` (see "Valid Status Values" in `file-naming-conventions.md`).
 
 This is a collaborative, strategic task. Ask questions about scope boundaries, sequencing priorities, and dependency assumptions. Do not make unilateral decisions about initiative decomposition.
 
@@ -229,7 +230,7 @@ Your role is Architect as described in the Process Guide. Work with the Project 
    `user/architecture/nnn-slices.{name}.md` (sharing the parent architecture document's base index, per `file-naming-conventions.md`)
 4. When numbering slices, you may use an index starting with 1, but continue the same index throughout the document.  Do not restart the numbering within the plan.
 5. When naming slices in the slice plan, avoid use of ampersand or other special characters not commonly accepted in filenames.  - and space are fine.  Include a tentative slice number starting with the sliceplan index.  Example:  1. [ ] **(100) MCP Server Scaffolding** - {remainder of entry}
-6. Include YAML frontmatter with `status: not_started` (update to `in_progress` or `complete` as slices progress). 
+6. Include YAML frontmatter with `status: not_started` (update to `in_progress` or `complete` as slices progress). Valid values are only `not_started | in_progress | complete | deferred | deprecated`.
 
 **Example YAML FrontMatter**:
 ```yaml
