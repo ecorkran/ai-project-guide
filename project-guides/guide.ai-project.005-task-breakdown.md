@@ -147,6 +147,7 @@ Tasks should be structured so that work is committed frequently enough to enable
 - **Speculative risk items**. Include only if truly relevant.
 - **Open-ended human-centric tasks** such as SEO optimization. Only include tasks that can reasonably be completed by an AI.
 - **Code in the task file**. This is a planning task, not a coding task. Code segments should be minimal and limited to what is necessary to convey information.
+- **A merge step in any task's Success Criteria.** The merge happens in Phase 7 (Slice Integration), after the code review, which itself expects all tasks already complete. A merge item in the last task can never be checked off before that review, so it deadlocks Phase 6 completion. The last task should end at commit on the slice branch; merge instructions belong in the git rules and Phase 7 guidance only.
 
 #### Handling Insufficient Information
 If insufficient information is available to fully convert a design item into tasks, **stop** and request clarifying information from the Project Manager before continuing. Do not guess or make assumptions.

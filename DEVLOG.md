@@ -10,6 +10,28 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20260926 (2)
+
+**Session**: task-breakdown merge-step deadlock fix (v0.19.2)
+
+### Completed
+- Added a "What to Avoid" bullet to `guide.ai-project.005-task-breakdown.md`
+  forbidding a merge step in any task's Success Criteria (#26)
+- Filed #26 from a cross-session bug report (amoeba session, slice 103):
+  a generated task file's last task included a merge-and-verify item that
+  can never be checked off before the Phase 7 review that expects all
+  Phase 6 tasks already complete
+
+### Key decisions
+- No template literally instructed the merge step — it looks like an
+  agent improvising one late in a task breakdown by reaching for the
+  git-rules merge guidance out of context. Fix is a guardrail in the
+  task-breakdown guide's "What to Avoid" section, the existing mechanism
+  for this kind of steer, rather than a change to the git rules or system
+  prompt (Phase 7 already owns the merge correctly)
+
+---
+
 ## 20260926
 
 **Session**: flutter.md glob over-attachment fix (v0.19.1)

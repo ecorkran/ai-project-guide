@@ -12,6 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.2] - 2026-09-26
+
+### Fixed
+
+- `guide.ai-project.005-task-breakdown.md` now explicitly forbids a merge
+  step in any task's Success Criteria. The merge belongs to Phase 7 (after
+  the code review), which itself expects all Phase 6 tasks already
+  complete — a merge task in the last task deadlocks completion, since it
+  can never be checked off before the review that depends on it being
+  checked off (#26).
+
 ## [0.19.1] - 2026-09-26
 
 ### Fixed
