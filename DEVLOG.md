@@ -12,6 +12,32 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20260925
 
+**Session**: Install manifest pruning, status value discoverability (v0.19.0)
+
+### Completed
+- `setup-ide` writes `.context-forge/<target>.manifest` and prunes stale files
+  on the next run (#25)
+- Valid status values surfaced at the points where agents write status (#12)
+- Split `setup_claude`/`setup_cursor` out of `run_target_setup` so every
+  target goes through one manifest begin/finish
+
+### Key decisions (PM-approved)
+- Manifest is committed, so clones and worktrees share it
+- Delete only when the checksum still matches what we wrote; edited files are
+  kept with a warning. `cksum` is used because it is POSIX and identical on
+  macOS and Linux
+- Exclusions now prune, replacing 0.18.0's skip-only behavior
+- Pre-manifest installs: a checksum table of every shipped version of the two
+  dropped files (analyze skill, code-review-agent), from git history, rather
+  than a warn-only list
+- Composites are never in the manifest; they hold user content
+
+### Open
+- context-forge#103: cf's worktree propagation still only adds files. It
+  needs to copy the manifest and prune worktrees with the same rule
+
+---
+
 **Session**: PR review file naming (v0.18.2)
 
 ### Completed

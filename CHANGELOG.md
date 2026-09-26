@@ -12,6 +12,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.0] - 2026-09-25
+
+### Added
+
+- `setup-ide` records the files each target installs in
+  `.context-forge/<target>.manifest` (checksum, size, path). Commit it with the
+  installed files (#25).
+
+### Changed
+
+- `setup-ide` now deletes files it installed earlier but no longer writes: a
+  rule, agent or skill the guide dropped, or a rule newly added to
+  `rules.exclude`. A file edited since it was installed is kept, with a warning.
+  `CLAUDE.md`, `AGENTS.md` and `copilot-instructions.md` are never deleted.
+  Installs from before the manifest existed also lose the `analyze` skill and
+  `code-review-agent.md`, but only when the content matches a version the guide
+  shipped (#25).
+- Valid `status` values are now listed where agents set status: the per-docType
+  schemas, the initiative plan template, and the system prompt (#12).
+
+### Fixed
+
+- `readme.setup-ide.md` described the `cursor` target as installing always-on
+  rules and agents under `.cursor/`. Always-on rules go to `AGENTS.md`, and
+  agents are not installed.
+
 ## [0.18.2] - 2026-09-25
 
 ### Changed
