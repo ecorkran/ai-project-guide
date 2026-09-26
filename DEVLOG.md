@@ -12,6 +12,20 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20260925
 
+**Session**: PR review file naming (v0.18.2)
+
+### Completed
+- `file-naming-conventions.md`: PR reviews use `pr-{number}-review.{reviewType}.md`,
+  qualified with `.{owner}-{repository}` only in shared review directories
+
+### Key decisions
+- Qualify by directory, not always: project `user/reviews/` and squadron's
+  per-repo default path already pin the repository, so the long form was noise
+- Kept the non-numeric prefix so slice-index globs still can't match a PR review
+- Old-form files are left alone rather than migrated
+
+---
+
 **Session**: Copilot skills as Agent Skills, analyze skill removal (v0.18.1)
 
 ### Completed

@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.18.2] - 2026-09-25
+
+### Changed
+
+- PR review files are named `pr-{number}-review.{reviewType}.md`. In a shared
+  reviews directory (`review.external_reviews_dir` or `--reviews-dir`) the name
+  also carries the repository: `pr-{number}-review.{reviewType}.{owner}-{repository}.md`.
+  Reviews written under the old `{host}-{owner}-{repository}-{number}-review.{reviewType}.md`
+  form are not renamed and stay valid.
+
 ## [0.18.1] - 2026-09-25
 
 ### Changed
