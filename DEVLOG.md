@@ -10,6 +10,26 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261002
+
+**Session**: tarball contents cleanup (v0.19.3)
+
+### Completed
+- Added `.context-forge/` to `.gitattributes` export-ignore; it is this
+  repo's dogfood install manifest, not guide content
+- Deleted two orphan `Pasted image` files from `z-attachments/`
+- Sent ai-project-guide#25 manifest/prune details to context-forge for
+  cf slice 930 (worktree pruning); requested `guide.exclude`, now cf slice 931
+
+### Key decisions
+- Tarball update in cf deletes and re-extracts the guide folder, so dev-only
+  leftovers in consumer installs clear on the next version update; no
+  cleanup tooling needed on the guide side
+- Submodule installs still receive every tracked file; accepted, since
+  tarball is the preferred strategy
+
+---
+
 ## 20260926 (2)
 
 **Session**: task-breakdown merge-step deadlock fix (v0.19.2)

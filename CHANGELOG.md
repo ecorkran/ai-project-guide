@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.3] - 2026-10-02
+
+### Changed
+
+- Release tarballs no longer include `.context-forge/`, which holds this
+  repo's own `setup-ide` install manifest rather than anything consumers use.
+- Removed two unreferenced images from `z-attachments/`.
+
 ## [0.19.2] - 2026-09-26
 
 ### Fixed
