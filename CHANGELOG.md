@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.4] - 2026-10-03
+
+### Changed
+
+- Compressed the two `z-attachments/` UI mockup images from 3.5 MB to
+  325 KB total (downscaled to 1200px wide, quantized). Filenames and
+  format unchanged (#28).
+
 ## [0.19.3] - 2026-10-02
 
 ### Changed

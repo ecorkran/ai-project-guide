@@ -10,6 +10,21 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261003
+
+**Session**: attachment image compression (v0.19.4)
+
+### Completed
+- Compressed `ui-mockup-example.png` (2.3 MB → 200 KB) and
+  `ui-mockup-incorrect-renderings.png` (1.2 MB → 125 KB) with sips resize,
+  pngquant, oxipng; closes ai-project-guide#28 (requested by context-forge)
+
+### Key decisions
+- Compress upstream rather than rely on cf `guide.exclude`, which only
+  helps projects that opt in
+
+---
+
 ## 20261002
 
 **Session**: tarball contents cleanup (v0.19.3)
