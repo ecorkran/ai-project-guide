@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Git rules now define release versioning: patch is the default, including new
+  flags, options and config keys. Minor is only for a new user-facing feature
+  or significant AI capability, confirmed by the Project Manager. A non-empty
+  CHANGELOG or an `### Added` section never decides the bump on its own.
+
 ## [0.20.0] - 2026-10-05
 
 ### Added

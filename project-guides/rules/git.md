@@ -59,6 +59,12 @@ GitHub has two independent mechanisms: classic branch protection and rulesets. A
 - Before stating that a branch is or is not protected, also check `gh api repos/{owner}/{repo}/rules/branches/{branch}` — it lists every active rule on the branch, including ones inherited from organization rulesets.
 - Report "unprotected" only when both come back empty. If either call fails for a reason other than "not found" (permissions, auth), say so instead of concluding anything.
 
+#### Release Versioning
+Versions are MAJOR.MINOR.PATCH. What goes in the CHANGELOG does not decide the bump: a non-empty CHANGELOG, an `### Added` section, a new flag, option, parameter, config key, or check is never by itself a reason for a minor version.
+- **Patch** (the default): fixes, refinements to existing systems, new flags/options/parameters/config keys, new checks or warnings, guide and documentation changes.
+- **Minor**: only a new user-facing feature or a significant new AI capability. Propose it in one line with the reason; the Project Manager confirms before any files change.
+- **Major**: only when the Project Manager explicitly asks for it.
+
 #### Commit Messages
 Use semantic commit prefixes. The goal is a readable `git log --oneline`.
 
