@@ -1679,8 +1679,9 @@ WRITE_LINT=false
 
 main() {
     # Flags may appear anywhere; everything else passes through unchanged.
-    # cf detects dry-run support by finding the literal "--dry-run" in this
-    # file, so keep the flag parsing here rather than in a sourced helper.
+    # cf detects flag support by finding the literals "--dry-run" and
+    # "--write-lint" in this file, so keep the flag parsing here rather than in
+    # a sourced helper.
     local args=()
     local arg
     for arg in "$@"; do
