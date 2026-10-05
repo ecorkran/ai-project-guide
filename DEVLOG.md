@@ -10,6 +10,34 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261005
+
+**Session**: merge timing, Phase 7, setup-ide safety, lint configs (v0.20.0)
+
+### Completed
+- #29: slice merge tied to Phase 7 after code review; git rules, task
+  breakdown, Phase 6/7 prompts and process guide updated (from squadron)
+- Phase 7 rewritten as review and revise, then merge (direct or via a release
+  skill), then close-out; agents never start reviews or decide they are done
+- setup-ide: `--dry-run`; refuses to overwrite files it does not own (backs
+  up when there is no manifest); keeps edits to installed files
+- #30: lint config check per detected language (Python, Dart/Flutter,
+  TypeScript, C#), report by default, `--write-lint` to write; baselines in
+  `project-guides/lint/`; new `rules/csharp.md` (from squadron)
+- Removed unused `tester` agent; tracked `.context-forge.toml` (export-ignored)
+- cf passes `--dry-run` through and refuses it for guides that lack support
+
+### Key decisions
+- Ruff with an existing `[tool.ruff]`: add a `ruff.toml` that extends
+  `pyproject.toml` with `extend-select`; verified with ruff 0.16 that the
+  project's settings stay in force and required rules override its `ignore`
+- Lint check reads from the real project root and writes to the target root,
+  so dry runs check the real project
+- setup-ide stays in the guide for now (it must work without cf); next step is
+  shrinking what cf duplicates, starting with writing into a given checkout
+
+---
+
 ## 20261003
 
 **Session**: attachment image compression (v0.19.4)

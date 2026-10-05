@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.0] - 2026-10-05
+
 ### Added
 
 - `setup-ide --dry-run` lists the files a run would add, change or remove,
