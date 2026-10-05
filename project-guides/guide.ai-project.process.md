@@ -33,7 +33,7 @@ Each phase has an approval authority that must sign off before proceeding to the
 - **Phase 6** (execution): May self-validate via tests and CI when automation pipelines are in place.
 - **Phase 7** (integration): Normally requires PM approval; may self-validate for routine integrations.
 
-**Review gates.** When `cf next` or any workflow check reports that a slice, task, or code review is required before proceeding, that is the approval mechanism above in action. The correct response is to stop and report to the Project Manager, or to run the review through the project's established review process (for example squadron) if that is the workflow. Never edit frontmatter to clear the gate. In particular, `review: none` in a slice-design's frontmatter is a Project Manager declaration that exempts the slice from all slice-scoped reviews; agents must not add it, must not run `cf check --set-review-none`, and must not carry it over from another document used as a template.
+**Review gates.** When `cf next` or any workflow check reports that a slice, task, or code review is required before proceeding, that is the approval mechanism above in action. The correct response is to stop and report to the Project Manager. Do not start the review yourself: the Project Manager or the orchestrating pipeline (for example squadron) runs reviews. Never edit frontmatter to clear the gate. In particular, `review: none` in a slice-design's frontmatter is a Project Manager declaration that exempts the slice from all slice-scoped reviews; agents must not add it, must not run `cf check --set-review-none`, and must not carry it over from another document used as a template.
 
 When working on project phases, ensure you have all required information first. If in doubt, request and obtain the required information from the Project Manager before proceeding. Do not guess or make assumptions.
 
@@ -156,24 +156,20 @@ Slices are grouped under architectural initiatives, each with its own architectu
 
 6. **Phase 6: Slice Execution (AI/Human Collaboration)**
    - Tasks are assigned to the Senior AI or human developers. They will delegate tasks to Junior AIs or junior human developers.
-   - The Project Manager or Senior AI (in a reviewer capacity) perform:
-     - Code reviews
-     - Design reviews
-     - Ensuring alignment with the slice design and overall project vision
+   - Work is committed on the slice branch. Phase 6 ends when every task is complete; it does not include reviews or a merge.
+   - Outcome: _Working software increment for the slice, tested and committed on the slice branch._
 
-   - Outcome: _Working software increment for the slice, tested and validated._
-
-7. **Phase 7: Slice Integration**
-*Note*: this phase is only run when explicitly needed.  It is omitted in most workflows.
-   - Integrate completed slice with existing codebase.
-   - Merge the slice branch into the target only here, after the slice's code review has passed. Merging is never a Phase 6 task.
-   - For single-developer projects, this is typically straightforward.
-   - For team projects or future parallelization, this becomes similar to git merge/PR integration.
-   - Verify that slice dependencies and interfaces work as expected.
-   - Update project documentation and architecture understanding where applicable.
-   - Check off the completed slice in the parent slice and/or slice plan
-   - Ensure that any relevant completed files (task, slice) have status: complete
-   - Outcome: _Integrated functionality ready for the next development cycle._
+7. **Phase 7: Slice Integration (review, revise, merge)**
+   Every slice goes through this phase once its tasks are complete.
+   1. **Review and revise.** The slice gets one or more rounds of code review, each followed by revisions. Reviews may be manual or automated (for example, squadron pipelines).
+      - The Project Manager or the orchestrating pipeline starts each review and decides when review is done. The implementing agent never starts a review on its own, never picks how a review runs, and never decides that one round is enough.
+   2. **Merge.** After the code review has passed, merge the slice branch into the target per the Git Rules. The merge may be done directly or as part of a release step (for example, a `/release` skill). Merging is never a Phase 6 task.
+   3. **Close out.**
+      - Verify that slice dependencies and interfaces work as expected.
+      - Update project documentation and architecture understanding where applicable.
+      - Check off the completed slice in the parent slice plan.
+      - Ensure that any relevant completed files (task, slice) have status: complete.
+   - Outcome: _Reviewed, merged functionality ready for the next development cycle._
 
 ##### DEVLOG
 DEVLOG updates are a standing practice across all phases, not specific to any single phase. At the end of each work session — whether a slice is complete, partially complete, or work was interrupted — write a Session State Summary to `DEVLOG.md` in the project root. Use the Session State Summary prompt in `prompt.ai-project.system` for formatting guidance. DEVLOG entries should record what was accomplished and the current state; they do not determine what to work on next (that is the responsibility of workflow navigation or orchestration).

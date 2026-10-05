@@ -402,6 +402,8 @@ We are completing slice integration (Phase 7) for {slice} in project {project}, 
 
 Your role is Senior AI.
 
+Phase 7 begins with code review and revisions. The Project Manager or the orchestrating pipeline runs those; do not start a review yourself or decide that review is finished. This prompt covers the steps after review has passed. If the merge is handled by a release step (for example, a `/release` skill), skip step 1's merge and continue with verification.
+
 **Integration Steps:**
 
 1. **Merge and verify**
