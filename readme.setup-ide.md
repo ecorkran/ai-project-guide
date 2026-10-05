@@ -28,6 +28,14 @@ CLAUDE.md backup handling and worktree propagation.
 Output paths are always resolved from the **project root** — the directory
 containing `project-documents/` — so running from a subdirectory is safe.
 
+Add `--dry-run` to see what a run would do without writing anything. It lists
+each file that would be added (`+`), changed (`~`) or removed (`-`), plus any
+skip and warning lines:
+
+```bash
+./project-documents/ai-project-guide/scripts/setup-ide claude --dry-run
+```
+
 ## Supported targets
 
 | Target | Writes | Use for |
@@ -85,6 +93,14 @@ listed, because they hold your own content outside the managed block.
 Installs from before the manifest existed are cleaned up too. Files the guide
 used to ship (the `analyze` skill, `code-review-agent.md`) are deleted when
 their content matches a version the guide shipped.
+
+The manifest also decides what setup-ide may overwrite. If a file it would write
+already exists with different content and the manifest does not list it, the
+file belongs to the project: it is left alone, with a warning. Rename or remove
+it to let setup-ide manage that path. When there is no manifest yet (a first
+install, or one from before the manifest existed), ownership can't be known, so
+the existing file is backed up to `<name>.pre-context-forge` before it is
+replaced.
 
 ## Rules inventory
 

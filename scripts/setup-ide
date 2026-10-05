@@ -235,14 +235,49 @@ EOF
     esac
 }
 
+# Path of the target's manifest from the previous run; set by begin_manifest.
+OLD_MANIFEST=""
+
+# Args: target
 begin_manifest() {
     NEW_MANIFEST=$(mktemp)
+    OLD_MANIFEST="$TARGET_ROOT/$MANIFEST_DIR_NAME/$1.manifest"
 }
 
 # Record a file this run wrote. Args: absolute path under TARGET_ROOT
 record_installed_file() {
     local file=$1
     echo "$(cksum < "$file") ${file#"$TARGET_ROOT"/}" >> "$NEW_MANIFEST"
+}
+
+# Move a staged file into place and record it, unless that would overwrite a
+# file the guide does not own. Ownership is the previous manifest. A file with
+# identical content is adopted. Without any manifest (a first install, or one
+# from before the manifest existed) ownership is unknowable, so the existing
+# file is backed up before being replaced rather than lost.
+# Args: staged_file, dest_file. Returns 1 when the file was left alone.
+install_file() {
+    local staged=$1
+    local dest=$2
+    local rel="${dest#"$TARGET_ROOT"/}"
+
+    if [ -f "$dest" ] && ! cmp -s "$staged" "$dest"; then
+        if [ -f "$OLD_MANIFEST" ]; then
+            if ! cut -d' ' -f3- "$OLD_MANIFEST" | grep -qxF "$rel"; then
+                rm -f "$staged"
+                print_status $YELLOW "⚠️  Skipped $rel: it exists and was not installed by the guide — rename or remove it to let setup-ide manage it"
+                return 1
+            fi
+        else
+            backup_premanaged_file "$dest"
+        fi
+    fi
+
+    # cat rather than mv: a mktemp file is mode 600, and the install should get
+    # the usual umask permissions.
+    cat "$staged" > "$dest"
+    rm -f "$staged"
+    record_installed_file "$dest"
 }
 
 # Delete stale files, then replace the target's manifest with this run's.
@@ -352,7 +387,9 @@ check_directory() {
 
 # Function to show usage
 show_usage() {
-    echo "Usage: $0 <ide>"
+    echo "Usage: $0 <ide> [--dry-run]"
+    echo ""
+    echo "  --dry-run   List the files that would be added, changed or removed; write nothing"
     echo ""
     echo "Supported targets:"
     echo "  cursor    - Always-on rules → AGENTS.md; scoped rules → .cursor/rules/ (paths→globs)"
@@ -497,8 +534,10 @@ copy_files() {
             target_filename="${filename%.md}.mdc"
         fi
 
-        cp "$file" "$target_dir/$target_filename"
-        record_installed_file "$target_dir/$target_filename"
+        local staged
+        staged=$(mktemp)
+        cp "$file" "$staged"
+        install_file "$staged" "$target_dir/$target_filename" || continue
         print_status $GREEN "✅ Copied $filename → $target_filename"
         copied_count=$((copied_count + 1))
     done
@@ -532,11 +571,15 @@ copy_skills() {
             continue
         fi
 
-        mkdir -p "$target_skill_dir"
-        cp -R "$skill_dir"* "$target_skill_dir/"
+        # File by file, so each one gets install_file's ownership check.
         local skill_file
         while IFS= read -r skill_file; do
-            record_installed_file "$target_skill_dir/${skill_file#"$skill_dir"}"
+            local dest="$target_skill_dir/${skill_file#"$skill_dir"}"
+            local staged
+            staged=$(mktemp)
+            cp "$skill_file" "$staged"
+            mkdir -p "$(dirname "$dest")"
+            install_file "$staged" "$dest" || true
         done < <(find "$skill_dir" -type f)
         print_status $GREEN "✅ Copied skill: $skill_name"
         copied_count=$((copied_count + 1))
@@ -590,8 +633,10 @@ copy_cursor_rules() {
         local target_path="$target_dir/$target_filename"
 
         # Convert paths to globs format for Cursor
-        convert_paths_to_globs "$file" "$target_path"
-        record_installed_file "$target_path"
+        local staged
+        staged=$(mktemp)
+        convert_paths_to_globs "$file" "$staged"
+        install_file "$staged" "$target_path" || continue
         print_status $GREEN "✅ Converted $filename → $target_filename"
 
         if ! validate_frontmatter "$target_path"; then
@@ -757,8 +802,10 @@ copy_claude_modular_rules() {
             continue
         fi
 
-        strip_name_field "$file" "$target_dir/$filename"
-        record_installed_file "$target_dir/$filename"
+        local staged
+        staged=$(mktemp)
+        strip_name_field "$file" "$staged"
+        install_file "$staged" "$target_dir/$filename" || continue
         print_status $GREEN "✅ Copied $filename → .claude/rules/$filename"
         copied_count=$((copied_count + 1))
     done
@@ -1246,6 +1293,8 @@ emit_copilot_instruction_files() {
         apply_to=$(get_apply_to "$file")
 
         local out_file="$target_dir/${stem}.instructions.md"
+        local staged
+        staged=$(mktemp)
 
         # Write translated frontmatter + managed marker + body
         {
@@ -1266,8 +1315,8 @@ emit_copilot_instruction_files() {
             in_fm { next }
             past_fm { print }
             ' "$file"
-        } > "$out_file"
-        record_installed_file "$out_file"
+        } > "$staged"
+        install_file "$staged" "$out_file" || continue
 
         print_status $GREEN "✅ $filename → .github/instructions/${stem}.instructions.md (applyTo: $apply_to)"
         copied_count=$((copied_count + 1))
@@ -1390,7 +1439,17 @@ run_target_setup() {
             ;;
     esac
 
-    begin_manifest
+    if [ "$DRY_RUN" = true ]; then
+        dry_run_install "$ide"
+    else
+        install_target "$ide"
+    fi
+}
+
+# Args: normalized target
+install_target() {
+    local ide=$1
+    begin_manifest "$ide"
     case "$ide" in
         agents) setup_agents ;;
         copilot) setup_copilot ;;
@@ -1398,6 +1457,82 @@ run_target_setup() {
         cursor) setup_cursor ;;
     esac
     finish_manifest "$ide"
+}
+
+# Top-level paths any target may write, relative to TARGET_ROOT. Dry run copies
+# these into a sandbox and compares afterwards.
+INSTALL_PATHS="CLAUDE.md CLAUDE.md$PREMANAGED_BACKUP_SUFFIX AGENTS.md AGENTS.md$PREMANAGED_BACKUP_SUFFIX .claude .cursor .github .agents $MANIFEST_DIR_NAME"
+
+# Run the install against a sandbox copy of the project's install paths, then
+# report what would be added, changed and removed. The project is not touched.
+# Args: normalized target
+dry_run_install() {
+    local ide=$1
+    local real_root=$TARGET_ROOT
+    local sandbox log
+    sandbox=$(mktemp -d)
+    log=$(mktemp)
+
+    local p
+    for p in $INSTALL_PATHS; do
+        [ -e "$real_root/$p" ] && cp -R "$real_root/$p" "$sandbox/$p"
+    done
+
+    TARGET_ROOT=$sandbox
+    install_target "$ide" > "$log"
+    TARGET_ROOT=$real_root
+
+    print_status $BLUE "🔍 Dry run for '$ide' — nothing was written"
+    # Warnings and skips from the run itself; the per-file success lines are noise here.
+    grep -E '⚠️|⊘|❌' "$log" || true
+    report_dry_run_changes "$real_root" "$sandbox"
+
+    rm -rf "$sandbox" "$log"
+}
+
+# Args: root. Prints install-path files relative to root, sorted.
+list_install_files() {
+    (
+        cd "$1" || exit 1
+        local p
+        for p in $INSTALL_PATHS; do
+            [ -e "$p" ] && find "$p" -type f
+        done
+    ) | sort
+}
+
+# Args: real_root, sandbox
+report_dry_run_changes() {
+    local before after
+    before=$(mktemp)
+    after=$(mktemp)
+    list_install_files "$1" > "$before"
+    list_install_files "$2" > "$after"
+
+    local count=0 rel
+    while IFS= read -r rel; do
+        [ -n "$rel" ] || continue
+        print_status $GREEN "  + $rel"
+        count=$((count + 1))
+    done < <(comm -13 "$before" "$after")
+    while IFS= read -r rel; do
+        [ -n "$rel" ] || continue
+        cmp -s "$1/$rel" "$2/$rel" && continue
+        print_status $YELLOW "  ~ $rel"
+        count=$((count + 1))
+    done < <(comm -12 "$before" "$after")
+    while IFS= read -r rel; do
+        [ -n "$rel" ] || continue
+        print_status $RED "  - $rel"
+        count=$((count + 1))
+    done < <(comm -23 "$before" "$after")
+
+    if [ $count -eq 0 ]; then
+        print_status $BLUE "📋 No changes"
+    else
+        print_status $BLUE "📋 $count file(s) would change (+ add, ~ modify, - remove)"
+    fi
+    rm -f "$before" "$after"
 }
 
 # Run full Claude Code setup.
@@ -1520,8 +1655,20 @@ setup_cursor() {
     echo "   • Restart Cursor to ensure rules are loaded"
 }
 
+DRY_RUN=false
+
 main() {
-    run_target_setup "$@"
+    # --dry-run may appear anywhere; everything else passes through unchanged.
+    local args=()
+    local arg
+    for arg in "$@"; do
+        case "$arg" in
+            --dry-run) DRY_RUN=true ;;
+            *) args+=("$arg") ;;
+        esac
+    done
+
+    run_target_setup ${args[@]+"${args[@]}"}
     local status=$?
     warn_unmatched_exclusions
     return $status

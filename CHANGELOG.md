@@ -12,6 +12,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `setup-ide --dry-run` lists the files a run would add, change or remove,
+  plus any skip and warning lines, without writing anything.
+
+### Changed
+
+- `setup-ide` no longer overwrites a file it did not install. When an existing
+  file differs and the manifest does not list it, the file is left alone with a
+  warning. With no manifest yet, the existing file is backed up to
+  `<name>.pre-context-forge` before it is replaced.
+
+### Fixed
+
+- Merging a slice is now tied to Phase 7, after code review passes. The git
+  rules, the task-breakdown guide, and the Phase 6 and Phase 7 prompts no longer
+  lead agents to write merge steps into task files or merge at the end of
+  implementation (#29).
+
 ## [0.19.4] - 2026-10-03
 
 ### Changed
