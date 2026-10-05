@@ -367,6 +367,8 @@ Use the following as overview input when needed.  Primary input is the task file
 
 Commit at each checkpoint marked in the task file (look for lines starting with `**Commit**:`). Use the commit message provided. If a task has no explicit commit marker, commit at the end of the task before moving to the next.
 
+Do not merge the slice branch during this phase, even if a task item says to. Merging happens in Phase 7, after code review passes. If the task file contains a merge step, leave it unchecked and tell the Project Manager.
+
 Work carefully and sequentially through the tasks, ensuring that each task is verified complete before proceeding to the next.  You should write unit tests for code as you work through the task. Ensure that tests pass and task is complete before moving to the next.
 
 If you encounter a failing test, an ambiguous requirement, or a design decision not covered by the slice design, stop and confer with the Project Manager. Do not make more than three attempts at a failing approach before stopping.
@@ -403,7 +405,8 @@ Your role is Senior AI.
 **Integration Steps:**
 
 1. **Merge and verify**
-   - Ensure the slice branch is merged into the main development branch (if using branches)
+   - Confirm the slice's code review has passed. If it has not, stop and tell the Project Manager.
+   - Merge the slice branch into the target, following the merge steps in the project Git Rules (if using branches)
    - Resolve any merge conflicts, preserving slice intent
    - Run full test suite — not just slice tests, but project-wide regressions
    - Verify build succeeds cleanly

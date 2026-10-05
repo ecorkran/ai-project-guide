@@ -166,6 +166,7 @@ Slices are grouped under architectural initiatives, each with its own architectu
 7. **Phase 7: Slice Integration**
 *Note*: this phase is only run when explicitly needed.  It is omitted in most workflows.
    - Integrate completed slice with existing codebase.
+   - Merge the slice branch into the target only here, after the slice's code review has passed. Merging is never a Phase 6 task.
    - For single-developer projects, this is typically straightforward.
    - For team projects or future parallelization, this becomes similar to git merge/PR integration.
    - Verify that slice dependencies and interfaces work as expected.
