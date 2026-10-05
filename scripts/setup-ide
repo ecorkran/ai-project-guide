@@ -1659,6 +1659,8 @@ DRY_RUN=false
 
 main() {
     # --dry-run may appear anywhere; everything else passes through unchanged.
+    # cf detects dry-run support by finding the literal "--dry-run" in this
+    # file, so keep the flag parsing here rather than in a sourced helper.
     local args=()
     local arg
     for arg in "$@"; do
