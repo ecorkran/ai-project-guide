@@ -4,6 +4,7 @@
 user/                 export-ignore
 .claude/              export-ignore
 .context-forge/       export-ignore
+.context-forge.toml   export-ignore
 .idea/                export-ignore
 .obsidian/            export-ignore
 .understand-anything/ export-ignore

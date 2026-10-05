@@ -1,0 +1,2 @@
+[rules]
+exclude = "dart.md,electron.md,flutter.md,python.md,react.md,sql.md,typescript.md"
