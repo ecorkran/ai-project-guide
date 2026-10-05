@@ -1,0 +1,6 @@
+# One requirement per line; alternatives separated by |. setup-ide reports a
+# config as weak when any line has no match in the project's ESLint config.
+no-empty|js.configs.recommended
+@typescript-eslint/no-floating-promises|recommendedTypeChecked|strictTypeChecked
+@typescript-eslint/no-misused-promises|recommendedTypeChecked|strictTypeChecked
+@typescript-eslint/only-throw-error|recommendedTypeChecked|strictTypeChecked

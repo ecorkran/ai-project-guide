@@ -13,7 +13,7 @@ paths:
 
 * Target Dart 3.x (required for sound null safety and pattern matching). Never use the `// @dart=2.x` version comment to opt out of null safety.
 * All code must be soundly null safe — Dart 3 does not support mixed-version programs with unsound null safety.
-* When starting or auditing a Dart project, verify that `analysis_options.yaml` is present and that the required linting configuration (defined in this guide) is active. If missing, add it before proceeding.
+* `setup-ide` checks `analysis_options.yaml` on every run and reports missing required rules; `setup-ide <target> --write-lint` adds the file when it is absent. Run `dart analyze` in the pre-commit hook and in CI so the analyzer enforces these rules, not the agent.
 
 #### Typing & Null Safety
 
@@ -38,45 +38,7 @@ paths:
 
 #### Static Analysis Configuration
 
-Every project MUST include an `analysis_options.yaml`. Minimum baseline:
-
-```yaml
-include: package:lints/recommended.yaml
-
-analyzer:
-  language:
-    strict-casts: true
-    strict-inference: true
-    strict-raw-types: true
-  errors:
-    missing_required_param: error
-    missing_return: error
-    dead_code: warning
-
-linter:
-  rules:
-    - always_declare_return_types
-    - avoid_dynamic_calls
-    - avoid_empty_else
-    - avoid_print
-    - avoid_relative_lib_imports
-    - avoid_returning_null_for_future
-    - avoid_slow_async_io
-    - avoid_type_to_string
-    - cancel_subscriptions
-    - close_sinks
-    - collection_methods_unrelated_type
-    - discarded_futures
-    - literal_only_boolean_expressions
-    - no_adjacent_strings_in_list
-    - prefer_const_constructors
-    - prefer_const_declarations
-    - prefer_final_fields
-    - prefer_final_locals
-    - unawaited_futures
-    - unnecessary_statements
-    - use_string_buffers
-```
+Every project MUST include an `analysis_options.yaml` with at least the baseline in `ai-project-guide/project-guides/lint/dart/analysis_options.yaml`. It turns on strict casts, inference and raw types, and the lints that enforce the async and exception rules below (`unawaited_futures`, `discarded_futures`, `empty_catches`, `avoid_catches_without_on_clauses`). Flutter projects use the same file with `include: package:flutter_lints/flutter.yaml`.
 
 Add `dart_code_linter` as a dev dependency for cyclomatic complexity enforcement:
 

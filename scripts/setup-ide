@@ -363,12 +363,17 @@ if [[ "$SCRIPT_DIR" == */ai-project-guide/scripts ]]; then
     RULES_SOURCE_DIR="$SCRIPT_DIR/../project-guides/rules"
     AGENTS_SOURCE_DIR="$SCRIPT_DIR/../project-guides/agents"
     SKILLS_SOURCE_DIR="$SCRIPT_DIR/../project-guides/skills"
+    LINT_SOURCE_DIR="$SCRIPT_DIR/../project-guides/lint"
 else
     # We're in a project that includes ai-project-guide as submodule
     RULES_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/rules"
     AGENTS_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/agents"
     SKILLS_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/skills"
+    LINT_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/lint"
 fi
+
+# Lint config check (check_lint_configs, LINT_WRITE_PATHS).
+source "$SCRIPT_DIR/setup-ide-lint.sh"
 
 # Function to check if we're in the right directory
 check_directory() {
@@ -387,9 +392,10 @@ check_directory() {
 
 # Function to show usage
 show_usage() {
-    echo "Usage: $0 <ide> [--dry-run]"
+    echo "Usage: $0 <ide> [--dry-run] [--write-lint]"
     echo ""
-    echo "  --dry-run   List the files that would be added, changed or removed; write nothing"
+    echo "  --dry-run     List the files that would be added, changed or removed; write nothing"
+    echo "  --write-lint  Write required lint configs that are missing (default: report only)"
     echo ""
     echo "Supported targets:"
     echo "  cursor    - Always-on rules → AGENTS.md; scoped rules → .cursor/rules/ (paths→globs)"
@@ -1457,11 +1463,13 @@ install_target() {
         cursor) setup_cursor ;;
     esac
     finish_manifest "$ide"
+    echo ""
+    check_lint_configs
 }
 
 # Top-level paths any target may write, relative to TARGET_ROOT. Dry run copies
 # these into a sandbox and compares afterwards.
-INSTALL_PATHS="CLAUDE.md CLAUDE.md$PREMANAGED_BACKUP_SUFFIX AGENTS.md AGENTS.md$PREMANAGED_BACKUP_SUFFIX .claude .cursor .github .agents $MANIFEST_DIR_NAME"
+INSTALL_PATHS="CLAUDE.md CLAUDE.md$PREMANAGED_BACKUP_SUFFIX AGENTS.md AGENTS.md$PREMANAGED_BACKUP_SUFFIX .claude .cursor .github .agents $MANIFEST_DIR_NAME $LINT_WRITE_PATHS"
 
 # Run the install against a sandbox copy of the project's install paths, then
 # report what would be added, changed and removed. The project is not touched.
@@ -1656,9 +1664,10 @@ setup_cursor() {
 }
 
 DRY_RUN=false
+WRITE_LINT=false
 
 main() {
-    # --dry-run may appear anywhere; everything else passes through unchanged.
+    # Flags may appear anywhere; everything else passes through unchanged.
     # cf detects dry-run support by finding the literal "--dry-run" in this
     # file, so keep the flag parsing here rather than in a sourced helper.
     local args=()
@@ -1666,6 +1675,7 @@ main() {
     for arg in "$@"; do
         case "$arg" in
             --dry-run) DRY_RUN=true ;;
+            --write-lint) WRITE_LINT=true ;;
             *) args+=("$arg") ;;
         esac
     done

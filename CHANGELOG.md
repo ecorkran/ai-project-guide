@@ -16,6 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `setup-ide --dry-run` lists the files a run would add, change or remove,
   plus any skip and warning lines, without writing anything.
+- `setup-ide` checks the linter config required by each language it detects
+  (Python, Dart/Flutter, TypeScript, C#) and reports a missing config or
+  missing required rules. `--write-lint` writes the baseline when no config
+  exists; for a `[tool.ruff]` section in `pyproject.toml` it adds a `ruff.toml`
+  that extends it. Baselines live in `project-guides/lint/` (#30).
+- `rules/csharp.md`, with an analyzer baseline that makes catching general
+  exceptions (CA1031) an error.
 
 ### Changed
 

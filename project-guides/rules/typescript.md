@@ -15,6 +15,7 @@ TypeScript's type system is a **compile-time safety net**. The goal is to catch 
 #### Strict Mode & the `any` Ban
 
 - **Strict mode is mandatory.** `tsconfig.json` must include `"strict": true`.
+- **ESLint is mandatory, with typed linting.** The baseline is `ai-project-guide/project-guides/lint/typescript/eslint.config.mjs`: it turns empty catch blocks, unhandled promises and non-`Error` throws into errors. `setup-ide` checks the config on every run; `setup-ide <target> --write-lint` adds it when no ESLint config exists. Every package needs a `lint` script, and the linter runs in the pre-commit hook and in CI so it enforces these rules, not the agent.
 - **`any` is forbidden.** This is not a suggestion. Do not use `any` in type annotations, return types, generic parameters, or type assertions (`as any`).
   - If you are tempted to use `any`, stop and determine the actual type.
   - If the type is complex, define an interface or type alias.

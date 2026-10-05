@@ -57,7 +57,7 @@ paths:
 - Do not use ShadCN - use raw Radix primitives instead
 
 #### Code Style
-- Use `eslint` unless directed otherwise
+- Use ESLint with the TypeScript baseline (see `typescript.md`), adding React plugins as needed.
 - Use `prettier` if working in languages it supports
 
 #### File & Folder Names

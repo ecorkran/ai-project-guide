@@ -32,6 +32,7 @@ alwaysApply: true
 
 #### Exception Handling
 - Every try/except must either: (a) re-raise after logging at ERROR level with logger.exception, (b) handle a specific exception with a comment explaining why swallowing is correct (e.g., ConnectionClosed: pass for normal teardown), or (c) be a top-level handler at a process boundary. Bare except: and except Exception: pass are bugs by definition.
+- Each language rules file names a required linter config that enforces this mechanically. Run the linter in the pre-commit hook and in CI; `setup-ide` reports a missing or weak config.
 
 ### Source Control and Builds
 - Keep commits semantic; build after all changes.

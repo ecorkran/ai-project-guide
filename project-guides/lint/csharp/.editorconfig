@@ -1,0 +1,10 @@
+# Required analyzer baseline (ai-project-guide rules/csharp.md).
+root = true
+
+[*.cs]
+# Do not catch general exception types (catch (Exception) / bare catch).
+dotnet_diagnostic.CA1031.severity = error
+# Unawaited call to an async method.
+dotnet_diagnostic.CS4014.severity = error
+# Forward CancellationToken parameters.
+dotnet_diagnostic.CA2016.severity = error

@@ -1,0 +1,6 @@
+# One requirement per line; alternatives separated by |. setup-ide reports a
+# config as weak when any line has no match across .editorconfig,
+# Directory.Build.props and the project's .csproj files.
+CA1031
+<Nullable>enable</Nullable>
+<TreatWarningsAsErrors>true</TreatWarningsAsErrors>

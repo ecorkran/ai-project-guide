@@ -1,0 +1,9 @@
+# One requirement per line; alternatives separated by |. setup-ide reports a
+# config as weak when any line has no match in analysis_options.yaml.
+strict-casts: true
+strict-inference: true
+strict-raw-types: true
+unawaited_futures
+discarded_futures
+empty_catches
+avoid_catches_without_on_clauses

@@ -12,7 +12,7 @@ paths:
 #### General
 * Target Python 3.12+ for production (stability & ecosystem compatibility).
 * Note: Python 3.14+ is acceptable for isolated services needing specific features (e.g., free-threading), but verify ML library support first.
-* When starting or auditing a Python project, verify the required tooling configuration blocks defined in this guide (ruff, pyright) are present in `pyproject.toml`. If missing, add them before proceeding with substantive work. Mechanical enforcement is what makes these rules real; prose without config is aspirational.
+* Mechanical enforcement is what makes these rules real; prose without config is aspirational. `setup-ide` checks the ruff config on every run and reports what is missing; `setup-ide <target> --write-lint` adds it. Run `ruff check` in the pre-commit hook and in CI so the linter enforces these rules, not the agent. The pyright block below is not checked by `setup-ide`; add it by hand.
 
 #### Typing & Validation
 - Use built-in types: `list`, `dict`, `tuple`, not `List`, `Dict`, `Tuple`
@@ -26,15 +26,7 @@ paths:
 #### Code Style & Structure
 - Follow PEP 8 with 88-character line length
 - Formatter: Use `ruff` for both linting and formatting (replaces Black/Isort/Flake8 due to speed).
-- Required ruff configuration: every project MUST have a `[tool.ruff.lint]` block in `pyproject.toml` selecting at minimum `["E", "F", "W", "I", "UP", "BLE", "ASYNC", "B"]`. `BLE` (blind-except) and `ASYNC` (async correctness) mechanically enforce the exception-handling and event-loop-discipline rules elsewhere in this guide. Copy-paste baseline:
-
-    ```toml
-    [tool.ruff]
-    line-length = 88
-
-    [tool.ruff.lint]
-    select = ["E", "F", "W", "I", "UP", "BLE", "ASYNC", "B"]
-    ```
+- Required ruff configuration: rules selecting at minimum `["E", "F", "W", "I", "UP", "BLE", "ASYNC", "B"]`. `BLE` (blind-except) and `ASYNC` (async correctness) mechanically enforce the exception-handling and event-loop-discipline rules elsewhere in this guide. The baseline is `ai-project-guide/project-guides/lint/python/ruff.toml`. If `pyproject.toml` already has a `[tool.ruff]` section, keep it and add a `ruff.toml` containing `extend = "pyproject.toml"` plus `[lint] extend-select` for the missing rules; `--write-lint` does exactly that.
 
 - Use descriptive variable names; avoid single letters (except `x`, `i` in short loops/comprehensions).
 - Prefer `f-strings` exclusively; avoid `.format()` or `%`.
