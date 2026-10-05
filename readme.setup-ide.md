@@ -120,7 +120,7 @@ by file pattern.
 | `testing.md` | test sources |
 | `typescript.md` | TypeScript sources |
 
-Agents: `task-checker.md`, `tester.md`.
+Agents: `task-checker.md`.
 
 Skills: `analyze/`. A skill must be a **directory containing `SKILL.md`** —
 Claude Code will not load a flat `.md` file, so `setup-ide claude` warns and

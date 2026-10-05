@@ -23,6 +23,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   file differs and the manifest does not list it, the file is left alone with a
   warning. With no manifest yet, the existing file is backed up to
   `<name>.pre-context-forge` before it is replaced.
+- Phase 7 (Slice Integration) is now review, revise, then merge, and runs for
+  every slice. Phase 6 ends at the last commit on the slice branch. The Project
+  Manager or the orchestrating pipeline starts reviews; agents no longer start
+  them on their own when a review gate blocks.
+
+### Removed
+
+- The `tester` agent. Nothing in the guide used it, and `rules/testing.md`
+  covers testing. `setup-ide` removes unedited installed copies on its next run.
 
 ### Fixed
 
