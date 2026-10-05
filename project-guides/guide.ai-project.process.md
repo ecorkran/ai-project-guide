@@ -31,7 +31,7 @@ Each phase has an approval authority that must sign off before proceeding to the
 - **Phases 0–2** (strategic decisions): Normally require human PM approval.
 - **Phases 3–5** (design and planning execution): May be approved by an AI Architect when operating under established patterns and clear architectural direction.
 - **Phase 6** (execution): May self-validate via tests and CI when automation pipelines are in place.
-- **Phase 7** (integration): Normally requires PM approval; may self-validate for routine integrations.
+- **Phase 7** (review and integration): Reviews are started and closed by the PM or the orchestrating pipeline, never by the implementing agent. After review passes, the merge and close-out may self-validate for routine integrations.
 
 **Review gates.** When `cf next` or any workflow check reports that a slice, task, or code review is required before proceeding, that is the approval mechanism above in action. The correct response is to stop and report to the Project Manager. Do not start the review yourself: the Project Manager or the orchestrating pipeline (for example squadron) runs reviews. Never edit frontmatter to clear the gate. In particular, `review: none` in a slice-design's frontmatter is a Project Manager declaration that exempts the slice from all slice-scoped reviews; agents must not add it, must not run `cf check --set-review-none`, and must not carry it over from another document used as a template.
 

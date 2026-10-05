@@ -102,6 +102,10 @@ install, or one from before the manifest existed), ownership can't be known, so
 the existing file is backed up to `<name>.pre-context-forge` before it is
 replaced.
 
+A file setup-ide installed and you edited afterwards is also left alone: the
+run warns that the guide's update was not written and keeps the path in the
+manifest. Delete the file to take the guide's version again.
+
 ## Lint configs
 
 Every run, for any target, also checks the linter config the language rules

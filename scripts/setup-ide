@@ -263,9 +263,20 @@ install_file() {
 
     if [ -f "$dest" ] && ! cmp -s "$staged" "$dest"; then
         if [ -f "$OLD_MANIFEST" ]; then
-            if ! cut -d' ' -f3- "$OLD_MANIFEST" | grep -qxF "$rel"; then
+            local entry
+            entry=$(awk -v p="$rel" '{ path = $0; sub(/^[^ ]+ [^ ]+ /, "", path); if (path == p) print }' "$OLD_MANIFEST")
+            if [ -z "$entry" ]; then
                 rm -f "$staged"
                 print_status $YELLOW "⚠️  Skipped $rel: it exists and was not installed by the guide — rename or remove it to let setup-ide manage it"
+                return 1
+            fi
+            # Installed by the guide but edited since: keep the edit, and keep
+            # the original manifest entry so the path stays guide-owned and the
+            # prune step does not warn about it a second time.
+            if [ "$(cksum < "$dest") $rel" != "$entry" ]; then
+                rm -f "$staged"
+                echo "$entry" >> "$NEW_MANIFEST"
+                print_status $YELLOW "⚠️  Kept $rel: edited since it was installed, so the guide's update was not written — remove it to get the update"
                 return 1
             fi
         else
