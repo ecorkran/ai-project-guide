@@ -117,7 +117,8 @@ Before starting work:
 6. never start work from another unit's branch unless explicitly instructed
 7. if in doubt, STOP and ask the Project Manager
 
-When slice implementation is done, merge the slice branch into the target:
+**Merging (Phase 7 only, after code review passes):**
+Phase 6 ends with the work committed on the slice branch. Do not merge at the end of implementation, and never write a merge as a task, sub-item, or Success Criteria in a task file. Merge the slice branch into the target only during Phase 7 (Slice Integration), after the slice's code review has passed:
 1. re-read the target (step 1 above) — do not infer it from the current branch or from memory
 2. `git checkout {target}`, then `git merge {branch-name}`
 3. if either command fails, STOP and ask the Project Manager
