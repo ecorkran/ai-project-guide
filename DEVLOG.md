@@ -10,6 +10,29 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261005 (2)
+
+**Session**: setup-ide/cf decoupling and versioning policy (v0.20.1)
+
+### Completed
+- #31: `setup-ide --root <dir>` (guide from the script's own location, output,
+  manifest, cleanup and `rules.exclude` in `<dir>`), `--capabilities`, and
+  `cf config get --value` with detection via `cf config get --help`
+- Dry run no longer copies or lists `.claude/worktrees/`
+- Release versioning rule in `rules/git.md`: patch by default, minor only for
+  new user-facing features or significant AI capability, PM-confirmed; cf and
+  squadron `/release` skills updated to match
+
+### Key decisions
+- Keep setup-ide in the guide (it must work without cf); cf stops duplicating
+  its logic. cf runs the main checkout's script with `--root` per worktree,
+  keeps its copy-and-prune code as a fallback for older guides for a release
+  or two, then deletes it
+- Feature list over version number for `--capabilities`, so cf needs no
+  version-to-feature table
+
+---
+
 ## 20261005
 
 **Session**: merge timing, Phase 7, setup-ide safety, lint configs (v0.20.0)
