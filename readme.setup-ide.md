@@ -36,6 +36,16 @@ skip and warning lines:
 ./project-documents/ai-project-guide/scripts/setup-ide claude --dry-run
 ```
 
+Add `--root <dir>` to install into another checkout, such as a git worktree,
+using the guide next to the script. The worktree needs no guide copy of its
+own. Output, manifest, cleanup, `rules.exclude` (read from `<dir>`) and lint
+checks all apply to `<dir>`. `cf setup-ide` uses this to install into each
+registered worktree.
+
+`setup-ide --capabilities` prints the features the script supports as one line,
+for example `dry-run write-lint root`, and exits without doing anything. Tools
+that call setup-ide use it to decide which flags to pass.
+
 ## Supported targets
 
 | Target | Writes | Use for |

@@ -12,12 +12,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `setup-ide --root <dir>` installs into another checkout, such as a git
+  worktree, using the script's own guide (#31).
+- `setup-ide --capabilities` prints the supported features as one line, so
+  callers like cf no longer search the script's text for flags (#31).
+
 ### Changed
 
 - Git rules now define release versioning: patch is the default, including new
   flags, options and config keys. Minor is only for a new user-facing feature
   or significant AI capability, confirmed by the Project Manager. A non-empty
   CHANGELOG or an `### Added` section never decides the bump on its own.
+- `setup-ide` reads `rules.exclude` with `cf config get --value` when cf
+  supports it, and stops with an error when cf fails instead of silently
+  installing every rule. Older cf versions still work (#31).
+
+### Fixed
+
+- `setup-ide --dry-run` no longer copies `.claude/worktrees/` (whole git
+  checkouts) into its sandbox or lists them as changes.
 
 ## [0.20.0] - 2026-10-05
 

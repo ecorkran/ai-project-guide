@@ -81,31 +81,44 @@ read_rules_exclude() {
 
     command -v cf >/dev/null 2>&1 || return 0
 
-    # A non-zero exit means the key is unknown (a cf predating this feature) or
-    # cf could not answer. Either way: no exclusions, never a hard error, so the
-    # script works on both sides of that cf release.
-    local output
-    output=$(cf config get rules.exclude 2>/dev/null) || return 0
+    # cf resolves config from its working directory, and each checkout (e.g. a
+    # worktree passed with --root) can have its own, so ask from PROJECT_ROOT.
+    local output status=0
+    if (cd "$PROJECT_ROOT" && cf config get --help 2>/dev/null) | grep -q -- '--value'; then
+        output=$(cd "$PROJECT_ROOT" && cf config get --value rules.exclude) || status=$?
+        case $status in
+            0) ;;
+            2) return 0 ;;   # cf does not know the key: nothing to exclude
+            *)
+                print_status $RED "❌ cf config get --value rules.exclude failed (exit $status)" >&2
+                exit 1
+                ;;
+        esac
+        RULES_EXCLUDE=$(printf '%s' "$output" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')
+    else
+        # Older cf without --value. A non-zero exit means the key is unknown (a
+        # cf predating rules.exclude) or cf could not answer; there is no way to
+        # tell which, so treat both as no exclusions.
+        output=$(cd "$PROJECT_ROOT" && cf config get rules.exclude 2>/dev/null) || return 0
 
-    # `cf config get` prints a labeled block, not a bare value:
-    #   Key:     rules.exclude
-    #   Value:   dart.md,swift.md
-    #   Source:  project
-    # Take the Value line and strip its label and surrounding whitespace.
-    RULES_EXCLUDE=$(printf '%s' "$output" | awk '
-        /^Value:/ {
-            sub(/^Value:[[:space:]]*/, "")
-            sub(/[[:space:]]+$/, "")
-            print
-            exit
-        }
-    ')
+        # The labeled form:
+        #   Key:     rules.exclude
+        #   Value:   dart.md,swift.md
+        #   Source:  project
+        # Take the Value line and strip its label and surrounding whitespace.
+        RULES_EXCLUDE=$(printf '%s' "$output" | awk '
+            /^Value:/ {
+                sub(/^Value:[[:space:]]*/, "")
+                sub(/[[:space:]]+$/, "")
+                print
+                exit
+            }
+        ')
+    fi
 
     [ -n "$RULES_EXCLUDE" ] && RULES_EXCLUDE_SOURCE="cf config rules.exclude"
     return 0
 }
-
-read_rules_exclude
 
 # Patterns that matched at least one file, used to warn about typos.
 RULES_EXCLUDE_MATCHED=""
@@ -365,23 +378,18 @@ find_project_root() {
     echo "$current_dir"
 }
 
+# Where output goes. main() replaces both when --root is given.
 PROJECT_ROOT="$(find_project_root)"
 TARGET_ROOT="$PROJECT_ROOT"
 
-# Set source directories
-if [[ "$SCRIPT_DIR" == */ai-project-guide/scripts ]]; then
-    # We're in the ai-project-guide source repository
-    RULES_SOURCE_DIR="$SCRIPT_DIR/../project-guides/rules"
-    AGENTS_SOURCE_DIR="$SCRIPT_DIR/../project-guides/agents"
-    SKILLS_SOURCE_DIR="$SCRIPT_DIR/../project-guides/skills"
-    LINT_SOURCE_DIR="$SCRIPT_DIR/../project-guides/lint"
-else
-    # We're in a project that includes ai-project-guide as submodule
-    RULES_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/rules"
-    AGENTS_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/agents"
-    SKILLS_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/skills"
-    LINT_SOURCE_DIR="$PROJECT_ROOT/project-documents/ai-project-guide/project-guides/lint"
-fi
+# Guide sources always come from the guide this script belongs to, never from
+# the project being installed into. That is what lets --root install into a
+# worktree that has no guide copy, or an older one.
+GUIDE_SOURCE_DIR="$(cd "$SCRIPT_DIR/../project-guides" && pwd)"
+RULES_SOURCE_DIR="$GUIDE_SOURCE_DIR/rules"
+AGENTS_SOURCE_DIR="$GUIDE_SOURCE_DIR/agents"
+SKILLS_SOURCE_DIR="$GUIDE_SOURCE_DIR/skills"
+LINT_SOURCE_DIR="$GUIDE_SOURCE_DIR/lint"
 
 # Lint config check (check_lint_configs, LINT_WRITE_PATHS).
 source "$SCRIPT_DIR/setup-ide-lint.sh"
@@ -403,10 +411,12 @@ check_directory() {
 
 # Function to show usage
 show_usage() {
-    echo "Usage: $0 <ide> [--dry-run] [--write-lint]"
+    echo "Usage: $0 <ide> [--dry-run] [--write-lint] [--root <dir>]"
     echo ""
     echo "  --dry-run     List the files that would be added, changed or removed; write nothing"
     echo "  --write-lint  Write required lint configs that are missing (default: report only)"
+    echo "  --root <dir>  Install into <dir> (e.g. a git worktree) using this script's guide"
+    echo "  --capabilities  Print supported features as one line and exit"
     echo ""
     echo "Supported targets:"
     echo "  cursor    - Always-on rules → AGENTS.md; scoped rules → .cursor/rules/ (paths→globs)"
@@ -1480,6 +1490,9 @@ install_target() {
 
 # Top-level paths any target may write, relative to TARGET_ROOT. Dry run copies
 # these into a sandbox and compares afterwards.
+# Claude Code keeps git worktrees under .claude/worktrees/: whole checkouts,
+# never install output. Dry run neither copies nor compares them.
+DRY_RUN_SKIP_PATH=".claude/worktrees"
 INSTALL_PATHS="CLAUDE.md CLAUDE.md$PREMANAGED_BACKUP_SUFFIX AGENTS.md AGENTS.md$PREMANAGED_BACKUP_SUFFIX .claude .cursor .github .agents $MANIFEST_DIR_NAME $LINT_WRITE_PATHS"
 
 # Run the install against a sandbox copy of the project's install paths, then
@@ -1493,9 +1506,13 @@ dry_run_install() {
     log=$(mktemp)
 
     local p
+    local existing=()
     for p in $INSTALL_PATHS; do
-        [ -e "$real_root/$p" ] && cp -R "$real_root/$p" "$sandbox/$p"
+        [ -e "$real_root/$p" ] && existing+=("$p")
     done
+    if [ ${#existing[@]} -gt 0 ]; then
+        tar -C "$real_root" --exclude="$DRY_RUN_SKIP_PATH" -cf - "${existing[@]}" | tar -C "$sandbox" -xf -
+    fi
 
     TARGET_ROOT=$sandbox
     install_target "$ide" > "$log"
@@ -1515,7 +1532,7 @@ list_install_files() {
         cd "$1" || exit 1
         local p
         for p in $INSTALL_PATHS; do
-            [ -e "$p" ] && find "$p" -type f
+            [ -e "$p" ] && find "$p" -path "$DRY_RUN_SKIP_PATH" -prune -o -type f -print
         done
     ) | sort
 }
@@ -1677,20 +1694,53 @@ setup_cursor() {
 DRY_RUN=false
 WRITE_LINT=false
 
+# Features this script supports, printed by --capabilities as one line of
+# space-separated words. A stable contract: cf decides which flags to pass from
+# it, so words are only ever added, never renamed or removed.
+CAPABILITIES="dry-run write-lint root"
+
 main() {
     # Flags may appear anywhere; everything else passes through unchanged.
-    # cf detects flag support by finding the literals "--dry-run" and
-    # "--write-lint" in this file, so keep the flag parsing here rather than in
-    # a sourced helper.
+    # Older cf versions detect flag support by finding the literals "--dry-run"
+    # and "--write-lint" in this file, so keep the flag parsing here rather
+    # than in a sourced helper. Newer cf versions use --capabilities.
     local args=()
-    local arg
-    for arg in "$@"; do
-        case "$arg" in
+    local root=""
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --capabilities)
+                echo "$CAPABILITIES"
+                return 0
+                ;;
             --dry-run) DRY_RUN=true ;;
             --write-lint) WRITE_LINT=true ;;
-            *) args+=("$arg") ;;
+            --root)
+                if [ $# -lt 2 ]; then
+                    print_status $RED "❌ Error: --root needs a directory" >&2
+                    exit 1
+                fi
+                root=$2
+                shift
+                ;;
+            --root=*) root=${1#--root=} ;;
+            *) args+=("$1") ;;
         esac
+        shift
     done
+
+    # --root installs into the given checkout (e.g. a git worktree) using this
+    # script's guide; without it, the project root is found from the current
+    # directory.
+    if [ -n "$root" ]; then
+        if [ ! -d "$root" ]; then
+            print_status $RED "❌ Error: --root directory not found: $root" >&2
+            exit 1
+        fi
+        PROJECT_ROOT="$(cd "$root" && pwd)"
+        TARGET_ROOT="$PROJECT_ROOT"
+    fi
+
+    read_rules_exclude
 
     run_target_setup ${args[@]+"${args[@]}"}
     local status=$?
