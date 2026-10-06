@@ -158,6 +158,7 @@ by file pattern.
 | `flutter.md` | `android/**`, `ios/**` (supplements `dart.md`) |
 | `python.md` | `**/*.py`, `**/pyproject.toml`, `**/requirements*.txt` |
 | `react.md` | React/JSX sources |
+| `shell.md` | `**/*.sh`, `**/*.bash`, GitHub Actions and GitLab CI workflows |
 | `sql.md` | SQL, PostgreSQL, pgvector, TimescaleDB |
 | `testing.md` | test sources |
 | `typescript.md` | TypeScript sources |
