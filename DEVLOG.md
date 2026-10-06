@@ -10,6 +10,22 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261005 (3)
+
+**Session**: shell script rules (v0.20.2)
+
+### Completed
+- `rules/shell.md` with globs for shell files and CI workflows; extensionless
+  scripts are covered by the description, since globs cannot match them
+- #32 filed: rewrite `setup-ide` in Python (1,750 lines of bash; 108
+  shellcheck findings, 99 of them unquoted expansions)
+
+### Key decisions
+- No quoting cleanup of `setup-ide` ahead of the rewrite; fix only if the
+  script has to change before then
+
+---
+
 ## 20261005 (2)
 
 **Session**: setup-ide/cf decoupling and versioning policy (v0.20.1)

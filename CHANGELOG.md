@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.2] - 2026-10-05
+
+### Added
+
+- `rules/shell.md`: shell script rules for bash and CI pipeline code
+  (`set -euo pipefail`, quoting, shellcheck, `jq`/`yq` for YAML and JSON,
+  Python past ~50 lines of logic, guarded `cd`, `mktemp` + `trap`, CI `run:`
+  blocks). Applies to `*.sh`, `*.bash`, GitHub Actions and GitLab CI files.
+
 ## [0.20.1] - 2026-10-05
 
 ### Added
