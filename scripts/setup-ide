@@ -1539,6 +1539,8 @@ list_install_files() {
 
 # Args: real_root, sandbox
 report_dry_run_changes() {
+    # sort and comm must collate identically; locale collation can disagree.
+    local -x LC_ALL=C
     local before after
     before=$(mktemp)
     after=$(mktemp)
