@@ -10,6 +10,17 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261006
+
+**Session**: dry-run comm fix (v0.20.3)
+
+### Completed
+- #36: `report_dry_run_changes` runs with `LC_ALL=C` so `sort` and `comm`
+  collate the same way; reported and verified on Linux by the mt-data session
+  (9 warnings before, 0 after); not reproducible on macOS (BSD tools)
+
+---
+
 ## 20261005 (3)
 
 **Session**: shell script rules (v0.20.2)

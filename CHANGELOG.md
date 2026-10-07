@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.3] - 2026-10-06
+
+### Fixed
+
+- `setup-ide --dry-run` no longer prints `comm: ... not in sorted order`
+  warnings on Linux when changes are pending; the file lists are now compared
+  in the C locale so the +/~/- report is correct (#36).
+
 ## [0.20.2] - 2026-10-05
 
 ### Added
