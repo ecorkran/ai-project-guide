@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.5] - 2026-10-10
+
 ### Fixed
 
 - Prompts no longer contradict each other on task checkboxes: all places now say

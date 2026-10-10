@@ -10,6 +10,18 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261010 (2)
+
+**Session**: task-checker rule consistency (v0.20.5)
+
+### Completed
+- squadron#189 item 3: `prompt.ai-project.system.md` contradicted itself on
+  task checkboxes; the rule is now one everywhere (delegate to `task-checker`,
+  check off directly if unavailable, never leave completed tasks unchecked)
+- Matters for squadron slice 942, which gates merges on checkbox state
+
+---
+
 ## 20261010
 
 **Session**: Phase 6/7 vs squadron pipelines, split task files (v0.20.4)
