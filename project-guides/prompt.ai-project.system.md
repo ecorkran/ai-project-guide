@@ -360,7 +360,7 @@ Notes:
 ```markdown
 We are working on {slice} in project {project}, phase 6 of `ai-project-guide/project-guides/guide.ai-project.process`. 
 
-Your job is to complete the tasks in the `user/tasks/{sliceindex}-tasks.{slicename}.md` file. Please work through the tasks, following the guidelines in our project guides, and using the relevant provided rules (`rules/`, `CLAUDE.md`, etc).  Your role is "Senior AI". 
+Your job is to complete the tasks in these file(s), in order: {task-files}. Please work through the tasks, following the guidelines in our project guides, and using the relevant provided rules (`rules/`, `CLAUDE.md`, etc).  Your role is "Senior AI". 
 
 Use the following as overview input when needed.  Primary input is the task file referenced above.
 - The slice design at `user/slices/{slice}.md`.
