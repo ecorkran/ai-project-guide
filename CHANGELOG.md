@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Prompts no longer contradict each other on task checkboxes: all places now say
+  delegate to `task-checker`, and check off directly if it is unavailable
+  (squadron#189).
+
 ## [0.20.4] - 2026-10-10
 
 ### Changed
