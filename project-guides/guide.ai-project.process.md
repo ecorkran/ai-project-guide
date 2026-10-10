@@ -156,7 +156,8 @@ Slices are grouped under architectural initiatives, each with its own architectu
 
 6. **Phase 6: Slice Execution (AI/Human Collaboration)**
    - Tasks are assigned to the Senior AI or human developers. They will delegate tasks to Junior AIs or junior human developers.
-   - Work is committed on the slice branch. Phase 6 ends when every task is complete; it does not include reviews or a merge.
+   - Work is committed on the slice branch. Phase 6 ends when every task is complete; the implementing agent does not start reviews or merge.
+   - An orchestrating pipeline may run Phases 6 and 7 as a single run, provided the pipeline engine (not the implementing agent) starts each review, decides from defined thresholds when review has passed, and performs the merge only after it has passed.
    - Outcome: _Working software increment for the slice, tested and committed on the slice branch._
 
 7. **Phase 7: Slice Integration (review, revise, merge)**
