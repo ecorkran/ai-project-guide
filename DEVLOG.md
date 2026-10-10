@@ -12,7 +12,7 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20261010
 
-**Session**: Phase 6/7 vs squadron pipelines (unreleased)
+**Session**: Phase 6/7 vs squadron pipelines, split task files (v0.20.4)
 
 ### Completed
 - Asked squadron to check its pipelines against the Phase 6/7 rewrite; it
@@ -25,6 +25,8 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
   merge are all engine-side; the implementing agent is only the dispatch step
 - process.md Phase 6 reworded: one pipeline run may span Phases 6 and 7 when
   the engine controls review and merge (b7c5484)
+- P6 prompt uses `{task-files}` (context-forge 0.19.4+) so split task files
+  are named correctly (context-forge#114, 377a775)
 
 ### Key decisions
 - Squadron will not split merge out of its pipelines; review-then-merge inside
