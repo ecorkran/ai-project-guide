@@ -10,6 +10,33 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261010
+
+**Session**: Phase 6/7 vs squadron pipelines (unreleased)
+
+### Completed
+- Asked squadron to check its pipelines against the Phase 6/7 rewrite; it
+  merges as the last step of every implement pipeline, and its slice 933
+  tasks-review check for merge steps does not exist yet
+- Squadron fixing its side: slice 933 backstop (new tasks files only) and
+  shell.md rule matching (full-path globs plus shebang sniff for extensionless
+  scripts)
+- Confirmed from squadron's engine code that review, pass/fail threshold and
+  merge are all engine-side; the implementing agent is only the dispatch step
+- process.md Phase 6 reworded: one pipeline run may span Phases 6 and 7 when
+  the engine controls review and merge (b7c5484)
+
+### Key decisions
+- Squadron will not split merge out of its pipelines; review-then-merge inside
+  one run is acceptable. The harm was an agent merging before review passes.
+
+### Open
+- Squadron caveats: resumed runs reload the pipeline definition (project-level
+  YAML edits could affect a resume); slice 942 covers merge on incompletely
+  revised work (#200)
+
+---
+
 ## 20261006
 
 **Session**: dry-run comm fix (v0.20.3)

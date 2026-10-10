@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Process guide, Phase 6: an orchestrating pipeline may run Phases 6 and 7 as
+  one run, provided the pipeline engine (not the implementing agent) starts
+  each review, decides from defined thresholds when review has passed, and
+  merges only after it has passed. Replaces "does not include reviews or a
+  merge" with a rule about who acts.
+
 ## [0.20.3] - 2026-10-06
 
 ### Fixed
