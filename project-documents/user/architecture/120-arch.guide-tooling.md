@@ -4,7 +4,7 @@ layer: project
 project: ai-project-guide
 archIndex: 120
 component: guide-tooling
-relatedSlices: [120, 121]
+relatedSlices: [120, 121, 122]
 riskLevel: medium
 dateCreated: 20261011
 dateUpdated: 20261011
@@ -57,6 +57,7 @@ Out of scope for now: the other scripts in `scripts/` (bootstrap, migration help
 ## Anticipated Slices
 - **(120) setup-ide Behavior Tests**: fixture harness that runs against the current bash version, plus the repo's first ruff config and hook.
 - **(121) setup-ide Python Rewrite**: replace the bash body with the Python package behind the wrapper.
+- **(122) Release and cf Check**: run cf's setup-ide flows against the rewrite in a real consumer project, and confirm the tarball contents.
 
 ## Related Work
 - GitHub issue #32 and its design comment (deferred shipped-version checksum adoption, cf contract).

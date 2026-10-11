@@ -30,7 +30,7 @@ Included:
 - `scripts/setup-ide` rewritten as a bash wrapper (Python check, exec).
 - `scripts/setup_ide/` package: a full port of `setup-ide` and `setup-ide-lint.sh`.
 - Deletion of `scripts/setup-ide-lint.sh` (cf never references it; it is only sourced by setup-ide).
-- A few new tests for wrapper-only behavior: Python missing, Python too old, no bytecode written into the guide, the cf flag literals present in the wrapper.
+- A few new tests for wrapper-only behavior: Python missing, Python too old, a python3 that fails to run (a stub that exits 1, standing in for the macOS stub), a bare-filename run from inside `scripts/`, no bytecode written into the guide, the cf flag literals present in the wrapper.
 - `readme.setup-ide.md`: Python 3.9+ requirement and the error you get without it.
 - CHANGELOG `[Unreleased]` entry.
 
@@ -104,7 +104,7 @@ The bash script keeps its state in globals (`TARGET_ROOT`, `NEW_MANIFEST`, `RULE
 
 A dry run makes a copy of the `Run` with `target_root` pointing at the sandbox and a buffering reporter. The lint check reads from `project_root` and writes to `target_root`, as it does today, so a dry run still checks the real project.
 
-Persistent state is unchanged: `.context-forge/<target>.manifest` keeps its line format `<crc> <size> <path>`, sorted by path the way `sort -k3` sorts it under `LC_ALL=C`, i.e. by byte order.
+Persistent state keeps its format: `.context-forge/<target>.manifest` has one `<crc> <size> <path>` line per file, sorted by path in byte order. One deliberate difference: bash runs `sort -k3` under the caller's locale, so on Linux with a UTF-8 locale a bash-written manifest can be in locale collation order. Python always writes byte order, so such a manifest may reorder once on the next run. Reading doesn't depend on order, and the suite (which forces `LC_ALL=C`) can't see this.
 
 ## Technical Decisions
 
@@ -117,12 +117,16 @@ Persistent state is unchanged: `.context-forge/<target>.manifest` keeps its line
 
 ### Patterns and Conventions
 - **Wrapper runs Python with `-I -B`.**
-  - `-I` (isolated mode) ignores `PYTHONPATH`, user site-packages and `PYTHON*` variables, so a user's environment can't change how setup-ide runs. `__main__.py` adds `scripts/` to `sys.path` itself, because isolated mode doesn't add the script directory.
+  - `-I` (isolated mode) ignores `PYTHONPATH`, user site-packages and `PYTHON*` variables, so a user's environment can't change how setup-ide runs. `__main__.py` adds `scripts/` to `sys.path` so `setup_ide` imports as a package. (On 3.9 and 3.10, Python also puts `scripts/setup_ide/` itself on the path; from 3.11 `-I` doesn't.) All imports are package-qualified (`from setup_ide import ...`), so no module is ever loaded under two names.
   - `-B` stops Python writing `__pycache__/` into the guide. In a submodule install that would dirty the submodule's `git status`.
 - **One text I/O rule (`textio.py`).** Every read and write of project or guide files uses `encoding="utf-8", errors="surrogateescape", newline=""`. With these settings any byte sequence survives a round trip and CRLF is never translated, matching bash's byte-for-byte handling. Comparisons that bash does with `cmp` compare bytes. Writes go to the destination with normal permissions (bash uses `cat >` so the file gets the umask mode, not mktemp's 600). Managed writes keep the `.context-forge.tmp` file and rename.
-- **Output encoding.** `cli.main` reconfigures stdout and stderr to UTF-8, because bash writes emoji bytes whatever the locale. Under `LC_ALL=C`, Python 3.9 already switches to UTF-8 mode, but other non-UTF-8 locales would crash on the first emoji.
+- **Output encoding and buffering.** `cli.main` reconfigures stdout and stderr with `encoding="utf-8", line_buffering=True`.
+  - UTF-8, because bash writes emoji bytes whatever the locale. Under `LC_ALL=C`, Python 3.9 already switches to UTF-8 mode, but other non-UTF-8 locales would crash on the first emoji.
+  - Line buffering, because bash writes each line as it goes. When cf or a user merges the streams (`2>&1`), the order stays the same as today. The suite captures the streams separately, so it can't check this.
 - **Colors.** `Reporter.status(color, message)` always emits the same ANSI codes as `print_status`. Snapshots strip ANSI, so this is for parity, not for the tests.
-- **Errors.** Every bash `exit 1` inside a function becomes a `SetupError` raised with the message already printed. `cli.main` catches it and returns 1. That is the only broad handler, at the process boundary. No other `except Exception`. Places where bash ignores a failure (`|| true`, `|| return 0`) catch the specific exception, with a comment saying why.
+- **Errors.** Every bash `exit 1` inside a function becomes a `SetupError` raised with the message already printed. `cli.main` is the process boundary. It catches `SetupError` (exit 1) and `KeyboardInterrupt` (exit 130 with no traceback, as bash does on Ctrl-C). No other broad handler. Places where bash ignores a failure (`|| true`, `|| return 0`) catch the specific exception, with a comment saying why. Specific paths:
+  - **cf subprocess:** if starting cf raises `OSError`, treat it as a non-zero exit. That takes the same branch as bash's exit 126/127: the "failed (exit N)" hard error and exit 1. No timeout, same as bash.
+  - **Dry-run sandbox:** created with `tempfile.TemporaryDirectory` in a `with` block, so it is removed on an error or Ctrl-C too.
 - **Port quirks faithfully.** Where awk or grep behavior is odd (unanchored `grep -q "description:"` in frontmatter validation, the `**`-newline-`**` default glob, the final-newline add in the managed branch), the Python reproduces it. Each such spot gets a one-line comment naming the issue number (or "matches bash") so the later fix is easy to find.
 - **Constants defined once** in `context.py`: the markers, the backup suffix, the manifest dir name, `INSTALL_PATHS`, `DRY_RUN_SKIP_PATH`, `CAPABILITIES`, the lint write paths, and the color codes.
 
@@ -152,13 +156,20 @@ Wrapper (the whole cf-facing surface). Shape only; final wording is set during i
 # Flags: --dry-run --write-lint --root <dir> --capabilities
 # (Older cf versions detect --dry-run and --write-lint by finding these
 # literals in this file. Keep them.)
-SCRIPT_DIR="$(cd "${BASH_SOURCE[0]%/*}" && pwd)"
 command -v python3 >/dev/null 2>&1 || { echo "❌ setup-ide needs Python 3.9 or newer: python3 not found" >&2; exit 1; }
-python3 -c 'import sys; sys.exit(sys.version_info < (3, 9))' || { echo "❌ setup-ide needs Python 3.9 or newer: found $(python3 --version 2>&1)" >&2; exit 1; }
+# One python3 call: on macOS without the command line tools, /usr/bin/python3
+# is a stub that opens an install prompt and fails; don't trigger it twice.
+if ! found=$(python3 -c 'import sys; print(sys.version.split()[0]); sys.exit(sys.version_info < (3, 9))' 2>/dev/null); then
+    echo "❌ setup-ide needs Python 3.9 or newer: found ${found:-a python3 that did not run (on macOS: xcode-select --install)}" >&2
+    exit 1
+fi
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 exec python3 -I -B "$SCRIPT_DIR/setup_ide/__main__.py" "$@"
 ```
 
-- The wrapper uses only bash builtins before `exec`, so the "python3 not found" path works with an empty PATH.
+- The Python check comes first and uses only bash builtins, so the "python3 not found" path works with an empty PATH.
+- `SCRIPT_DIR` uses the same `dirname` form as today, which handles a bare `bash setup-ide` run from inside `scripts/`.
+- `found` is empty when python3 didn't run at all (the macOS stub, a broken install), and holds the version when it ran but is too old.
 - Exit codes: 1 for a missing or old Python. Otherwise the package's codes, which match today's (0 on success, 1 on errors).
 
 ## Integration Points
