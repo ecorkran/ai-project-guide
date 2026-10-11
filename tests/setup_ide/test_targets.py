@@ -1,7 +1,7 @@
 """Target behavior: what each setup-ide target installs."""
 
 import pytest
-from harness import install_files, make_project, run, snapshot
+from harness import install_files, make_project, run, snapshot, write_files
 
 
 @pytest.mark.parametrize("target", ["claude", "cursor", "copilot", "agents"])
@@ -50,3 +50,48 @@ def test_targets_unknown_target(tmp_path, assert_snapshot):
     result = run(guide, ["vim"], cwd=project)
     assert result.code == 1
     assert_snapshot("test_targets_unknown_target", snapshot(project, [result]))
+
+
+GENERATED_MARKER = "<!-- context-forge:generated -->"
+
+
+def test_targets_copilot_removes_generated_prompts_keeps_user_prompts(
+    tmp_path, assert_snapshot
+):
+    project, guide = make_project(tmp_path)
+    write_files(
+        project,
+        {
+            ".github/prompts/old.prompt.md": f"{GENERATED_MARKER}\nold generated\n",
+            ".github/prompts/mine.prompt.md": "my own prompt\n",
+        },
+    )
+    result = run(guide, ["copilot"], cwd=project)
+    assert not (project / ".github/prompts/old.prompt.md").exists()
+    assert (project / ".github/prompts/mine.prompt.md").exists()
+    assert_snapshot("test_targets_copilot_prompts", snapshot(project, [result]))
+
+
+def test_targets_copilot_instruction_files_carry_marker(tmp_path):
+    project, guide = make_project(tmp_path)
+    run(guide, ["copilot"], cwd=project)
+    files = sorted((project / ".github/instructions").glob("*.instructions.md"))
+    assert files
+    for file in files:
+        assert GENERATED_MARKER in file.read_text(), file.name
+
+
+def test_targets_cursor_removes_superseded_always_on_mdc(tmp_path, assert_snapshot):
+    project, guide = make_project(tmp_path)
+    write_files(project, {".cursor/rules/always-a.mdc": "from an earlier run\n"})
+    result = run(guide, ["cursor"], cwd=project)
+    assert not (project / ".cursor/rules/always-a.mdc").exists()
+    assert_snapshot("test_targets_cursor_superseded_mdc", snapshot(project, [result]))
+
+
+def test_targets_cursor_agents_folder_warned_and_kept(tmp_path, assert_snapshot):
+    project, guide = make_project(tmp_path)
+    write_files(project, {".cursor/agents/old-agent.md": "left by an older run\n"})
+    result = run(guide, ["cursor"], cwd=project)
+    assert (project / ".cursor/agents/old-agent.md").exists()
+    assert_snapshot("test_targets_cursor_agents_dir", snapshot(project, [result]))
