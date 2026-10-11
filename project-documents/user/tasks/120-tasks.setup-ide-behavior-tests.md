@@ -7,7 +7,7 @@ dependencies: []
 projectState: setup-ide is ~1,760 lines of bash with no tests; repo has no Python, no ruff config, no hooks
 dateCreated: 20261011
 dateUpdated: 20261011
-status: in_progress
+status: complete
 ---
 
 ## Context Summary
@@ -147,65 +147,65 @@ For each test file below, list the scenarios in the design under "Scenario list"
 - [x] **19. Commit ownership and managed sections**
   - [x] `test: add setup-ide ownership and managed-section scenarios`
 
-- [ ] **20. rules.exclude tests** (`test_rules_exclude.py`). Use the `cf_stub` fixture. Exclude `scoped-b.md` unless a case says otherwise.
-  - [ ] Env var set, plus a cf stub that returns a different value: the env var wins.
-  - [ ] cf `--help` shows `--value`, value `scoped-b.md`, exit 0: excluded.
-  - [ ] cf with `--value`, exit 2: nothing excluded.
-  - [ ] cf with `--value`, exit 1: setup-ide exits 1.
-  - [ ] cf without `--value` in `--help`, and labeled output with a `Value:   scoped-b.md` line: excluded.
-  - [ ] No cf on PATH: nothing excluded.
-  - [ ] Pattern `nomatch*.md`: unmatched-pattern warning.
-  - [ ] Pattern `always-a.md`: snapshot whatever happens today.
-  - [ ] Install with nothing excluded, then run again with `scoped-b.md` excluded: the installed copy is pruned.
-  - [ ] Success: `pytest tests/setup_ide/test_rules_exclude.py -q` passes.
+- [x] **20. rules.exclude tests** (`test_rules_exclude.py`). Use the `cf_stub` fixture. Exclude `scoped-b.md` unless a case says otherwise.
+  - [x] Env var set, plus a cf stub that returns a different value: the env var wins.
+  - [x] cf `--help` shows `--value`, value `scoped-b.md`, exit 0: excluded.
+  - [x] cf with `--value`, exit 2: nothing excluded.
+  - [x] cf with `--value`, exit 1: setup-ide exits 1.
+  - [x] cf without `--value` in `--help`, and labeled output with a `Value:   scoped-b.md` line: excluded.
+  - [x] No cf on PATH: nothing excluded.
+  - [x] Pattern `nomatch*.md`: unmatched-pattern warning.
+  - [x] Pattern `always-a.md`: snapshot whatever happens today.
+  - [x] Install with nothing excluded, then run again with `scoped-b.md` excluded: the installed copy is pruned.
+  - [x] Success: `pytest tests/setup_ide/test_rules_exclude.py -q` passes.
 
-- [ ] **21. Target-specific cleanup tests** (add to `test_targets.py`, or a new `test_cleanup.py` if `test_targets.py` would pass ~300 lines)
-  - [ ] copilot: a `.github/prompts/x.prompt.md` with the generated marker is removed, and one without the marker is kept.
-  - [ ] copilot: every `.github/instructions/*.instructions.md` carries the generated marker (check the snapshot).
-  - [ ] cursor: a `.cursor/rules/always-a.mdc` from an earlier run is removed.
-  - [ ] cursor: an existing `.cursor/agents/` folder produces its warning and is left in place.
-  - [ ] Success: the file's tests pass.
+- [x] **21. Target-specific cleanup tests** (add to `test_targets.py`, or a new `test_cleanup.py` if `test_targets.py` would pass ~300 lines)
+  - [x] copilot: a `.github/prompts/x.prompt.md` with the generated marker is removed, and one without the marker is kept.
+  - [x] copilot: every `.github/instructions/*.instructions.md` carries the generated marker (check the snapshot).
+  - [x] cursor: a `.cursor/rules/always-a.mdc` from an earlier run is removed.
+  - [x] cursor: an existing `.cursor/agents/` folder produces its warning and is left in place.
+  - [x] Success: the file's tests pass.
 
-- [ ] **22. Lint tests** (`test_lint.py`)
-  - [ ] Python, no config: report only, nothing written.
-  - [ ] Python, no config, `--write-lint`: the baseline is written.
-  - [ ] Python, `pyproject.toml` with a `[tool.ruff]` that lacks required rules, `--write-lint`: a `ruff.toml` with `extend = "pyproject.toml"` and `extend-select` is added. `pyproject.toml` is unchanged.
-  - [ ] Python, complete config: no report.
-  - [ ] Dart (`pubspec.yaml`): report, then write with `--write-lint`.
-  - [ ] TypeScript (`tsconfig.json`): report, then write with `--write-lint`.
-  - [ ] C#, `*.csproj` three levels deep: detected. Four levels deep: not detected.
-  - [ ] `python.md` in rules.exclude: Python is not checked. The fixture guide has no `python.md`, so add one to the test's guide copy for this case.
-  - [ ] Success: `pytest tests/setup_ide/test_lint.py -q` passes.
+- [x] **22. Lint tests** (`test_lint.py`)
+  - [x] Python, no config: report only, nothing written.
+  - [x] Python, no config, `--write-lint`: the baseline is written.
+  - [x] Python, `pyproject.toml` with a `[tool.ruff]` that lacks required rules, `--write-lint`: a `ruff.toml` with `extend = "pyproject.toml"` and `extend-select` is added. `pyproject.toml` is unchanged.
+  - [x] Python, complete config: no report.
+  - [x] Dart (`pubspec.yaml`): report, then write with `--write-lint`.
+  - [x] TypeScript (`tsconfig.json`): report, then write with `--write-lint`.
+  - [x] C#, `*.csproj` three levels deep: detected. Four levels deep: not detected.
+  - [x] `python.md` in rules.exclude: Python is not checked. The fixture guide has no `python.md`, so add one to the test's guide copy for this case.
+  - [x] Success: `pytest tests/setup_ide/test_lint.py -q` passes.
 
-- [ ] **23. Commit the remaining scenarios**
-  - [ ] `test: add setup-ide rules.exclude, cleanup and lint scenarios`
+- [x] **23. Commit the remaining scenarios**
+  - [x] `test: add setup-ide rules.exclude, cleanup and lint scenarios`
 
-- [ ] **24. Real-guide smoke test** (`test_real_guide.py`, assertions only)
-  - [ ] For each target: copy the real `project-guides/` and `scripts/` into a temp guide, run the target on a fresh project, and check: exit code 0, no `❌` in the output, and the top-level files from the readme's target table exist.
-  - [ ] Success: `pytest tests/setup_ide/test_real_guide.py -q` passes.
+- [x] **24. Real-guide smoke test** (`test_real_guide.py`, assertions only)
+  - [x] For each target: copy the real `project-guides/` and `scripts/` into a temp guide, run the target on a fresh project, and check: exit code 0, no `❌` in the output, and the top-level files from the readme's target table exist.
+  - [x] Success: `pytest tests/setup_ide/test_real_guide.py -q` passes.
 
-- [ ] **25. Commit the smoke test**
-  - [ ] `test: add setup-ide real-guide smoke test`
+- [x] **25. Commit the smoke test**
+  - [x] `test: add setup-ide real-guide smoke test`
 
 ### Verification
 
-- [ ] **26. Full suite and determinism**
-  - [ ] `pytest tests/setup_ide -q` passes. Record the test count in the design's Verification Walkthrough.
-  - [ ] Run `pytest tests/setup_ide -q --update-snapshots` twice. `git status --short tests/` is empty after each run.
-  - [ ] `ruff check tests` and `ruff format --check tests` are clean.
-  - [ ] `git diff main --stat -- scripts/` is empty.
+- [x] **26. Full suite and determinism**
+  - [x] `pytest tests/setup_ide -q` passes. Record the test count in the design's Verification Walkthrough.
+  - [x] Run `pytest tests/setup_ide -q --update-snapshots` twice. `git status --short tests/` is empty after each run.
+  - [x] `ruff check tests` and `ruff format --check tests` are clean.
+  - [x] `git diff main --stat -- scripts/` is empty.
 
-- [ ] **27. Mutation checks**
-  - [ ] In `scripts/setup-ide`, change `MANAGED_BEGIN` to `'<!-- BEGIN:cf -->'`. The suite fails in the managed-section and target tests. Revert with `git checkout scripts/setup-ide`.
-  - [ ] In `install_file`, make the no-manifest branch overwrite instead of skipping. The ownership tests fail. Revert.
-  - [ ] Success: both mutations caught, and `git status --short scripts/` is empty.
+- [x] **27. Mutation checks**
+  - [x] In `scripts/setup-ide`, change `MANAGED_BEGIN` to `'<!-- BEGIN:cf -->'`. The suite fails in the managed-section and target tests. Revert with `git checkout scripts/setup-ide`.
+  - [x] In `install_file`, make the no-manifest branch overwrite instead of skipping. The ownership tests fail. Revert.
+  - [x] Success: both mutations caught, and `git status --short scripts/` is empty.
 
-- [ ] **28. Tarball check**
-  - [ ] `git archive HEAD | tar -t | grep -E '^(tests/|\.githooks/|ruff\.toml|project-documents/)'` prints nothing.
+- [x] **28. Tarball check**
+  - [x] `git archive HEAD | tar -t | grep -E '^(tests/|\.githooks/|ruff\.toml|project-documents/)'` prints nothing.
 
-- [ ] **29. Close out the slice**
-  - [ ] Update the design's Verification Walkthrough with the actual commands, test count, and any corrections. Set the design's `status` to `complete` and its `dateUpdated`.
-  - [ ] File an issue for each "Recorded quirks" entry, and link the issue numbers in `tests/README.md`.
-  - [ ] Add a CHANGELOG `[Unreleased]` entry under `### Added`: setup-ide behavior test suite. This is dev-only, so no user-facing change.
-  - [ ] Run `cf check` and fix any findings.
-  - [ ] Commit `test: finalize setup-ide behavior tests (slice 120)` on the slice branch.
+- [x] **29. Close out the slice**
+  - [x] Update the design's Verification Walkthrough with the actual commands, test count, and any corrections. Set the design's `status` to `complete` and its `dateUpdated`.
+  - [x] File an issue for each "Recorded quirks" entry, and link the issue numbers in `tests/README.md`.
+  - [x] Add a CHANGELOG `[Unreleased]` entry under `### Added`: setup-ide behavior test suite. This is dev-only, so no user-facing change.
+  - [x] Run `cf check` and fix any findings.
+  - [x] Commit `test: finalize setup-ide behavior tests (slice 120)` on the slice branch.
