@@ -1,11 +1,12 @@
 ---
+docType: tasks
 slice: project-guide-restructure
 sliceIndex: 105
 project: ai-project-guide
 lld: user/slices/105-slice.project-guide-restructure.md
 dependencies: []
 projectState: Complete - v0.9.0 submodule migration, v0.10.0 private→user rename
-status: completed
+status: complete
 dateCreated: 20250101
 dateUpdated: 20251008
 ---

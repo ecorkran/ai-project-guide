@@ -60,5 +60,5 @@ Out of scope for now: the other scripts in `scripts/` (bootstrap, migration help
 
 ## Related Work
 - GitHub issue #32 and its design comment (deferred shipped-version checksum adoption, cf contract).
-- [readme.setup-ide.md](../../readme.setup-ide.md): user-facing setup-ide documentation.
-- [shell.md](../../project-guides/rules/shell.md): the rule the bash version breaks.
+- [readme.setup-ide.md](../../../readme.setup-ide.md): user-facing setup-ide documentation.
+- [shell.md](../../../project-guides/rules/shell.md): the rule the bash version breaks.

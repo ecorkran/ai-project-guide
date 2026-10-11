@@ -4,7 +4,7 @@ docType: slice
 project: ai-project-guide
 sliceIndex: 105
 sliceName: project-guide-restructure
-status: completed
+status: complete
 completedVersion: 0.9.0
 dependencies: []
 description: Migration from git subtree to git submodule architecture

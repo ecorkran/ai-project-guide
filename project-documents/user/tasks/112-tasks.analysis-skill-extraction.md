@@ -1,4 +1,5 @@
 ---
+docType: tasks
 slice: analysis-skill-extraction
 project: ai-project-guide
 lld: user/slices/112-slice.analysis-skill-extraction.md

@@ -1,5 +1,8 @@
 ---
+docType: tasks
+slice: maintenance
 item: maintenance
+status: in_progress
 project: ai-project-guide
 type: maintenance
 dependencies: []

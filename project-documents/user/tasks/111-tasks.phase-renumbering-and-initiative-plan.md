@@ -1,4 +1,5 @@
 ---
+docType: tasks
 slice: phase-renumbering-and-initiative-plan
 project: ai-project-guide
 lld: user/slices/111-slice.phase-renumbering-and-initiative-plan.md

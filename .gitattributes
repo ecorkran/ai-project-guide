@@ -1,7 +1,7 @@
 # Paths used only for developing the guide itself. They stay tracked here but
 # are left out of `git archive` output and GitHub release tarballs, so tarball
 # installs into a consumer project do not carry them.
-user/                 export-ignore
+project-documents/    export-ignore
 .claude/              export-ignore
 .context-forge/       export-ignore
 .context-forge.toml   export-ignore

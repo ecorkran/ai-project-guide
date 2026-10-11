@@ -8,6 +8,7 @@ relatedSlices: []
 riskLevel: medium
 dateCreated: 20260322
 dateUpdated: 20260322
+status: complete
 ---
 
 # Architecture: Schema and Phases Update
@@ -109,7 +110,7 @@ YAML frontmatter is defined inconsistently across guides, prompts, and file-nami
 
 ## Related Work
 
-- [file-naming-conventions.md](../../file-naming-conventions.md) — current YAML frontmatter definitions
-- [prompt.ai-project.system.md](../../project-guides/prompt.ai-project.system.md) — prompt templates containing inline YAML schemas
-- [guide.ai-project.090-code-review.md](../../project-guides/guide.ai-project.090-code-review.md) — underspecified review YAML
+- [file-naming-conventions.md](../../../file-naming-conventions.md) — current YAML frontmatter definitions
+- [prompt.ai-project.system.md](../../../project-guides/prompt.ai-project.system.md) — prompt templates containing inline YAML schemas
+- [guide.ai-project.090-code-review.md](../../../project-guides/guide.ai-project.090-code-review.md) — underspecified review YAML
 - Existing slices 100/105 in the 100-band (completed, unrelated)

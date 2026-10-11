@@ -1,4 +1,5 @@
 ---
+docType: tasks
 slice: prompt-optimization-1
 project: ai-project-guide
 lld: user/slices/100-slice.prompt-optimization-1.md
