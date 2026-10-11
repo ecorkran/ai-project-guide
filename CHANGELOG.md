@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- `rules/general.md`, `CLAUDE.md`: the magic-defaults example is now valid Python, with the two bad lines marked (#27)
+
 ## [0.20.5] - 2026-10-10
 
 ### Fixed

@@ -23,10 +23,10 @@ alwaysApply: true
 - Never scatter comparison values across code. If a value is used in conditionals, switch cases, or lookups, define it once (enum, constant, or config) and reference that definition everywhere. Changing a value should require editing exactly one place.
 - Do not hard-code magic defaults.  In the example below, the defaults for model and n are both wrong.  If such defaults are needed they should be centralized at the config level.  This applies in all languages.
 ```python
-  async def _model_start(promt:str) -> str {
-    model = self._config.model or "gpt-5.3-codex"
-    n = self._config.index or 1234
-  }
+async def _model_start(self, prompt: str) -> str:
+    model = self._config.model or "gpt-5.3-codex"  # wrong: silent fallback to a magic model
+    n = self._config.index or 1234                 # wrong: magic number
+    ...
 ```
 - NEVER use user-accessible labels as logical structure.  They are fragile.
 
