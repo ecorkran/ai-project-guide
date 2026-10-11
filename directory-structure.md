@@ -67,7 +67,7 @@ project-documents/
 > **Metadata override:** if a file has YAML front-matter key `layer`, that wins if it contradicts the path.
 
 #### Attachment policy
-Images will be moved to the `z-attachments` folder in Obsidian.  Obsidian will rewrite links automatically when you move files.
+Put images in an `images/` folder next to the document that uses them, and link them with a relative path (e.g. `![alt text](images/diagram.png)`).  Give images descriptive names and alt text.
 #### Snippets
 * Process-wide prompts: `project-guides/prompt.ai-project.system.md`
 * Ad-hoc code snippets and examples: `snippets/`

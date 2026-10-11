@@ -16,7 +16,7 @@ This document provides specialized knowledge and techniques useful in completion
 All tasks involving new views, forms, or pages, as well as any task requiring sophisticated layout should include a mockup or reference image.  Mockup may be wireframe or rendered UI elements.  Mockups should be present in the directory `user/ui` and `user/ui/screenshots` in the `{project-root}/project-documents/user/` folder.
 
 *Example UI Mockup*
-![Wireframe mockup: full-width header on top, button bar at right below the header filling remaining height, historical data panel right of the chart at full height, with orange callout notes explaining layout intent](../z-attachments/ui-mockup-example.png)
+![Wireframe mockup: full-width header on top, button bar at right below the header filling remaining height, historical data panel right of the chart at full height, with orange callout notes explaining layout intent](images/ui-mockup-example.png)
 
 The notes in orange are for you to better understand how to convert one of these mockups into a real UI.  The mockup above provides layout, context notes (dashed callouts) and numerous UI elements.  UI color scheme should not be inferred from mockup.  From the sketch above (and supplemented by orange notes) you can see:
 * The header is on top, and is full width
@@ -35,7 +35,7 @@ In general:
 
 Based on above which you should infer from your analysis, the following renderings would be incorrect (I am showing mockup, but these would be real UI in actual project)
 
-![Incorrect renderings of the mockup above: data panel moved to the left, buttons of differing heights sharing a row, and controls losing their group proportions on resize](../z-attachments/ui-mockup-incorrect-renderings.png)
+![Incorrect renderings of the mockup above: data panel moved to the left, buttons of differing heights sharing a row, and controls losing their group proportions on resize](images/ui-mockup-incorrect-renderings.png)
 
 ##### Colors and Styles
 Colors should not be inferred from wireframe or sketch mockups.  If requested to create a color scheme based on a color or colors, attempt to work with shades of those colors.  For example, a dark scheme based on a deep teal (ideally you will be provided with RGB) as one of its darker colors should use that color, not grey with that color as accent, unless that is what is requested.  

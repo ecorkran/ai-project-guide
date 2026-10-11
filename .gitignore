@@ -12,11 +12,9 @@
 .Trashes
 Icon?
 
-# Obsidian workspace settings
-.obsidian/workspace
-.obsidian/workspace.json
-
 # Understand Anything scratch/trash (keep the knowledge graph itself)
 .understand-anything/.trash-*/
 .understand-anything/tmp/
+.understand-anything/intermediate/
+.understand-anything/diff-overlay.json
 

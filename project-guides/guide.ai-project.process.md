@@ -224,7 +224,7 @@ The following structure should be present in every project. Assume files are in 
 ```
 
 > Each folder has its own `README.md` or `introduction.md` with deeper context.
-> Attachments live in `project-documents/z-attachments/`.
+> Images live in an `images/` folder next to the document that uses them, linked by relative path.
 
 ---
 

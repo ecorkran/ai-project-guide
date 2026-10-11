@@ -1,0 +1,3 @@
+# Paths the understand-anything analyzer skips (merged with its defaults)
+.obsidian/
+DEVLOG.md

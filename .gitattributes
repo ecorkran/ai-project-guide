@@ -6,7 +6,6 @@ user/                 export-ignore
 .context-forge/       export-ignore
 .context-forge.toml   export-ignore
 .idea/                export-ignore
-.obsidian/            export-ignore
 .understand-anything/ export-ignore
 DEVLOG.md             export-ignore
 CLAUDE.md             export-ignore

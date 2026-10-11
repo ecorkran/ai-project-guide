@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `file-naming-conventions.md`: registered the optional `revision_number` frontmatter field (integer written only by tooling, for `slice-design`, `tasks`, and `review` docs) (#14)
+
+### Changed
+- Images now live in an `images/` folder next to the document that uses them. The two UI mockups moved from `z-attachments/` to `project-guides/images/`, and the Obsidian attachment guidance in `directory-structure.md` and the process guide was replaced
+- Stopped tracking `.obsidian/` (left over from editing the guide in Obsidian)
+- Added `.understand-anything/.understandignore` so the analyzer skips `.obsidian/` and `DEVLOG.md`; untracked the analyzer's `intermediate/` scratch output
+
 ### Fixed
 - `rules/general.md`, `CLAUDE.md`: the magic-defaults example is now valid Python, with the two bad lines marked (#27)
 
