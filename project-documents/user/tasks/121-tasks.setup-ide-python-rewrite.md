@@ -56,13 +56,20 @@ status: not_started
     - [ ] Every other argument passes through.
   - [ ] Port `show_usage`, `find_project_root` (including the `*/ai-project-guide/scripts` fallback, using the package's own location), `check_directory`, and `run_target_setup`'s lowercasing, aliasing (`openai`/`codex` → `agents`) and validation.
   - [ ] Reconfigure stdout and stderr with `encoding="utf-8", line_buffering=True` at the start of `main`.
-  - [ ] Until the targets are ported, raise `SetupError("not ported yet")` after validation. This placeholder is removed in task 11.
+  - [ ] Add the dispatch from `run_target_setup`: if `--dry-run`, call the dry run; otherwise call `install_target(target)`. `install_target` picks the target's setup function. Until each one is ported, each branch (the four targets and dry run) raises `SetupError("not ported yet")`. Tasks 11–15 each replace their own branch.
   - [ ] Replace `scripts/setup-ide` with the wrapper from the design's API Contracts section. Keep the comment that names `--dry-run` and `--write-lint`. Keep the file executable.
   - [ ] Success: `bash scripts/setup-ide --capabilities` prints `dry-run write-lint root`.
 
-- [ ] **4. Test the skeleton**
-  - [ ] `pytest tests/setup_ide -q -k "capabilities or root_missing_directory or root_without_value or no_target or unknown_target or harness"` → all pass.
-  - [ ] Fix the Python, never the test, until they pass.
+- [ ] **4. Test the skeleton and the wrapper**
+  - [ ] `pytest tests/setup_ide -q -k "capabilities or root_missing_directory or root_without_value or no_target or unknown_target or harness"` → all pass. Fix the Python, never the test.
+  - [ ] Write the wrapper tests in a new `tests/setup_ide/test_wrapper.py`. Use plain asserts on the exit code and stderr, not snapshots. Use the harness's `run(..., env_extra=...)` to override `PATH`, and write `python3` stubs into a temp folder.
+    - [ ] Python missing: `PATH` is only an empty temp folder → exit 1; stderr contains `python3 not found`; no files written in the project.
+    - [ ] Python too old: a stub `python3` that prints `3.8.10` and exits 1 → exit 1; stderr contains `found 3.8.10`.
+    - [ ] Python fails to run: a stub that prints nothing and exits 1 → exit 1; stderr contains `did not run`.
+    - [ ] Bare filename: run `bash setup-ide --capabilities` with `cwd=<guide>/scripts` → prints `dry-run write-lint root`.
+    - [ ] No bytecode: after a `--capabilities` run (which imports the package), there is no `__pycache__` under `<guide>/scripts`.
+    - [ ] Literals: the wrapper text contains `--dry-run` and `--write-lint`.
+  - [ ] Success: the selected tests and `test_wrapper.py` pass.
   - [ ] Commit: `feat: add setup-ide Python package skeleton and wrapper`
 
 ### Building blocks
@@ -73,6 +80,7 @@ status: not_started
   - [ ] Keep the default-glob newline from `get_apply_to`, with a `# #40` comment.
   - [ ] These have no black-box test on their own. Tasks 11–14 cover them.
   - [ ] Success: ruff clean. Each function has a docstring line naming the bash function it ports.
+  - [ ] Commit: `feat: port setup-ide frontmatter helpers`
 
 - [ ] **6. `exclude.py`**
   - [ ] Port `read_rules_exclude`:
@@ -83,6 +91,7 @@ status: not_started
   - [ ] Port `rule_is_excluded` (`fnmatch.fnmatchcase` on the basename; trim spaces around each pattern; record matched patterns), `warn_unmatched_exclusions` (stderr) and `always_apply_rule_matches`.
   - [ ] Wire it into `cli.main` in the bash order: read after root resolution, warn after the target run.
   - [ ] Success: `pytest tests/setup_ide -q -k cf_failure_stops_setup` passes. The other exclusion tests need a target and are covered in task 11.
+  - [ ] Commit: `feat: port setup-ide rules.exclude handling`
 
 - [ ] **7. `manifest.py`**
   - [ ] `cksum(data: bytes) -> tuple[int, int]`: POSIX CRC-32 (polynomial 0x04C11DB7, not reflected, length bytes folded in, result inverted), with a 256-entry table built once.
@@ -92,6 +101,8 @@ status: not_started
     - [ ] `tests/setup_ide/fixture_data/analyze-SKILL.md` must give `4163870229 9896`, the legacy entry.
     - [ ] An empty file.
     - [ ] `scripts/setup_ide/manifest.py` itself.
+  - [ ] No separate unit test. The suite never imports setup-ide code, and from task 11 on the manifest snapshots and `test_ownership_legacy_analyze_skill_*` fail on any CRC difference.
+  - [ ] Commit: `feat: port setup-ide install manifest and cksum`
 
 - [ ] **8. `managed.py`**
   - [ ] Port `managed_state` (absent, unmanaged, legacy, broken, managed), `backup_premanaged_file` and `write_managed_section`, with all four write branches and the same messages.
@@ -99,6 +110,7 @@ status: not_started
   - [ ] Write to `<file>.context-forge.tmp` first, then rename into place.
   - [ ] Covered by `test_managed_sections` in tasks 11 and 12.
   - [ ] Success: ruff clean.
+  - [ ] Commit: `feat: port setup-ide managed sections`
 
 - [ ] **9. `lint.py`**
   - [ ] Port all of `setup-ide-lint.sh`: `lint_missing_requirements`, `lint_report`, `lint_write_or_suggest`, `pyproject_ruff_sections`, the four `lint_check_*` functions and `check_lint_configs`.
@@ -106,16 +118,19 @@ status: not_started
   - [ ] Excluded languages are skipped through `exclude.rule_is_excluded`.
   - [ ] Covered by `test_lint` in task 11.
   - [ ] Success: ruff clean.
-
-- [ ] **10. Commit building blocks**
-  - [ ] Commit: `feat: port setup-ide frontmatter, exclusion, manifest, managed-section and lint modules`
+  - [ ] Commit: `feat: port setup-ide lint config check`
 
 ### Targets
 
-- [ ] **11. Claude target: `compile.py` and `targets.py` (part 1)**
-  - [ ] `compile.py`: port `compile_claude_rules` and whatever helpers it needs.
-  - [ ] `targets.py`: port `copy_files`, `copy_skills`, `copy_claude_modular_rules` and `setup_claude`, including the stale "(general, git)" note with a comment.
-  - [ ] Port `install_target`: begin manifest → target setup → finish manifest → blank line → lint check. Remove the task 3 placeholder for `claude`.
+- [ ] **10. Claude building blocks: `compile.py` and the copiers**
+  - [ ] `compile.py`: port `compile_always_on_rules` and `compile_claude_rules`. They use `has_always_apply`, `strip_name_field`, `get_frontmatter_field` and `get_apply_to` (frontmatter), `rule_is_excluded` (exclude), and `write_managed_section` (managed).
+  - [ ] `targets.py`: port `copy_files`, `copy_skills` and `copy_claude_modular_rules`. They write through `manifest.install_file`.
+  - [ ] Success: ruff clean. Every bash function from `compile_claude_rules` through `copy_claude_modular_rules` (bash lines 545–852 and 921–1018) has a Python counterpart, or is noted as merged into one.
+  - [ ] Commit: `feat: port setup-ide rule compilation and copiers`
+
+- [ ] **11. Claude target: `setup_claude` and `install_target`**
+  - [ ] Port `setup_claude`, including the stale "(general, git)" note with a comment.
+  - [ ] Complete `install_target`: begin manifest → target setup → finish manifest → blank line → lint check. Replace the `claude` placeholder branch.
   - [ ] Test: these pass:
     ```
     pytest tests/setup_ide -q -k "fresh and claude or CLAUDE-claude or subdirectory or managed and claude or ownership or rules_exclude or lint or root_outside_guide or real_guide and claude"
@@ -124,18 +139,18 @@ status: not_started
   - [ ] Commit: `feat: port setup-ide claude target`
 
 - [ ] **12. Agents target**
-  - [ ] Port `compile_always_on_rules`, `rules_dir_display_path`, `emit_agents_md` and `setup_agents`.
+  - [ ] Port `rules_dir_display_path`, `emit_agents_md` and `setup_agents`. Replace the `agents` placeholder branch.
   - [ ] Test: `pytest tests/setup_ide -q -k "agents and not cursor"` → all pass. This includes the `codex`/`openai` aliases, `test_managed_sections[...agents]` and `real_guide[agents]`.
   - [ ] Commit: `feat: port setup-ide agents target`
 
 - [ ] **13. Copilot target**
-  - [ ] Port `emit_copilot_instruction_files`, `remove_generated_prompt_files` and `setup_copilot`.
+  - [ ] Port `emit_copilot_instruction_files`, `remove_generated_prompt_files` and `setup_copilot`. Replace the `copilot` placeholder branch.
   - [ ] If `targets.py` passes ~300 lines, split it by target (for example, `targets_copilot.py`). Don't merge modules.
   - [ ] Test: `pytest tests/setup_ide -q -k "copilot"` → all pass.
   - [ ] Commit: `feat: port setup-ide copilot target`
 
 - [ ] **14. Cursor target**
-  - [ ] Port `copy_cursor_rules` and `setup_cursor`, including the superseded-`.mdc` removal and the `.cursor/agents/` warning.
+  - [ ] Port `copy_cursor_rules` and `setup_cursor`, including the superseded-`.mdc` removal and the `.cursor/agents/` warning. Replace the `cursor` placeholder branch.
   - [ ] Test: `pytest tests/setup_ide -q -k "cursor"` → all pass.
   - [ ] Commit: `feat: port setup-ide cursor target`
 
@@ -147,15 +162,16 @@ status: not_started
     - [ ] Run `install_target` with a `Run` whose `target_root` is the sandbox and whose reporter buffers.
     - [ ] Print the header, then only the buffered lines that contain `⚠️`, `⊘` or `❌`.
   - [ ] Port `list_install_files` and `report_dry_run_changes`: byte-order sort, `+`/`~`/`-` lines, the count line or "No changes".
+  - [ ] Replace the dry-run placeholder branch in `cli` with a call to the dry run. After this, no `not ported yet` is left: `grep -rn "not ported yet" scripts/setup_ide` → no hits.
   - [ ] Test: `pytest tests/setup_ide -q -k "dry_run or before_target"` → all pass.
   - [ ] Commit: `feat: port setup-ide dry run`
 
 ### Verification and cleanup
 
 - [ ] **16. Full suite and snapshot check**
-  - [ ] `pytest tests/setup_ide -q` → 76 passed.
+  - [ ] `pytest tests/setup_ide -q` → all pass (76 slice 120 tests plus `test_wrapper.py`).
   - [ ] `pytest tests/setup_ide -q --update-snapshots`, then `git status --short tests/` → empty. If anything shows, revert it with `git checkout tests/`, then fix the Python.
-  - [ ] Confirm no snapshot or test file changed on the branch: `git diff main --stat -- tests/` is empty.
+  - [ ] Confirm no existing snapshot or test file changed on the branch: `git diff main --stat -- tests/` lists only the new `test_wrapper.py`.
   - [ ] Success: all three hold.
 
 - [ ] **17. Mutation check**
@@ -166,32 +182,23 @@ status: not_started
 - [ ] **18. Remove `setup-ide-lint.sh`**
   - [ ] `git rm scripts/setup-ide-lint.sh`.
   - [ ] `grep -rn "setup-ide-lint" --include='*.md' --include='*.py' --include='*.sh' . | grep -v project-documents/user` → no hits. Fix any that remain.
-  - [ ] Suite still 76 passed.
+  - [ ] Suite still all green.
   - [ ] Commit: `refactor: remove setup-ide-lint.sh, ported to setup_ide/lint.py`
 
-- [ ] **19. Wrapper tests** in a new `tests/setup_ide/test_wrapper.py`. Use plain asserts on the exit code and stderr, not snapshots. Use the harness's `run(..., env_extra=...)` to override `PATH`, and write `python3` stubs into a temp folder.
-  - [ ] Python missing: `PATH` is only an empty temp folder → exit 1; stderr contains `python3 not found`; no files written in the project.
-  - [ ] Python too old: a stub `python3` that prints `3.8.10` and exits 1 → exit 1; stderr contains `found 3.8.10`.
-  - [ ] Python fails to run: a stub that prints nothing and exits 1 → exit 1; stderr contains `did not run`.
-  - [ ] Bare filename: run `bash setup-ide --capabilities` with `cwd=<guide>/scripts` → prints `dry-run write-lint root`.
-  - [ ] No bytecode: after a normal `claude` run, there is no `__pycache__` under `<guide>/scripts`.
-  - [ ] Literals: the wrapper text contains `--dry-run` and `--write-lint`.
-  - [ ] Success: `pytest tests/setup_ide -q` → 76 plus the new tests, all passing.
-  - [ ] Commit: `test: add setup-ide wrapper tests`
-
-- [ ] **20. Code checks**
+- [ ] **19. Code checks**
   - [ ] `ruff check scripts/setup_ide tests && ruff format --check scripts/setup_ide tests` → clean.
-  - [ ] `wc -l scripts/setup_ide/*.py`: no module much over 300 lines. Split any that are.
-  - [ ] `grep -n "except Exception\|except:" scripts/setup_ide/*.py` → no hits. `grep -n "shell=True" scripts/setup_ide/*.py` → no hits.
+  - [ ] `wc -l scripts/setup_ide/*.py`: no module over 350 lines. Split any that are.
+  - [ ] `grep -nE "except( *\(.*)?Exception|except *:" scripts/setup_ide/*.py` → no hits. `cli.main` names `SetupError` and `KeyboardInterrupt`, nothing broader. `grep -n "shell=True" scripts/setup_ide/*.py` → no hits.
+  - [ ] Constants defined once: `grep -n "context-forge\|pre-context-forge" scripts/setup_ide/*.py | grep -v context.py` shows no literal marker or suffix strings, only comments.
   - [ ] Each reproduced quirk has its comment: `grep -n "#38\|#40" scripts/setup_ide/*.py` shows at least one hit for each.
   - [ ] Commit any fixes: `refactor: tidy setup_ide modules`
 
-- [ ] **21. Docs**
+- [ ] **20. Docs**
   - [ ] `readme.setup-ide.md`: add a short "Requirements" note: Python 3.9 or newer as `python3`, the error you get without it, and `xcode-select --install` on macOS.
   - [ ] `CHANGELOG.md` `[Unreleased]`: under `### Changed`, setup-ide now runs as Python 3.9+ (standard library only) behind the same `scripts/setup-ide` entry point, with no change to output or files written. One line noting that manifests written under a non-C locale on Linux may reorder once.
   - [ ] Commit: `docs: note Python 3.9 requirement for setup-ide`
 
-- [ ] **22. Verification walkthrough**
+- [ ] **21. Verification walkthrough**
   - [ ] Run steps 1–6 of the design's Verification Walkthrough. Step 5 needs a project installed with the bash version: use `git worktree add /tmp/apg-bash v0.20.9` and run its `scripts/setup-ide claude` in a scratch project. Then run the branch's `setup-ide claude --dry-run` in that project and expect `📋 No changes`. Remove the worktree afterwards.
   - [ ] Update the walkthrough in the design if any command or output differs from what's written.
   - [ ] Set the design's `status: complete` and this file's `status: complete`. Check off slice 121 in `120-slices.guide-tooling.md`.
