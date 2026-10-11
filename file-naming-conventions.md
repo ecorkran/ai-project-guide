@@ -49,6 +49,11 @@ These files are managed by Context Forge and should not have project frontmatter
 - `description`: Brief purpose description
 - `dependsOn`: Related documents
 - `aiModel`: AI model that generated the document (required for `review` docType)
+- `revision_number`: integer count of times an automated tool has revised this document in place. Defined only for `slice-design`, `tasks`, and `review` docTypes.
+  - Written by tooling only. Do not add or bump it by hand or when an agent edits the document.
+  - Absent means the document has never been tool-stamped. Do not default it.
+  - Increases per file and never resets between runs.
+  - Not a version: no behavior may branch on its value. It is for display and diff labels only.
 
 ### Valid Status Values
 
