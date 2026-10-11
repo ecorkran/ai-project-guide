@@ -1,0 +1,21 @@
+== run 1: setup-ide agents
+exit: 1
+-- stdout
+📍 Project root detected: <ROOT>
+📍 IDE directories will be created in: <ROOT>
+
+🚀 Setting up AGENTS.md...
+
+✅ Embedded always-a in AGENTS.md
+✅ Embedded always-b in AGENTS.md
+❌ AGENTS.md has unbalanced context-forge markers
+   Expected exactly one <!-- BEGIN:context-forge --> and one <!-- END:context-forge -->, in that order.
+   Left unchanged — fix the markers by hand, then re-run.
+-- stderr
+== files
+--- AGENTS.md
+top
+<!-- END:context-forge -->
+middle
+<!-- BEGIN:context-forge -->
+bottom

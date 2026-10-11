@@ -1,0 +1,6 @@
+== run 1: setup-ide claude --root <TMP>
+exit: 1
+-- stdout
+-- stderr
+❌ Error: --root directory not found: <TMP>
+== files

@@ -1,0 +1,6 @@
+== run 1: setup-ide claude
+exit: 1
+-- stdout
+-- stderr
+❌ cf config get --value rules.exclude failed (exit 1)
+== files

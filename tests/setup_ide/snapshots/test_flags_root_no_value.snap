@@ -1,0 +1,6 @@
+== run 1: setup-ide claude --root
+exit: 1
+-- stdout
+-- stderr
+❌ Error: --root needs a directory
+== files
