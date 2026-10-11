@@ -28,7 +28,7 @@ Out of scope for now: the other scripts in `scripts/` (bootstrap, migration help
 
 ## Design Goals
 - **No change for users or cf.** Same entry point, targets, flags, output, exit codes, manifest format, overwrite protection, prune rules, and `rules.exclude` handling.
-- **No install step.** Python 3 standard library only. No pyproject, no virtualenv, no third-party packages at runtime or in tests.
+- **No install step.** setup-ide uses the Python 3 standard library only: no pyproject, no virtualenv, no third-party packages. Tests use pytest and ruff (per `python.md`), which are dev tools only and never needed to run setup-ide.
 - **Tests before the rewrite.** Record what the bash version does, then hold the Python version to the same results.
 - **Nothing new in tarballs except the runtime code.** Tests, fixtures, and dev config are export-ignored.
 
@@ -47,7 +47,7 @@ Out of scope for now: the other scripts in `scripts/` (bootstrap, migration help
 ## Layout
 - `scripts/setup-ide`: bash wrapper (ships).
 - `scripts/setup_ide/`: Python package, split into modules of about 300 lines each (ships).
-- `tests/`: test code and fixture projects, using `unittest` (export-ignored).
+- `tests/`: black-box pytest suite with snapshots (export-ignored).
 - A repo-level ruff config and a pre-commit hook (export-ignored). Remove `python.md` from `rules.exclude` in `.context-forge.toml` so this repo's own Python rules apply to it.
 
 ## Risks
