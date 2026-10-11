@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.8] - 2026-10-11
+
 ### Changed
 - Checklist rules (Phase 6 prompt, maintenance routine, `general.md` rules): check off only items verified as done, and leave unfinished items unchecked, including when work stops to wait for the Project Manager
 

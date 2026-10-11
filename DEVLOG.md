@@ -10,6 +10,25 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261011 (3)
+
+**Session**: guide tooling planning, docs move (v0.20.8)
+
+### Completed
+- Checklist rules: check off only verified items; leave unfinished items
+  unchecked, including when work stops for the PM (squadron #189). The
+  task-checker fallback itself already shipped in v0.20.5.
+- Added initiative plan (100, 110, 120) and initiative 120 Guide Tooling:
+  architecture and slice plan for the setup-ide Python rewrite (#32).
+  Slices 120 (behavior tests), 121 (rewrite), 122 (release and cf check).
+- Moved `user/` to `project-documents/user/` (export-ignored) so cf can find
+  the planning docs. Fixed old frontmatter that cf check flagged.
+
+### Notes
+- Arch review for slice 120 skipped by PM; the cf check warning is expected.
+- `cf prompt get` still fails here (looks for
+  `project-documents/ai-project-guide/`); read prompts from `project-guides/`.
+
 ## 20261011 (2)
 
 **Session**: setup-ide ownership fixes (v0.20.7)
