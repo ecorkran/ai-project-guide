@@ -32,6 +32,10 @@ MANAGED_END='<!-- END:context-forge -->'
 # the marker to EOF (nothing was ever written after it), which is what lets
 # migration find the span without parsing content. Detection only; never emitted.
 MANAGED_MARKER='[//]: # (context-forge:managed)'
+# Never emitted by any guide version, but projects (usually agents) hand-added
+# it to put their own content after the generated span. Everything after it is
+# the project's and survives migration.
+MANAGED_MARKER_END='[//]: # (context-forge:managed end)'
 
 # Provenance stamp for .github/instructions/*.instructions.md. Those are
 # generated wholesale from one source rule each — there is no user-authored
@@ -1135,9 +1139,19 @@ write_managed_section() {
                 printf '%s\n' "$MANAGED_BEGIN"
                 cat "$content_file"
                 printf '%s\n' "$MANAGED_END"
+                # Project content after a hand-added end marker is kept.
+                awk -v marker="$MANAGED_MARKER" -v end="$MANAGED_MARKER_END" '
+                    $0 == marker { past_marker = 1; next }
+                    past_marker && $0 == end { keep = 1; next }
+                    keep { print }
+                ' "$target_file"
             } > "$tmp_file"
             print_status $YELLOW "🔄 Migrated $artifact_label to BEGIN/END markers"
-            print_status $YELLOW "   Content below the old marker was generated and has been replaced."
+            if grep -qFx "$MANAGED_MARKER_END" "$target_file"; then
+                print_status $YELLOW "   Content between the old markers was generated and has been replaced; content after the end marker was kept."
+            else
+                print_status $YELLOW "   Content below the old marker was generated and has been replaced."
+            fi
             ;;
 
         managed)
