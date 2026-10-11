@@ -59,20 +59,24 @@ class RunResult:
     guide: Path
 
 
-def make_guide(dest: Path) -> Path:
-    """Copy the repo's scripts/ and the fixture guide into dest."""
+def make_guide(dest: Path, guides: Path = FIXTURE_GUIDE) -> Path:
+    """Copy the repo's scripts/ and a project-guides tree into dest.
+
+    `guides` is the fixture guide by default; the smoke test passes the real
+    project-guides/ instead.
+    """
     ignore = shutil.ignore_patterns("__pycache__")
     shutil.copytree(REPO_ROOT / "scripts", dest / "scripts", ignore=ignore)
-    shutil.copytree(FIXTURE_GUIDE, dest / "project-guides")
+    shutil.copytree(guides, dest / "project-guides", ignore=ignore)
     return dest
 
 
-def make_project(tmp_path: Path) -> tuple[Path, Path]:
+def make_project(tmp_path: Path, guides: Path = FIXTURE_GUIDE) -> tuple[Path, Path]:
     """Create <tmp>/project with the guide at project-documents/ai-project-guide."""
     project = tmp_path / "project"
     guide = project / "project-documents" / "ai-project-guide"
     guide.mkdir(parents=True)
-    make_guide(guide)
+    make_guide(guide, guides)
     return project, guide
 
 
