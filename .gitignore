@@ -18,3 +18,6 @@ Icon?
 .understand-anything/intermediate/
 .understand-anything/diff-overlay.json
 
+
+# Local symlink so cf finds the guide at its consumer-project path
+/project-documents/ai-project-guide
