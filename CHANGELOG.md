@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.6] - 2026-10-11
+
 ### Added
 - `file-naming-conventions.md`: registered the optional `revision_number` frontmatter field (integer written only by tooling, for `slice-design`, `tasks`, and `review` docs) (#14)
 

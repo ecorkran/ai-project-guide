@@ -10,6 +10,27 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261011
+
+**Session**: Parked-item cleanup (v0.20.6)
+
+### Completed
+- #27: magic-defaults example in `general.md`/`CLAUDE.md` is valid Python
+- #14: registered `revision_number` in `file-naming-conventions.md`;
+  context-forge confirmed no reader rejects unknown keys and its one
+  frontmatter writer keeps them (values are read as strings; display-only)
+- Dropped tracked `.obsidian/` (unused since 2025) and `z-attachments/`;
+  images now go in `images/` next to the document that uses them
+- Added `.understand-anything/.understandignore` (skips `.obsidian/`,
+  `DEVLOG.md`); untracked analyzer `intermediate/` scratch
+
+### Key decisions
+- Understand-anything graph stays tracked but out of tarballs; it is stale
+  (built 2026-07-05) and costly to rebuild
+- #18 (versioned package distribution) stays parked
+
+---
+
 ## 20261010 (2)
 
 **Session**: task-checker rule consistency (v0.20.5)
