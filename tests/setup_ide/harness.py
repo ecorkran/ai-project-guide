@@ -177,11 +177,22 @@ def _install_entries(root: Path) -> list[tuple[str, Path | None]]:
     return sorted(entries.items())
 
 
+def install_files(project_root: Path) -> dict[str, bytes]:
+    """Content of every file under the install paths, keyed by relative path."""
+    return {
+        rel: path.read_bytes()
+        for rel, path in _install_entries(project_root)
+        if path is not None
+    }
+
+
 def snapshot(project_root: Path, runs: Sequence[RunResult]) -> str:
     """Snapshot text: every run (label, exit code, output), then install files."""
     out: list[str] = []
     for number, result in enumerate(runs, start=1):
-        label = " ".join(("setup-ide", *result.args))
+        label = normalize(
+            " ".join(("setup-ide", *result.args)), project_root, result.guide
+        )
         out.append(f"== run {number}: {label}")
         out.append(f"exit: {result.code}")
         for stream, text in (("stdout", result.stdout), ("stderr", result.stderr)):
