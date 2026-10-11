@@ -19,5 +19,10 @@ Icon?
 .understand-anything/diff-overlay.json
 
 
+# Python dev tooling caches
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
 # Local symlink so cf finds the guide at its consumer-project path
 /project-documents/ai-project-guide
