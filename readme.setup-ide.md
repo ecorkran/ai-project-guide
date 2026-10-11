@@ -107,10 +107,11 @@ their content matches a version the guide shipped.
 The manifest also decides what setup-ide may overwrite. If a file it would write
 already exists with different content and the manifest does not list it, the
 file belongs to the project: it is left alone, with a warning. Rename or remove
-it to let setup-ide manage that path. When there is no manifest yet (a first
-install, or one from before the manifest existed), ownership can't be known, so
-the existing file is backed up to `<name>.pre-context-forge` before it is
-replaced.
+it to let setup-ide manage that path. The same holds when there is no manifest
+yet (a first install, or one from before the manifest existed): a differing
+file is never overwritten. On an install that predates the manifest, that
+includes stock files from an older guide version; remove them once to take the
+current versions.
 
 A file setup-ide installed and you edited afterwards is also left alone: the
 run warns that the guide's update was not written and keeps the path in the

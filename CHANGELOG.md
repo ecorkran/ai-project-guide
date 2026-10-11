@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.7] - 2026-10-11
+
+### Fixed
+- `setup-ide`: migrating a `CLAUDE.md` with the legacy marker no longer replaces project content that follows a hand-added `[//]: # (context-forge:managed end)` line; that content is kept (#33)
+- `setup-ide`: without an install manifest, a rule, agent or skill file that differs from the guide's version is left alone with a warning instead of being backed up and replaced, so customized files survive the first manifest run. Installs that predate the manifest keep older stock files until they are removed once (#34)
+
 ## [0.20.6] - 2026-10-11
 
 ### Added

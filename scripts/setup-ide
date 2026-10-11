@@ -270,8 +270,8 @@ record_installed_file() {
 # Move a staged file into place and record it, unless that would overwrite a
 # file the guide does not own. Ownership is the previous manifest. A file with
 # identical content is adopted. Without any manifest (a first install, or one
-# from before the manifest existed) ownership is unknowable, so the existing
-# file is backed up before being replaced rather than lost.
+# from before the manifest existed) ownership is unknowable, so a differing
+# file is left alone: it may be a project's customized copy.
 # Args: staged_file, dest_file. Returns 1 when the file was left alone.
 install_file() {
     local staged=$1
@@ -297,7 +297,9 @@ install_file() {
                 return 1
             fi
         else
-            backup_premanaged_file "$dest"
+            rm -f "$staged"
+            print_status $YELLOW "⚠️  Skipped $rel: it differs from the guide's version and no install manifest shows the guide wrote it — remove it to let setup-ide manage it"
+            return 1
         fi
     fi
 

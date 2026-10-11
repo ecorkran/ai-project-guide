@@ -10,6 +10,29 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261011 (2)
+
+**Session**: setup-ide ownership fixes (v0.20.7)
+
+### Completed
+- #33: legacy marker migration keeps content after a hand-added
+  `(context-forge:managed end)` line
+- #34: no manifest + differing file now means skip with a warning, never
+  back up and replace
+- cf confirmed its setup-ide integration: `--root`/`--capabilities` shipped in
+  cf 0.19.1; cf runs `bash <guide>/scripts/setup-ide`, trusts `--capabilities`
+  output, and only text-searches the script for guides older than v0.20.1
+
+### Key decisions
+- #34: chose skip-and-warn over matching a table of every shipped version's
+  checksums (95 tagged versions, a release-time generation step). Pre-manifest
+  stock installs keep old rule files until removed once
+- #32 (Python rewrite) becomes a slice. Constraints from cf: keep a bash
+  `scripts/setup-ide` shim at that path that execs the Python, and keep the
+  `--capabilities` output identical; otherwise cf needs a change
+
+---
+
 ## 20261011
 
 **Session**: Parked-item cleanup (v0.20.6)
