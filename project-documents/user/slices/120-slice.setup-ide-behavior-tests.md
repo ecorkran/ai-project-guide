@@ -7,7 +7,7 @@ dependencies: []
 interfaces: [121, 122]
 dateCreated: 20261011
 dateUpdated: 20261011
-status: not_started
+status: complete
 review: none
 ---
 
@@ -242,16 +242,17 @@ Nothing. This slice only reads the current `scripts/` folder.
    ```bash
    pytest tests/setup_ide -q
    ```
-   Expected: every test passes, about 60 of them.
-3. Check that the snapshots are stable:
+   Expected: `76 passed` in about 15 seconds.
+3. Check that the snapshots are stable (run it twice if you like; it needs a clean `tests/` first):
    ```bash
    pytest tests/setup_ide -q --update-snapshots && git status --short tests/
    ```
-   Expected: no output from `git status`.
-4. Check that the suite catches a regression. Change `MANAGED_BEGIN` in `scripts/setup-ide` to `'<!-- BEGIN:cf -->'`, run step 2, and see the managed-section and target tests fail with snapshot diffs. Then:
+   Expected: `75 passed, 1 skipped` (the skip is the "missing snapshot fails" test, which would write a snapshot under this flag), and no output from `git status`.
+4. Check that the suite catches a regression. Change `MANAGED_BEGIN` in `scripts/setup-ide` to `'<!-- BEGIN:cf -->'`, run step 2, and see the managed-section and target tests fail with snapshot diffs (observed: 55 failed, 21 passed). Then:
    ```bash
    git checkout scripts/setup-ide
    ```
+   Second check: in `install_file`, replace the body of the `else` branch for "no manifest" (the `rm -f "$staged"` / warning / `return 1` lines) with `:`. Expected: `test_ownership_no_manifest_differing_file_skipped` fails (observed: 1 failed, 75 passed). Revert the same way.
 5. Check that nothing dev-only ships:
    ```bash
    git archive HEAD | tar -t | grep -E '^(tests/|\.githooks/|ruff\.toml)'

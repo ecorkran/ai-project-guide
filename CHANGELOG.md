@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Dev-only behavior test suite for `scripts/setup-ide` (`tests/setup_ide/`, pytest, snapshot-based) plus a ruff config and pre-commit hook; none of it ships in release archives
+
 ## [0.20.8] - 2026-10-11
 
 ### Changed
