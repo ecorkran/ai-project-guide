@@ -239,13 +239,12 @@ The filename prefix (`arch.`, `slice.`, `tasks.`, `slices.`) identifies document
 
 - **800-899**: Reserved for future use
 
-- **900-999**: Operational work (not tied to an initiative)
-  - **900-939**: Ad-hoc reviews, audits, quality gates → `user/reviews/`
-  - **940-949**: Codebase analysis, research, investigation → `user/analysis/`
-  - **950-999**: Maintenance, tech debt, bug tracking → `user/tasks/`
-  - Example: `900-review.auth-module.md` (standalone audit, no parent slice)
-  - Example: `940-analysis.dependency-audit.md`
-  - Example: `950-tasks.maintenance.md`
+- **900-999**: Operational work not tied to an initiative: maintenance, fixes, standalone reviews, analysis. No sub-ranges.
+  - Only slices claim an index: a new 9xx slice takes the next index no 9xx slice uses. Analysis and standalone reviews are numbered separately in their own folders, so `941-analysis.x.md` does not make the next slice 942.
+  - `user/slices/902-slice.standing-fixes.md`: the standing fixes slice (see `rules/fixes.md`)
+  - `user/reviews/900-review.auth-module.md`: standalone review, no parent slice
+  - `user/analysis/900-analysis.dependency-audit.md`: analysis not tied to an initiative
+  - Files named under the former sub-ranges keep their names.
 
 ### Working Range (100-799): Initiative-Based Indexing
 
@@ -322,7 +321,8 @@ Initiative B (110-band):
 
 Operational:
   900-review.ingestion-service.md
-  950-tasks.maintenance.md
+  902-slice.standing-fixes.md
+  902-tasks.standing-fixes.md
 ```
 
 ## Document Naming
@@ -354,7 +354,6 @@ Common document type prefixes:
 - `introduction` - Overview of platform, tech, or project area
 - `notes` - Meeting notes or research findings
 - `template` - Prompt or other templates, organized with project-guides
-- `maintenance` - Maintenance tasks, centralized in `user/tasks/950-tasks.maintenance.md`
 
 ### Date Format
 
@@ -377,7 +376,7 @@ Where:
 Examples:
 - `100-tasks.restructure-scaffolding.md` (tasks for `100-slice.restructure-scaffolding.md`)
 - `101-tasks.core-types-extraction.md` (tasks for `101-slice.core-types-extraction.md`)
-- `950-tasks.maintenance.md` (operational — maintenance range)
+- `902-tasks.standing-fixes.md` (operational — 900 range)
 
 ## Slice Files
 
@@ -437,7 +436,7 @@ When a pipeline re-runs a review (e.g., after fixing CONCERNS findings), the fil
 
 ### Operational Reviews
 
-Standalone reviews not tied to a slice use the 900-939 range:
+Standalone reviews not tied to a slice are numbered in order within `user/reviews/`, starting at 900. The index claims no slice index:
 9nn-review.{subject}.md
 
 Directory: `user/reviews/`
@@ -500,6 +499,16 @@ dateUpdated: YYYYMMDD
 
 `reviewedSha` is the **pull request's** head, not the reviewing machine's `HEAD` — those are different trees, and a sha from the wrong one still looks plausible.
 
+## Analysis Files
+
+Analysis documents live in `user/analysis/` and claim no slice index. Name one by the work it serves:
+
+- **For an initiative** (preferred when there is one): the initiative's base index, e.g. `120-analysis.guide-tooling-gaps.md`.
+- **For no particular initiative:** numbered in order within `user/analysis/`, starting at 900, e.g. `900-analysis.dependency-audit.md`, `901-analysis.async-boundaries.md`.
+- A slice index also works, but the initiative usually fits better.
+
+Existing files numbered under the former 940-949 analysis range keep their names.
+
 ## File Size Limits and Splitting
 
 To maintain manageable file sizes and improve readability:
@@ -544,7 +553,7 @@ The index structure provides a machine-readable project architecture. This enabl
 - Specialized utility guides (090-099)
 - Example: `050-arch.hld-trading.md`
 
-**100-799: Initiative Working Space** → `user/architecture/`, `user/slices/`, `user/tasks/`, `user/reviews/`
+**100-799: Initiative Working Space** → `user/architecture/`, `user/slices/`, `user/tasks/`, `user/reviews/`, `user/analysis/`
 - Architecture documents, slice plans, slice designs, tasks, and slice-lineage reviews
 - Organized by initiative family (shared base index), not by document type
 - Initiatives claim base indices at increments of 10 or 20
@@ -554,18 +563,11 @@ The index structure provides a machine-readable project architecture. This enabl
 - Available for future semantic categorization
 - Not currently in use
 
-**900-939: Quality Assurance** → `user/reviews/`
-- Ad-hoc reviews, audits, quality gates (not tied to a slice lifecycle)
+**900-999: Operational** → `user/reviews/`, `user/analysis/`, `user/slices/`, `user/tasks/`
+- Work not tied to an initiative: maintenance, fixes, ad-hoc reviews and audits, analysis
+- No sub-ranges. Only slices claim an index; analysis and standalone reviews are numbered within their own folders and claim nothing
 - Slice-lineage reviews live at their parent slice's index in the 100-799 range
-- Example: `900-review.auth-module.md`
-
-**940-949: Investigation** → `user/analysis/`
-- Codebase analysis, research, problem investigation
-- Example: `940-analysis.async-boundaries.md`
-
-**950-999: Maintenance** → `user/tasks/`
-- Tech debt, bug tracking, operational tasks
-- Centralized in: `950-tasks.maintenance.md`
+- Example: `900-review.auth-module.md`, `901-analysis.async-boundaries.md`, `902-slice.standing-fixes.md`
 
 ### Usage for Meta-Project Analysis
 
@@ -588,8 +590,10 @@ This structure enables automated project snapshots:
       "slices": ["110-slice.layout.md", "111-slice.widgets.md"]
     }
   },
-  "quality": ["900-review.ingestion-service.md"],
-  "investigation": ["940-analysis.async-sync.md"],
-  "maintenance": ["950-tasks.maintenance.md"]
+  "operational": [
+    "900-review.ingestion-service.md",
+    "901-analysis.async-sync.md",
+    "902-tasks.standing-fixes.md"
+  ]
 }
 ```

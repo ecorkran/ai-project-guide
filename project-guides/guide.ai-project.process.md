@@ -6,7 +6,7 @@ audience: [human, ai]
 description: Master process guide describing roles and the slice-based workflow.
 dependsOn: []
 dateCreated: 20250101
-dateUpdated: 20260914
+dateUpdated: 20261011
 ---
 
 #### Overview
@@ -33,7 +33,7 @@ Each phase has an approval authority that must sign off before proceeding to the
 - **Phase 6** (execution): May self-validate via tests and CI when automation pipelines are in place.
 - **Phase 7** (review and integration): Reviews are started and closed by the PM or the orchestrating pipeline, never by the implementing agent. After review passes, the merge and close-out may self-validate for routine integrations.
 
-**Review gates.** When `cf next` or any workflow check reports that a slice, task, or code review is required before proceeding, that is the approval mechanism above in action. The correct response is to stop and report to the Project Manager. Do not start the review yourself: the Project Manager or the orchestrating pipeline (for example squadron) runs reviews. Never edit frontmatter to clear the gate. In particular, `review: none` in a slice-design's frontmatter is a Project Manager declaration that exempts the slice from all slice-scoped reviews; agents must not add it, must not run `cf check --set-review-none`, and must not carry it over from another document used as a template.
+**Review gates.** When `cf next` or any workflow check reports that a slice, task, or code review is required before proceeding, that is the approval mechanism above in action. The correct response is to stop and report to the Project Manager. Do not start the review yourself: the Project Manager or the orchestrating pipeline (for example squadron) runs reviews. Never edit frontmatter to clear the gate. In particular, `review: none` in a slice-design's frontmatter is a Project Manager declaration that exempts the slice from all slice-scoped reviews; agents must not add it, must not run `cf check --set-review-none`, and must not carry it over from another document used as a template. The one exception is the project's standing fixes slice (see Fixes below), which is `review: none` by definition: an agent creating it sets that field.
 
 When working on project phases, ensure you have all required information first. If in doubt, request and obtain the required information from the Project Manager before proceeding. Do not guess or make assumptions.
 
@@ -190,8 +190,12 @@ Projects use the same phases but differ in scope and entry point:
 **New initiative on existing project**:
 - Phase 1 (Update initiative plan) → Phase 2 (Architecture: component doc) → Phase 3 (Slice Planning) → execute slices
 
-**Small maintenance or ad-hoc work**:
-- Skip directly to Phase 5 (Task Breakdown) using the Ad-Hoc Tasks prompt in `prompt.ai-project.system`.
+**Fixes** (any work committed as `fix:`):
+- Follow `rules/fixes.md`. A small fix is made and committed straight to the target branch, with no slice, task file or review. A fix that needs several steps becomes a task group in the project's standing fixes slice.
+- **Creating the standing fixes slice** (once per project, the first time a fix needs tasks): take the next free 9xx slice index `nnn`, then add
+  - `user/slices/nnn-slice.standing-fixes.md`: slice-design frontmatter with `status: in_progress` and `review: none`. Body: it is a permanent container for fixes and is never complete; unrelated fixes belong together; closed items may be reopened.
+  - `user/tasks/nnn-tasks.standing-fixes.md`: tasks frontmatter, then one `## #{issue} {title}` checklist group per fix.
+  - A line for it in the project's 900 slice plan, if there is one.
 
 ---
 

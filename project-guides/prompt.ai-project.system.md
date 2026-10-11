@@ -10,7 +10,7 @@ dependsOn:
   - guide.ai-project.process.md
 npmScriptsAiSupport: "!include ../snippets/npm-scripts.ai-support.json"
 dateCreated: 20250724
-dateUpdated: 20260324
+dateUpdated: 20261011
 ---
 ## Prompts
 This document contains prepared prompts useful in applying the `guide.ai-project.process` and performing additional supplemental tasks.
@@ -30,8 +30,6 @@ context_profiles:
   implementation-phase-6:            [fileSlice, fileTasks]
   slice-integration-phase-7:         [fileArch, fileSlicePlan, fileSlice, fileTasks]
   context-initialization:            []
-  maintenance-task:                  [fileTasks]
-  maintenance-routine:               [fileSlice, fileTasks]
   analysis-processing:               [fileSlice, fileTasks]
   analysis-task-creation:            [fileTasks]
   analysis-to-lld:                   [fileSlice]
@@ -429,7 +427,7 @@ Phase 7 begins with code review and revisions. The Project Manager or the orches
    - Update the task file status to `complete`
 
 **Notes:**
-- If integration reveals issues that require non-trivial fixes, log them to maintenance (`tasks/950-tasks.maintenance.md`) rather than blocking integration
+- If integration reveals issues that require non-trivial fixes, file an issue for each rather than blocking integration; they are worked as fixes (`rules/fixes.md`)
 - This phase does not determine what to work on next — workflow navigation is handled by orchestration
 - If you cannot verify integration (e.g., missing test infrastructure), note what was verified and what was not
 
@@ -526,7 +524,7 @@ Your role is Senior AI.
 - What's pending or blocking (open questions, manual verification, deferred items)
 - Key decisions or surprises worth noting for future context
 - If in progress: state needed to resume (current task, file, important context)
-- Issues logged to maintenance (file reference + description)
+- Issues filed (number + one-line description)
 
 **Guidelines:**
 - Keep concise — this is input for next session's context assembly
@@ -535,49 +533,6 @@ Your role is Senior AI.
 **Update DEVLOG.md**
 - if file does not exist, create it as described in project-guides/templates/devlog-format.md
 ```
-
-##### Maintenance Task
-```markdown
-Operate as a Senior AI. Use the issue description provided, and add tasks to the maintenance file to address implementation of the issue.  Use a maintenance task and slice file in the 950-999 range.  Add a concise description in the slist file and add a new task to the task file. Use an existing slice and task file in the maintenance range if present and the item is small enough to represent as a single main task.  Create new files if needed.
-
-Example files:
-`slices/950-slices.maintenance.md`
-`tasks/950-tasks.maintenance.md`
-
-Include:
-1. A new Task {n}
-2. A very brief overview of the task (you may modify if already present).
-3. Granular but concise subtasks following Phase 5 guidelines
-4. Organize so that subtasks can be completed sequentially.
-5. Optimize for early vertical slice testability.
-6. Use checklist format for all tasks.
-
-Avoid:
-- Time estimates for subtasks.  If work is that complex, this is wrong format.
-- Benchmarking tasks unless actually relevant to this effort.
-- Risk items.  Include only if truly relevant.  Be skeptical here.
-
-For each {tool} in use, consult knowledge in `ai-project-guide/tool-guides/{tool}/`. Follow all task creation guidelines from the Process Guide.
-
-Each task must be completable by a junior AI with clear success criteria. If insufficient information is available, stop and request clarifying information.
-
-This is a project planning task, not a coding task.
-```
-
-##### Maintenance Routine
-```markdown
-We are performing routine maintenance by implementing solutions for incomplete tasks in the maintenance task file. Unless otherwise specified, use file `tasks/950-tasks.maintenance.md` and scan for incomplete tasks. If given a particular section heading in the file, consider only that section.
-
-Work through maintenance items one at a time. For each item:
-- Determine if task can reasonably be solved without expansion or creating more detailed tasks.  Keep a list of anything requiring this additional detail and present it to the Project Manager after proceeding through all solvable items.
-- Implement solutions according to our project guidelines.  Ensure that you create unit tests for each solution, and that the tests pass before proceeding to the next item.  Create tests as you work through each item -- do not wait until the end and try to create them all.
-- Run regressions and existing tests to make sure maintenance fixes do not break any existing slices, slice boundaries, dependencies, or interfaces.
-- Delegate checklist updates to the `task-checker` agent as you complete items, rather than editing task file checkboxes inline. If task-checker is unavailable, check off tasks directly; never leave completed tasks unchecked. Check off only items you have verified as done. Leave unfinished items unchecked, including when work stops to wait for the Project Manager.
-
-Current project: {project}
-Active slice work: {slice} (if applicable)
-```
-
 
 ##### Custom Instruction
 *Used as a placeholder by context-builder app*

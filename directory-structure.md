@@ -4,7 +4,7 @@ scope: project-wide
 audience: [human, ai]
 description: Canonical contract for where every guide, snippet, and asset lives
 dateCreated: 20250117
-dateUpdated: 20260121
+dateUpdated: 20261011
 ---
 
 # Directory Structure
@@ -36,16 +36,16 @@ project-documents/
 │   ├── snippets/            # copyable code/config examples
 │   └── scripts/             # setup and utility scripts
 └── user/                 # Your project-specific work (parent repo)
-    ├── analysis/            # codebase analysis & investigation (940-949)
+    ├── analysis/            # analysis & investigation (initiative index, or 900+ in order)
     ├── architecture/        # high-level designs & system architecture (050-089)
     ├── project-guides/      # project-specific guide customizations (001-009)
     │   ├── 000-concept.{project}.md # project concept documents
     │   ├── 002-spec.{project}.md    # project specifications
     │   └── 003-slices.{project}.md  # slice planning
-    ├── reviews/             # code review docs & follow-up actions (900-939)
+    ├── reviews/             # slice reviews (slice index) & ad-hoc reviews (900-999)
     ├── slices/              # slice design documents (100-749)
     └── tasks/               # task breakdowns & all work items
-        └── 950-tasks.maintenance.md # maintenance & tech debt tracking
+        └── 9nn-tasks.standing-fixes.md # multi-step fixes (see rules/fixes.md)
 ```
 > **Directory Structure:**
 > - Your project work goes in `project-documents/user/`
