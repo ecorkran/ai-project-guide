@@ -1,0 +1,15 @@
+# Fixture Dart baseline.
+include: package:lints/recommended.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+linter:
+  rules:
+    - avoid_catches_without_on_clauses
+    - discarded_futures
+    - empty_catches
+    - unawaited_futures

@@ -1,0 +1,10 @@
+# One requirement per line; alternatives separated by |. setup-ide reports a
+# config as weak when any line has no match in the project's ruff settings.
+"E"|"ALL"
+"F"|"ALL"
+"W"|"ALL"
+"I"|"ALL"
+"UP"|"ALL"
+"BLE"|"ALL"
+"ASYNC"|"ALL"
+"B"|"ALL"

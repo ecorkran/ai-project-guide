@@ -1,0 +1,7 @@
+# Required ruff baseline (ai-project-guide rules/python.md).
+# BLE (blind except) and ASYNC enforce the exception-handling and
+# event-loop rules mechanically.
+line-length = 88
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "BLE", "ASYNC", "B"]
