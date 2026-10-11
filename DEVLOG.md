@@ -10,6 +10,27 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261011 (4)
+
+**Session**: lightweight fix path, 900-999 cleanup (v0.20.9)
+
+### Completed
+- Slice 120 (setup-ide behavior tests) built on its branch: 76 tests, quirks
+  filed as #37-#40. Not merged yet.
+- New always-on `rules/fixes.md`: fixes skip slice ceremony. Small fixes
+  commit to the target; multi-step fixes go in a standing fixes slice
+  (`9nn-slice.standing-fixes.md`, `review: none`). Adapted from squadron's
+  `bug-fixes.md` (squadron 5171a06c).
+- 900-999 is one range; only slices claim an index. Analysis uses the
+  initiative index or its own 900+ sequence.
+- Removed Maintenance Task / Maintenance Routine prompts (unused).
+
+### Notes
+- cf has two dead mapping lines for the removed prompts
+  (`ContextProfileParser.ts:103-104`); harmless.
+- setup-ide's "alwaysApply rules (general, git)" note is stale; left for 121
+  since slice 120's snapshot records it.
+
 ## 20261011 (3)
 
 **Session**: guide tooling planning, docs move (v0.20.8)

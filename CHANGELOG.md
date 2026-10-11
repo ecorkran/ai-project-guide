@@ -12,6 +12,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.9] - 2026-10-11
+
+### Added
+- `rules/fixes.md` (always-on): a fix is any work committed as `fix:`. A small fix is made and committed straight to the target with `Fixes #n`, with no slice, task file, branch or review. A fix that needs several steps becomes a task group in the project's standing fixes slice. A new option, a changed file or state format, or a new component is a feature and gets its own slice
+- Process guide: a Fixes entry, including how to create the standing fixes slice the first time. That slice is `review: none` by definition, an exception to the review-gate rule
+
+### Changed
+- File naming: 900-999 is one operational range with no sub-ranges. Only slices claim an index. Analysis files use their initiative's base index, or are numbered in order within `user/analysis/` from 900; standalone reviews are numbered in order within `user/reviews/` from 900. Files named under the old 900-939, 940-949 and 950-999 sub-ranges keep their names
+- `git.md`: fixes commit directly to the target, with no branch
+- Phase 7 prompt: issues found during integration are filed as issues and worked as fixes, instead of logged to `950-tasks.maintenance.md`
+
+### Removed
+- Maintenance Task and Maintenance Routine prompts, and their context profiles
+- Process guide reference to a nonexistent Ad-Hoc Tasks prompt
+
 ## [0.20.8] - 2026-10-11
 
 ### Changed
