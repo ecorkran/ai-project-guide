@@ -1,6 +1,7 @@
 # One requirement per line; alternatives separated by |. cf setup-ide reports a
 # config as weak when any line has no match in the project's ESLint config.
-no-empty|js.configs.recommended
-@typescript-eslint/no-floating-promises|recommendedTypeChecked|strictTypeChecked
-@typescript-eslint/no-misused-promises|recommendedTypeChecked|strictTypeChecked
-@typescript-eslint/only-throw-error|recommendedTypeChecked|strictTypeChecked
+# required-rules: the config imports required-rules.mjs, which sets all four.
+no-empty|js.configs.recommended|required-rules
+@typescript-eslint/no-floating-promises|recommendedTypeChecked|strictTypeChecked|required-rules
+@typescript-eslint/no-misused-promises|recommendedTypeChecked|strictTypeChecked|required-rules
+@typescript-eslint/only-throw-error|recommendedTypeChecked|strictTypeChecked|required-rules
