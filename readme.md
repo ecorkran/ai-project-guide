@@ -20,9 +20,7 @@ AI Project Guide is a structured methodology and set of guides for AI-assisted s
 ## How to Use
 
 ### Context Forge
-While it can be used standalone, it works *much* better with [Context Forge](https://github.com/ecorkran/context-forge), becoming mostly transparent.  Context Forge provides An MCP server that automatically assembles structured context prompts from your project configuration and these templates. 
-
-Install it alongside ai-project-guide for the full workflow — see [Context Forge on npm](https://www.npmjs.com/package/@context-forge/mcp).
+ai-project-guide is used through [Context Forge](https://github.com/ecorkran/context-forge) (cf). cf installs and updates the guide, sets up your IDE rules, and assembles structured context prompts from your project configuration and these templates. See [Context Forge on npm](https://www.npmjs.com/package/@context-forge/mcp).
 
 
 ### Context Visualizer
@@ -32,35 +30,33 @@ Install it alongside ai-project-guide for the full workflow — see [Context For
 
 ## Install
 
-**Prerequisites:** A git repository (`git init` if needed — no remote required).
+**Prerequisites:** A git repository (`git init` if needed — no remote required) and [Context Forge](https://www.npmjs.com/package/@context-forge/mcp).
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ecorkran/ai-project-guide/main/scripts/bootstrap.sh | bash
+cf init                  # registers the project, installs the guide, sets up IDE rules (default: claude)
+cf init --ide cursor     # pick another IDE target: claude, cursor, copilot, agents
 ```
 
-This creates the project directory structure and adds ai-project-guide as a git submodule at `project-documents/ai-project-guide/`. Your project-specific work goes in `project-documents/user/` — the guide never touches that directory.
+The guide lands at `project-documents/ai-project-guide/`. Your project-specific work goes in `project-documents/user/` — the guide never touches that directory. `cf init --help` lists the install strategies (tarball, submodule, clone).
 
-**Update to latest version:**
+**Update to the latest version:**
 
 ```bash
-git submodule update --remote project-documents/ai-project-guide
-git add project-documents/ai-project-guide
-git commit -m "Update ai-project-guide"
+cf guides update
 ```
 
 ### IDE Rules Setup
 
-After installing, generate rules files for your AI coding tool:
+`cf init` runs this for you. To change targets or refresh later:
 
 ```bash
-# From project root
-./project-documents/ai-project-guide/scripts/setup-ide claude    # CLAUDE.md + .claude/{rules,agents,skills}/
-./project-documents/ai-project-guide/scripts/setup-ide cursor    # .cursor/{rules,agents}/ as .mdc
-./project-documents/ai-project-guide/scripts/setup-ide copilot   # .github/ + AGENTS.md
-./project-documents/ai-project-guide/scripts/setup-ide agents    # AGENTS.md only (aliases: openai, codex)
+cf setup-ide claude    # CLAUDE.md + .claude/{rules,agents,skills}/
+cf setup-ide cursor    # .cursor/rules/ as .mdc, plus AGENTS.md
+cf setup-ide copilot   # .github/ + AGENTS.md
+cf setup-ide agents    # AGENTS.md only (aliases: openai, codex)
 ```
 
-This assembles the rules from `project-guides/rules/` into the format your tool expects. Always-on rules are inlined; language- and tool-specific rules stay scoped by file pattern, so a React project isn't handed the Python rules. You can customize the generated files afterward — they're yours.
+This assembles the rules from `project-guides/rules/` into the format your tool expects. Always-on rules are inlined; language- and tool-specific rules stay scoped by file pattern, so a React project isn't handed the Python rules. `--dry-run` previews the changes. You can customize the generated files afterward — they're yours.
 
 See [readme.setup-ide.md](readme.setup-ide.md) for what each target writes and the frontmatter contract.
 
@@ -73,18 +69,6 @@ Phase 4 slice designs are written from `project-guides/templates/slice-design.md
 ```
 
 It prints `PASS`, or `FAIL` with the missing required headings, and exits non-zero on failure. Optional sections are never checked, so omitting what doesn't apply stays legal.
-
-### For npm/pnpm Projects
-
-You can add convenience scripts to `package.json`:
-
-```json
-"scripts": {
-  "setup-guides": "mkdir -p project-documents/user/{analysis,architecture,features,project-guides,reviews,slices,tasks} && git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide && echo '# Keep user/ in version control' > project-documents/user/.gitkeep || echo 'Submodule already exists'",
-  "setup-claude": "project-documents/ai-project-guide/scripts/setup-ide claude"
-}
-```
-
 
 ## How It Works
 
@@ -146,36 +130,14 @@ Full details in [`directory-structure.md`](directory-structure.md). File naming 
 
 ## Using with Context Forge
 
-[Context Forge](https://github.com/ecorkran/context-forge) is an MCP server that generates structured context prompts from your project configuration and ai-project-guide's templates. It eliminates the manual work of assembling context at the start of each AI coding session.
+[Context Forge](https://github.com/ecorkran/context-forge) is an MCP server and CLI that generates structured context prompts from your project configuration and ai-project-guide's templates. It eliminates the manual work of assembling context at the start of each AI coding session.
 
 ```bash
-# Install the MCP server (works immediately with bundled templates)
-npx @context-forge/mcp
-
-# Add to Claude Code
+# Add the MCP server to Claude Code
 claude mcp add --transport stdio context-forge -- npx @context-forge/mcp
 ```
 
-Context Forge works out of the box with bundled prompt templates. Having ai-project-guide installed in your project unlocks the full experience — the generated prompts reference the methodology guides, and your AI agent can browse the phase documentation, rules files, and framework guides directly.
-
-
-## Manual Setup
-
-If you prefer not to use the bootstrap script:
-
-```bash
-# Create directory structure
-mkdir -p project-documents/user/{analysis,architecture,features,project-guides,reviews,slices,tasks}
-
-# Add submodule
-git submodule add https://github.com/ecorkran/ai-project-guide.git project-documents/ai-project-guide
-
-# Track the user directory
-echo '# Keep user/ in version control' > project-documents/user/.gitkeep
-
-git add .
-git commit -m 'Add ai-project-guide'
-```
+With the guide installed in your project, the generated prompts reference the methodology guides, and your AI agent can browse the phase documentation, rules files, and framework guides directly.
 
 
 ## Contributing

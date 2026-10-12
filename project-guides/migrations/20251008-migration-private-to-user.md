@@ -30,6 +30,8 @@ This release renames `project-documents/private/` to `project-documents/user/` f
 
 #### Automatic Migration (Recommended)
 
+> The migration helper scripts were removed from the guide. v0.20.9 is the last version that has them; get the script from that tag, or follow Manual Migration below.
+
 Use the provided migration script:
 
 ```bash

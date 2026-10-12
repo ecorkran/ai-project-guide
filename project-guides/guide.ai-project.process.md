@@ -205,7 +205,7 @@ The following structure should be present in every project. Assume files are in 
 ```
 {project-root}/
 └── project-documents/
-    ├── ai-project-guide/  # Git submodule (framework guides)
+    ├── ai-project-guide/  # the guide, installed and updated by cf
     │   ├── project-guides/    # process & methodology (start here)
     │   ├── framework-guides/  # app-level platforms (Next.js, Astro …)
     │   ├── tool-guides/       # importable libs (SciChart, Three.js …)

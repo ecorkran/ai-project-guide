@@ -40,6 +40,7 @@ What it means here:
 - **Later cleanup:**
   - Once the suite has moved to cf, remove `tests/setup_ide/` from this repo. Remove the Python dev setup (`ruff.toml`, `.githooks/`) too if nothing else needs it. Both stay while `tests/setup_ide/` is here, because the suite is Python.
   - Once a cf release no longer calls `scripts/setup-ide`, a later guide release removes it and `scripts/setup-ide-lint.sh`. No wrapper is left behind.
+  - When cf takes over setup-ide, reword the `setup-ide` and `setup-ide <target> --write-lint` mentions to cf's command in `project-guides/rules/` (`general.md`, `python.md`, `typescript.md`, `dart.md`, `csharp.md`), `project-guides/lint/{python,dart,typescript,csharp}/required` and `project-guides/lint/dart/analysis_options.yaml`. Not before: cf hasn't named the command yet.
   - The other scripts (validate-slice-design, bootstrap, migration helpers, template stubs) stay where they are.
 
 ### Scope
