@@ -30,16 +30,16 @@ Why:
 - It keeps a Python 3.9 runtime requirement out of a documentation repo.
 
 What it means here:
-- **The slice 120 suite is the spec for cf's port.** `tests/setup_ide/` (76 black-box tests and snapshots) and the bash `scripts/setup-ide` stay unchanged until cf's port passes the suite. The suite runs the installer as a separate process, so the implementation language doesn't affect it.
-- **How the suite reaches cf:** when cf's port is ready, `scripts/setup-ide` becomes a tiny wrapper that execs cf's installer command with `"$@"`. The harness stays untouched (it keeps running `bash <guide>/scripts/setup-ide`), and older cf versions that call that path keep working. Pointing the harness at cf directly would change the spec in the middle of the port.
+- **The guide becomes docs only.** cf ports setup-ide natively in TypeScript and stops calling the guide's script. No setup-ide wrapper is left in the guide.
+- **The slice 120 suite moves into cf as the spec.** `tests/setup_ide/` (76 black-box tests and their snapshots) moves to cf. Only the harness's `run()` changes, to call cf's command instead of `bash <guide>/scripts/setup-ide`. The snapshots stay as they are and define the expected behavior.
+- **The bash `scripts/setup-ide` stays in the guide unchanged** until a cf release no longer calls it. Older cf versions still run it at that path. It is removed in a later guide release.
 - **The cf stub tests need a redesign on the cf side.** The harness puts a stub `cf` first on `PATH` to answer `cf config get` for the `rules.exclude` tests (`test_rules_exclude.py`). Once cf is the installer, it reads that config itself, so those tests have to supply the config another way. That is cf's decision.
 - **Exact behaviors to reproduce:** [120-analysis.setup-ide-port-findings.md](../analysis/120-analysis.setup-ide-port-findings.md) lists the bash behaviors a port has to match, including several that are easy to miss.
 - **#38 and #40** (managed block adds a final newline; default glob `**` newline `**`) are no longer "fix after the Python port". They are decisions for cf's port: reproduce them first and fix them afterwards with a snapshot update, or fix them in the port and update those snapshots in a separate, labeled commit.
 - **Slice 122** (release and cf check) is cancelled as written. Its job, running cf's flows in a real consumer project, moves to the cf slice.
-- **Later cleanup, once cf's port passes the suite:**
-  - Remove the bash `scripts/setup-ide` (or leave only the wrapper while older cf versions need it) and `scripts/setup-ide-lint.sh`.
-  - Remove `tests/setup_ide/` from this repo, or move it to cf.
-  - Remove the Python dev setup (`ruff.toml`, `.githooks/`) if nothing else needs it. Both stay while `tests/setup_ide/` is here, because the suite is Python.
+- **Later cleanup:**
+  - Once the suite has moved to cf, remove `tests/setup_ide/` from this repo. Remove the Python dev setup (`ruff.toml`, `.githooks/`) too if nothing else needs it. Both stay while `tests/setup_ide/` is here, because the suite is Python.
+  - Once a cf release no longer calls `scripts/setup-ide`, a later guide release removes it and `scripts/setup-ide-lint.sh`. No wrapper is left behind.
   - The other scripts (validate-slice-design, bootstrap, migration helpers, template stubs) stay where they are.
 
 ### Scope
