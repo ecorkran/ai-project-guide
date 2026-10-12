@@ -19,6 +19,29 @@ The guide ships scripts that run inside consumer projects. The largest is `scrip
 
 This initiative gives those scripts tests and moves setup-ide to Python. Tracked in GitHub issue #32.
 
+## Direction Change: the Installer Moves to cf (20261011)
+
+The Python rewrite (slice 121) is cancelled. setup-ide moves into context-forge (cf, TypeScript) instead. The sections below this one describe the original Python plan and are kept as a record.
+
+Why:
+- The guide is no longer supported without cf. Guide releases already follow what cf and sq need, so tying installer changes to a cf release costs nothing.
+- setup-ide calls back into cf (`cf config get rules.exclude`) to read cf's own config. That is a dependency in both directions. Inside cf it becomes a plain function call.
+- The whole cf contract below (`--capabilities`, the `--dry-run`/`--write-lint` literals kept for older cf, "moving the wrapper needs a cf change first") becomes internal code once cf owns the installer.
+- It keeps a Python 3.9 runtime requirement out of a documentation repo.
+
+What it means here:
+- **The slice 120 suite is the spec for cf's port.** `tests/setup_ide/` (76 black-box tests and snapshots) and the bash `scripts/setup-ide` stay unchanged until cf's port passes the suite. The suite runs the installer as a separate process, so the implementation language doesn't affect it.
+- **How the suite reaches cf:** when cf's port is ready, `scripts/setup-ide` becomes a tiny wrapper that execs cf's installer command with `"$@"`. The harness stays untouched (it keeps running `bash <guide>/scripts/setup-ide`), and older cf versions that call that path keep working. Pointing the harness at cf directly would change the spec in the middle of the port.
+- **The cf stub tests need a redesign on the cf side.** The harness puts a stub `cf` first on `PATH` to answer `cf config get` for the `rules.exclude` tests (`test_rules_exclude.py`). Once cf is the installer, it reads that config itself, so those tests have to supply the config another way. That is cf's decision.
+- **Exact behaviors to reproduce:** [120-analysis.setup-ide-port-findings.md](../analysis/120-analysis.setup-ide-port-findings.md) lists the bash behaviors a port has to match, including several that are easy to miss.
+- **#38 and #40** (managed block adds a final newline; default glob `**` newline `**`) are no longer "fix after the Python port". They are decisions for cf's port: reproduce them first and fix them afterwards with a snapshot update, or fix them in the port and update those snapshots in a separate, labeled commit.
+- **Slice 122** (release and cf check) is cancelled as written. Its job, running cf's flows in a real consumer project, moves to the cf slice.
+- **Later cleanup, once cf's port passes the suite:**
+  - Remove the bash `scripts/setup-ide` (or leave only the wrapper while older cf versions need it) and `scripts/setup-ide-lint.sh`.
+  - Remove `tests/setup_ide/` from this repo, or move it to cf.
+  - Remove the Python dev setup (`ruff.toml`, `.githooks/`) if nothing else needs it. Both stay while `tests/setup_ide/` is here, because the suite is Python.
+  - The other scripts (validate-slice-design, bootstrap, migration helpers, template stubs) stay where they are.
+
 ### Scope
 - Behavior tests for setup-ide that run against fixture projects.
 - A Python rewrite of setup-ide and its lint helper.
@@ -56,8 +79,8 @@ Out of scope for now: the other scripts in `scripts/` (bootstrap, migration help
 
 ## Anticipated Slices
 - **(120) setup-ide Behavior Tests**: fixture harness that runs against the current bash version, plus the repo's first ruff config and hook.
-- **(121) setup-ide Python Rewrite**: replace the bash body with the Python package behind the wrapper.
-- **(122) Release and cf Check**: run cf's setup-ide flows against the rewrite in a real consumer project, and confirm the tarball contents.
+- **(121) setup-ide Python Rewrite**: cancelled; the installer moves to cf (see Direction Change).
+- **(122) Release and cf Check**: cancelled as written; the real-project check moves to the cf slice.
 
 ## Related Work
 - GitHub issue #32 and its design comment (deferred shipped-version checksum adoption, cf contract).

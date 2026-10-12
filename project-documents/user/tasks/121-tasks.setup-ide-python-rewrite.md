@@ -7,8 +7,10 @@ dependencies: [120]
 projectState: setup-ide is 1,769 lines of bash plus the 220-line setup-ide-lint.sh; slice 120's 76-test black-box suite passes against it
 dateCreated: 20261011
 dateUpdated: 20261011
-status: not_started
+status: deprecated
 ---
+
+> **Deprecated 20261011.** Cancelled before implementation: setup-ide moves into context-forge (TypeScript) instead, with the slice 120 suite as the bar. See Direction Change in `120-arch.guide-tooling.md` and `user/analysis/120-analysis.setup-ide-port-findings.md`.
 
 ## Context Summary
 - Working on slice 121, setup-ide-python-rewrite. Design: `project-documents/user/slices/121-slice.setup-ide-python-rewrite.md` (called "the design" below). Read its Architecture, Technical Decisions and API Contracts sections before starting.

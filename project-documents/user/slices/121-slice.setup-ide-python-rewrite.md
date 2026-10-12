@@ -7,8 +7,10 @@ dependencies: [120]
 interfaces: [122]
 dateCreated: 20261011
 dateUpdated: 20261011
-status: not_started
+status: deprecated
 ---
+
+> **Deprecated 20261011.** Cancelled before implementation: setup-ide moves into context-forge (TypeScript) instead, with the slice 120 suite as the bar. See Direction Change in `120-arch.guide-tooling.md` and `user/analysis/120-analysis.setup-ide-port-findings.md`.
 
 # Slice Design: setup-ide-python-rewrite
 
