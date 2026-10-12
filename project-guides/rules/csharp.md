@@ -12,7 +12,7 @@ paths:
 
 #### General
 - Target the current LTS .NET release unless the project states otherwise.
-- `setup-ide` checks the analyzer and build settings below on every run and reports what is missing; `setup-ide <target> --write-lint` adds `.editorconfig` and `Directory.Build.props` when they are absent. Run `dotnet build` (which runs the analyzers) in the pre-commit hook and in CI so the analyzers enforce these rules, not the agent.
+- `cf setup-ide` checks the analyzer and build settings below on every run and reports what is missing; `cf setup-ide <target> --write-lint` adds `.editorconfig` and `Directory.Build.props` when they are absent. Run `dotnet build` (which runs the analyzers) in the pre-commit hook and in CI so the analyzers enforce these rules, not the agent.
 
 #### Required Analyzer and Build Settings
 - Baselines: `ai-project-guide/project-guides/lint/csharp/.editorconfig` and `ai-project-guide/project-guides/lint/csharp/Directory.Build.props`.

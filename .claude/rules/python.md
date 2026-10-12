@@ -11,7 +11,7 @@ paths:
 #### General
 * Target Python 3.12+ for production (stability & ecosystem compatibility).
 * Note: Python 3.14+ is acceptable for isolated services needing specific features (e.g., free-threading), but verify ML library support first.
-* Mechanical enforcement is what makes these rules real; prose without config is aspirational. `setup-ide` checks the ruff config on every run and reports what is missing; `setup-ide <target> --write-lint` adds it. Run `ruff check` in the pre-commit hook and in CI so the linter enforces these rules, not the agent. The pyright block below is not checked by `setup-ide`; add it by hand.
+* Mechanical enforcement is what makes these rules real; prose without config is aspirational. `cf setup-ide` checks the ruff config on every run and reports what is missing; `cf setup-ide <target> --write-lint` adds it. Run `ruff check` in the pre-commit hook and in CI so the linter enforces these rules, not the agent. The pyright block below is not checked by `cf setup-ide`; add it by hand.
 
 #### Typing & Validation
 - Use built-in types: `list`, `dict`, `tuple`, not `List`, `Dict`, `Tuple`

@@ -1,4 +1,4 @@
-# One requirement per line; alternatives separated by |. setup-ide reports a
+# One requirement per line; alternatives separated by |. cf setup-ide reports a
 # config as weak when any line has no match in analysis_options.yaml.
 strict-casts: true
 strict-inference: true

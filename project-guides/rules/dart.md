@@ -13,7 +13,7 @@ paths:
 
 * Target Dart 3.x (required for sound null safety and pattern matching). Never use the `// @dart=2.x` version comment to opt out of null safety.
 * All code must be soundly null safe — Dart 3 does not support mixed-version programs with unsound null safety.
-* `setup-ide` checks `analysis_options.yaml` on every run and reports missing required rules; `setup-ide <target> --write-lint` adds the file when it is absent. Run `dart analyze` in the pre-commit hook and in CI so the analyzer enforces these rules, not the agent.
+* `cf setup-ide` checks `analysis_options.yaml` on every run and reports missing required rules; `cf setup-ide <target> --write-lint` adds the file when it is absent. Run `dart analyze` in the pre-commit hook and in CI so the analyzer enforces these rules, not the agent.
 
 #### Typing & Null Safety
 

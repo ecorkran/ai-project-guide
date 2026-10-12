@@ -1,5 +1,5 @@
 # Required analyzer baseline (ai-project-guide rules/dart.md).
-# For Flutter projects setup-ide swaps the include for
+# For Flutter projects cf setup-ide swaps the include for
 # package:flutter_lints/flutter.yaml.
 include: package:lints/recommended.yaml
 
