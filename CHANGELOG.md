@@ -12,11 +12,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.10] - 2026-10-11
+
 ### Added
 - Dev-only behavior test suite for `scripts/setup-ide` (`tests/setup_ide/`, pytest, snapshot-based) plus a ruff config and pre-commit hook; none of it ships in release archives
 
 ### Removed
 - Standalone install and migration scripts: `scripts/bootstrap.sh`, `scripts/template-stubs/`, `scripts/migrate-private-to-user.sh` and `scripts/rename-private-to-user-in-repo.sh`. The guide is installed, updated and set up through cf (`cf init`, `cf guides update`, `cf setup-ide`). v0.20.9 is the last version with these scripts
+
+### Changed
+- Language rules (`general`, `python`, `typescript`, `dart`, `csharp`) and lint `required` files name `cf setup-ide` instead of the bare script
+
+### Fixed
+- README no longer says `setup-ide cursor` writes `.cursor/agents/` (#37)
 
 ## [0.20.9] - 2026-10-11
 

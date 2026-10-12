@@ -10,6 +10,28 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261011 (5)
+
+**Session**: setup-ide moves to cf; guide heads to docs only (v0.20.10)
+
+### Completed
+- Slice 120 merged. Slice 121 (Python rewrite) designed, reviewed, then
+  cancelled: setup-ide moves into context-forge as a native port (cf slice
+  215), and `validate-slice-design` becomes `cf validate design` (cf slice 214).
+- Port findings from reading the bash saved as
+  `user/analysis/120-analysis.setup-ide-port-findings.md` for cf.
+- Removed `bootstrap.sh`, `template-stubs/` and the private-to-user migration
+  scripts. No cf version uses them. README install path is cf only.
+- Rule files point at `cf setup-ide`. #38/#40 closed (fixed in cf 215).
+
+### Next
+- When cf ships `cf validate design`: repoint the Phase 4 prompt, slice-design
+  guide and template, then remove `scripts/validate-slice-design`.
+- When cf stops calling `scripts/setup-ide`: remove it, `setup-ide-lint.sh`,
+  `tests/setup_ide/` (moved to cf), and probably `ruff.toml`/`.githooks`.
+
+---
+
 ## 20261011 (4)
 
 **Session**: lightweight fix path, 900-999 cleanup (v0.20.9)
