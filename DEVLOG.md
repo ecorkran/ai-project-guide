@@ -10,6 +10,19 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261013
+
+**Session**: guide is docs only (v0.20.11)
+
+### Completed
+- cf 0.19.6 ships `cf setup-ide` natively (cf slice 215) and `cf validate design`
+  (cf slice 214). Removed `scripts/`, `tests/`, `ruff.toml` and `.githooks/`;
+  docs, guides and the system prompt use the cf commands. Minimum cf is 0.19.6.
+- Slices 121/122 retired in the slice plan so `cf next` skips them.
+- Architecture 120 complete; #32 closed.
+
+---
+
 ## 20261011 (5)
 
 **Session**: setup-ide moves to cf; guide heads to docs only (v0.20.10)

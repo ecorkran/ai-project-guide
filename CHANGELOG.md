@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.11] - 2026-10-13
+
 ### Added
 - `lint/typescript/required-rules.mjs`: the required ESLint rules as a block to spread into an existing flat config (e.g. Next.js), so a project with its own config can meet the requirement without replacing it. The TypeScript `required` list accepts the import (context-forge #115)
 
