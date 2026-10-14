@@ -7,8 +7,8 @@ component: guide-tooling
 relatedSlices: [120, 121, 122]
 riskLevel: medium
 dateCreated: 20261011
-dateUpdated: 20261011
-status: in_progress
+dateUpdated: 20261013
+status: complete
 ---
 
 # Architecture: Guide Tooling
@@ -18,6 +18,10 @@ status: in_progress
 The guide ships scripts that run inside consumer projects. The largest is `scripts/setup-ide`, about 1,760 lines of bash plus `scripts/setup-ide-lint.sh`, which it sources. It has no automated tests, shellcheck reports 108 findings, and it breaks the guide's own shell rule (`project-guides/rules/shell.md`: past ~50 lines of logic, or once you need data structures, use Python).
 
 This initiative gives those scripts tests and moves setup-ide to Python. Tracked in GitHub issue #32.
+
+## Outcome (20261013)
+
+Done. cf 0.19.6 ships the native installer (cf slice 215) and `cf validate design` (cf slice 214), and the suite lives in cf at `packages/cli/tests/ideInstall/`. The guide removed `scripts/`, `tests/`, `ruff.toml` and `.githooks/` and is now docs only. Minimum cf version: 0.19.6.
 
 ## Direction Change: the Installer Moves to cf (20261011)
 
