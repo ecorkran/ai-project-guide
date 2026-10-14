@@ -10,6 +10,18 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261014
+
+**Session**: branch target in prompts (v0.20.12)
+
+### Completed
+- cf 0.19.9 exposes `targetBranch` (context-forge #70). Phase 6 and 7 prompts
+  show it inside `{{#if targetBranch}}`; older cf renders nothing. `rules/git.md`
+  is untouched (rules files are not template-processed). Minimum cf is 0.19.9.
+- #39 closed (fixed by the cf port). Guide #15 was already closed.
+
+---
+
 ## 20261013
 
 **Session**: guide is docs only (v0.20.11)

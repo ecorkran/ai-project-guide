@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.20.12] - 2026-10-14
+
+### Changed
+- The Phase 6 and Phase 7 prompts state the branch target for the current checkout using the `targetBranch` template variable, so agents in a worktree no longer have to remember to run `cf config get git.integration_branch` (#15, context-forge #70). Older cf leaves the line out, and the `rules/git.md` checklist step remains the fallback. **The variable needs cf 0.19.9 or later.**
+
 ## [0.20.11] - 2026-10-13
 
 ### Added
