@@ -2,12 +2,12 @@
 docType: guide
 scope: project-wide
 audience: [human, ai]
-description: setup-ide reference — supported targets, what each writes, and how to run it
+description: cf setup-ide reference — supported targets, what each writes, and how to run it
 ---
 
 # setup-ide
 
-`setup-ide` compiles the rules in `project-guides/rules/` into whatever format
+`cf setup-ide` compiles the rules in `project-guides/rules/` into whatever format
 your AI tool reads. One source of rules, several output formats.
 
 **Path convention:** `ai-project-guide/` below means
@@ -15,15 +15,16 @@ your AI tool reads. One source of rules, several output formats.
 
 ## Install and run
 
-Requires ai-project-guide present at `project-documents/ai-project-guide`
-(normally a git submodule). Run from your project root:
+Requires context-forge (cf) 0.19.6 or later and the guide installed at
+`project-documents/ai-project-guide` (`cf init` does this). Run from your
+project root:
 
 ```bash
-./project-documents/ai-project-guide/scripts/setup-ide <target>
+cf setup-ide <target>
 ```
 
-If you use context-forge, `cf setup-ide <target>` wraps this and adds
-CLAUDE.md backup handling and worktree propagation.
+The guide used to ship a `scripts/setup-ide` bash script for this. cf now does
+the work itself, and the script is gone.
 
 Output paths are always resolved from the **project root** — the directory
 containing `project-documents/` — so running from a subdirectory is safe.
@@ -33,18 +34,8 @@ each file that would be added (`+`), changed (`~`) or removed (`-`), plus any
 skip and warning lines:
 
 ```bash
-./project-documents/ai-project-guide/scripts/setup-ide claude --dry-run
+cf setup-ide claude --dry-run
 ```
-
-Add `--root <dir>` to install into another checkout, such as a git worktree,
-using the guide next to the script. The worktree needs no guide copy of its
-own. Output, manifest, cleanup, `rules.exclude` (read from `<dir>`) and lint
-checks all apply to `<dir>`. `cf setup-ide` uses this to install into each
-registered worktree.
-
-`setup-ide --capabilities` prints the features the script supports as one line,
-for example `dry-run write-lint root`, and exits without doing anything. Tools
-that call setup-ide use it to decide which flags to pass.
 
 ## Supported targets
 
@@ -59,7 +50,7 @@ that call setup-ide use it to decide which flags to pass.
 format, so the target is named after the format rather than after one vendor.
 
 Any other value exits non-zero with usage. **`windsurf` is no longer
-supported** — it was removed from the script but lingered in this document.
+supported** — it was removed and lingered in this document for a while.
 
 ## What each target does
 
@@ -198,13 +189,8 @@ recognize them as regenerable. Re-running a target overwrites its own outputs.
 
 ## Troubleshooting
 
-**Permission denied**
-```bash
-chmod +x project-documents/ai-project-guide/scripts/setup-ide
-```
-
 **Rules not loading** — restart the IDE; rules load at startup. For Cursor,
 confirm files are `.mdc` in `.cursor/rules/` with intact frontmatter.
 
-**Wrong output location** — the script walks up for `project-documents/`. If it
+**Wrong output location** — cf walks up for `project-documents/`. If it
 reports an unexpected project root, you are outside the intended tree.

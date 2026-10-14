@@ -1,4 +1,0 @@
-# Dev-only config for the guide's own tests (export-ignored).
-# setup-ide targets Python 3.9, and so do its tests.
-extend = "project-guides/lint/python/ruff.toml"
-target-version = "py39"

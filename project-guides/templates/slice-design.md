@@ -12,7 +12,7 @@ status: not_started
 
 <!--
 TEMPLATE for Phase 4 slice designs. Canonical section schema for
-`scripts/validate-slice-design`. Guidance: guide.ai-project.004-slice-design.
+`cf validate design`. Guidance: guide.ai-project.004-slice-design.
 
 How to use:
 - Copy this file to user/slices/nnn-slice.{slice-name}.md and substitute

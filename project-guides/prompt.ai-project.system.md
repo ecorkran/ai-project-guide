@@ -288,7 +288,7 @@ Include:
 - Verification walkthrough: concrete commands, workflows, and step-by-step confirmation that the user can follow to prove the slice delivers what it claims. This is not a restatement of success criteria — it's the "demo script" showing what the user can actually do.  This is the draft walkthrough that will be refined when Phase 6 (Implementation) is complete.
 - Only template sections that are relevant to this slice — omit sections that don't apply
 
-Before finishing, run `./project-documents/ai-project-guide/scripts/validate-slice-design <path-to-design>`. It must print PASS. If it prints FAIL, add the missing sections; do not declare the phase complete on a failing document.
+Before finishing, run `cf validate design <path-to-design>`. It must pass (exit 0). If it fails, add the missing sections it lists; do not declare the phase complete on a failing document.
 
 Avoid:
 - Time estimates in hours/days/etc. You may use a 1-5 relative effort scale.

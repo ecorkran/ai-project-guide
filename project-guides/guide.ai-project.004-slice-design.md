@@ -81,7 +81,7 @@ The canonical template is a file, not this prose:
 `project-documents/ai-project-guide/project-guides/templates/slice-design.md`.
 Copy it to `user/slices/nnn-slice.{slice-name}.md`, substitute every `{placeholder}`, and delete the marker comments. See `file-naming-conventions.md` for the YAML schema.
 
-The template is also the section schema, and `scripts/validate-slice-design` enforces it:
+The template is also the section schema, and `cf validate design` enforces it:
 
 - A heading followed by `<!-- required -->` must appear in the finished document at the same level with the same text. The template is the only place that decides which sections these are.
 - A heading followed by `<!-- optional: ... -->` may be omitted entirely when its stated condition applies. Omit it; do not fill it with boilerplate.
@@ -90,7 +90,7 @@ The template is also the section schema, and `scripts/validate-slice-design` enf
 Run the validator before declaring Phase 4 complete:
 
 ```bash
-./project-documents/ai-project-guide/scripts/validate-slice-design user/slices/nnn-slice.{slice-name}.md
+cf validate design project-documents/user/slices/nnn-slice.{slice-name}.md
 ```
 
 It prints `PASS` or `FAIL` with the missing headings and exits non-zero on failure. It checks structure only; content quality is still the Design Review Checklist below.
@@ -174,7 +174,7 @@ Before approving a slice design:
 - [ ] Integration points are clearly defined
 - [ ] Migration slices explicitly ensure the system remains working
 - [ ] Irrelevant template sections are omitted rather than filled with boilerplate
-- [ ] `scripts/validate-slice-design` prints PASS for the document
+- [ ] `cf validate design` passes for the document
 - [ ] Project Manager approves the design
 
 ##### Common Issues to Avoid
@@ -188,7 +188,7 @@ Before approving a slice design:
 
 #### Success Criteria
 Phase 4 is complete when:
-- [ ] Slice design document exists with proper frontmatter and passes `scripts/validate-slice-design`
+- [ ] Slice design document exists with proper frontmatter and passes `cf validate design`
 - [ ] Technical approach is detailed enough for task creation
 - [ ] Dependencies and integration points are clearly defined
 - [ ] Relevant specifications are included (UI, API, migration plan, etc.)

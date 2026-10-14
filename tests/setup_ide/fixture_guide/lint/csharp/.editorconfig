@@ -1,5 +1,0 @@
-# Fixture C# analyzer baseline.
-root = true
-
-[*.cs]
-dotnet_diagnostic.CA1031.severity = error

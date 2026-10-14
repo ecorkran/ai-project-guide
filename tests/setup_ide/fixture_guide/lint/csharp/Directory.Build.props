@@ -1,7 +1,0 @@
-<!-- Fixture C# build settings. -->
-<Project>
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-</Project>

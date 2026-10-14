@@ -52,14 +52,14 @@ Quick reference and navigation for AI Project Guide methodology files.
 
 ## IDE Integration
 
-Use the `setup-ide` script to copy rules to your IDE:
+Use `cf setup-ide` (context-forge 0.19.6 or later) to install rules for your IDE:
 
 ```bash
 # From project root
-./project-documents/ai-project-guide/scripts/setup-ide claude
-./project-documents/ai-project-guide/scripts/setup-ide cursor
-./project-documents/ai-project-guide/scripts/setup-ide copilot
-./project-documents/ai-project-guide/scripts/setup-ide agents   # AGENTS.md only
+cf setup-ide claude
+cf setup-ide cursor
+cf setup-ide copilot
+cf setup-ide agents   # AGENTS.md only
 ```
 
 This compiles `rules/`, `agents/`, and `skills/` into the format your tool
