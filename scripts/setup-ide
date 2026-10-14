@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Stub for context-forge 0.19.5 and older, which run this script.
+# cf 0.19.6+ installs IDE files itself and never calls it.
+# Old cf searches this file for the flags it may pass, so name them here:
+# --dry-run --write-lint
+echo "This guide needs context-forge 0.19.6 or later. Run: cf update" >&2
+exit 1
