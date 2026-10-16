@@ -52,7 +52,7 @@ Tell the user the one-time manual step for the publish target (PyPI trusted publ
 Write the template below to `.claude/skills/release/SKILL.md`, with these changes:
 
 - Fill the `<...>` slots from step 1.
-- Markers are `[cf]`, `[changelog]`, `[devlog]`, `[registry]`, and the inverse form `[no X]` for each (`[no registry]`, `[no changelog]`). A marker on a heading governs the whole step; an inline marker governs only the clause or sentence it prefixes. Keep the marked text only if that thing exists (cf present, file present, registry present; `[no registry]` is kept only when there is none). Remove the markers themselves.
+- Markers are `[cf]`, `[changelog]`, `[devlog]`, `[registry]`, and the inverse form `[no X]` for each (`[no registry]`, `[no changelog]`). A marker on a heading governs the whole step; an inline marker governs everything after it up to the next marker or the end of that list item or paragraph. Keep the marked text only if that thing exists (cf present, file present, registry present; `[no registry]` is kept only when there is none). Remove the markers themselves.
 - In step 4, the check commands are exactly the commands in the ci.yml just written, so the two cannot drift.
 - Renumber after removals.
 - Keep the integration-branch read as a command to run at release time. Do not write its value into the skill.
@@ -107,9 +107,9 @@ git push
 git push --tags
 ```
 
-## 6. Watch CI [registry]and <registry>
+## 6. Watch CI
 
-The `publish` job in `.github/workflows/ci.yml` runs only on the tag and needs every test job to pass. A red test job means nothing publishes, silently. The release is not done until the registry shows the new version. A tag alone is not a release.
+The `publish` job in `.github/workflows/ci.yml` runs only on the tag and needs every test job to pass. A red test job means nothing publishes, silently. A tag alone is not a release. [registry] The release is not done until <registry> shows the new version.
 
 Start a loop via the `loop` skill with a 5 minute interval and this check:
 
