@@ -1,5 +1,5 @@
 # CI baseline for TypeScript projects (npm + eslint + tsc + tests).
-# Copied into the project by the setup-ci-release skill, which fills every
+# Copied into the project by the setup-ci skill, which fills every
 # __SLOT__ below. After that the project owns this file.
 # pnpm/yarn projects: the skill swaps the install and run commands.
 #

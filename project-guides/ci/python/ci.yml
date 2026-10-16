@@ -1,5 +1,5 @@
 # CI baseline for Python projects (uv + ruff + pyright + pytest).
-# Copied into the project by the setup-ci-release skill, which fills every
+# Copied into the project by the setup-ci skill, which fills every
 # __SLOT__ below. After that the project owns this file.
 #
 # One-time manual step before the first tag: configure trusted publishing on
