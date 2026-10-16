@@ -22,6 +22,8 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 - Squadron dry-ran it on a throwaway clone; 11 findings fixed in v0.21.1
   (probes for OPTIONAL blocks, cf init in the frontmatter block, versions
   from the project, release template slots). Release stays check-only.
+- v0.21.2: setup-ci uses only the root DEVLOG.md (PM). Squadron's second
+  devlog is its own retired stub, not from the guide install.
 
 ---
 
