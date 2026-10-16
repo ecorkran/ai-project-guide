@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: __NODE_VERSIONS__ # from engines.node, e.g. ["22"]
+        node-version: __NODE_VERSIONS__ # quoted YAML list, derived from engines.node
     steps:
       - uses: actions/checkout@v7
         with:

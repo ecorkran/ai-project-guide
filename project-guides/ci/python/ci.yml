@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: __PYTHON_VERSIONS__ # from requires-python, e.g. ["3.12", "3.13"]
+        python-version: __PYTHON_VERSIONS__ # quoted YAML list, derived from requires-python
     steps:
       - uses: actions/checkout@v7
         with:

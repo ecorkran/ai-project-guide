@@ -24,8 +24,11 @@ If `.github/workflows/ci.yml` or `.claude/skills/release/SKILL.md` already exist
 | Publish target | An existing publish job in a workflow, else the manifest: python `[project]` name means PyPI; package.json without `"private": true` means npm. Private or no manifest name: none. |
 | Package name | `name` from the manifest. It can differ from the repo name. |
 | Registry check | PyPI: `https://pypi.org/pypi/<pkg>/<ver>/json`. npm: `npm view <pkg>@<ver> version`. None: the release stops at green CI. |
-| Python versions | Parse `requires-python` and list the supported minors (e.g. `[">=3.12"]` means 3.12 and 3.13). |
-| Node versions | `engines.node`, else ask. |
+| Python versions | Every minor from the `requires-python` floor through the newest stable CPython release, as a quoted YAML list. If `requires-python` is missing, ask. |
+| Node versions | The majors `engines.node` allows, current LTS lines only, as a quoted YAML list. If `engines.node` is missing, ask. |
+| Publish runtime | `__PUBLISH_PYTHON_VERSION__` / `__PUBLISH_NODE_VERSION__`: the lowest version in the matrix. |
+| Tag glob | `__TAG_GLOB__`, derived from the tag format: `v*` for v-prefixed tags, `[0-9]*` for bare ones. |
+| Commit type | `<commit type>` in the release skill: `package` if the project uses the guide's commit types, else `chore`. |
 | Check commands | python: `ruff check`, `ruff format --check`, `pyright` (or the project's type checker), `pytest`. typescript: the `lint`, `typecheck`, `test`, `build` scripts in package.json. Fill `__*_SCRIPT__` only with scripts that exist. If one is missing, say so and drop that step rather than inventing it. |
 | Integration branch | `cf config get git.integration_branch`, only to fill the CI trigger branches (`main`, plus this value if set). Never bake it into the release skill. |
 | cf project | Does `cf` exist and does `project-documents/` exist? Decides whether the release skill keeps the cf steps. |
@@ -37,6 +40,7 @@ Ask the user only about what is still unknown. The publish target is the usual o
 Copy the baseline for the language to `.github/workflows/ci.yml` and replace every `__SLOT__`. Then:
 
 - No publish target: delete the block between `BEGIN PUBLISH` and `END PUBLISH`, and the manual-step note at the top that refers to it.
+- TypeScript: drop `--access public` from the publish step when the manifest's `publishConfig.access` is `restricted`.
 - Keep the `needs:` list on `publish` equal to every test job in the file.
 - Remove comment-only OPTIONAL blocks the project doesn't want. Leave them if unsure.
 - Grep the result for `__` to confirm no slot is left unfilled. A leftover slot is an error, not something to guess.
@@ -48,7 +52,7 @@ Tell the user the one-time manual step for the publish target (PyPI trusted publ
 Write the template below to `.claude/skills/release/SKILL.md`, with these changes:
 
 - Fill the `<...>` slots from step 1.
-- Steps marked `[cf]` stay only if cf is present. Steps marked `[changelog]`, `[devlog]`, `[registry]` stay only if that thing exists. Remove the markers.
+- Markers are `[cf]`, `[changelog]`, `[devlog]`, `[registry]`, and the inverse form `[no X]` for each (`[no registry]`, `[no changelog]`). A marker on a heading governs the whole step; an inline marker governs only the clause or sentence it prefixes. Keep the marked text only if that thing exists (cf present, file present, registry present; `[no registry]` is kept only when there is none). Remove the markers themselves.
 - In step 4, the check commands are exactly the commands in the ci.yml just written, so the two cannot drift.
 - Renumber after removals.
 - Keep the integration-branch read as a command to run at release time. Do not write its value into the skill.
@@ -73,11 +77,11 @@ Run `cf next`. If it reports something unfinished (open review gate, unchecked t
 
 Read the target with `cf config get git.integration_branch` (empty means `main`). If the current branch is a slice branch not yet merged into the target, follow the merge steps in CLAUDE.md (Git Rules). If already on the target with the work merged, skip this.
 
-The working tree must be clean before continuing.
-
 ## 3. Pick the version
 
-Current version: `<version file>`. Read the unreleased changes ([changelog] `## [Unreleased]` in <changelog path>; otherwise `git log` since the last tag).
+The working tree must be clean before continuing; if it isn't, stop and show `git status`.
+
+Current version: `<version file>`. Read the unreleased changes. [changelog] Use `## [Unreleased]` in <changelog path>. [no changelog] Use `git log` since the last tag.
 
 - **Patch** is the default: fixes, refinements, and new flags, options, parameters, config keys or checks. A non-empty changelog, or entries under `### Added`, does not make a release minor.
 - **Minor** only for a new user-facing feature or a significant new AI capability. Propose it in one line with the reason and wait for the user to confirm before changing any files.
@@ -103,7 +107,7 @@ git push
 git push --tags
 ```
 
-## 6. Watch CI [registry] and <registry>
+## 6. Watch CI [registry]and <registry>
 
 The `publish` job in `.github/workflows/ci.yml` runs only on the tag and needs every test job to pass. A red test job means nothing publishes, silently. The release is not done until the registry shows the new version. A tag alone is not a release.
 
