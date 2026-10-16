@@ -16,12 +16,12 @@ If `.github/workflows/ci.yml` or `.claude/skills/release/SKILL.md` already exist
 | Slot | How |
 |---|---|
 | Language | `pyproject.toml` means python; `package.json` plus `tsconfig.json` means typescript |
-| Version files | Grep the current version string in `pyproject.toml`, `package.json`, `__init__.py`/`_version.py`, and any other tracked file. Skip the changelog and devlog: they record past versions and are handled by their own steps. List every remaining hit. |
+| Version files | Grep the current version string in `pyproject.toml`, `package.json`, `__init__.py`/`_version.py`, and the project's other manifests and source files. Skip the changelog, the devlog and `project-documents/`: they record versions rather than define them. List every remaining hit. |
 | Lock refresh | python: `uv lock` if `uv.lock` exists. npm: `npm install --package-lock-only`; pnpm: `pnpm install --lockfile-only`. None if no lockfile. |
 | Tag format | `git tag --sort=-creatordate \| head`. Copy the pattern (`v1.2.3`, `1.2.3`). No tags: `vX.Y.Z`. |
 | Tag | `<tag>` in the release skill: the tag format written with the literal placeholder `X.Y.Z` (so `vX.Y.Z` or `X.Y.Z`). The release fills in the real number at release time. |
 | Changelog | `CHANGELOG.md` (check the root, then `docs/`). Note whether it has `## [Unreleased]`. None: the release skill skips the changelog step. |
-| Devlog | `DEVLOG.md`. None: skip that step. |
+| Devlog | `DEVLOG.md`, preferring the one at the root. If there is none at the root but one elsewhere, use that. If several exist and none is at the root, ask. None: skip that step. |
 | Publish target | An existing publish job in a workflow, else the manifest: python `[project]` name means PyPI; package.json without `"private": true` means npm. Private or no manifest name: none. |
 | Package name | `name` from the manifest. It can differ from the repo name. |
 | Project | `<project>` in the release skill: the package name, or the repo directory name when there is none. |
@@ -36,7 +36,7 @@ If `.github/workflows/ci.yml` or `.claude/skills/release/SKILL.md` already exist
 | Integration branch | `cf config get git.integration_branch`, only to fill the CI trigger branches (`main`, plus this value if set). Never bake it into the release skill. |
 | cf project | Does `cf` exist and does `project-documents/` exist? Decides whether the release skill keeps the cf steps. |
 | Frontmatter block | Enable the OPTIONAL cf block in ci.yml when `project-documents/` exists and its markdown files carry YAML frontmatter. Otherwise remove it. |
-| Fetch main | Enable the OPTIONAL `git fetch origin main:main` line when any test file refers to the `main` branch by name (a quoted `main` or `origin/main` passed to git, or a `main..` range). Tag builds go red without it. No such reference: remove it. Unsure: ask. |
+| Fetch main | Enable the OPTIONAL `git fetch origin main:main` line when any test file reads `main` from the project's own checkout: `origin/main`, a `main..` range, or `--diff main` and similar ref arguments. A branch named `main` in a temporary repo the test creates itself (`git init -b main`) does not count. Tag builds go red without it. No such reference: remove it. Unsure: ask. |
 
 Ask the user only about what is still unknown. The publish target is the usual one. Present everything detected in one short list and let the user correct it before writing.
 

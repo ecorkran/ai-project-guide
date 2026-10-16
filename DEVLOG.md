@@ -19,7 +19,9 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
   writes a project's `ci.yml` and offers to generate its own `/release` skill.
   Brief from cf, Python seed from squadron, reviewed by sq.
 - Renamed from setup-ci-release to setup-ci to pair with setup-ide (PM).
-- Not yet run against a real project; squadron to test.
+- Squadron dry-ran it on a throwaway clone; 11 findings fixed in v0.21.1
+  (probes for OPTIONAL blocks, cf init in the frontmatter block, versions
+  from the project, release template slots). Release stays check-only.
 
 ---
 

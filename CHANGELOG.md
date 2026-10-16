@@ -12,8 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.1] - 2026-10-16
+
 ### Fixed
 - `skills/setup-ci`: decides each OPTIONAL ci.yml block by probing the project (tests that use `main` enable the fetch; guide projects enable the frontmatter block), reads the Python and Node test versions from the project instead of guessing, skips the changelog and devlog when finding version files, and defines every slot the release template uses.
+- `skills/setup-ci`: the version search skips `project-documents/`, the devlog row says which DEVLOG.md to use when there are several, and the fetch-main probe ignores temporary test repos.
 - CI baselines: the frontmatter block runs `cf init --lite --no-ide` before `cf validate frontmatter`, and the TypeScript baseline now has the block too. The header comment no longer looks like an unfilled slot.
 
 ## [0.21.0] - 2026-10-16
