@@ -21,7 +21,7 @@ If `.github/workflows/ci.yml` or `.claude/skills/release/SKILL.md` already exist
 | Tag format | `git tag --sort=-creatordate \| head`. Copy the pattern (`v1.2.3`, `1.2.3`). No tags: `vX.Y.Z`. |
 | Tag | `<tag>` in the release skill: the tag format written with the literal placeholder `X.Y.Z` (so `vX.Y.Z` or `X.Y.Z`). The release fills in the real number at release time. |
 | Changelog | `CHANGELOG.md` (check the root, then `docs/`). Note whether it has `## [Unreleased]`. None: the release skill skips the changelog step. |
-| Devlog | `DEVLOG.md`, preferring the one at the root. If there is none at the root but one elsewhere, use that. If several exist and none is at the root, ask. None: skip that step. |
+| Devlog | `DEVLOG.md` at the root only. Ignore any other devlog, including `project-documents/DEVLOG.md`. None at the root: skip the devlog step without asking. |
 | Publish target | An existing publish job in a workflow, else the manifest: python `[project]` name means PyPI; package.json without `"private": true` means npm. Private or no manifest name: none. |
 | Package name | `name` from the manifest. It can differ from the repo name. |
 | Project | `<project>` in the release skill: the package name, or the repo directory name when there is none. |

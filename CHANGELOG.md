@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- `skills/setup-ci`: the release skill uses only the root `DEVLOG.md` and skips the devlog step when there is none, instead of falling back to another devlog or asking.
+
 ## [0.21.1] - 2026-10-16
 
 ### Fixed
