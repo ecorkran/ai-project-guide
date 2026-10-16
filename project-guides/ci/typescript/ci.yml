@@ -1,6 +1,6 @@
 # CI baseline for TypeScript projects (npm + eslint + tsc + tests).
 # Copied into the project by the setup-ci skill, which fills every
-# __SLOT__ below. After that the project owns this file.
+# placeholder below. After that the project owns this file.
 # pnpm/yarn projects: the skill swaps the install and run commands.
 #
 # One-time manual step before the first tag: npm publishing needs either an
@@ -30,13 +30,18 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      # OPTIONAL: only for projects whose tests resolve git refs such as `main`.
+      # OPTIONAL (setup-ci decides): projects whose tests resolve git refs such as
+      # `main`. A tag checkout is detached and has no local `main` branch.
       # - run: git fetch origin main:main || true
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
       - run: npm ci # a stale lockfile fails CI
+      # OPTIONAL (setup-ci decides): guide projects, frontmatter check
+      # - run: npm i -g @context-forge/cli
+      # - run: cf init --lite --no-ide # registers this checkout as a cf project
+      # - run: cf validate frontmatter
       - run: npm run __LINT_SCRIPT__
       - run: npm run __TYPECHECK_SCRIPT__
       - run: npm run __TEST_SCRIPT__

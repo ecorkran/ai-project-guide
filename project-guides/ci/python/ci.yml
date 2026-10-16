@@ -1,6 +1,6 @@
 # CI baseline for Python projects (uv + ruff + pyright + pytest).
 # Copied into the project by the setup-ci skill, which fills every
-# __SLOT__ below. After that the project owns this file.
+# placeholder below. After that the project owns this file.
 #
 # One-time manual step before the first tag: configure trusted publishing on
 # pypi.org (project -> Publishing -> add GitHub repo, workflow "ci.yml").
@@ -29,8 +29,8 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      # OPTIONAL: only for projects whose tests resolve git refs such as `main`.
-      # A tag checkout is detached and has no local `main` branch.
+      # OPTIONAL (setup-ci decides): projects whose tests resolve git refs such as
+      # `main`. A tag checkout is detached and has no local `main` branch.
       # - run: git fetch origin main:main || true
       - uses: astral-sh/setup-uv@v9.0.0
       - run: uv python install ${{ matrix.python-version }}
@@ -38,11 +38,12 @@ jobs:
       - run: uv run ruff check
       - run: uv run ruff format --check
       - run: uv run pyright
-      # OPTIONAL: guide projects that want the frontmatter check
+      # OPTIONAL (setup-ci decides): guide projects, frontmatter check
       # - uses: actions/setup-node@v4
       #   with:
       #     node-version: "22"
       # - run: npm i -g @context-forge/cli
+      # - run: cf init --lite --no-ide # registers this checkout as a cf project
       # - run: cf validate frontmatter
       - run: uv run pytest
 

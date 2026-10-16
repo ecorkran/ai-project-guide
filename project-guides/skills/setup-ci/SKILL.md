@@ -16,22 +16,27 @@ If `.github/workflows/ci.yml` or `.claude/skills/release/SKILL.md` already exist
 | Slot | How |
 |---|---|
 | Language | `pyproject.toml` means python; `package.json` plus `tsconfig.json` means typescript |
-| Version files | Grep the current version string in `pyproject.toml`, `package.json`, `__init__.py`/`_version.py`, and any other tracked file. List every hit. |
+| Version files | Grep the current version string in `pyproject.toml`, `package.json`, `__init__.py`/`_version.py`, and any other tracked file. Skip the changelog and devlog: they record past versions and are handled by their own steps. List every remaining hit. |
 | Lock refresh | python: `uv lock` if `uv.lock` exists. npm: `npm install --package-lock-only`; pnpm: `pnpm install --lockfile-only`. None if no lockfile. |
 | Tag format | `git tag --sort=-creatordate \| head`. Copy the pattern (`v1.2.3`, `1.2.3`). No tags: `vX.Y.Z`. |
+| Tag | `<tag>` in the release skill: the tag format written with the literal placeholder `X.Y.Z` (so `vX.Y.Z` or `X.Y.Z`). The release fills in the real number at release time. |
 | Changelog | `CHANGELOG.md` (check the root, then `docs/`). Note whether it has `## [Unreleased]`. None: the release skill skips the changelog step. |
 | Devlog | `DEVLOG.md`. None: skip that step. |
 | Publish target | An existing publish job in a workflow, else the manifest: python `[project]` name means PyPI; package.json without `"private": true` means npm. Private or no manifest name: none. |
 | Package name | `name` from the manifest. It can differ from the repo name. |
+| Project | `<project>` in the release skill: the package name, or the repo directory name when there is none. |
+| Registry | `<registry>` in the release skill: `PyPI` or `npm`, from the publish target. None: the `[registry]` text is removed. |
 | Registry check | PyPI: `https://pypi.org/pypi/<pkg>/<ver>/json`. npm: `npm view <pkg>@<ver> version`. None: the release stops at green CI. |
-| Python versions | Every minor from the `requires-python` floor through the newest stable CPython release, as a quoted YAML list. If `requires-python` is missing, ask. |
-| Node versions | The majors `engines.node` allows, current LTS lines only, as a quoted YAML list. If `engines.node` is missing, ask. |
+| Python versions | Every minor listed in the `Programming Language :: Python :: 3.N` trove classifiers, as a quoted YAML list. No classifiers: every minor from the `requires-python` floor through its upper bound. No upper bound, or no `requires-python`: ask. Never fill the top of the range from memory. |
+| Node versions | The majors `engines.node` allows, as a quoted YAML list. If `engines.node` is missing or has no upper bound, ask which majors to test. Never fill the range from memory. |
 | Publish runtime | `__PUBLISH_PYTHON_VERSION__` / `__PUBLISH_NODE_VERSION__`: the lowest version in the matrix. |
 | Tag glob | `__TAG_GLOB__`, derived from the tag format: `v*` for v-prefixed tags, `[0-9]*` for bare ones. |
 | Commit type | `<commit type>` in the release skill: `package` if the project uses the guide's commit types, else `chore`. |
 | Check commands | python: `ruff check`, `ruff format --check`, `pyright` (or the project's type checker), `pytest`. typescript: the `lint`, `typecheck`, `test`, `build` scripts in package.json. Fill `__*_SCRIPT__` only with scripts that exist. If one is missing, say so and drop that step rather than inventing it. |
 | Integration branch | `cf config get git.integration_branch`, only to fill the CI trigger branches (`main`, plus this value if set). Never bake it into the release skill. |
 | cf project | Does `cf` exist and does `project-documents/` exist? Decides whether the release skill keeps the cf steps. |
+| Frontmatter block | Enable the OPTIONAL cf block in ci.yml when `project-documents/` exists and its markdown files carry YAML frontmatter. Otherwise remove it. |
+| Fetch main | Enable the OPTIONAL `git fetch origin main:main` line when any test file refers to the `main` branch by name (a quoted `main` or `origin/main` passed to git, or a `main..` range). Tag builds go red without it. No such reference: remove it. Unsure: ask. |
 
 Ask the user only about what is still unknown. The publish target is the usual one. Present everything detected in one short list and let the user correct it before writing.
 
@@ -42,8 +47,8 @@ Copy the baseline for the language to `.github/workflows/ci.yml` and replace eve
 - No publish target: delete the block between `BEGIN PUBLISH` and `END PUBLISH`, and the manual-step note at the top that refers to it.
 - TypeScript: drop `--access public` from the publish step when the manifest's `publishConfig.access` is `restricted`.
 - Keep the `needs:` list on `publish` equal to every test job in the file.
-- Remove comment-only OPTIONAL blocks the project doesn't want. Leave them if unsure.
-- Grep the result for `__` to confirm no slot is left unfilled. A leftover slot is an error, not something to guess.
+- Each OPTIONAL block is decided by its probe in step 1: uncomment it when the probe says enable, delete it otherwise. Do not leave commented blocks behind.
+- Grep the result for `__[A-Z]` to confirm no slot is left unfilled. A leftover slot is an error, not something to guess.
 
 Tell the user the one-time manual step for the publish target (PyPI trusted publishing, or an `NPM_TOKEN` secret). The first tag fails without it.
 
@@ -53,7 +58,7 @@ Write the template below to `.claude/skills/release/SKILL.md`, with these change
 
 - Fill the `<...>` slots from step 1.
 - Markers are `[cf]`, `[changelog]`, `[devlog]`, `[registry]`, and the inverse form `[no X]` for each (`[no registry]`, `[no changelog]`). A marker on a heading governs the whole step; an inline marker governs everything after it up to the next marker or the end of that list item or paragraph. Keep the marked text only if that thing exists (cf present, file present, registry present; `[no registry]` is kept only when there is none). Remove the markers themselves.
-- In step 4, the check commands are exactly the commands in the ci.yml just written, so the two cannot drift.
+- In step 4, the check commands are exactly the commands in the ci.yml just written, so the two cannot drift. They stay check-only (`ruff format --check`, not `ruff format`): the release commit touches version files and nothing else.
 - Renumber after removals.
 - Keep the integration-branch read as a command to run at release time. Do not write its value into the skill.
 
@@ -62,7 +67,7 @@ Write the template below to `.claude/skills/release/SKILL.md`, with these change
 ````markdown
 ---
 name: release
-description: Cut a <project> release — bump the version, update the changelog, tag, push, then watch CI and <registry> until the publish lands. Use when the user says "release", "cut a release", "ship it", or "bump and tag".
+description: Cut a <project> release — bump the version, update the changelog, tag, push, then watch CI until it is green [registry] and <registry> shows the new version. Use when the user says "release", "cut a release", "ship it", or "bump and tag".
 ---
 
 # Release <project>
@@ -94,7 +99,7 @@ For a patch, state the chosen version in one line and proceed.
 1. Set the version in <each version file>, then run <lock refresh command>.
 2. [changelog] In <changelog path>, insert `## [X.Y.Z] - YYYYMMDD` directly under `## [Unreleased]`, so the unreleased entries sit under the new version and `[Unreleased]` is empty. Entries stay short and user-facing.
 3. [devlog] In <devlog path>, under today's heading (create it at the top if missing), add `### Release X.Y.Z` with a one-line contents summary.
-4. Run <check commands from ci.yml>. Any failure stops the release; CI would block the publish anyway.
+4. Run <check commands from ci.yml>. Any failure stops the release; CI would block the publish anyway. These only check: if formatting or lint fails, stop, fix it in its own commit, and start the release again.
 5. Commit: `<commit type>: bump version to X.Y.Z`.
 
 ## 5. Tag and push
@@ -102,7 +107,7 @@ For a patch, state the chosen version in one line and proceed.
 Invoking this skill is the user's request to push.
 
 ```
-git tag -a <tag format> -m "<tag format>"
+git tag -a <tag> -m "<tag>"
 git push
 git push --tags
 ```
