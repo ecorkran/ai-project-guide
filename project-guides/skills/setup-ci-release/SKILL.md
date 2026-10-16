@@ -119,4 +119,4 @@ Always stop the loop yourself when it resolves either way.
 
 ## 4. Report
 
-Print the two paths written, the detected values the user should double-check (version files, tag format), and the one-time manual step. Do not commit unless the user asks.
+Print the two paths written, the detected values the user should double-check (version files, tag format), and the one-time manual step. If the integration branch was added to the CI triggers, say that it was copied in at generation time: if `git.integration_branch` changes later, the `branches:` lists in `ci.yml` must be updated by hand. Do not commit unless the user asks.
