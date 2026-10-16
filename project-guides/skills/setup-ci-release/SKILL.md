@@ -109,7 +109,8 @@ git push --tags
 
 ## 6. Watch CI
 
-The `publish` job in `.github/workflows/ci.yml` runs only on the tag and needs every test job to pass. A red test job means nothing publishes, silently. A tag alone is not a release. [registry] The release is not done until <registry> shows the new version.
+[registry] The `publish` job in `.github/workflows/ci.yml` runs only on the tag and needs every test job to pass. A red test job means nothing publishes, silently. A tag alone is not a release: it is not done until <registry> shows the new version.
+[no registry] CI must be green on the tagged commit.
 
 Start a loop via the `loop` skill with a 5 minute interval and this check:
 
