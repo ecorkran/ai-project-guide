@@ -1,0 +1,67 @@
+# CI baseline for TypeScript projects (npm + eslint + tsc + tests).
+# Copied into the project by the setup-ci-release skill, which fills every
+# __SLOT__ below. After that the project owns this file.
+# pnpm/yarn projects: the skill swaps the install and run commands.
+#
+# One-time manual step before the first tag: npm publishing needs either an
+# NPM_TOKEN repository secret or trusted publishing configured on npmjs.com
+# (package -> Settings -> Trusted Publisher -> GitHub repo, workflow "ci.yml").
+name: CI
+
+on:
+  push:
+    # main, plus git.integration_branch when the project sets one
+    branches: [__TRIGGER_BRANCHES__]
+    tags: ["__TAG_GLOB__"]
+  pull_request:
+    branches: [__TRIGGER_BRANCHES__]
+
+defaults:
+  run:
+    shell: bash # the implicit default has no pipefail
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: __NODE_VERSIONS__ # from engines.node, e.g. ["22"]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      # OPTIONAL: only for projects whose tests resolve git refs such as `main`.
+      # - run: git fetch origin main:main || true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci # a stale lockfile fails CI
+      - run: npm run __LINT_SCRIPT__
+      - run: npm run __TYPECHECK_SCRIPT__
+      - run: npm run __TEST_SCRIPT__
+      - run: npm run __BUILD_SCRIPT__
+
+  # BEGIN PUBLISH: delete this job (and the publishing note above) if the
+  # project does not publish to npm.
+  publish:
+    # list EVERY test job here so none can be skipped
+    needs: [test]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # provenance / trusted publishing
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: __PUBLISH_NODE_VERSION__
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      - run: npm ci
+      - run: npm run __BUILD_SCRIPT__
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # omit with trusted publishing
+  # END PUBLISH

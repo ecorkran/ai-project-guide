@@ -1,0 +1,65 @@
+# CI baseline for Python projects (uv + ruff + pyright + pytest).
+# Copied into the project by the setup-ci-release skill, which fills every
+# __SLOT__ below. After that the project owns this file.
+#
+# One-time manual step before the first tag: configure trusted publishing on
+# pypi.org (project -> Publishing -> add GitHub repo, workflow "ci.yml").
+# Without it the publish job fails on its first run.
+name: CI
+
+on:
+  push:
+    # main, plus git.integration_branch when the project sets one
+    branches: [__TRIGGER_BRANCHES__]
+    tags: ["__TAG_GLOB__"]
+  pull_request:
+    branches: [__TRIGGER_BRANCHES__]
+
+defaults:
+  run:
+    shell: bash # the implicit default has no pipefail
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: __PYTHON_VERSIONS__ # from requires-python, e.g. ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      # OPTIONAL: only for projects whose tests resolve git refs such as `main`.
+      # A tag checkout is detached and has no local `main` branch.
+      # - run: git fetch origin main:main || true
+      - uses: astral-sh/setup-uv@v9.0.0
+      - run: uv python install ${{ matrix.python-version }}
+      - run: uv sync --locked --dev # a stale lock fails CI
+      - run: uv run ruff check
+      - run: uv run ruff format --check
+      - run: uv run pyright
+      # OPTIONAL: guide projects that want the frontmatter check
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "22"
+      # - run: npm i -g @context-forge/cli
+      # - run: cf validate frontmatter
+      - run: uv run pytest
+
+  # BEGIN PUBLISH: delete this job (and the trusted-publishing note above) if
+  # the project does not publish to PyPI.
+  publish:
+    # list EVERY test job here so none can be skipped
+    needs: [test]
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # trusted publishing, no stored token
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9.0.0
+      - run: uv python install __PUBLISH_PYTHON_VERSION__
+      - run: uv sync --locked
+      - run: uv build
+      - uses: pypa/gh-action-pypi-publish@release/v1
+  # END PUBLISH
