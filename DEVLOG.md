@@ -10,6 +10,19 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261016
+
+**Session**: CI baselines and setup-ci skill (v0.21.0)
+
+### Completed
+- `ci/python` and `ci/typescript` CI baselines, plus `skills/setup-ci`, which
+  writes a project's `ci.yml` and offers to generate its own `/release` skill.
+  Brief from cf, Python seed from squadron, reviewed by sq.
+- Renamed from setup-ci-release to setup-ci to pair with setup-ide (PM).
+- Not yet run against a real project; squadron to test.
+
+---
+
 ## 20261014
 
 **Session**: branch target in prompts (v0.20.12)

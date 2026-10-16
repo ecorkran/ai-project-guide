@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.0] - 2026-10-16
+
 ### Added
 - `ci/python/ci.yml` and `ci/typescript/ci.yml`: CI baselines (lint, typecheck, tests, tag-triggered publish) with slots to fill.
 - `skills/setup-ci`: detects the stack, writes the project's `ci.yml` from the baseline and generates its own `release` skill (patch by default, done only when the registry shows the version, integration branch read at release time).
