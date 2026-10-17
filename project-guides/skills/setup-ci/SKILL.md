@@ -1,6 +1,6 @@
 ---
 name: setup-ci
-description: Set up CI for a project, and offer to generate its own /release skill. Detects the stack, writes .github/workflows/ci.yml from the guide's baseline and generates the project's own .claude/skills/release/SKILL.md (release process: version bump, tag, CI watch, registry check). Use when the user says "set up CI", "add a release skill", "add a release process", "set up releases", or when a project has no .github/workflows/ci.yml or release skill.
+description: "Set up CI for a project, and offer to generate its own /release skill. Detects the stack, writes .github/workflows/ci.yml from the guide's baseline and generates the project's own .claude/skills/release/SKILL.md (release process: version bump, tag, CI watch, registry check). Use when the user says \"set up CI\", \"add a release skill\", \"add a release process\", \"set up releases\", or when a project has no .github/workflows/ci.yml or release skill."
 ---
 
 # Set up CI and release
