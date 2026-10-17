@@ -12,6 +12,17 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20261017
 
+**Session**: Standing-slice index range (v0.21.4)
+
+### Completed
+- Reserved 990-999 for standing slices at squadron's request; 900-989 stays
+  sequential. Standing fixes moves to 990 in examples and the process guide.
+- cf confirmed it never allocates slice indexes, so no cf change is needed.
+
+---
+
+## 20261017
+
 **Session**: Front-load decisions (v0.21.3, #44)
 
 ### Completed

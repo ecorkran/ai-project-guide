@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.4] - 2026-10-17
+
+### Changed
+- `file-naming-conventions.md`: 900-999 splits into 900-989 (sequential, numbered in order, never continuing into 990-999) and 990-999 (standing slices, assigned by hand). 990 is the standing fixes slice.
+- Process guide, Fixes: a new standing fixes slice uses index 990.
+
 ## [0.21.3] - 2026-10-17
 
 ### Changed
