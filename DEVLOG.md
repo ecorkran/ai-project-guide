@@ -12,6 +12,17 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20261017
 
+**Session**: setup-ci feedback from trading-engine (v0.21.5)
+
+### Completed
+- First real setup-ci run (trading-engine, relayed by cf): skeleton offer when
+  there is no manifest, .gitignore offer, publish target always asked,
+  installed interpreters offered for the version matrix.
+- ruff baseline excludes markdown. cf handles the --write-lint case where
+  [tool.ruff] lives in pyproject.toml.
+
+---
+
 **Session**: Standing-slice index range (v0.21.4)
 
 ### Completed
