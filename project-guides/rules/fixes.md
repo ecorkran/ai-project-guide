@@ -1,6 +1,6 @@
 ---
 name: fixes-rules
-description: How to make a fix (any work committed as fix:) without slice ceremony. Use for bugs, regressions, broken behavior, or an issue to be closed with Fixes #n.
+description: "How to make a fix (any work committed as fix:) without slice ceremony. Use for bugs, regressions, broken behavior, or an issue to be closed with Fixes #n."
 alwaysApply: true
 ---
 
