@@ -2,6 +2,9 @@
 # BLE (blind except) and ASYNC enforce the exception-handling and
 # event-loop rules mechanically.
 line-length = 88
+# ruff formats Python blocks inside markdown; the guide's docs hold
+# deliberately wrong examples, so markdown is never formatted or linted.
+extend-exclude = ["*.md"]
 
 [lint]
 select = ["E", "F", "W", "I", "UP", "BLE", "ASYNC", "B"]

@@ -11,6 +11,23 @@ Baselines live in the guide at `project-documents/ai-project-guide/project-guide
 
 If `.github/workflows/ci.yml` or `.claude/skills/release/SKILL.md` already exists, show what exists and ask before overwriting either.
 
+## 0. Prepare the project
+
+**No manifest.** No `pyproject.toml` and no `package.json` is normal right after onboarding. Offer to create a minimal skeleton and continue with step 1 once it is committed. If the user declines, stop.
+
+Python (uv):
+1. Ask for the package name and the minimum Python version. Do not pick either.
+2. `uv init --package --name <pkg> --python <floor> --vcs none .`
+3. Replace the placeholder `description`. Remove the hello-world `[project.scripts]` entry and the generated `main()`.
+4. `uv add --dev ruff pyright pytest`
+5. Copy the guide's `project-guides/lint/python/ruff.toml` to the project root as is. In `pyproject.toml`, add the `[tool.pyright]` block from `rules/python.md` with `pythonVersion` set to the floor, and `[tool.pytest.ini_options]` with `testpaths = ["tests"]`.
+6. Add one smoke test in `tests/` that imports the package.
+7. Run `ruff check`, `ruff format --check`, `pyright` and `pytest`, then commit the skeleton on its own (`chore: add project skeleton`).
+
+TypeScript: there is no skeleton recipe yet. Say so and stop.
+
+**.gitignore.** If `.gitignore` is missing, or lacks the stack's basics (python: `.venv/`, `__pycache__/`, `.env`; typescript: `node_modules/`, `dist/`, `.env`), offer the standard template for the stack from github/gitignore (`Python.gitignore` or `Node.gitignore`), plus `.env`. Merge into an existing file; never drop the user's own lines.
+
 ## 1. Detect
 
 | Slot | How |
@@ -22,12 +39,12 @@ If `.github/workflows/ci.yml` or `.claude/skills/release/SKILL.md` already exist
 | Tag | `<tag>` in the release skill: the tag format written with the literal placeholder `X.Y.Z` (so `vX.Y.Z` or `X.Y.Z`). The release fills in the real number at release time. |
 | Changelog | `CHANGELOG.md` (check the root, then `docs/`). Note whether it has `## [Unreleased]`. None: the release skill skips the changelog step. |
 | Devlog | `DEVLOG.md` at the root only. Ignore any other devlog, including `project-documents/DEVLOG.md`. None at the root: skip the devlog step without asking. |
-| Publish target | An existing publish job in a workflow, else the manifest: python `[project]` name means PyPI; package.json without `"private": true` means npm. Private or no manifest name: none. |
+| Publish target | Always ask: PyPI, npm or none. A manifest name does not mean the project is published. If a workflow already has a publish job, offer its target as the default. |
 | Package name | `name` from the manifest. It can differ from the repo name. |
 | Project | `<project>` in the release skill: the package name, or the repo directory name when there is none. |
 | Registry | `<registry>` in the release skill: `PyPI` or `npm`, from the publish target. None: the `[registry]` text is removed. |
 | Registry check | PyPI: `https://pypi.org/pypi/<pkg>/<ver>/json`. npm: `npm view <pkg>@<ver> version`. None: the release stops at green CI. |
-| Python versions | Every minor listed in the `Programming Language :: Python :: 3.N` trove classifiers, as a quoted YAML list. No classifiers: every minor from the `requires-python` floor through its upper bound. No upper bound, or no `requires-python`: ask. Never fill the top of the range from memory. |
+| Python versions | Every minor listed in the `Programming Language :: Python :: 3.N` trove classifiers, as a quoted YAML list. No classifiers: every minor from the `requires-python` floor through its upper bound. No upper bound, or no `requires-python`: ask, offering the interpreters from `uv python list --only-installed` as the choices. Never fill the top of the range from memory. |
 | Node versions | The majors `engines.node` allows, as a quoted YAML list. If `engines.node` is missing or has no upper bound, ask which majors to test. Never fill the range from memory. |
 | Publish runtime | `__PUBLISH_PYTHON_VERSION__` / `__PUBLISH_NODE_VERSION__`: the lowest version in the matrix. |
 | Tag glob | `__TAG_GLOB__`, derived from the tag format: `v*` for v-prefixed tags, `[0-9]*` for bare ones. |
@@ -38,7 +55,7 @@ If `.github/workflows/ci.yml` or `.claude/skills/release/SKILL.md` already exist
 | Frontmatter block | Enable the OPTIONAL cf block in ci.yml when `project-documents/` exists and its markdown files carry YAML frontmatter. Otherwise remove it. |
 | Fetch main | Enable the OPTIONAL `git fetch origin main:main` line when any test file reads `main` from the project's own checkout: `origin/main`, a `main..` range, or `--diff main` and similar ref arguments. A branch named `main` in a temporary repo the test creates itself (`git init -b main`) does not count. Tag builds go red without it. No such reference: remove it. Unsure: ask. |
 
-Ask the user only about what is still unknown. The publish target is the usual one. Present everything detected in one short list and let the user correct it before writing.
+Ask the user only about what is still unknown, plus the publish target, which is always asked. Present everything detected in one short list and let the user correct it before writing.
 
 ## 2. Write ci.yml
 
