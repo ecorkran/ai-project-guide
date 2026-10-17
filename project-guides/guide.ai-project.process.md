@@ -35,6 +35,8 @@ Each phase has an approval authority that must sign off before proceeding to the
 
 **Review gates.** When `cf next` or any workflow check reports that a slice, task, or code review is required before proceeding, that is the approval mechanism above in action. The correct response is to stop and report to the Project Manager. Do not start the review yourself: the Project Manager or the orchestrating pipeline (for example squadron) runs reviews. Never edit frontmatter to clear the gate. In particular, `review: none` in a slice-design's frontmatter is a Project Manager declaration that exempts the slice from all slice-scoped reviews; agents must not add it, must not run `cf check --set-review-none`, and must not carry it over from another document used as a template. The one exception is the project's standing fixes slice (see Fixes below), which is `review: none` by definition: an agent creating it sets that field.
 
+**Front-load decisions.** A decision is due at the earliest phase that has the information to make it. Architecture owns any decision that crosses slices or touches process, configuration, or external systems. A phase is not complete while it holds a pending decision: take it to the Project Manager before the phase ends, never pass it down to the implementer. Automated pipelines cannot run work with a decision still embedded in it.
+
 When working on project phases, ensure you have all required information first. If in doubt, request and obtain the required information from the Project Manager before proceeding. Do not guess or make assumptions.
 
 ##### Slices

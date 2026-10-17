@@ -72,6 +72,13 @@ What components, features, and functionality are included in this slice? What is
 
 ## Technical Decisions
 <!-- required -->
+Give each decision its own heading with a status line directly under it. Status is `decided` or `pending-pm`. A design with any `pending-pm` line anywhere in the document is not complete and cannot move to Phase 5; take pending decisions to the Project Manager before the phase ends, never to the implementer.
+
+### D1 — {decision title}
+Status: decided
+- What was decided and why
+- Alternatives considered and rejected
+
 ### Technology Choices
 - Specific libraries, frameworks, or tools
 - Rationale for technical choices

@@ -152,6 +152,8 @@ Tasks should be structured so that work is committed frequently enough to enable
 #### Handling Insufficient Information
 If insufficient information is available to fully convert a design item into tasks, **stop** and request clarifying information from the Project Manager before continuing. Do not guess or make assumptions.
 
+No task may wait on a Project Manager decision or a PM-supplied artifact (for example "stop and ask the PM to confirm X" or "ask the PM for a fixture"). Resolve it before writing the task list, or record it as a slice precondition. A slice design with a `Status: pending-pm` decision is not ready for task breakdown.
+
 #### Procedure
 1. Review all inputs: slice design, spec, HLD, relevant tool guides, and rules.
 2. Confirm any questions or ambiguities with the Project Manager.
