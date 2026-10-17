@@ -10,6 +10,19 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261017
+
+**Session**: Front-load decisions (v0.21.3, #44)
+
+### Completed
+- Decision-status format agreed with PM via cf: `Status: decided|pending-pm`
+  under each decision heading in slice designs. cf will parse it
+  (context-forge#121); squadron side is squadron#223.
+- Process guide front-load rule, slice-design template status lines, and the
+  no-PM-gated-tasks rule in the task breakdown guide.
+
+---
+
 ## 20261016
 
 **Session**: CI baselines and setup-ci skill (v0.21.0)

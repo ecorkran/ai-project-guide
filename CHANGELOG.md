@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.3] - 2026-10-17
+
+### Changed
+- Process guide, Phase Approval: front-load decisions. A decision is due at the earliest phase that can make it; no phase completes with a pending decision (#44).
+- `templates/slice-design.md`: each Technical Decision gets a `Status:` line (`decided` or `pending-pm`) under its heading; a design with any `pending-pm` cannot move to Phase 5.
+- Task breakdown guide: no task may wait on a PM decision or PM-supplied artifact; resolve it first or record it as a slice precondition.
+
 ## [0.21.2] - 2026-10-16
 
 ### Changed
