@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.5] - 2026-10-17
+
+### Changed
+- `skills/setup-ci`: with no `pyproject.toml` or `package.json`, offers a minimal uv Python skeleton (TypeScript not yet covered). Offers a standard `.gitignore` when it is missing or weak.
+- `skills/setup-ci`: always asks for the publish target instead of inferring PyPI or npm from the manifest. When `requires-python` has no upper bound, offers the installed interpreters as choices.
+- `lint/python/ruff.toml`: excludes `*.md`, so ruff no longer formats or lints Python examples in markdown.
+
 ## [0.21.4] - 2026-10-17
 
 ### Changed
