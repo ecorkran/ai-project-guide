@@ -194,9 +194,9 @@ Projects use the same phases but differ in scope and entry point:
 
 **Fixes** (any work committed as `fix:`):
 - Follow `rules/fixes.md`. A small fix is made and committed straight to the target branch, with no slice, task file or review. A fix that needs several steps becomes a task group in the project's standing fixes slice.
-- **Creating the standing fixes slice** (once per project, the first time a fix needs tasks): take the next free 9xx slice index `nnn`, then add
-  - `user/slices/nnn-slice.standing-fixes.md`: slice-design frontmatter with `status: in_progress` and `review: none`. Body: it is a permanent container for fixes and is never complete; unrelated fixes belong together; closed items may be reopened.
-  - `user/tasks/nnn-tasks.standing-fixes.md`: tasks frontmatter, then one `## #{issue} {title}` checklist group per fix.
+- **Creating the standing fixes slice** (once per project, the first time a fix needs tasks): use index 990 (reserved for standing slices; see `file-naming-conventions`), then add
+  - `user/slices/990-slice.standing-fixes.md`: slice-design frontmatter with `status: in_progress` and `review: none`. Body: it is a permanent container for fixes and is never complete; unrelated fixes belong together; closed items may be reopened.
+  - `user/tasks/990-tasks.standing-fixes.md`: tasks frontmatter, then one `## #{issue} {title}` checklist group per fix.
   - A line for it in the project's 900 slice plan, if there is one.
 
 ---

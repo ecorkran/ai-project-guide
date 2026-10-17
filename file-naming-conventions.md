@@ -239,9 +239,11 @@ The filename prefix (`arch.`, `slice.`, `tasks.`, `slices.`) identifies document
 
 - **800-899**: Reserved for future use
 
-- **900-999**: Operational work not tied to an initiative: maintenance, fixes, standalone reviews, analysis. No sub-ranges.
-  - Only slices claim an index: a new 9xx slice takes the next index no 9xx slice uses. Analysis and standalone reviews are numbered separately in their own folders, so `941-analysis.x.md` does not make the next slice 942.
-  - `user/slices/902-slice.standing-fixes.md`: the standing fixes slice (see `rules/fixes.md`)
+- **900-999**: Operational work not tied to an initiative. Two sub-ranges:
+  - **900-989**: sequential operational work (maintenance, fixes, standalone reviews, analysis), numbered in order. The next index stops at 989 and never lands in 990-999.
+  - **990-999**: standing slices, long-lived containers that are reopened rather than completed. Assigned by hand, never as highest-existing + 1. 990 is the standing fixes slice; 991-999 are for a second standing slice if one grows too large.
+  - Only slices claim an index: a new sequential 9xx slice takes the next index in 900-989 that no 9xx slice uses. Analysis and standalone reviews are numbered separately in their own folders, so `941-analysis.x.md` does not make the next slice 942.
+  - `user/slices/990-slice.standing-fixes.md`: the standing fixes slice (see `rules/fixes.md`)
   - `user/reviews/900-review.auth-module.md`: standalone review, no parent slice
   - `user/analysis/900-analysis.dependency-audit.md`: analysis not tied to an initiative
   - Files named under the former sub-ranges keep their names.
@@ -321,8 +323,8 @@ Initiative B (110-band):
 
 Operational:
   900-review.ingestion-service.md
-  902-slice.standing-fixes.md
-  902-tasks.standing-fixes.md
+  990-slice.standing-fixes.md
+  990-tasks.standing-fixes.md
 ```
 
 ## Document Naming
@@ -376,7 +378,7 @@ Where:
 Examples:
 - `100-tasks.restructure-scaffolding.md` (tasks for `100-slice.restructure-scaffolding.md`)
 - `101-tasks.core-types-extraction.md` (tasks for `101-slice.core-types-extraction.md`)
-- `902-tasks.standing-fixes.md` (operational — 900 range)
+- `990-tasks.standing-fixes.md` (operational — standing slice, 990-999)
 
 ## Slice Files
 
@@ -436,7 +438,7 @@ When a pipeline re-runs a review (e.g., after fixing CONCERNS findings), the fil
 
 ### Operational Reviews
 
-Standalone reviews not tied to a slice are numbered in order within `user/reviews/`, starting at 900. The index claims no slice index:
+Standalone reviews not tied to a slice are numbered in order within `user/reviews/`, from 900 up to 989. The index claims no slice index:
 9nn-review.{subject}.md
 
 Directory: `user/reviews/`
@@ -504,7 +506,7 @@ dateUpdated: YYYYMMDD
 Analysis documents live in `user/analysis/` and claim no slice index. Name one by the work it serves:
 
 - **For an initiative** (preferred when there is one): the initiative's base index, e.g. `120-analysis.guide-tooling-gaps.md`.
-- **For no particular initiative:** numbered in order within `user/analysis/`, starting at 900, e.g. `900-analysis.dependency-audit.md`, `901-analysis.async-boundaries.md`.
+- **For no particular initiative:** numbered in order within `user/analysis/`, from 900 up to 989, e.g. `900-analysis.dependency-audit.md`, `901-analysis.async-boundaries.md`.
 - A slice index also works, but the initiative usually fits better.
 
 Existing files numbered under the former 940-949 analysis range keep their names.
@@ -565,9 +567,10 @@ The index structure provides a machine-readable project architecture. This enabl
 
 **900-999: Operational** → `user/reviews/`, `user/analysis/`, `user/slices/`, `user/tasks/`
 - Work not tied to an initiative: maintenance, fixes, ad-hoc reviews and audits, analysis
-- No sub-ranges. Only slices claim an index; analysis and standalone reviews are numbered within their own folders and claim nothing
+- 900-989: sequential, numbered in order; never continues into 990-999. Only slices claim an index; analysis and standalone reviews are numbered within their own folders and claim nothing
+- 990-999: standing slices, assigned by hand (990 = standing fixes)
 - Slice-lineage reviews live at their parent slice's index in the 100-799 range
-- Example: `900-review.auth-module.md`, `901-analysis.async-boundaries.md`, `902-slice.standing-fixes.md`
+- Example: `900-review.auth-module.md`, `901-analysis.async-boundaries.md`, `990-slice.standing-fixes.md`
 
 ### Usage for Meta-Project Analysis
 
@@ -593,7 +596,7 @@ This structure enables automated project snapshots:
   "operational": [
     "900-review.ingestion-service.md",
     "901-analysis.async-sync.md",
-    "902-tasks.standing-fixes.md"
+    "990-tasks.standing-fixes.md"
   ]
 }
 ```
