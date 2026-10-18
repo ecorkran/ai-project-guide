@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.6] - 2026-10-17
+
+### Fixed
+- `agents/task-checker.md` and `skills/setup-ci/SKILL.md`: quoted the `description:` line. Unquoted colons made the frontmatter invalid, so task-checker lost its model and color settings and setup-ci would not load.
+- `rules/fixes.md`: quoted the `description:` line so "Fixes #n" is not read as a YAML comment.
+
 ## [0.21.5] - 2026-10-17
 
 ### Changed

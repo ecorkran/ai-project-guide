@@ -12,6 +12,16 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20261017
 
+**Session**: Frontmatter quoting fix (v0.21.6)
+
+### Completed
+- trading-engine found task-checker and setup-ci descriptions unparseable
+  (unquoted colons). Quoted both, plus rules/fixes.md, where "Fixes #n" was
+  read as a comment. Scanned all other agents, skills and rules: clean.
+- Told trading-engine the rules files had no descriptions; wrong, corrected.
+
+---
+
 **Session**: setup-ci feedback from trading-engine (v0.21.5)
 
 ### Completed
