@@ -10,6 +10,18 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261019
+
+**Session**: Allow syncing from main (v0.21.8)
+
+### Completed
+- PM questioned why syncing the integration branch from `main` was PM-only. No
+  good reason on record (v0.15.11 paired it with the upward merge by
+  symmetry). Downward syncs and worktree refreshes are now allowed when clean,
+  abort and ask on conflict. Upward merges stay PM-only.
+
+---
+
 ## 20261018
 
 **Session**: No invented PM gates, BLOCKED marker (v0.21.7)

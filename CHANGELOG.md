@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.8] - 2026-10-19
+
+### Changed
+- `rules/git.md` (and the CLAUDE.md block): syncing the integration branch from `main`, and refreshing a worktree's branch from its parent, are no longer PM-only. They are allowed when the merge is clean; on conflict, abort and ask the PM. Merging upward into the integration branch or `main` stays PM-only.
+
 ## [0.21.7] - 2026-10-18
 
 ### Changed
