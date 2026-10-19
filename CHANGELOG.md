@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.7] - 2026-10-18
+
+### Changed
+- `rules/general.md`: slice designs and task breakdowns may not wait on Project Manager confirmation, approval, or added caution unless a named rule requires it. When a task truly needs the PM, write a `BLOCKED:` line and reason under it, leave it unchecked, and stop. Unattended pipelines (squadron) parse the marker.
+
 ## [0.21.6] - 2026-10-17
 
 ### Fixed

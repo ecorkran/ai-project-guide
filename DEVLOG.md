@@ -10,6 +10,19 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261018
+
+**Session**: No invented PM gates, BLOCKED marker (v0.21.7)
+
+### Completed
+- squadron asked for a rule so unattended pipelines stop stalling on invented
+  confirmation gates. Added to rules/general.md, scoped to slice designs and
+  task breakdowns (PM decision: concepts and above may still wait on the PM).
+  Squadron's vendored copy is wider; a permissiveness config in context-forge
+  is expected to replace this.
+
+---
+
 ## 20261017
 
 **Session**: Frontmatter quoting fix (v0.21.6)
