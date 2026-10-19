@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.9] - 2026-10-19
+
+### Added
+- `rules/permissiveness/cautious.md` and `rules/permissiveness/autonomous.md`: fragments context-forge appends to its build output for the `workflow.permissiveness` setting (#46). `standard` is the baseline in `rules/general.md` and has no file. `cautious` states that it overrides the baseline's "invented confirmation gates are invalid" rule. The subdirectory keeps setup-ide from installing them as scoped rules.
+
 ## [0.21.8] - 2026-10-19
 
 ### Changed

@@ -12,6 +12,15 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20261019
 
+**Session**: Permissiveness fragments for cf (v0.21.9)
+
+### Completed
+- cf slice 246 needs guide-owned wording for `workflow.permissiveness` (#46).
+  Wrote `rules/permissiveness/{cautious,autonomous}.md`. `standard` stays the
+  general.md baseline. Cautious explicitly overrides the no-invented-gates rule.
+
+---
+
 **Session**: Allow syncing from main (v0.21.8)
 
 ### Completed
