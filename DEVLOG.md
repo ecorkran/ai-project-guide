@@ -10,6 +10,23 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261020
+
+**Session**: Brownfield adoption for cf 260 (v0.22.0)
+
+### Completed
+- cf initiative 260 needs guide-owned adoption content. Added the
+  `brownfield-adoption` profile, the Brownfield Adoption prompt, and
+  `guide.ai-project.brownfield-adoption`; the concept prompt now opens by
+  asking what to build. Removed the stale `analyze-codebase` profile.
+- The prompt reads cf's appended "Adoption Facts" section and squadron's probe
+  (`surfaces.<s>.entry` / `graph_build`); it names no surfaces or commands.
+  A missing section stops the run instead of falling back to CF-only.
+- Open: retroactive-slice marker format (cf to specify), and how squadron's
+  concept step is invoked (asked sq-cf).
+
+---
+
 ## 20261019
 
 **Session**: Permissiveness fragments for cf (v0.21.9)

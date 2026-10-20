@@ -12,6 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.0] - 2026-10-20
+
+### Added
+- Brownfield adoption for context-forge initiative 260: `guide.ai-project.brownfield-adoption`, a Brownfield Adoption prompt in `prompt.ai-project.system`, and the `brownfield-adoption` context profile (`fileConcept`, `fileArch`, `fileSlicePlan`, `fileComprehension`). The prompt recovers a baseline concept, a reverse-engineered architecture, and an existing-state slice plan from an existing codebase, never fabricates intent, and reads squadron's capability probe from the "Adoption Facts" section that `cf build` appends. The retroactive-slice marker format is not yet specified.
+
+### Changed
+- The concept prompt now opens by asking the Project Manager what they want to build. `guide.ai-project.000-concept` and the process guide point brownfield projects to the adoption guide.
+
+### Removed
+- Stale `analyze-codebase` entry from `context_profiles`.
+
 ## [0.21.9] - 2026-10-19
 
 ### Added
