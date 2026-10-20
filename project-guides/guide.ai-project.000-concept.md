@@ -21,7 +21,7 @@ The concept document captures what we're building, why, and the initial technica
 
 Concept documents follow the **Living Document Pattern** described in the process guide. The typical flow:
 
-1. **PM describes the project** — usually conversationally, sometimes as a starter document. Either works.
+1. **AI asks what the PM wants to build; the PM describes the project** — usually conversationally, sometimes as a starter document. Either works. If the project is an existing codebase with no planning artifacts, the concept is recovered from what exists rather than invented: follow `guide.ai-project.brownfield-adoption`.
 2. **AI asks clarifying questions** — do not assume or guess. This is especially important at the concept stage where ambiguity is highest and early misunderstandings compound through later phases.
 3. **Together they produce the concept document** — the PM's original vision is preserved in the User-Provided Concept section; the AI adds structured analysis as the Refined Concept.
 4. **Iterative refinement** — both continue to evolve the document as understanding develops.

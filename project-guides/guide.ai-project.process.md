@@ -52,6 +52,7 @@ Slices are grouped under architectural initiatives, each with its own architectu
    - Include initial tech stack identification and key constraints where known.
    - If the project involves multiple capability areas or components, identify them in the Solution Approach section. These are not yet initiatives — just the named pieces that Phase 1 will formalize.
    - Use `guide.ai-project.000-concept` for detailed guidance.
+   - **Existing codebase with no planning artifacts (brownfield):** use `guide.ai-project.brownfield-adoption` instead of starting from a blank concept. It recovers the concept, architecture, and an existing-state slice plan from what is built.
    - Outcome: _A short doc describing the problem, target users, overall solution approach (including identified capability areas), and initial technology direction._
 
 1. **Phase 1: Initiative Plan**
@@ -285,6 +286,8 @@ These files, shared by all of our projects, are contained in {project-root}/proj
   roles and project phases.  Always start here.
 * guide.ai-project.000-concept (aka: AI Project Concept Guide): details on creating
   Phase 0 Concept documents.
+* guide.ai-project.brownfield-adoption: adopting an existing codebase that has no
+  planning artifacts; recovers the concept, architecture, and an existing-state slice plan.
 * guide.ai-project.001-initiative-plan: guidance on creating the Phase 1 Initiative
   Plan, which decomposes a concept into named initiatives with index assignments.
 * guide.ai-project.003-slice-planning: guidance on breaking architectural components

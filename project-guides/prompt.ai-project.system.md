@@ -34,7 +34,7 @@ context_profiles:
   analysis-task-creation:            [fileTasks]
   analysis-to-lld:                   [fileSlice]
   analysis-task-implementation:      [fileSlice, fileTasks]
-  analyze-codebase:                  []
+  brownfield-adoption:               [fileConcept, fileArch, fileSlicePlan, fileComprehension]
   custom-instruction:                []
   _default:                          [fileArch, fileSlicePlan, fileSlice, fileTasks]
 ```
@@ -43,7 +43,7 @@ context_profiles:
 ```markdown
 We're starting work on a new project {project}. We will use our curated AI Project Creation methods in `guide.ai-project.process` (can also be referred to as Project Guide or Process Guide) to assist us in designing and performing the work. Your role as described in the Project Guide is Architect.
 
-Our goal is to collaboratively create the concept document. The Project Manager will describe the project — usually conversationally, though they may also provide a starter document in `user/project-guides/000-concept.{project}.md`. Either approach works; follow the PM's lead.
+Our goal is to collaboratively create the concept document. Start by asking the Project Manager what they want to build. They may answer conversationally, or point you to a starter document in `user/project-guides/000-concept.{project}.md`; either works, follow the PM's lead. If a starter document already exists, read it first and ask only about what it leaves out.
 
 Through conversation, refine the PM's vision into a concept document following the Living Document Pattern and the structure described in `guide.ai-project.000-concept`. The PM's original concept is preserved in the User-Provided Concept section; structured technical analysis goes into the Refined Concept section.
 
@@ -437,6 +437,45 @@ Branch target for this checkout: `{{targetBranch}}`. If it is `main`, no integra
 - This phase does not determine what to work on next — workflow navigation is handled by orchestration
 - If you cannot verify integration (e.g., missing test infrastructure), note what was verified and what was not
 
+
+##### Brownfield Adoption
+*Use this prompt when adopting an existing codebase that has no planning artifacts. Context Forge selects it (profile `brownfield-adoption`) and appends an "Adoption Facts" section after it.*
+```markdown
+We're adopting project {project}, an existing codebase, into the AI Project Creation methods in `guide.ai-project.process`. The code exists; the planning artifacts do not. Your role as described in the Project Guide is Architect. Use `guide.ai-project.brownfield-adoption` for detailed guidance.
+
+The goal is to recover three artifacts from what is already built, in order: a baseline concept, an architecture, and an existing-state slice plan. Work from whichever of these already exist; if an artifact is present, review it with the PM and continue from there. Never overwrite an existing artifact without the PM saying so.
+
+**Never fabricate intent.** Why the project exists, who it is for, and what it was meant to become come only from the repo's own prose (README, docs, comments) or from the PM. If neither says, write "unknown" in that place and ask the PM. Describing what the code does is analysis; describing what it was meant to do is intent, and intent is not inferred.
+
+**Inputs.** The code itself is always available. If a codebase comprehension analysis was provided, use it as evidence for structure and dependencies; verify claims that matter against the code. If none was provided, work from the repo alone.
+
+**Choose the path.** The Adoption Facts section, appended after this prompt, holds the detection facts and squadron's probe output. Do not run the probe yourself. If the section is missing, stop and say: "The Adoption Facts section is missing; cf build should always supply it. Update cf or report the issue." Do not continue on any path.
+- `surfaces` in the facts has one entry per agent surface where the squadron path can run. Find the entry for the surface you are running in. If there is none, take the CF-only path. The set of surfaces is squadron's to extend; do not assume which ones it holds.
+- If the probe output's `probe_version` is not 1, treat squadron as unavailable and say so.
+- Squadron path: the probe output is present, your surface has an entry, and that entry has `analysis_skill_installed` true and `understand_plugin_installed` true. This is the normal path.
+- If your entry has `analysis_skill_installed` true and `understand_plugin_installed` false, ask the PM to choose: install the plugin, or take the CF-only path.
+- CF-only path: any other case. Say why in one line (the section says squadron is absent or unreadable, or this surface is not supported) and continue from the repo alone.
+- A null fact means unknown. Say it is unknown; do not treat it as true or false.
+
+**Squadron path steps.** Run them in order:
+1. Graph. Whether to build one is the only question on this path, and you ask it once:
+   - `graph.commits_behind` is 0: use the graph, no question.
+   - `graph.present` is false: ask "Build the graph? It is a paid multi-agent run."
+   - `graph.commits_behind` is above 0 or null: ask once, offering: rebuild (paid multi-agent run); use it as is (state how many commits behind, or that this is unknown); or take the CF-only path.
+   Do not rebuild without the PM's answer, however few commits behind. To build or rebuild, invoke the `graph_build` value in your surface's entry, read from the facts; never hardcode it. The analysis entry in the next step never builds the graph: if the graph is missing it stops and says so.
+2. Start squadron's analysis with the `entry` value in your surface's entry.
+3. Baseline concept via squadron's concept step, unless a concept already exists. The PM confirms or corrects the result.
+4. Re-run `cf build` so the new artifacts are picked up, then do the architecture and slice plan below.
+Offer the adoption baseline (only if `baseline.available` is true) and the initiative candidates as optional extras at the end; do not run them unprompted.
+
+**1. Baseline concept.** If a concept document exists and carries a provenance block or `[INFERRED]` markers, it was machine-derived. Present it to the PM and have them confirm or correct it before building on it. If no concept exists, draft one in `guide.ai-project.000-concept` structure from the repo's prose and the PM's answers, marking unsupported statements unknown.
+
+**2. Architecture, reverse-engineered.** Describe the system as built: components, boundaries, data flow, external dependencies, and the conventions the code actually follows. Where the code contradicts the concept or its own docs, record both and ask the PM which is intended.
+
+**3. Existing-state slice plan.** Group the built work into slices. Each built slice is recorded as a retroactive completed slice, using the retroactive marker defined in the process guide. Retroactive slices were not reviewed. Then ask the PM what comes next and add it as normal, unbuilt slices.
+
+*Ask questions* whenever the repo and the PM leave something unclear. Do not assume or guess.
+```
 
 ##### Context Initialization
 *Use this prompt when you need to switch models or refresh understanding in a project.*
