@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.2] - 2026-10-20
+
+### Fixed
+- Brownfield Adoption prompt: the squadron path is now gated only on `analysis_skill_installed` being true. `understand_plugin_installed` is checked only when the graph must be built: true runs `graph_build`; false or null asks the PM to install the plugin or take the CF-only path, saying "unknown" when null. Previously the plugin was required even when the graph was current, and a null value blocked the path.
+- Removed dead references to `guide.ai-project.091-legacy-task-migration` (deleted in v0.13.0) from the process guide and `project-guides/readme.md`.
+
+### Removed
+- `scripts/setup-ide` stub. cf 0.19.6+ does this work itself; cf 0.19.5 and older no longer get the "run `cf update`" message and will fail on the missing script.
+
 ## [0.22.1] - 2026-10-20
 
 ### Changed

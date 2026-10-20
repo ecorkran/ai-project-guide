@@ -36,6 +36,23 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+**Session**: Probe null handling and cleanup (v0.22.2)
+
+### Completed
+- sq-brownfield reported `understand_plugin_installed` can be null and the old
+  rule required the plugin even with a current graph. The squadron path now
+  gates on `analysis_skill_installed` only; the plugin matters only when the
+  graph must be built.
+- Removed the `scripts/setup-ide` stub (cf 0.19.6+ no longer calls it).
+- 091-legacy-task-migration was deleted in v0.13.0 but the process guide and
+  project-guides readme still linked it. Links removed. The 090-099 example in
+  file-naming-conventions still names it; left as an example.
+
+### Open
+- cf #123 (Claude-only rule marker): needs PM sign-off on the marker design.
+
+---
+
 ## 20261019
 
 **Session**: Permissiveness fragments for cf (v0.21.9)
