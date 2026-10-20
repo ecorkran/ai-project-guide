@@ -452,8 +452,7 @@ The goal is to recover three artifacts from what is already built, in order: a b
 **Choose the path.** The Adoption Facts section, appended after this prompt, holds the detection facts and squadron's probe output. Do not run the probe yourself. If the section is missing, stop and say: "The Adoption Facts section is missing; cf build should always supply it. Update cf or report the issue." Do not continue on any path.
 - `surfaces` in the facts has one entry per agent surface where the squadron path can run. Find the entry for the surface you are running in. If there is none, take the CF-only path. The set of surfaces is squadron's to extend; do not assume which ones it holds.
 - If the probe output's `probe_version` is not 1, treat squadron as unavailable and say so.
-- Squadron path: the probe output is present, your surface has an entry, and that entry has `analysis_skill_installed` true and `understand_plugin_installed` true. This is the normal path.
-- If your entry has `analysis_skill_installed` true and `understand_plugin_installed` false, ask the PM to choose: install the plugin, or take the CF-only path.
+- Squadron path: the probe output is present, your surface has an entry, and that entry has `analysis_skill_installed` true. This is the normal path. The `understand_plugin_installed` fact matters only when the graph must be built (step 1 below).
 - CF-only path: any other case. Say why in one line (the section says squadron is absent or unreadable, or this surface is not supported) and continue from the repo alone.
 - A null fact means unknown. Say it is unknown; do not treat it as true or false.
 
@@ -462,7 +461,7 @@ The goal is to recover three artifacts from what is already built, in order: a b
    - `graph.commits_behind` is 0: use the graph, no question.
    - `graph.present` is false: ask "Build the graph? It is a paid multi-agent run."
    - `graph.commits_behind` is above 0 or null: ask once, offering: rebuild (paid multi-agent run); use it as is (state how many commits behind, or that this is unknown); or take the CF-only path.
-   Do not rebuild without the PM's answer, however few commits behind. To build or rebuild, invoke the `graph_build` value in your surface's entry, read from the facts; never hardcode it. The analysis entry in the next step never builds the graph: if the graph is missing it stops and says so.
+   Do not rebuild without the PM's answer, however few commits behind. To build or rebuild, first check `understand_plugin_installed` in your surface's entry: if true, invoke the `graph_build` value from that entry, read from the facts, never hardcoded; if false or null, ask the PM to install the plugin or take the CF-only path, saying the plugin's status is unknown when it is null. The analysis entry in the next step never builds the graph: if the graph is missing it stops and says so.
 2. Start squadron's analysis with the `entry` value in your surface's entry.
 3. Baseline concept: invoke the `concept` value in your surface's entry, read from the facts; never hardcode it. `entry` alone does not write the concept. Skip this step when a concept already exists, unless the PM confirms an overwrite. The PM confirms or corrects the result.
 4. Re-run `cf build` so the new artifacts are picked up, then do the architecture and slice plan below.
