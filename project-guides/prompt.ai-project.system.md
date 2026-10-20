@@ -464,7 +464,7 @@ The goal is to recover three artifacts from what is already built, in order: a b
    - `graph.commits_behind` is above 0 or null: ask once, offering: rebuild (paid multi-agent run); use it as is (state how many commits behind, or that this is unknown); or take the CF-only path.
    Do not rebuild without the PM's answer, however few commits behind. To build or rebuild, invoke the `graph_build` value in your surface's entry, read from the facts; never hardcode it. The analysis entry in the next step never builds the graph: if the graph is missing it stops and says so.
 2. Start squadron's analysis with the `entry` value in your surface's entry.
-3. Baseline concept via squadron's concept step, unless a concept already exists. The PM confirms or corrects the result.
+3. Baseline concept: invoke the `concept` value in your surface's entry, read from the facts; never hardcode it. `entry` alone does not write the concept. Skip this step when a concept already exists, unless the PM confirms an overwrite. The PM confirms or corrects the result.
 4. Re-run `cf build` so the new artifacts are picked up, then do the architecture and slice plan below.
 Offer the adoption baseline (only if `baseline.available` is true) and the initiative candidates as optional extras at the end; do not run them unprompted.
 
