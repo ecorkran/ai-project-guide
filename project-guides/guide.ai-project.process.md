@@ -298,8 +298,6 @@ These files, shared by all of our projects, are contained in {project-root}/proj
   into granular task lists.  
 * guide.ai-project.006-task-expansion (aka: AI Task Expansion Guide): specific
   guidance on task expansion for slice-based development.  Optional, rarely needed.
-* guide.ai-project.091-legacy-task-migration: guidance for migrating legacy projects
-  to the slice-based methodology.
 * guide.ui-development.ai (aka: AI Development Guide - UI): specific guidance 
   pertaining to UI/UX tasks.
 * prompt.ai-project.system (aka: AI Project Prompt Templates): parameterized 

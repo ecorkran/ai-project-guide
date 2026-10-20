@@ -27,12 +27,6 @@ Quick reference and navigation for AI Project Guide methodology files.
 | 6 – Execution        | _see Process Guide_                    | [guide.ai-project.process.md](guide.ai-project.process.md)                          |
 | 7 – Integration      | _see Process Guide_                    | [guide.ai-project.process.md](guide.ai-project.process.md)                          |
 
-## Supplemental Guides (90+)
-
-| Guide                    | Purpose                                  | Quick link                                                                   |
-| ------------------------ | ---------------------------------------- | ---------------------------------------------------------------------------- |
-| Legacy Task Migration    | Migrate old projects to current structure | [guide.ai-project.091-legacy-task-migration.md](guide.ai-project.091-legacy-task-migration.md) |
-
 ## Additional Resources
 
 | Resource                 | Purpose                                  | Quick link                                                                   |
