@@ -27,6 +27,15 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+**Session**: Concept step via probe field (v0.22.1)
+
+### Completed
+- sq-cf answered: `entry` does not write the concept; the probe carries
+  `surfaces.<s>.concept`. The brownfield prompt now invokes that value and skips
+  the step when a concept exists unless the PM confirms an overwrite.
+
+---
+
 ## 20261019
 
 **Session**: Permissiveness fragments for cf (v0.21.9)

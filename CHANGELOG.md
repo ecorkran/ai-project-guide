@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.1] - 2026-10-20
+
+### Changed
+- Brownfield Adoption prompt: the concept step now invokes the `concept` value from the surface's entry in the Adoption Facts (squadron probe `surfaces.<s>.concept`) instead of an unnamed "concept step". It skips the step when a concept exists unless the PM confirms an overwrite.
+
 ## [0.22.0] - 2026-10-20
 
 ### Added
