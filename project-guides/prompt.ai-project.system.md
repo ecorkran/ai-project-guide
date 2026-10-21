@@ -365,7 +365,7 @@ Use the following as overview input when needed.  Primary input is the task file
 
 Commit at each checkpoint marked in the task file (look for lines starting with `**Commit**:`). Use the commit message provided. If a task has no explicit commit marker, commit at the end of the task before moving to the next.
 
-Do not merge the slice branch during this phase, even if a task item says to. Merging happens in Phase 7, after code review passes. If the task file contains a merge step, leave it unchecked and tell the Project Manager.
+Do not merge the slice branch or push during this phase, even if a task item says to. Merging happens in Phase 7, after code review passes. Pushing happens only when the Project Manager asks. If the task file contains a merge or push step, leave it unchecked and tell the Project Manager.
 {{#if targetBranch}}
 Branch target for this checkout: `{{targetBranch}}`. Slice branches fork from it and merge into it, in a worktree as in the primary tree. If it is `main`, no integration branch is configured.
 {{/if}}

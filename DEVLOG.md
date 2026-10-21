@@ -38,6 +38,16 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+**Session**: No push in Phase 6 (v0.22.5)
+
+### Completed
+- An agent had put a push in a task list before Phase 7. The guide already
+  forbade a merge there but said nothing about push. Extended the same rule to
+  push in the task-breakdown guide, the Phase 6 prompt, the Git rules, and this
+  repo's CLAUDE.md.
+
+---
+
 ## 20261020
 
 **Session**: Brownfield adoption for cf 260 (v0.22.0)

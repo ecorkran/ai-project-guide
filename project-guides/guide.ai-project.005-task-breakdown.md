@@ -148,6 +148,7 @@ Tasks should be structured so that work is committed frequently enough to enable
 - **Open-ended human-centric tasks** such as SEO optimization. Only include tasks that can reasonably be completed by an AI.
 - **Code in the task file**. This is a planning task, not a coding task. Code segments should be minimal and limited to what is necessary to convey information.
 - **A merge step anywhere in the task file**: no merge task, sub-item, or Success Criteria, including combined items such as "Commit and merge" or "Merge and release". The merge happens in Phase 7 (Slice Integration), after the code review, which itself expects all tasks already complete. A merge item either lands the slice on the target before review, if an agent runs it, or deadlocks Phase 6 completion, if it can't be checked off. The last task ends at a commit on the slice branch. The Git Rules merge steps apply only in Phase 7, so do not turn them into a task.
+- **A push step anywhere in the task file**: same rule as the merge. Phase 6 ends at a local commit. Pushing happens only when the Project Manager asks, never as a task.
 
 #### Handling Insufficient Information
 If insufficient information is available to fully convert a design item into tasks, **stop** and request clarifying information from the Project Manager before continuing. Do not guess or make assumptions.
