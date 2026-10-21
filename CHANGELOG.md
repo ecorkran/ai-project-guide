@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.4] - 2026-10-21
+
+### Added
+- `skills/setup-ci`: a TypeScript skeleton recipe (ESM, Vitest, the guide's ESLint baseline) for projects with no `package.json`. It was previously "no recipe yet". It asks for npm or pnpm. The skill also detects the package manager from the lockfile or `packageManager` field and, for pnpm, adapts the generated `ci.yml` (`pnpm/action-setup`, `pnpm install --frozen-lockfile`, `pnpm run`).
+
 ## [0.22.3] - 2026-10-21
 
 ### Added

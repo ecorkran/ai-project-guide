@@ -24,7 +24,15 @@ Python (uv):
 6. Add one smoke test in `tests/` that imports the package.
 7. Run `ruff check`, `ruff format --check`, `pyright` and `pytest`, then commit the skeleton on its own (`chore: add project skeleton`).
 
-TypeScript: there is no skeleton recipe yet. Say so and stop.
+TypeScript (ESM, Vitest):
+1. Ask for the package name, the minimum Node major, and the package manager (npm or pnpm). Do not pick any of them. The `target` below needs Node 18 or newer; if the floor is lower, ask.
+2. `npm init -y` (npm) or `pnpm init` (pnpm), then in `package.json` set `name`, `"type": "module"`, `engines.node` to `>=<floor>`, `"exports": "./dist/index.js"` and `"files": ["dist"]`. For pnpm also set `"packageManager": "pnpm@<version>"` from `pnpm --version`. Replace the placeholder `description` and the default `test` script, and remove `main`.
+3. `npm i -D` (npm) or `pnpm add -D` (pnpm) with `typescript vitest eslint @eslint/js typescript-eslint @types/node`
+4. Write `tsconfig.json` with `"strict": true`, `"target": "ES2022"`, `"module": "NodeNext"`, `"outDir": "dist"` and `"include": ["src", "tests"]`. Write `tsconfig.build.json` that extends it, sets `"rootDir": "src"` (TypeScript 6 requires it, and it keeps `dist/index.js` flat), and includes only `src`. Lint needs the first to cover the tests.
+5. Copy the guide's `project-guides/lint/typescript/eslint.config.mjs` to the project root as is.
+6. Set the scripts: `lint` is `eslint .`, `typecheck` is `tsc --noEmit`, `test` is `vitest run`, `build` is `tsc -p tsconfig.build.json`. The CI baseline runs these four.
+7. Add `src/index.ts` containing `export {};` and `tests/smoke.test.ts` that imports it. NodeNext requires the `.js` extension on relative imports even in `.ts` files (`../src/index.js`); that is correct, so leave a comment saying so.
+8. Run the four scripts with the chosen package manager, then commit the skeleton on its own (`chore: add project skeleton`).
 
 **.gitignore.** If `.gitignore` is missing, or lacks the stack's basics (python: `.venv/`, `__pycache__/`, `.env`; typescript: `node_modules/`, `dist/`, `.env`), offer the standard template for the stack from github/gitignore (`Python.gitignore` or `Node.gitignore`), plus `.env`. Merge into an existing file; never drop the user's own lines.
 
@@ -35,6 +43,7 @@ TypeScript: there is no skeleton recipe yet. Say so and stop.
 | Language | `pyproject.toml` means python; `package.json` plus `tsconfig.json` means typescript |
 | Version files | Grep the current version string in `pyproject.toml`, `package.json`, `__init__.py`/`_version.py`, and the project's other manifests and source files. Skip the changelog, the devlog and `project-documents/`: they record versions rather than define them. List every remaining hit. |
 | Lock refresh | python: `uv lock` if `uv.lock` exists. npm: `npm install --package-lock-only`; pnpm: `pnpm install --lockfile-only`. None if no lockfile. |
+| Package manager | typescript only. `pnpm-lock.yaml` or a `packageManager` field starting `pnpm@` means pnpm; `package-lock.json` means npm. Both or neither: ask. |
 | Tag format | `git tag --sort=-creatordate \| head`. Copy the pattern (`v1.2.3`, `1.2.3`). No tags: `vX.Y.Z`. |
 | Tag | `<tag>` in the release skill: the tag format written with the literal placeholder `X.Y.Z` (so `vX.Y.Z` or `X.Y.Z`). The release fills in the real number at release time. |
 | Changelog | `CHANGELOG.md` (check the root, then `docs/`). Note whether it has `## [Unreleased]`. None: the release skill skips the changelog step. |
@@ -62,6 +71,7 @@ Ask the user only about what is still unknown, plus the publish target, which is
 Copy the baseline for the language to `.github/workflows/ci.yml` and replace every `__SLOT__`. Then:
 
 - No publish target: delete the block between `BEGIN PUBLISH` and `END PUBLISH`, and the manual-step note at the top that refers to it.
+- TypeScript with pnpm: in both jobs, add `- uses: pnpm/action-setup@v4` before each `actions/setup-node` step (it reads the version from `packageManager`), change `cache: npm` to `cache: pnpm`, replace `npm ci` with `pnpm install --frozen-lockfile` and `npm run` with `pnpm run`. Leave `npm publish` as is; the runner has npm.
 - TypeScript: drop `--access public` from the publish step when the manifest's `publishConfig.access` is `restricted`.
 - Keep the `needs:` list on `publish` equal to every test job in the file.
 - Each OPTIONAL block is decided by its probe in step 1: uncomment it when the probe says enable, delete it otherwise. Do not leave commented blocks behind.

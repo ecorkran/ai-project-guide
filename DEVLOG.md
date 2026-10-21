@@ -27,6 +27,17 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+**Session**: TypeScript skeleton and pnpm (v0.22.4)
+
+### Completed
+- setup-ci step 0 now has a TypeScript skeleton recipe (ESM, NodeNext, Vitest,
+  the guide's ESLint config). Ran it in a scratch dir with npm and pnpm; found
+  TypeScript 6 needs an explicit `rootDir` in `tsconfig.build.json`.
+- PM almost always uses pnpm: the recipe asks npm or pnpm, the skill detects it
+  from the lockfile, and the pnpm CI changes are spelled out in step 2.
+
+---
+
 ## 20261020
 
 **Session**: Brownfield adoption for cf 260 (v0.22.0)
