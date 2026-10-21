@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.3] - 2026-10-21
+
+### Added
+- Retroactive-slice marker in `guide.ai-project.brownfield-adoption` (Retroactive Slices): a backticked `retroactive` token after the entry title, with the checked/indexed/no-design-or-tasks rules, index ordering, and `provenance: derived` on the derived architecture. The Brownfield Adoption prompt now points to it and sets `provenance: derived`. Specified by Context Forge slice 263, not yet implemented in cf.
+
 ## [0.22.2] - 2026-10-20
 
 ### Fixed

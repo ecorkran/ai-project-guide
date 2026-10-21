@@ -6,7 +6,7 @@ guideRole: supplemental
 audience: [human, ai]
 description: How to adopt an existing codebase that has no planning artifacts into the slice-based process.
 dependsOn: [guide.ai-project.process.md, guide.ai-project.000-concept.md]
-dateUpdated: 20261020
+dateUpdated: 20261021
 ---
 
 This guide covers adopting an existing codebase into the process described in `guide.ai-project.process`. If you do not have access to the process guide, stop and request it from the Project Manager.
@@ -42,6 +42,20 @@ Built work is recorded as retroactive completed slices. A retroactive slice:
 
 - counts as complete for every "done" check;
 - is never treated as reviewed, because no review took place;
-- is never the PM-only review exemption.
+- is never the PM-only review exemption (`review: none`). The review gate skips it. Do not describe it as reviewed, cleared or exempt.
 
-The marker that identifies a retroactive slice is defined by Context Forge. Its format is not yet specified in this guide; do not invent one.
+#### Marker
+
+A retroactive slice is a slice plan entry written only by the adoption flow, in this form:
+
+```markdown
+1. [x] **(100) Existing System** `retroactive` — the system as built at adoption.
+```
+
+- The token is a backticked `retroactive` immediately after the closing `**` of the title, before the description. The backticks are required; a bare "retroactive" is ordinary prose. Case and whitespace are lenient. Context Forge strips the token from the description.
+- Put the token after the title, never as a prefix. Squadron's plan parser needs `**(NNN)` right after the checkbox and would silently drop a prefixed entry.
+- The entry must be checked `[x]`, must have an explicit `(NNN)` index, and must have no slice design and no task file. `cf check` reports each violation as an error. Work that gets a design or task file is new work, not retroactive.
+- Retroactive entries precede all new work in index order. They start at the first initiative's base index, and the PM's new work continues the sequence after them. The derived architecture and slice plan take that same base index (`100-arch.{name}.md`, `100-slices.{name}.md`).
+- One coarse entry for the whole system, as in the example above, is allowed. Use finer entries when the built work groups naturally.
+- The derived architecture carries `provenance: derived` in its frontmatter. This is informational; it marks the document as reverse-engineered.
+- `cf list slices --json` reports `retroactive: true` on these entries, with status `complete`.

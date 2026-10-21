@@ -10,6 +10,23 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261021
+
+**Session**: Retroactive marker (v0.22.3)
+
+### Completed
+- cf slice 263 specified the retroactive marker: a backticked `retroactive`
+  token after the entry title. Wrote it into
+  `guide.ai-project.brownfield-adoption`; the Brownfield Adoption prompt now
+  points there and sets `provenance: derived` on the derived architecture.
+  The spec is not yet implemented in cf.
+- Checked the brownfield prompt against squadron's probe contract (squadron
+  0.23.6); no change needed.
+- #123 (Claude-only rule marker): PM agreed `agents: [claude]`, inline, with the
+  Cursor unknown-key risk accepted. Guide work waits on cf honoring the marker.
+
+---
+
 ## 20261020
 
 **Session**: Brownfield adoption for cf 260 (v0.22.0)

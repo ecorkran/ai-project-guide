@@ -469,9 +469,9 @@ Offer the adoption baseline (only if `baseline.available` is true) and the initi
 
 **1. Baseline concept.** If a concept document exists and carries a provenance block or `[INFERRED]` markers, it was machine-derived. Present it to the PM and have them confirm or correct it before building on it. If no concept exists, draft one in `guide.ai-project.000-concept` structure from the repo's prose and the PM's answers, marking unsupported statements unknown.
 
-**2. Architecture, reverse-engineered.** Describe the system as built: components, boundaries, data flow, external dependencies, and the conventions the code actually follows. Where the code contradicts the concept or its own docs, record both and ask the PM which is intended.
+**2. Architecture, reverse-engineered.** Describe the system as built: components, boundaries, data flow, external dependencies, and the conventions the code actually follows. Give the document `provenance: derived` in its frontmatter. Where the code contradicts the concept or its own docs, record both and ask the PM which is intended.
 
-**3. Existing-state slice plan.** Group the built work into slices. Each built slice is recorded as a retroactive completed slice, using the retroactive marker defined in the process guide. Retroactive slices were not reviewed. Then ask the PM what comes next and add it as normal, unbuilt slices.
+**3. Existing-state slice plan.** Group the built work into slices. Each built slice is recorded as a retroactive completed slice, using the retroactive marker defined in `guide.ai-project.brownfield-adoption` (Retroactive Slices). Retroactive slices were not reviewed. Then ask the PM what comes next and add it as normal, unbuilt slices.
 
 *Ask questions* whenever the repo and the PM leave something unclear. Do not assume or guess.
 ```
