@@ -144,6 +144,7 @@ by file pattern.
 |---|---|
 | `general.md` | **always on** — core conventions |
 | `git.md` | **always on** — commits, branches, integration branch |
+| `agent-communication.md` | **always on**, Claude only (`agents: [claude]`) — messaging peer sessions |
 | `csharp.md` | `**/*.cs`, `**/*.csproj`, `Directory.Build.props`, `.editorconfig` |
 | `dart.md` | `**/*.dart`, `**/pubspec.yaml` |
 | `electron.md` | `electron/**`, `src/preload/**`, build configs |
@@ -183,6 +184,21 @@ alwaysApply: false
 - `alwaysApply` — `true` means inline into the always-on file (`CLAUDE.md`,
   `copilot-instructions.md`, `AGENTS.md`) rather than emit a scoped file
 - `name` — stripped from Claude and Cursor output; used as Copilot `name:`
+- `agents` — optional; limits which outputs the rule reaches (below)
+
+### Agent audience
+
+`agents:` limits a rule to some outputs. With no `agents:` key, a rule reaches every output. Use it rarely: only for a rule that names one vendor's tools.
+
+```yaml
+agents: [claude]
+```
+
+- Write it inline. A block list (`agents:` followed by `- claude` lines) is rejected with a warning, and the rule reaches no output.
+- Values name output files, not setup-ide targets: `claude` (the `CLAUDE.md` block and `.claude/rules/`), `agents` (the `AGENTS.md` block and its scoped index), `copilot` (the `copilot-instructions.md` block and `.github/instructions/`), `cursor` (`.cursor/rules/`). It applies to always-on and scoped rules alike.
+- Cursor reads always-on rules from `AGENTS.md`, so an always-on rule meant for Cursor must list `agents`.
+- An unknown value is ignored with a warning. If no known value is left, the rule reaches no output.
+- Requires Context Forge 0.19.19 or later. Older versions ignore the key and send the rule everywhere.
 
 Generated always-on files carry `[//]: # (context-forge:managed)` so tooling can
 recognize them as regenerable. Re-running a target overwrites its own outputs.
