@@ -6,7 +6,7 @@ guideRole: supplemental
 audience: [human, ai]
 description: How to adopt an existing codebase that has no planning artifacts into the slice-based process.
 dependsOn: [guide.ai-project.process.md, guide.ai-project.000-concept.md]
-dateUpdated: 20261021
+dateUpdated: 20261025
 ---
 
 This guide covers adopting an existing codebase into the process described in `guide.ai-project.process`. If you do not have access to the process guide, stop and request it from the Project Manager.
@@ -35,6 +35,11 @@ The Brownfield Adoption prompt in `prompt.ai-project.system` drives the work and
 - **Machine-derived content is confirmed.** A concept carrying a provenance block or `[INFERRED]` markers was derived by a tool. The PM confirms or corrects it before anything builds on it.
 - **Never overwrite an existing artifact** without the PM saying so.
 - **Contradictions are recorded, not resolved by guessing.** Where the code disagrees with the concept or its own docs, record both and ask the PM which is intended.
+- **Existing docs are linked, not moved.** Run `cf docs map` before writing the architecture. It generates `050-docs-map.{project}.md` (see `file-naming-conventions`), which links the README, `docs/` Markdown and ADRs where they live. The derived architecture links the docs map; it never copies or moves those docs.
+
+### After Adoption
+
+If the Adoption Facts list project rule files (CLAUDE.md, AGENTS.md, editor rule folders and similar), the project's own rules may conflict with the guide's. Offer the PM the Conventions Reconciliation prompt in `prompt.ai-project.system` (key `conventions-reconciliation`) as the closing step.
 
 ### Retroactive Slices
 

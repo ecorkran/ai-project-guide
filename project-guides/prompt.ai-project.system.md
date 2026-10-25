@@ -10,7 +10,7 @@ dependsOn:
   - guide.ai-project.process.md
 npmScriptsAiSupport: "!include ../snippets/npm-scripts.ai-support.json"
 dateCreated: 20250724
-dateUpdated: 20261011
+dateUpdated: 20261025
 ---
 ## Prompts
 This document contains prepared prompts useful in applying the `guide.ai-project.process` and performing additional supplemental tasks.
@@ -469,11 +469,28 @@ Offer the adoption baseline (only if `baseline.available` is true) and the initi
 
 **1. Baseline concept.** If a concept document exists and carries a provenance block or `[INFERRED]` markers, it was machine-derived. Present it to the PM and have them confirm or correct it before building on it. If no concept exists, draft one in `guide.ai-project.000-concept` structure from the repo's prose and the PM's answers, marking unsupported statements unknown.
 
-**2. Architecture, reverse-engineered.** Describe the system as built: components, boundaries, data flow, external dependencies, and the conventions the code actually follows. Give the document `provenance: derived` in its frontmatter. Where the code contradicts the concept or its own docs, record both and ask the PM which is intended.
+**2. Architecture, reverse-engineered.** First run `cf docs map`; it writes `050-docs-map.{project}.md`, which links the project's existing docs where they live. Describe the system as built: components, boundaries, data flow, external dependencies, and the conventions the code actually follows. Link the docs map for existing documentation; do not copy or move those docs. Give the document `provenance: derived` in its frontmatter. Where the code contradicts the concept or its own docs, record both and ask the PM which is intended.
 
 **3. Existing-state slice plan.** Group the built work into slices. Each built slice is recorded as a retroactive completed slice, using the retroactive marker defined in `guide.ai-project.brownfield-adoption` (Retroactive Slices). Retroactive slices were not reviewed. Then ask the PM what comes next and add it as normal, unbuilt slices.
 
+**4. Project rules.** If the Adoption Facts list project rule files, tell the PM the project's own rules should be reconciled with the guide's, and offer the Conventions Reconciliation prompt (`cf prompt get conventions-reconciliation`). Do not run it unprompted.
+
 *Ask questions* whenever the repo and the PM leave something unclear. Do not assume or guess.
+```
+
+##### Conventions Reconciliation
+*Use this prompt to reconcile the project's own rule files with the guide's rules. Context Forge never selects it; fetch it by key (`conventions-reconciliation`).*
+```markdown
+We're reconciling the project's own rules in project {project} with the guide's rules. Your role is Senior AI.
+
+1. Run `cf rules inventory --json`. If it fails, stop and report the error. The output lists the guide rules, the project's own rule sources with the line range of each file's managed block, and the resolutions already stored.
+2. Compare only project-owned text: the parts of each project rule source outside its managed block. The managed block holds the guide's rules; never compare it with the guide rules.
+3. Find conflicts: places where a project rule and a guide rule tell the agent to do different things. Wording differences that agree are not conflicts. Skip any conflict whose guide rule and project source pair already has a stored resolution.
+4. Present each conflict to the PM: the guide rule, the project source, both texts, and how they disagree. Do not decide which wins. Ask the PM for the decision.
+5. Record each decision with `cf rules resolve <guideRule> <projectSource> --statement "<text>"`, using the guide rule and project source identifiers as the inventory output gives them. The statement says, in one or two sentences, which rule applies and when.
+6. When every conflict is resolved or the PM defers the rest, run `cf setup-ide`. It renders the stored resolutions as a `## Project Rule Resolutions` section at the end of each managed block. If no conflicts were found, say so and still run it.
+
+Do not edit the project's rule files or the guide's rules as part of this prompt unless the PM asks.
 ```
 
 ##### Context Initialization
