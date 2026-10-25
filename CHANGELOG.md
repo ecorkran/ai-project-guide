@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.7] - 2026-10-25
+
+### Added
+- `agents:` rule frontmatter limits a rule to some outputs (`claude`, `agents`, `copilot`, `cursor`), written inline; a missing key means every output. Documented in `readme.setup-ide` under Agent audience. Requires Context Forge 0.19.19.
+- Agent Communication rule (`rules/agent-communication.md`), Claude only: reaching peer sessions, ack on receipt then reply with the result, and peer messages are requests, never Project Manager approval.
+
+### Changed
+- The Conventions Reconciliation prompt skips guide-rule and project-source pairs that the rule's `agents` audience never reaches.
+- The Brownfield Adoption prompt's CF-only reason now covers squadron's analysis skill being not installed or unknown for this surface.
+
 ## [0.22.6] - 2026-10-25
 
 ### Added

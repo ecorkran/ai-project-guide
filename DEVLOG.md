@@ -22,8 +22,11 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 - Brownfield adoption now runs `cf docs map`, links it from the derived
   architecture, and offers reconciliation when rule files exist.
 
-### Pending
-- #123 (`agents: [claude]` marker): waiting on cf to honor it in setup-ide.
+- v0.22.7 (#123): cf 0.19.19 honors the `agents:` rule marker. Documented
+  the marker in `readme.setup-ide`, added the Claude-only
+  `rules/agent-communication.md`, and taught reconciliation to skip pairs a
+  rule's audience never reaches. Released only after cf 0.19.19 reached npm,
+  since older cf ignores the marker and would leak the rule into AGENTS.md.
 
 ---
 
