@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.8] - 2026-10-26
+
 ### Changed
 - Brownfield adoption now runs through squadron's `sq onboard`, which fetches the Brownfield Adoption prompt with `cf prompt get brownfield-adoption`. The prompt reads cf's appended Adoption Inputs section and starts from the concept `sq onboard` confirmed. It no longer drafts a concept, reads Adoption Facts or squadron probe output, picks a squadron or CF-only path, or runs `cf build`. Project rule files come from `cf detect --json` (`facts.ruleFiles`). The adoption guide's How It Is Run and After Adoption sections match. Context Forge requires this release as its minimum guide version (#47).
 

@@ -10,6 +10,20 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261026
+
+**Session**: Brownfield adoption for sq onboard (v0.22.8)
+
+### Completed
+- v0.22.8 (#47): the Brownfield Adoption prompt now matches cf slice 272.
+  `sq onboard` fetches it with `cf prompt get` and cf appends Adoption
+  Inputs. Removed Adoption Facts, the probe and path choice, the squadron
+  steps, `cf build`, and concept drafting. Rule files come from
+  `cf detect --json`. The cf release that requires this guide version also
+  ships `cf detect`.
+
+---
+
 ## 20261025
 
 **Session**: Conventions reconciliation and docs map (v0.22.6)
