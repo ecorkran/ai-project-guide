@@ -6,7 +6,7 @@ guideRole: supplemental
 audience: [human, ai]
 description: How to adopt an existing codebase that has no planning artifacts into the slice-based process.
 dependsOn: [guide.ai-project.process.md, guide.ai-project.000-concept.md]
-dateUpdated: 20261025
+dateUpdated: 20261026
 ---
 
 This guide covers adopting an existing codebase into the process described in `guide.ai-project.process`. If you do not have access to the process guide, stop and request it from the Project Manager.
@@ -27,7 +27,7 @@ After these exist, the project continues with the normal phases (slice design, t
 
 ### How It Is Run
 
-The Brownfield Adoption prompt in `prompt.ai-project.system` drives the work and owns the step-by-step procedure, including whether to use squadron's graph-based analysis or to work from the repo alone. This guide does not repeat those steps.
+Adoption is run by squadron's `sq onboard`. It runs squadron's codebase analysis and concept flow, so the PM confirms the baseline concept first, then fetches the Brownfield Adoption prompt from Context Forge (`cf prompt get brownfield-adoption`). The prompt in `prompt.ai-project.system` owns the steps that follow; this guide does not repeat them. Context Forge on its own does not run adoption: it stops and points to `sq onboard`.
 
 ### Rules
 
@@ -39,7 +39,7 @@ The Brownfield Adoption prompt in `prompt.ai-project.system` drives the work and
 
 ### After Adoption
 
-If the Adoption Facts list project rule files (CLAUDE.md, AGENTS.md, editor rule folders and similar), the project's own rules may conflict with the guide's. Offer the PM the Conventions Reconciliation prompt in `prompt.ai-project.system` (key `conventions-reconciliation`) as the closing step.
+Run `cf detect --json` and read `facts.ruleFiles`. If it lists project rule files (CLAUDE.md, AGENTS.md, editor rule folders and similar), the project's own rules may conflict with the guide's. Offer the PM the Conventions Reconciliation prompt in `prompt.ai-project.system` (key `conventions-reconciliation`) as the closing step.
 
 ### Retroactive Slices
 
