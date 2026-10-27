@@ -25,7 +25,7 @@ context_profiles:
   initiative-plan-phase-1:           [fileConcept]
   architecture-phase-2:              [fileConcept, fileArch]
   slice-planning-phase-3:            [fileArch, fileSlicePlan]
-  slice-design-phase-4:              [fileSlicePlan, fileSlice]
+  slice-design-phase-4:              [fileArch, fileSlicePlan, fileSlice]
   task-breakdown-phase-5:            [fileSlice, fileTasks]
   implementation-phase-6:            [fileSlice, fileTasks]
   slice-integration-phase-7:         [fileArch, fileSlicePlan, fileSlice, fileTasks]
