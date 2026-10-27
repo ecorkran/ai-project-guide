@@ -15,6 +15,10 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 **Session**: Small features skip slice ceremony (v0.22.9)
 
 ### Completed
+- v0.22.10: added `fileArch` to the `slice-design-phase-4` context profile.
+  cf's live adoption run (slice 273) showed the Phase 4 context omitted the
+  derived architecture. cf resolves whatever the profile lists, so no cf
+  change was needed.
 - v0.22.9: rewrote the "Feature, not fix" rule in `rules/fixes.md`. cf's
   agents read the old rule as "a tiny behavior change must become a slice",
   and full slice ceremony on small features is counterproductive. Only a

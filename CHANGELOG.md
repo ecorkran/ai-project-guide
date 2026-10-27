@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.10] - 2026-10-27
+
+### Changed
+- The `slice-design-phase-4` context profile now includes `fileArch`, so a slice design starts with the architecture (`[fileArch, fileSlicePlan, fileSlice]`). Found in a live adoption run, where the Phase 4 context named the slice plan and slice but not the derived architecture.
+
 ## [0.22.9] - 2026-10-27
 
 ### Changed
