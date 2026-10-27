@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.9] - 2026-10-27
+
+### Changed
+- `rules/fixes.md`: a feature gets its own slice only when it is a vertical slice of functionality (it needs design, spans several components or steps, or changes a file or state format others depend on). Smaller features, such as a new flag, a behavior change or a few dozen lines, take the small-fix path and are committed as `feat:` with no slice, branch, task file or review. The small-fix step now covers small features and no longer requires an issue.
+
 ## [0.22.8] - 2026-10-26
 
 ### Changed

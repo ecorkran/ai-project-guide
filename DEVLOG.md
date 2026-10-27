@@ -10,6 +10,19 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261027
+
+**Session**: Small features skip slice ceremony (v0.22.9)
+
+### Completed
+- v0.22.9: rewrote the "Feature, not fix" rule in `rules/fixes.md`. cf's
+  agents read the old rule as "a tiny behavior change must become a slice",
+  and full slice ceremony on small features is counterproductive. Only a
+  vertical slice of functionality gets a slice; smaller features follow the
+  small-fix path and commit as `feat:`. PM directed the change.
+
+---
+
 ## 20261026
 
 **Session**: Brownfield adoption for sq onboard (v0.22.8)
