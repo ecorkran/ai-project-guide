@@ -10,6 +10,18 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261028
+
+**Session**: Codebase reference in later phases (v0.22.11)
+
+### Completed
+- v0.22.11: added `fileComprehension` and `fileDocsMap` to the
+  `architecture-phase-2`, `slice-planning-phase-3` and `slice-design-phase-4`
+  context profiles, at cf's request (slice 274). The profile rows are the
+  on-switch for cf's Codebase Reference section; no prompt text changed.
+
+---
+
 ## 20261027
 
 **Session**: Small features skip slice ceremony (v0.22.9)

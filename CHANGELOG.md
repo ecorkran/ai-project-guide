@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.11] - 2026-10-28
+
+### Changed
+- The `architecture-phase-2`, `slice-planning-phase-3` and `slice-design-phase-4` context profiles now include `fileComprehension` and `fileDocsMap`. Both are absent unless the project has the document; cf emits a Codebase Reference section only when the active profile lists one of them. Context Forge slice 274.
+
 ## [0.22.10] - 2026-10-27
 
 ### Changed

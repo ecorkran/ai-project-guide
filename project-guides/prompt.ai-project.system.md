@@ -23,9 +23,9 @@ Order: concept → hld → arch → plan → slice → tasks.  Note that not all
 context_profiles:
   concept-phase-0:                   []
   initiative-plan-phase-1:           [fileConcept]
-  architecture-phase-2:              [fileConcept, fileArch]
-  slice-planning-phase-3:            [fileArch, fileSlicePlan]
-  slice-design-phase-4:              [fileArch, fileSlicePlan, fileSlice]
+  architecture-phase-2:              [fileConcept, fileArch, fileComprehension, fileDocsMap]
+  slice-planning-phase-3:            [fileArch, fileSlicePlan, fileComprehension, fileDocsMap]
+  slice-design-phase-4:              [fileArch, fileSlicePlan, fileSlice, fileComprehension, fileDocsMap]
   task-breakdown-phase-5:            [fileSlice, fileTasks]
   implementation-phase-6:            [fileSlice, fileTasks]
   slice-integration-phase-7:         [fileArch, fileSlicePlan, fileSlice, fileTasks]
