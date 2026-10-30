@@ -10,6 +10,17 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261029
+
+**Session**: P5 existing-task-file guard (v0.22.12)
+
+### Completed
+- v0.22.12: Task Breakdown (Phase 5) prompt now stops and reports when the
+  task file already exists, instead of asking whether to regenerate or review.
+  Failsafe for a re-dispatched `sq run p56` create step (cf #134); PM decision.
+
+---
+
 ## 20261028
 
 **Session**: Codebase reference in later phases (v0.22.11)

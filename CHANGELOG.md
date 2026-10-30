@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.12] - 2026-10-29
+
+### Changed
+- The Task Breakdown (Phase 5) prompt now tells the agent to take no action when the task file already exists: no regenerating, revising or reviewing, just stop and report the existing path. Failsafe for a re-dispatched create step (Context Forge #134).
+
 ## [0.22.11] - 2026-10-28
 
 ### Changed

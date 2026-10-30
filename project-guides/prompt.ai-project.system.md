@@ -326,6 +326,7 @@ Your role is Senior AI. Use the following as input:
 - The slice design document `user/slices/{slice}.md`.
 
 Create task file at `user/tasks/{sliceindex}-tasks.{slicename}.md` (where `{sliceindex}` matches the parent slice's index, preserving lineage per `file-naming-conventions.md`). 
+If that task file already exists, take no action: do not regenerate, revise, or review it. Stop and report that the task file already exists, giving its path.
 Use `guide.ai-project.005-task-breakdown` for detailed guidance on this phase.
 
 Include:
