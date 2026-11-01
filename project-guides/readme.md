@@ -23,7 +23,6 @@ Quick reference and navigation for AI Project Guide methodology files.
 | 3 – Slice Planning   | Slice Planning Guide                   | [guide.ai-project.003-slice-planning.md](guide.ai-project.003-slice-planning.md)     |
 | 4 – Slice Design     | Slice Design Guide                     | [guide.ai-project.004-slice-design.md](guide.ai-project.004-slice-design.md)         |
 | 5 – Task Breakdown   | Task Breakdown Guide                   | [guide.ai-project.005-task-breakdown.md](guide.ai-project.005-task-breakdown.md)     |
-| 5v – Task Expansion  | Task-Expansion Guide (optional)        | [guide.ai-project.005-variant-task-expansion.md](guide.ai-project.005-variant-task-expansion.md) |
 | 6 – Execution        | _see Process Guide_                    | [guide.ai-project.process.md](guide.ai-project.process.md)                          |
 | 7 – Integration      | _see Process Guide_                    | [guide.ai-project.process.md](guide.ai-project.process.md)                          |
 

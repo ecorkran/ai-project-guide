@@ -154,7 +154,7 @@ Slices are grouped under architectural initiatives, each with its own architectu
      - Success criteria clearly defined (what done looks like)
    - Common Task Considerations:
 	   - If this project contains package.json, ensure a project setup task is created and add the scripts contained in `snippets/npm-scripts.ai-support.json` to its scripts block. This also applies when creating package.json.
-   - **Optional: Task Enhancement and Expansion** — If tasks are unusually complex or the implementing agent has demonstrated difficulty with similar work, enhance or subdivide tasks to improve the chances that junior AI workers can complete them independently. Use `guide.ai-project.006-task-expansion` for detailed guidance. Skip when the task breakdown is already sufficiently detailed, which is the common case.
+   - **Optional: Task Enhancement and Expansion** — If tasks are unusually complex or the implementing agent has demonstrated difficulty with similar work, enhance or subdivide tasks to improve the chances that junior AI workers can complete them independently. Skip when the task breakdown is already sufficiently detailed, which is the common case.
    - Outcome: _A detailed task list that can be executed in a single context session._
 
 6. **Phase 6: Slice Execution (AI/Human Collaboration)**
@@ -296,8 +296,6 @@ These files, shared by all of our projects, are contained in {project-root}/proj
   for individual slices.
 * guide.ai-project.005-task-breakdown: guidance on converting slice designs
   into granular task lists.  
-* guide.ai-project.006-task-expansion (aka: AI Task Expansion Guide): specific
-  guidance on task expansion for slice-based development.  Optional, rarely needed.
 * guide.ui-development.ai (aka: AI Development Guide - UI): specific guidance 
   pertaining to UI/UX tasks.
 * prompt.ai-project.system (aka: AI Project Prompt Templates): parameterized 
