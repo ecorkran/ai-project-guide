@@ -15,6 +15,8 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 **Session**: Marker-based commit cadence (v0.22.13)
 
 ### Completed
+- v0.22.14: Phase 6 completion step 2 passes cf's no-commit option so check
+  fixes reach the closing commit; requires cf 0.19.24 (published on npm).
 - v0.22.13: commit cadence moved to `**Commit**:` markers (rules/general.md,
   005 Commit Strategy, P5 and Phase 6 prompts, Phase 7 per-round commit,
   fixes). Proposed by sq, approved by the PM. cf's task parser reads only

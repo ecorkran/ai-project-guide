@@ -384,7 +384,7 @@ After completing each task, delegate checklist updates to the `task-checker` age
 After completing all tasks, perform the following steps:
 1. Run through the Verification Walkthrough section of the slice design as a final confirmation. If any step doesn't work as described, stop and confer with Project Manager before marking the slice complete. Update the Verification Walkthrough with actual commands, expected command output, corrections, and any caveats discovered during implementation.  The goal is for the walkthrough to be aditionally verifiable by an external agent (human or AI, as applicable).
 
-2. Run workflow_check (preferred) or cf check, if either are available to you, to auto-fix any issues. Pass `fix: true, noCommit: true` to workflow_check, or `--fix --no-commit` to `cf check`, so the fixes stay uncommitted in every checkout and go into the closing commit in step 5.
+2. Run workflow_check (preferred) or cf check, if either are available to you, to auto-fix any issues. Pass `fix: true, noCommit: true` to workflow_check, or `--fix --no-commit` to `cf check`, so the fixes stay uncommitted in every checkout and go into the closing commit in step 5. This requires cf 0.19.24 or later.
 
 3. Maintain the YAML frontmatter including:
 - status: not_started, in_progress, complete, deferred, deprecated

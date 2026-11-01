@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.14] - 2026-11-01
+
+### Changed
+- Phase 6 completion step 2 now runs the cf check fix with no-commit (`workflow_check` with `fix: true, noCommit: true`, or `cf check --fix --no-commit`), so fixes stay uncommitted in every checkout and land in the closing commit. Requires cf 0.19.24 or later.
+
 ## [0.22.13] - 2026-11-01
 
 ### Changed
