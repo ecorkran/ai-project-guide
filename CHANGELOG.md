@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.13] - 2026-11-01
+
+### Changed
+- Commit cadence is now marker-based, replacing "commit at least once per task", to cut the docs/review commit noise. Planning: one commit per document, when its review loop finishes (or when written if it has no review). Implementation: commit only at the task file's plain-line `**Commit**:` markers, or at the end of each top-level task if the file has none. Order is implement, task-checker, commit; never a check-off-only or notes-only commit. Phase 6 ends with one closing commit (walkthrough, `cf check` fixes, status, CHANGELOG). Phase 7 gets one commit per code-review round. Multi-step fix groups commit at their markers, or once per group. The Task Breakdown guide's Commit Strategy and the Phase 5 prompt now have the breakdown write the markers (never as checkboxes). Existing task files keep working.
+
+### Fixed
+- Removed references to the deleted task-expansion guide from the process guide and `project-guides/readme.md`.
+
 ## [0.22.12] - 2026-10-29
 
 ### Changed

@@ -10,6 +10,19 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261101
+
+**Session**: Marker-based commit cadence (v0.22.13)
+
+### Completed
+- v0.22.13: commit cadence moved to `**Commit**:` markers (rules/general.md,
+  005 Commit Strategy, P5 and Phase 6 prompts, Phase 7 per-round commit,
+  fixes). Proposed by sq, approved by the PM. cf's task parser reads only
+  checkboxes, so no heading or marker format dependency.
+- Removed dangling references to the deleted task-expansion guide.
+
+---
+
 ## 20261029
 
 **Session**: P5 existing-task-file guard (v0.22.12)
