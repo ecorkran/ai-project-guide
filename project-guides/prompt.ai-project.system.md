@@ -337,6 +337,7 @@ Include:
 5. Organize so that tasks can be completed sequentially.
 6. Test-with pattern: place test tasks immediately after their corresponding implementation tasks, not batched at the end. Each feature or component task should be followed by its test task before moving to the next feature.
 7. Use checklist format for all task files.
+8. `**Commit**:` marker lines at working, tested points, per the Commit Strategy in `guide.ai-project.005-task-breakdown`. A marker is a plain line, ``**Commit**: `type: message` ``, never a checkbox. By default put one after each task or group of closely related tasks, together with their tests.
 
 Avoid:
 - Time estimates in hours/days/etc.  You may use a 1-5 relative effort scale.
@@ -364,7 +365,9 @@ Your job is to complete the tasks in these file(s), in order: {task-files}. Plea
 Use the following as overview input when needed.  Primary input is the task file referenced above.
 - The slice design at `user/slices/{slice}.md`.
 
-Commit at each checkpoint marked in the task file (look for lines starting with `**Commit**:`). Use the commit message provided. If a task has no explicit commit marker, commit at the end of the task before moving to the next.
+Commit at each checkpoint marked in the task file (look for lines starting with `**Commit**:`). Use the commit message provided. If the task file has no markers, commit at the end of each top-level task before moving to the next. Commit only at those points, never per sub-item.
+
+Order at each commit point: implement, then run the `task-checker` agent, then commit, so the check-offs and any notes are in the commit. Never make a commit that only checks boxes or only adds notes.
 
 Do not merge the slice branch or push during this phase, even if a task item says to. Merging happens in Phase 7, after code review passes. Pushing happens only when the Project Manager asks. If the task file contains a merge or push step, leave it unchecked and tell the Project Manager.
 {{#if targetBranch}}
@@ -389,6 +392,8 @@ After completing all tasks, perform the following steps:
 
 4. Update CHANGELOG.md in project root
 - if file does not exist, create it as described in project-guides/templates/changelog-format.md
+
+5. Make one closing commit for steps 1-4 (walkthrough, check fixes, frontmatter status, CHANGELOG), after the `task-checker` update. The check in step 2 runs before this commit, never after it.
 
 ###### Notes: 
 - Delegate all checklist updates to the `task-checker` agent rather than editing task file checkboxes inline. If task-checker is unavailable, check off tasks directly; never leave completed tasks unchecked. Check off only items you have verified as done. Leave unfinished items unchecked, including when work stops to wait for the Project Manager.

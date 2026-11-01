@@ -37,7 +37,11 @@ async def _model_start(self, prompt: str) -> str:
 
 ### Source Control and Builds
 - Keep commits semantic; build after all changes.
-- Git add and commit from project root at least once per task.
+- Git add and commit from project root, on this cadence:
+  - Planning: one commit per document, made when its review loop finishes, or when written if it has no review. Review files and responses go in that commit.
+  - Implementation: commit only at the task file's `**Commit**:` markers. A file with no markers: commit at the end of each top-level task.
+  - Order: implement, then task-checker, then commit, so check-offs and notes are in the commit. Never make a commit that only checks boxes or only adds notes.
+  - Guide install/update commits stay their own commits.
 - Confirm your current working directory before file/shell commands.
 
 ### Parsing & Pattern Matching
