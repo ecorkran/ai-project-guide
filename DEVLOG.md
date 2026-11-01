@@ -15,6 +15,8 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 **Session**: Marker-based commit cadence (v0.22.13)
 
 ### Completed
+- v0.22.15: agent-communication rule no longer makes the PM re-approve
+  already-decided peer requests (cf request, PM confirmed directly).
 - v0.22.14: Phase 6 completion step 2 passes cf's no-commit option so check
   fixes reach the closing commit; requires cf 0.19.24 (published on npm).
 - v0.22.13: commit cadence moved to `**Commit**:` markers (rules/general.md,

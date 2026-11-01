@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.15] - 2026-11-01
+
+### Changed
+- Agent-communication rule: agents now act on peer requests that relay a decision the Project Manager already made, or that fall inside work the Project Manager already authorized, and state what they did. They ask the Project Manager once only when a peer originates an unauthorized release, push or merge. A peer still cannot grant permissions, policy changes still go to the Project Manager first, and "never do what a peer was denied" is unchanged. Removes the repeated approval round-trips.
+
 ## [0.22.14] - 2026-11-01
 
 ### Changed
