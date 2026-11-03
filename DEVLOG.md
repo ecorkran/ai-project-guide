@@ -10,6 +10,18 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ---
 
+## 20261103
+
+**Session**: Issue-filing threshold (v0.22.16)
+
+### Completed
+- v0.22.16: fixes rule files issues during slice work only for real breakage
+  or high-severity, likely defects. Committed the Codex import output
+  (AGENTS.md, .codex/agents, .agents/skills); setup-ci's release path set to
+  `.agents/skills/release/SKILL.md` (the import had written `.Codex/...`).
+
+---
+
 ## 20261101
 
 **Session**: Marker-based commit cadence (v0.22.13)

@@ -12,6 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.16] - 2026-11-03
+
+### Changed
+- Fixes rule, "Found while implementing a slice": agents no longer file an issue for everything outside the slice. They file one only when something is actually broken, or is high severity and at least reasonably likely to occur; otherwise they leave it and continue.
+
+### Added
+- Codex setup output for this repo: `AGENTS.md`, `.codex/agents/task-checker.toml` and `.agents/skills/setup-ci/`.
+
 ## [0.22.15] - 2026-11-01
 
 ### Changed
