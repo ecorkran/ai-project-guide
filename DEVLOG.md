@@ -13,9 +13,11 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20261106
 
-**Session**: Devlog frontmatter and archive convention (v0.22.17)
+**Session**: Devlog frontmatter and archive convention (v0.22.17, v0.22.18)
 
 ### Completed
+- v0.22.18: devlog-format.md gains cf-confirmed archive details (target_bytes
+  keeps the newest section, month-only and undated headings).
 - v0.22.17: devlog-format.md requires frontmatter (`docType: devlog`,
   `project`, `dateCreated`, `dateUpdated`) on DEVLOG.md and archive files;
   both heading styles accepted; documents cf slice 936 size-triggered archives.

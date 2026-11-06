@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.18] - 2026-11-06
+
+### Changed
+- Devlog archive docs: `devlog.target_bytes` behavior (newest section always kept, sections never split, `cf check` warning stays if still over the maximum) and the accepted section-heading forms, including month-only `## YYYY-MM` headings and undated headings that move with the section above.
+
 ## [0.22.17] - 2026-11-06
 
 ### Changed
