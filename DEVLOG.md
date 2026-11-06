@@ -1,12 +1,26 @@
 ---
 docType: devlog
-scope: project-wide
-description: Internal session log for development work and project context
+project: ai-project-guide
+dateCreated: 20260121
+dateUpdated: 20261106
 ---
 
 # Development Log
 
 Internal work log for ai-project-guide development. See `CHANGELOG.md` for release notes.
+
+---
+
+## 20261106
+
+**Session**: Devlog frontmatter and archive convention (v0.22.17)
+
+### Completed
+- v0.22.17: devlog-format.md requires frontmatter (`docType: devlog`,
+  `project`, `dateCreated`, `dateUpdated`) on DEVLOG.md and archive files;
+  both heading styles accepted; documents cf slice 936 size-triggered archives.
+  Added `devlog` docType and schema to file-naming-conventions. Requested by
+  cf (squadron's devlog step hard-fails without frontmatter, cf#141).
 
 ---
 

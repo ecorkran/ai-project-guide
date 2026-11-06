@@ -27,7 +27,7 @@ status: not_started | in_progress | complete | deferred | deprecated
 ---
 ```
 
-Valid `docType` values: `guide`, `reference`, `concept`, `initiative-plan`, `architecture`, `slice-plan`, `slice-design`, `slice`, `tasks`, `analysis`, `review`, `notes`, `template`, `intro-guide`, `migration`
+Valid `docType` values: `guide`, `reference`, `concept`, `initiative-plan`, `architecture`, `slice-plan`, `slice-design`, `slice`, `tasks`, `analysis`, `review`, `notes`, `template`, `intro-guide`, `migration`, `devlog`
 
 #### Exemptions: IDE-Generated Output Files
 
@@ -204,6 +204,17 @@ topic: {analysis-focus}
 dateCreated: YYYYMMDD
 dateUpdated: YYYYMMDD
 status: not_started
+---
+```
+
+#### devlog
+Applies to `DEVLOG.md` and to devlog archive files. Frontmatter is required; tools such as the squadron devlog step fail when it is missing. See `templates/devlog-format.md`.
+```yaml
+---
+docType: devlog
+project: {project}
+dateCreated: YYYYMMDD
+dateUpdated: YYYYMMDD
 ---
 ```
 
