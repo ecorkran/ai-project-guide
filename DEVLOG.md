@@ -2,12 +2,21 @@
 docType: devlog
 project: ai-project-guide
 dateCreated: 20260121
-dateUpdated: 20261106
+dateUpdated: 20261114
 ---
 
 # Development Log
 
 Internal work log for ai-project-guide development. See `CHANGELOG.md` for release notes.
+
+---
+
+## 20261114
+
+**Session**: Agent-facing surfaces rule (v0.22.19)
+
+### Completed
+- v0.22.19: new always-on `rules/agent-facing-surfaces.md` (MCP servers ship `instructions`; public sites ship `llms.txt`). Pointers in tool-guides/mcp/01-overview.md and the Astro and Next.js intro guides. Requested by cf for squadron initiative 480; closes #50.
 
 ---
 

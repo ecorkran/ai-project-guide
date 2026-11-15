@@ -5,7 +5,7 @@ audience:
   - human
   - ai
 purpose: Quickstart guide for non‑interactive, CLI‑driven Next.js projects
-dateUpdated: 20250718
+dateUpdated: 20261114
 ---
 
 
@@ -298,6 +298,12 @@ npx @tailwindcss/upgrade@next
 - [Tailwind v4 Docs](https://tailwindcss.com/docs/guides/nextjs)
 - [ShadCN UI](https://ui.shadcn.com/)
 - [Tailwind v4 Release Notes](https://github.com/tailwindlabs/tailwindcss/releases/tag/v4.0.0)
+
+---
+
+### 10  Agent-Facing Files
+
+Every public site ships `llms.txt`. Create it at `public/llms.txt` so it serves at the site root. Required format is in `project-guides/rules/agent-facing-surfaces.md`.
 
 ---
 

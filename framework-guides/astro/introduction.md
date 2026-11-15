@@ -8,7 +8,7 @@ features:
   - React integration with ShadCN UI
   - Option for zero-JS static setup
 purpose: Quickstart guide for Astro projects with and without React
-dateUpdated: 20250718
+dateUpdated: 20261114
 ---
 
 
@@ -179,6 +179,10 @@ Astro offers fine-grained control over when your React/ShadCN components load:
 - `client:visible` — hydrates when the component enters the viewport
 
 Use these directives on your component tags to tune performance and bundle size.
+
+## 6. Agent-Facing Files
+
+Every public site ships `llms.txt`. Create it at `public/llms.txt` so it serves at the site root. Required format is in `project-guides/rules/agent-facing-surfaces.md`.
 
 ---
 

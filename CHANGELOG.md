@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.19] - 2026-11-14
+
+### Added
+- Agent-facing surfaces rule (`project-guides/rules/agent-facing-surfaces.md`, always-on): every MCP server ships the optional `instructions` field, and every public website ships `llms.txt` in llmstxt.org format. Pointers added to the MCP tool overview and the Astro and Next.js intro guides. Closes #50.
+
 ## [0.22.18] - 2026-11-06
 
 ### Changed

@@ -4,7 +4,7 @@ tool: MCP
 docType: overview
 description: Overview of Model Context Protocol — architecture, transports, Python/TypeScript SDKs, tool annotations, and best practices.
 dateCreated: 20260215
-dateUpdated: 20260215
+dateUpdated: 20261114
 ---
 
 <img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
@@ -118,6 +118,10 @@ From Anthropic's "Writing Effective Tools for Agents" blog post — arguably the
 4. **Optimize for token efficiency** — Implement pagination, filtering, truncation with sensible defaults; consider a `response_format` parameter for "concise" vs "detailed"
 5. **Prompt-engineer your tool descriptions** — Treat them like onboarding docs for a new hire; make implicit context explicit
 6. **Write helpful error messages** — "User not found. Try `search_users(name='...')`" beats "Error: 404"
+
+## Server Instructions
+
+Every MCP server sets the optional `instructions` field. Put cross-tool guidance there (tool ordering, limits, error recovery, when to use the server), not in tool descriptions. Required by `project-guides/rules/agent-facing-surfaces.md`.
 
 ## Testing
 
