@@ -13,9 +13,10 @@ Internal work log for ai-project-guide development. See `CHANGELOG.md` for relea
 
 ## 20261121
 
-**Session**: Task-breakdown guide rules (v0.22.20)
+**Session**: Task-breakdown guide rules (v0.22.20), rule `steps` release (v0.22.21)
 
 ### Completed
+- v0.22.21: released b6cfc6f (made by the squadron session), which adds a `steps` frontmatter line to the four always-apply rule files so squadron 0.24.36 reviews receive `general.md`. It had been committed on main but never tagged or pushed.
 - v0.22.20: `guide.ai-project.005-task-breakdown` "What to Avoid" gains two rules: fallbacks are plain text not checkboxes, and no task depends on a later step's outcome. Requested by the trading-data session from slice 174.
 
 ---

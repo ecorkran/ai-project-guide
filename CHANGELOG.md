@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.21] - 2026-11-21
+
+### Changed
+- Always-apply rules (`general.md`, `git.md`, `fixes.md`, `agent-communication.md`) gain a `steps` frontmatter line. `general.md` is marked for design, tasks, implement, review and dispatch; the other three for design, tasks, implement and dispatch. Squadron 0.24.36 injects only rule files marked for review into review prompts, so `general.md` is now what reviews receive. Requested by squadron.
+
 ## [0.22.20] - 2026-11-21
 
 ### Changed
