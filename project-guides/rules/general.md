@@ -1,6 +1,7 @@
 ---
 name: general-rules
 description: Core project conventions for AI-assisted development.
+steps: [design, tasks, implement, review, dispatch]
 alwaysApply: true
 ---
 

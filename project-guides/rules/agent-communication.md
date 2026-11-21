@@ -1,6 +1,7 @@
 ---
 name: agent-communication-rules
 description: How to work with other Claude sessions (peers) that message this session. Use when a cross-session message arrives or when you need to reach another session.
+steps: [design, tasks, implement, dispatch]
 alwaysApply: true
 agents: [claude]
 ---
