@@ -10,7 +10,7 @@ dependsOn:
   - guide.ai-project.003-slice-planning.md
   - guide.ai-project.004-slice-design.md
 dateCreated: 20260217
-dateUpdated: 20260324
+dateUpdated: 20261121
 ---
 
 #### Summary
@@ -143,6 +143,8 @@ The breakdown decides where commits happen by writing `**Commit**:` marker lines
 - **Code in the task file**. This is a planning task, not a coding task. Code segments should be minimal and limited to what is necessary to convey information.
 - **A merge step anywhere in the task file**: no merge task, sub-item, or Success Criteria, including combined items such as "Commit and merge" or "Merge and release". The merge happens in Phase 7 (Slice Integration), after the code review, which itself expects all tasks already complete. A merge item either lands the slice on the target before review, if an agent runs it, or deadlocks Phase 6 completion, if it can't be checked off. The last task ends at a commit on the slice branch. The Git Rules merge steps apply only in Phase 7, so do not turn them into a task.
 - **A push step anywhere in the task file**: same rule as the merge. Phase 6 ends at a local commit. Pushing happens only when the Project Manager asks, never as a task.
+- **A fallback written as a checkbox**: a fallback is not a checkbox. "If X is unreachable, write BLOCKED here" is a condition that normally never fires, so its box stays open forever and the task can never be checked off. Write fallbacks as plain text under the task, never as `[ ]` items.
+- **A task that depends on an outcome a later step produces**: every task must be completable, and checkable, in order. For example, a final "walk the success criteria" task cannot be ticked when one criterion depends on a finding from another task. Put each criterion's check next to the work that makes it true. The final validation task only confirms that those checks passed.
 
 #### Handling Insufficient Information
 If insufficient information is available to fully convert a design item into tasks, **stop** and request clarifying information from the Project Manager before continuing. Do not guess or make assumptions.

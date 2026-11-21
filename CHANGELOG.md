@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.20] - 2026-11-21
+
+### Changed
+- Task-breakdown guide, "What to Avoid": fallbacks are plain text under the task, never `[ ]` items (a condition that normally never fires leaves its box open forever); and no task may depend on an outcome a later step produces, so each success-criterion check sits next to the work that makes it true and the final validation task only confirms those checks passed. Requested by trading-data slice 174.
+
 ## [0.22.19] - 2026-11-14
 
 ### Added

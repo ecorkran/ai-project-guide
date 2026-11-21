@@ -2,12 +2,21 @@
 docType: devlog
 project: ai-project-guide
 dateCreated: 20260121
-dateUpdated: 20261114
+dateUpdated: 20261121
 ---
 
 # Development Log
 
 Internal work log for ai-project-guide development. See `CHANGELOG.md` for release notes.
+
+---
+
+## 20261121
+
+**Session**: Task-breakdown guide rules (v0.22.20)
+
+### Completed
+- v0.22.20: `guide.ai-project.005-task-breakdown` "What to Avoid" gains two rules: fallbacks are plain text not checkboxes, and no task depends on a later step's outcome. Requested by the trading-data session from slice 174.
 
 ---
 
