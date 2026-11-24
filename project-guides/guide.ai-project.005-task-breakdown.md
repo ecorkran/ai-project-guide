@@ -10,7 +10,7 @@ dependsOn:
   - guide.ai-project.003-slice-planning.md
   - guide.ai-project.004-slice-design.md
 dateCreated: 20260217
-dateUpdated: 20261121
+dateUpdated: 20261124
 ---
 
 #### Summary
@@ -129,6 +129,19 @@ The breakdown decides where commits happen by writing `**Commit**:` marker lines
 - **A marker may go mid-task.** For example, after verification and before a destructive step.
 - **Tests share the marker after them.** A test task shares the marker that follows it, so an implementation and its tests commit together. A test-infrastructure task gets its own marker.
 - **Verify before destructive tasks.** When a task sequence involves creating something new and then deleting the old version (migration, extraction, refactoring), insert a build/test verification step between creation and deletion, with a marker after verification passes so the old files are still recoverable if needed.
+
+#### Check the Plan Against the Code
+Before the file is finished, open the existing code and tests the tasks touch. The tasks reviewer makes these same checks, so make them first.
+- **Dependents.** For everything a task creates or changes (file, table, migration, test, command, signature, error type), open the code and tests that depend on it. Cover in that same task what the change breaks: callers, existing tests, errors nothing catches, counts and pins.
+- **Claims.** Check every claim the file makes about existing code (a file, function, signature or count it names) against the code.
+- **Leftover states.** For each state a step can leave on disk or in a store, including a step killed partway, make sure some command in the plan continues or undoes it, whatever order commands run in. A state only a person editing files can end is a defect.
+- **Commit markers.** At every `**Commit**:` marker the tree works: nothing committed there depends on something a later task builds.
+
+##### Existing tests: state a rule, not a list
+A complete list of the tests a change breaks comes only from running the suite, which cannot happen before the code exists. Do not write "these tests change; if any other fails, fix the code, not the test". Every test the list misses becomes a contradiction. State a rule:
+- Mechanical updates (a changed type or signature, a moved or deleted name, a pinned set, count or text) are made in the task that makes the change.
+- A test may change what it asserts only where a named design decision reverses the behavior it pins. The implementer notes each such test under the task.
+- Naming the tests already known is fine, as examples and not as the whole list.
 
 #### What to Include
 - Consult `ai-project-guide/tool-guides/{tool}/` for each tool referenced in the design. If tool knowledge is not present, search the web if possible and alert the Project Manager.

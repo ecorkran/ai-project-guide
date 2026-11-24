@@ -2,12 +2,21 @@
 docType: devlog
 project: ai-project-guide
 dateCreated: 20260121
-dateUpdated: 20261121
+dateUpdated: 20261124
 ---
 
 # Development Log
 
 Internal work log for ai-project-guide development. See `CHANGELOG.md` for release notes.
+
+---
+
+## 20261124
+
+**Session**: Task-breakdown writer checks (v0.22.22)
+
+### Completed
+- v0.22.22: task-breakdown guide and prompt tell the writer to check the plan against existing code (dependents, claims, leftover states, commit-marker tree health) and to state a rule for existing tests instead of a closed list. Requested by squadron from issue #402 (51 FAIL findings across nine stuck review loops). Also added `steps` to `agent-facing-surfaces.md` per the PM decision relayed by squadron.
 
 ---
 

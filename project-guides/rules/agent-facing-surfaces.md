@@ -2,6 +2,7 @@
 name: agent-facing-surfaces-rules
 description: "Required agent-facing metadata: every MCP server ships the instructions field, every public website ships llms.txt. Use when building or scaffolding an MCP server or a public site."
 alwaysApply: true
+steps: [design, tasks, implement, dispatch]
 ---
 
 ### Agent-Facing Surfaces

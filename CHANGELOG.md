@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.22.22] - 2026-11-24
+
+### Changed
+- Task-breakdown guide gains "Check the Plan Against the Code" and the task-breakdown prompt gains matching items 9 and 10. Before finishing the file the writer opens the code and tests that depend on what each task changes and covers the breakage in that task, checks every claim about existing code, makes sure some command continues or undoes each state a step can leave behind (including a step killed partway), and keeps the tree working at every `**Commit**:` marker. Existing tests are handled by a rule (mechanical updates in the task that makes the change; a test changes what it asserts only where a named design decision reverses it) instead of a closed list. Requested by squadron (issue #402).
+- `agent-facing-surfaces.md` gains `steps: [design, tasks, implement, dispatch]`, so only `general.md` is sent to reviews among always-apply rules.
+
 ## [0.22.21] - 2026-11-21
 
 ### Changed

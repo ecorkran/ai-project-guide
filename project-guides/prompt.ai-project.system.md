@@ -338,6 +338,8 @@ Include:
 6. Test-with pattern: place test tasks immediately after their corresponding implementation tasks, not batched at the end. Each feature or component task should be followed by its test task before moving to the next feature.
 7. Use checklist format for all task files.
 8. `**Commit**:` marker lines at working, tested points, per the Commit Strategy in `guide.ai-project.005-task-breakdown`. A marker is a plain line, ``**Commit**: `type: message` ``, never a checkbox. By default put one after each task or group of closely related tasks, together with their tests.
+9. Check the plan against the existing code before finishing, per "Check the Plan Against the Code" in `guide.ai-project.005-task-breakdown`: for everything a task creates or changes, open the code and tests that depend on it and cover in that same task what breaks (callers, tests, counts, pins); check every claim the file makes about existing code; for each state a step can leave behind, including a step killed partway, make sure some command in the plan continues or undoes it; at every `**Commit**:` marker the tree works, with nothing depending on a later task.
+10. For existing tests, state a rule, not a complete list: mechanical updates (changed signature, moved name, pinned set, count or text) are made in the task that makes the change; a test changes what it asserts only where a named design decision reverses the behavior it pins, and the implementer notes each such test under the task. Naming known tests is fine as examples.
 
 Avoid:
 - Time estimates in hours/days/etc.  You may use a 1-5 relative effort scale.
